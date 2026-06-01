@@ -1,4 +1,4 @@
 *.iml
 *.class
 out/
-db.properties;
+data/db_properties/db.properties
