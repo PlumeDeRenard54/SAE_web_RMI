@@ -16,7 +16,7 @@ public class PrincipaleJDBC {
             Connection connect = DatabaseConnection.getConnection();
             System.out.println("Connexion réussie via le Singleton !");
 
-            String SQLPrep = "SELECT * FROM RESTAURANT";
+            String SQLPrep = "SELECT * FROM e85555u.RESTAURANT";
             prep = connect.prepareStatement(SQLPrep);
             rs = prep.executeQuery();
 
