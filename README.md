@@ -12,3 +12,5 @@
  > db.user=eXXXXXu
  >
  > db.password=PASSWORD
+ >
+ > db.url=jdbc:oracle:thin:@charlemagne.iutnc.univ-lorraine.fr:1521:infodb

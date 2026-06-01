@@ -36,7 +36,7 @@ public class DatabaseConnection {
                 throw new SQLException("Impossible de charger le fichier db.properties. Vérifiez son emplacement.", e);
             }
 
-            String url = "jdbc:oracle:thin:@charlemagne.iutnc.univ-lorraine.fr:1521:infodb";
+            String url = props.getProperty("db.url");;
             String user = props.getProperty("db.user");
             String pass = props.getProperty("db.password");
 
