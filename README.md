@@ -14,3 +14,14 @@
  > db.password=PASSWORD
  >
  > db.url=jdbc:oracle:thin:@charlemagne.iutnc.univ-lorraine.fr:1521:infodb
+
+
+# Features
+
+    - BD Restaurant/Resa 
+    - Accès api VLib
+    - Affichage LeafLet 
+    - Implémentation API en java
+    - Server RMI pour gestion de données
+
+

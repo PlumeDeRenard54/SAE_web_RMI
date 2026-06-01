@@ -1,0 +1,28 @@
+{
+  "name": "webside",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [
+    "web"
+  ],
+  "repository": {
+    "type": "git",
+    "url": ".."
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "src/ts/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "esbuild src/ts/index.ts --bundle  --sourcemap --target=es2015 --outfile=src/js/index.js",
+    "buildServer": "esbuild src/ts/index.ts --bundle --sourcemap --target=es2015 --outfile=/opt/lampp/htdocs/www/photoBox/js/index.js ; cp ./index.html /opt/lampp/htdocs/www/photoBox; cp css /opt/lampp/htdocs/www/photoBox -r "
+  },
+  "dependencies": {
+    "@types/geojson": "^7946.0.16",
+    "@types/leaflet": "^1.9.21",
+    "bootstrap": "^5.3.8",
+    "esbuild": "^0.17.19",
+    "leaflet": "^1.9.4"
+  }
+}

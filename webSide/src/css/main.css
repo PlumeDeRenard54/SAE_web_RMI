@@ -1,0 +1,11 @@
+#map {
+  height:600px;
+}
+
+.hidden{
+    display: none;
+}
+
+.bg-light{
+    border-radius: 20px;
+}

@@ -2,3 +2,4 @@
 *.class
 out/
 data/db_properties/db.properties
+node_modules
