@@ -3,6 +3,7 @@ package ServerRMI;
 import donnees.Reservation;
 import donnees.Restaurant;
 
+import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +14,7 @@ import java.util.List;
 
 public final class Repository {
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException, RemoteException {
         Repository repo = Repository.getInstance();
         /*
         Test save resto
