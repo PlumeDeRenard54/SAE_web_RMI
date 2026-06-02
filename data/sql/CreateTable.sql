@@ -7,7 +7,7 @@ DROP TABLE RESTAURANT;
 CREATE TABLE Restaurant (
                             Id INTEGER PRIMARY KEY NOT NULL,
                             Nom VARCHAR2(30),
-                            Adresse VARCHAR2(30),
+                            Adresse VARCHAR2(100),
                             Lat NUMBER(12,8),
                             Lon NUMBER(12,8)
 );
