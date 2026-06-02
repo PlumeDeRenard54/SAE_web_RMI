@@ -1,6 +1,7 @@
 package donnees;
 
 public class Restaurant {
+    private int id;
     private String nom;
     private String adresse;
     private Double lat;
@@ -27,5 +28,13 @@ public class Restaurant {
 
     public Double getLon() {
         return lon;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 }

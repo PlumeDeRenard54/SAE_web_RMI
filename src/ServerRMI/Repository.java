@@ -57,14 +57,15 @@ public final class Repository {
     }
 
     public void saveRestaurant(Restaurant restaurant) throws SQLException {
-        Connection connect = DatabaseConnection.getConnection();
+        int id = getNewIdRestaurant();
+        restaurant.setId(id);
 
-        PreparedStatement prep = null;
+        Connection connect = DatabaseConnection.getConnection();
 
         String SQLPrep = "INSERT INTO e85555u.restaurant (id, nom, adresse, lat, lon) values (?,?,?,?,?)";
 
-        prep = connect.prepareStatement(SQLPrep);
-        prep.setInt(1, getNewIdRestaurant());
+        PreparedStatement prep = connect.prepareStatement(SQLPrep);
+        prep.setInt(1, restaurant.getId());
         prep.setString(2,restaurant.getNom());
         prep.setString(3,restaurant.getAdresse());
         prep.setDouble(4,restaurant.getLat());
