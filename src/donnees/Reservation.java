@@ -1,6 +1,9 @@
 package donnees;
 
-public class Reservation {
+import java.io.Serializable;
+import java.rmi.server.UnicastRemoteObject;
+
+public class Reservation implements Serializable {
     private String nomCli;
     private int idRestaurant;
     private String dateReservation;
