@@ -126,12 +126,4 @@ public final class Repository {
         }
         return restaurants;
     }
-
-    public void modifierReservation(){
-
-    }
-
-    public void modifierRestaurant(){
-
-    }
 }

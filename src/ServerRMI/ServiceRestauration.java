@@ -4,9 +4,10 @@ import donnees.Reservation;
 import donnees.Restaurant;
 
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.util.List;
 
 public interface ServiceRestauration extends Remote {
-    public void reserverRestaurant(Reservation reservation);
-    public List<Restaurant> getRestaurants();
+    public void reserverRestaurant(Reservation reservation)throws RemoteException;
+    public List<Restaurant> getRestaurants()throws RemoteException;
 }
