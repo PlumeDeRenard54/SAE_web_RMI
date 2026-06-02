@@ -92,12 +92,4 @@ public final class Repository {
     public void saveReservation(){
 
     }
-
-    public void modifierReservation(){
-
-    }
-
-    public void modifierRestaurant(){
-
-    }
 }
