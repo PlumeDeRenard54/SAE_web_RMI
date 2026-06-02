@@ -8,12 +8,16 @@ import java.rmi.server.UnicastRemoteObject;
 
 public class MainServeurRestauration {
     public static void main(String[] args) throws RemoteException, AlreadyBoundException {
-        Registry registry = LocateRegistry.createRegistry(1099);
+        System.out.println("Demarrage du serveur ...");
 
-        ServiceRestauration serveur = new ServeurRestauration();
+        Registry registry = LocateRegistry.createRegistry(1099);
+        System.out.println("Local registry créée");
+
+        ServeurRestauration serveur = new ServeurRestauration();
 
         ServiceRestauration objetExport= (ServiceRestauration) UnicastRemoteObject.exportObject(serveur,0);
 
         registry.bind("serviceBD",objetExport);
+        System.out.println("Service Disponible !");
     }
 }
