@@ -6,15 +6,19 @@ import java.rmi.server.UnicastRemoteObject;
 public class Reservation implements Serializable {
     private int id;
     private String nomCli;
+    private String prenomCli;
+    private String numTel;
     private int idRestaurant;
     private String dateReservation;
-    private int nbTables;
+    private int nbConvives;
 
-    public Reservation(String nomCli, int idRestaurant, String dateReservation, int nbTables) {
+    public Reservation(String nomCli, String prenomCli, String numTel, int idRestaurant, String dateReservation, int nbConvives) {
         this.nomCli = nomCli;
+        this.prenomCli = prenomCli;
+        this.numTel = numTel;
         this.idRestaurant = idRestaurant;
         this.dateReservation = dateReservation;
-        this.nbTables = nbTables;
+        this.nbConvives = nbConvives;
     }
 
     public void setId(int id) {
@@ -37,7 +41,15 @@ public class Reservation implements Serializable {
         return dateReservation;
     }
 
-    public int getNbTables() {
-        return nbTables;
+    public String getPrenomCli() {
+        return prenomCli;
+    }
+
+    public String getNumTel() {
+        return numTel;
+    }
+
+    public int getNbConvives() {
+        return nbConvives;
     }
 }
