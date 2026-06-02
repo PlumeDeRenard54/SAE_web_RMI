@@ -1,6 +1,7 @@
 package donnees;
 
 public class Reservation {
+    private int id;
     private String nomCli;
     private int idRestaurant;
     private String dateReservation;
@@ -13,6 +14,13 @@ public class Reservation {
         this.nbTables = nbTables;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
 
     public String getNomCli() {
         return nomCli;

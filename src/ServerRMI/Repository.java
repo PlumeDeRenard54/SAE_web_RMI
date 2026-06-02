@@ -1,5 +1,6 @@
 package ServerRMI;
 
+import donnees.Reservation;
 import donnees.Restaurant;
 
 import java.sql.Connection;
@@ -7,13 +8,26 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public final class Repository {
 
     public static void main(String[] args) throws SQLException {
         Repository repo = Repository.getInstance();
-        repo.saveRestaurant(new Restaurant("RestoTresBo", "skibidi", 12113.,12131.));
+        /*
+        Test save resto
+         */
+        //repo.saveRestaurant(new Restaurant("RestoTresBo", "skibidi", 12113.,12131.));
+
+        /*
+        Test save res
+         */
+
+        List<Restaurant> restaurants = repo.getRestaurants();
+        ServeurRestauration serveurRestauration = new ServeurRestauration();
+        Reservation reservation = new Reservation("Carnet", (restaurants.get(1)).getId(), "10-10-2010", 2);
+        serveurRestauration.reserverRestaurant(reservation);
 
         System.out.println(repo.getRestaurants());
     }
@@ -74,6 +88,24 @@ public final class Repository {
         prep.executeUpdate();
     }
 
+    public void saveReservation(Reservation reservation) throws SQLException {
+        int id = getNewIdReservation();
+        reservation.setId(id);
+
+        Connection connect = DatabaseConnection.getConnection();
+
+        String SQLPrep = "INSERT INTO e85555u.reservation (idres, nomcli, idrestaurant, dateres, nbtables) values (?,?,?, TO_DATE(?, 'DD-MM-YYYY'),?)";
+
+        PreparedStatement prep = connect.prepareStatement(SQLPrep);
+        prep.setInt(1, reservation.getId());
+        prep.setString(2,reservation.getNomCli());
+        prep.setInt(3,reservation.getIdRestaurant());
+        prep.setString(4,reservation.getDateReservation());
+        prep.setInt(5,reservation.getNbTables());
+
+        prep.executeUpdate();
+    }
+
     public List<Restaurant> getRestaurants() throws SQLException {
         Connection connect = DatabaseConnection.getConnection();
         PreparedStatement prep = null;
@@ -87,10 +119,6 @@ public final class Repository {
             restaurants.add(NouvRestaurant);
         }
         return restaurants;
-    }
-
-    public void saveReservation(){
-
     }
 
     public void modifierReservation(){

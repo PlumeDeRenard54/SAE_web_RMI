@@ -7,6 +7,6 @@ import java.rmi.Remote;
 import java.util.List;
 
 public interface ServiceRestauration extends Remote {
-    public void reservationRestaurant(Reservation reservation);
+    public void reserverRestaurant(Reservation reservation);
     public List<Restaurant> getRestaurants();
 }

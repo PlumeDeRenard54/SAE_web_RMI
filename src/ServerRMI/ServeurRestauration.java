@@ -10,8 +10,13 @@ import java.util.List;
 
 public class ServeurRestauration implements ServiceRestauration {
     @Override
-    public void reservationRestaurant(Reservation reservation) {
-
+    public void reserverRestaurant(Reservation reservation) {
+        try {
+            Repository.getInstance().saveReservation(reservation);
+        }
+        catch(SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @Override
