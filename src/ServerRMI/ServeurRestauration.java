@@ -15,9 +15,10 @@ public class ServeurRestauration implements ServiceRestauration {
     }
 
     @Override
-    public void reserverRestaurant(Reservation reservation) {
+    public void reserverRestaurant(Reservation reservation) throws RemoteException{
         try {
             Repository.getInstance().saveReservation(reservation);
+            System.out.println("Reservation !");
         }
         catch(SQLException ex) {
             ex.printStackTrace();
@@ -25,9 +26,10 @@ public class ServeurRestauration implements ServiceRestauration {
     }
 
     @Override
-    public List<Restaurant> getRestaurants() {
+    public List<Restaurant> getRestaurants() throws RemoteException{
         Repository r = Repository.getInstance();
         try{
+            System.out.println("Recupération des restaurants");
             return r.getRestaurants();
         }catch(SQLException e){
             e.printStackTrace();
