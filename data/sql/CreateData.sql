@@ -6,7 +6,7 @@ repo.saveRestaurant(new Restaurant("Le Vingt 2", "22 Rue de la Primatiale, 54000
 repo.saveRestaurant(new Restaurant("Au Coin d'Italie", "14 Rue des Ponts, 54000 Nancy", 48.6917, 6.1834, 18));
 repo.saveRestaurant(new Restaurant("L'Arrosoir", "3 Rue des Ponts, 54000 Nancy", 48.6912, 6.1838, 22));
 repo.saveRestaurant(new Restaurant("La Gentilhommière", "29 Rue des Ponts, 54000 Nancy", 48.6925, 6.1845, 30));
-repo.saveRestaurant("Le Bouche à Oreille", "10 Rue de la Faïencerie, 54000 Nancy", 48.6905, 6.1872, 12));
+repo.saveRestaurant(new Restaurant("Le Bouche à Oreille", "10 Rue de la Faïencerie, 54000 Nancy", 48.6905, 6.1872, 12));
 repo.saveRestaurant(new Restaurant("L'Epicurien", "11 Rue du Pont Mouja, 54000 Nancy", 48.6911, 6.1805, 25));
 repo.saveRestaurant(new Restaurant("Restaurant Hotel de la Reine", "2 Place Stanislas, 54000 Nancy", 48.6938, 6.1832, 35));
 repo.saveRestaurant(new Restaurant("Le Petit Montmartre", "13 Rue des Maréchaux, 54000 Nancy", 48.6927, 6.1822, 15));
