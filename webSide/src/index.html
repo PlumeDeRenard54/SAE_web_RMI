@@ -18,20 +18,19 @@
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
     crossorigin=""
   ></script>
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-    crossorigin="anonymous"
-    defer
-  ></script>
   <script src="js/index.js" defer></script>
 </head>
 
 <body class="card m-3 bg-dark">
-  <div class="bg-light">
-    <div >
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+  ></script>
+  crossorigin="anonymous"
+  <div id="mainbox" class="bg-light">
+    <div>
       <header class="nav nav-fill m-2">
-        <span id="map-button" class="btn btn-dark nav-item m-1">Carte</span>
+        <span id="mappage-button" class="btn btn-dark nav-item m-1">Carte</span>
         <span id="resa-button" class="btn btn-dark nav-item m-1"
           >Reservation</span
         >
@@ -42,12 +41,54 @@
     </div>
 
     <main class="m-3">
-      <div id="map"></div>
+      <div id="mappage">
+        <div id="map"></div>
+        <div id="toggleButton" class="d-inline p-2">
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="resto-check"
+              checked
+            />
+            <label class="form-check-label" for="flexCheckDefault">
+              Resto
+            </label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="velib-check"
+              checked
+            />
+            <label class="form-check-label" for="flexCheckDefault">
+              Velib
+            </label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="travaux-check"
+              checked
+            />
+            <label class="form-check-label" for="flexCheckDefault">
+              Travaux
+            </label>
 
-      <div id="resa">
+            <button id="reload-map-button" class="btn btn-dark">Reload</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="resa" class="m-4 text-center">
         <h1 id="nom-resto">Veuillez selectionner un restaurant</h1>
 
-        <form>
+        <div>
           <div class="form-group">
             <label for="date-input">Date de réservation</label>
             <input
@@ -62,29 +103,66 @@
             >
           </div>
           <div class="form-group">
-            <label for="name-input">Nom d'utilisateur</label>
+            <label for="hour-input">Heure de réservation</label>
+            <input
+              type="time"
+              class="form-control"
+              id="hour-input"
+              aria-describedby="emailHelp"
+              placeholder="When"
+            />
+            <small id="emailHelp" class="form-text text-muted"
+              >be carefull who you meet</small
+            >
+          </div>
+          <div class="form-group">
+            <label for="lastname-input">Nom d'utilisateur</label>
+            <input
+              type="text"
+              class="form-control"
+              id="lastname-input"
+              placeholder="Dupont"
+            />
+          </div>
+          <div class="form-group">
+            <label for="name-input">Prénom d'utilisateur</label>
             <input
               type="text"
               class="form-control"
               id="name-input"
-              placeholder="You"
+              placeholder="Jean"
             />
           </div>
-          <div class="form-group form-check">
+
+          <div class="form-group">
+            <label for="numero-input">Numero de Telephone</label>
             <input
-              type="checkbox"
-              class="form-check-input"
-              id="exampleCheck1"
+              type="tel"
+              class="form-control"
+              id="numero-input"
+              placeholder="0658694646"
             />
-            <label class="form-check-label" for="exampleCheck1"
-              >Check me out</label
-            >
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-          <div class="spinner-border text-primary" role="status">
+
+          <div class="form-group">
+            <label for="nombre-input">Nombre de places</label>
+            <input
+              type="number"
+              class="form-control"
+              id="nombre-input"
+              placeholder="1"
+            />
+          </div>
+
+          <button id="submitButton" class="btn btn-primary">Submit</button>
+          <div
+            class="hidden spinner-border text-primary"
+            id="resa-spinner"
+            role="status"
+          >
             <span class="visually-hidden">Loading...</span>
           </div>
-        </form>
+        </div>
       </div>
 
       <div id="cr">
