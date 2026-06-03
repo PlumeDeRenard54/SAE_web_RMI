@@ -49,11 +49,14 @@ export function prepareResa(resto: Resto) {
 
     nodeResa.querySelector("#submitButton")!.classList.add("hidden")
     nodeResa.querySelector("#resa-spinner")!.classList.remove("hidden")
+    try{
     let response = await fetch(serverHost+"/reserver", {
       method: "POST",
       body: JSON.stringify(values),
     });
-
+  }catch(e ){
+    alert("Réservation Impossible")
+  };
     nodeResa.querySelector("#submitButton")!.classList.remove("hidden")
     nodeResa.querySelector("#resa-spinner")!.classList.add("hidden")
   };
