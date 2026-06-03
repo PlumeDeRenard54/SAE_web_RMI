@@ -15,14 +15,16 @@ public class ServeurRestauration implements ServiceRestauration {
     }
 
     @Override
-    public void reserverRestaurant(Reservation reservation) throws RemoteException{
+    public boolean reserverRestaurant(Reservation reservation) throws RemoteException{
         try {
             Repository.getInstance().saveReservation(reservation);
             System.out.println("Reservation !");
         }
         catch(SQLException ex) {
             ex.printStackTrace();
+            return false;
         }
+        return true;
     }
 
     @Override

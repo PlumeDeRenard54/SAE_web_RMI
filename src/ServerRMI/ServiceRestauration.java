@@ -8,6 +8,6 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 public interface ServiceRestauration extends Remote {
-    public void reserverRestaurant(Reservation reservation)throws RemoteException;
+    public boolean reserverRestaurant(Reservation reservation)throws RemoteException;
     public List<Restaurant> getRestaurants()throws RemoteException;
 }
