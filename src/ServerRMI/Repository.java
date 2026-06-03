@@ -20,14 +20,24 @@ public final class Repository {
         /*
         Test save resto
          */
-        //repo.saveRestaurant(new Restaurant("RestoTresBo", "skibidi", 12113.,12131.));
-
 
 
         /*
         Test save res
          */
+        // repo.saveRestaurant(new Restaurant(nomResto, adresse, latitude, longitude));
 
+//        List<Restaurant> restaurants = repo.getRestaurants();
+//        ServeurRestauration serveurRestauration = new ServeurRestauration();
+//        Reservation reservation = new Reservation("Carnet", "Alexander", "0708965634", (restaurants.get(0)).getId(), "10-10-2010", 2);
+//        serveurRestauration.reserverRestaurant(reservation);
+
+//        for (int i=0; i<19;i++){
+//            List<Restaurant> restaurants = repo.getRestaurants();
+//            ServeurRestauration serveurRestauration = new ServeurRestauration();
+//            Reservation reservation = new Reservation("Carnet", "Alexander", "0708965634", (restaurants.get(0)).getId(), "10-10-2010 10:05:00", 2);
+//            serveurRestauration.reserverRestaurant(reservation);
+//        }
         List<Restaurant> restaurants = repo.getRestaurants();
         ServeurRestauration serveurRestauration = new ServeurRestauration();
         Reservation reservation = new Reservation("Carnet", "Alexander", "0708965634", (restaurants.get(0)).getId(), "10-10-2010 10:05:00", 2);
@@ -48,6 +58,11 @@ public final class Repository {
         return repo;
     }
 
+    /**
+     * récupère le plus grand id de restaurant et lui ajout 1 pour avoir la clé primaire suivante
+     * @return un entier qui correspond au prochain id de restaurant
+     * @throws SQLException
+     */
     private int getNewIdRestaurant() throws SQLException {
         Connection connect = DatabaseConnection.getConnection();
 
@@ -61,6 +76,11 @@ public final class Repository {
         return 0;
     }
 
+    /**
+     * Récupère le plus gros id de reservation et lui ajoute 1
+     * @return le plus gros id de reservation et lui ajoute 1
+     * @throws SQLException
+     */
     private int getNewIdReservation() throws SQLException {
         Connection connect = DatabaseConnection.getConnection();
 
@@ -74,6 +94,11 @@ public final class Repository {
         return 0;
     }
 
+    /**
+     *
+     * @param restaurant
+     * @throws SQLException
+     */
     public void saveRestaurant(Restaurant restaurant) throws SQLException {
         int id = getNewIdRestaurant();
         restaurant.setId(id);
@@ -127,5 +152,25 @@ public final class Repository {
             restaurants.add(nouvRestaurant);
         }
         return restaurants;
+    }
+
+    public boolean getReservationPossible(Reservation reservation) throws SQLException {
+        Connection connect = DatabaseConnection.getConnection();
+        String sql =  "Select count(*) as nbReservations, nbTables, NbConvives from e85555u.reservation inner join e85555u.restaurant on e85555u.restaurant.id = e85555u.reservation.IdRestaurant where IdRestaurant = ? and DateRes BETWEEN TO_DATE(?, 'DD-MM-YYYY HH24:MI:SS') - INTERVAL '2' HOUR AND TO_DATE(?, 'DD-MM-YYYY HH24:MI:SS') + INTERVAL '2' HOUR group by nbTables,NbConvives";
+        PreparedStatement prep = connect.prepareStatement(sql);
+        prep.setInt(1, reservation.getIdRestaurant());
+        prep.setString(2, reservation.getDateReservation());
+        prep.setString(3, reservation.getDateReservation());
+        ResultSet rs = prep.executeQuery();
+        if(rs.next()) {
+            int nbConvives = rs.getInt("NbConvives");
+            int nbReservations = rs.getInt("nbReservations");
+            int nbTablesOccupees = (int) (nbReservations * Math.ceil(nbConvives/4.));
+            int nbTablesTotal = rs.getInt("nbTables");
+            System.out.println("nbTablesOccupees : " + nbTablesOccupees);
+            System.out.println("nbTablesTotal : " + nbTablesTotal);
+            return (nbTablesTotal - nbTablesOccupees) * 4 > reservation.getNbConvives();
+        }
+        return true;
     }
 }
