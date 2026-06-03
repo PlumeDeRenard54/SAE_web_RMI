@@ -146,15 +146,14 @@ public final class Repository {
         prep.setInt(1, reservation.getIdRestaurant());
         prep.setString(2, reservation.getDateReservation());
         prep.setString(3, reservation.getDateReservation());
-
         ResultSet rs = prep.executeQuery();
         if(rs.next()) {
             int nbTablesOccupees = rs.getInt("nbTablesOccupees");
             int nbTablesTotal = rs.getInt("nbTables");
-            if((nbTablesTotal - nbTablesOccupees)*4 > reservation.getNbConvives()){
-                return true;
-            }
+            System.out.println("nbTablesOccupees : " + nbTablesOccupees);
+            System.out.println("nbTablesTotal : " + nbTablesTotal);
+            return (nbTablesTotal - nbTablesOccupees) * 4 > reservation.getNbConvives();
         }
-        return false;
+        return true;
     }
 }
