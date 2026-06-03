@@ -10,8 +10,18 @@ import java.io.OutputStream;
 
 import static APIJava.main.Main.getInfosAPI;
 
+
+/**
+ * Handler permettant de gérer l'accès à la route /travaux de l'API
+ */
 public class GetAccidentsHandler implements HttpHandler {
 
+    /**
+     * Méthode permettant d'envoyer au client la liste des travaux de nancy
+     * @param exchange the exchange containing the request from the
+     *                 client and used to send the response
+     * @throws IOException
+     */
     @Override
     public void handle(HttpExchange exchange) throws IOException {
         System.out.println("Appel de getAccident");

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import donnees.Reservation;
 import donnees.Restaurant;
+import oracle.jdbc.internal.XSCacheOutput;
 
 import java.io.Serializable;
 import java.rmi.Remote;
@@ -41,7 +42,9 @@ public class ServeurRestauration implements ServiceRestauration {
         Repository r = Repository.getInstance();
         try{
             System.out.println("Recupération des restaurants");
-            return (new ObjectMapper()).writeValueAsString(r.getRestaurants());
+            String s = (new ObjectMapper()).writeValueAsString(r.getRestaurants());
+            System.out.println(s);
+            return s;
         }catch(SQLException | JsonProcessingException e){
             e.printStackTrace();
         }

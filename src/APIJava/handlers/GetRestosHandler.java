@@ -1,23 +1,29 @@
 package APIJava.handlers;
 
 import ServerRMI.ServiceRestauration;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import donnees.Restaurant;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.rmi.NotBoundException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.util.List;
 
 import static APIJava.main.Main.sendOptionResponse;
 
+/**
+ * Handler permettant de gérer l'accès à la route /getRestos de l'API
+ */
 public class GetRestosHandler implements HttpHandler {
 
 
+    /**
+     * Méthode permettant de renvoyer au client la liste des restaurant présents dans la bd
+     * @param exchange the exchange containing the request from the
+     *                 client and used to send the response
+     * @throws IOException
+     */
     @Override
     public void handle(HttpExchange exchange) throws IOException {
 
@@ -43,6 +49,7 @@ public class GetRestosHandler implements HttpHandler {
                 throw new RuntimeException(e);
             }
             String json = resto.getRestaurants();
+
 //                    System.out.println(listeRestos.toString());
 //            System.out.println("Affichage JSON");
 //            System.out.println(json);

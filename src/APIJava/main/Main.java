@@ -15,6 +15,9 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
+/**
+ * Classe Main permettant de lancer l'API Java
+ */
 public class Main {
 
     public static void main(String[] args) throws IOException {
@@ -44,13 +47,18 @@ public class Main {
             }
         });
 
-
         server.start();
         System.out.println("Serveur lancé sur 8080");
 
     }
 
-
+    /**
+     * Méthode permettant de récupérer un json correspondant à un appel d'API
+     * @param uri adresse où se trouvent les données
+     * @return le json de réponse
+     * @throws IOException
+     * @throws InterruptedException
+     */
     public static String getInfosAPI(String uri) throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -66,6 +74,11 @@ public class Main {
         return body;
     }
 
+    /**
+     * Méthode permettant de passer outre les problème de CORS, notamment pour la requête de pre vérification des navigateurs
+     * @param exchange l'objet représentant la réponse/requete http
+     * @throws IOException
+     */
     public static void sendOptionResponse(HttpExchange exchange) throws IOException {
         exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
         exchange.getResponseHeaders().add("Access-Control-Allow-Methods", "GET, OPTIONS");
