@@ -165,11 +165,11 @@ public final class Repository {
         if(rs.next()) {
             int nbConvives = rs.getInt("NbConvives");
             int nbReservations = rs.getInt("nbReservations");
-            int nbTablesOccupees = (int) (nbReservations * Math.ceil(nbConvives/4.));
+            int nbTablesOccupees = (int) (nbReservations * Math.ceil(nbConvives/2.));
             int nbTablesTotal = rs.getInt("nbTables");
             System.out.println("nbTablesOccupees : " + nbTablesOccupees);
             System.out.println("nbTablesTotal : " + nbTablesTotal);
-            return (nbTablesTotal - nbTablesOccupees) * 4 > reservation.getNbConvives();
+            return (nbTablesTotal - nbTablesOccupees) * 2 > reservation.getNbConvives();
         }
         return true;
     }
