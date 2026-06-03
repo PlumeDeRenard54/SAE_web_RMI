@@ -58,6 +58,11 @@ public final class Repository {
         return repo;
     }
 
+    /**
+     * récupère le plus grand id de restaurant et lui ajout 1 pour avoir la clé primaire suivante
+     * @return un entier qui correspond au prochain id de restaurant
+     * @throws SQLException
+     */
     private int getNewIdRestaurant() throws SQLException {
         Connection connect = DatabaseConnection.getConnection();
 
@@ -71,6 +76,11 @@ public final class Repository {
         return 0;
     }
 
+    /**
+     * Récupère le plus gros id de reservation et lui ajoute 1
+     * @return le plus gros id de reservation et lui ajoute 1
+     * @throws SQLException
+     */
     private int getNewIdReservation() throws SQLException {
         Connection connect = DatabaseConnection.getConnection();
 
@@ -84,6 +94,11 @@ public final class Repository {
         return 0;
     }
 
+    /**
+     *
+     * @param restaurant
+     * @throws SQLException
+     */
     public void saveRestaurant(Restaurant restaurant) throws SQLException {
         int id = getNewIdRestaurant();
         restaurant.setId(id);
@@ -141,14 +156,16 @@ public final class Repository {
 
     public boolean getReservationPossible(Reservation reservation) throws SQLException {
         Connection connect = DatabaseConnection.getConnection();
-        String sql =  "Select count(*) as nbTablesOccupees, nbTables from e85555u.reservation inner join e85555u.restaurant on e85555u.restaurant.id = e85555u.reservation.IdRestaurant where IdRestaurant = ? and DateRes BETWEEN TO_DATE(?, 'DD-MM-YYYY HH24:MI:SS') - INTERVAL '2' HOUR AND TO_DATE(?, 'DD-MM-YYYY HH24:MI:SS') + INTERVAL '2' HOUR group by nbTables";
+        String sql =  "Select count(*) as nbReservations, nbTables, NbConvives from e85555u.reservation inner join e85555u.restaurant on e85555u.restaurant.id = e85555u.reservation.IdRestaurant where IdRestaurant = ? and DateRes BETWEEN TO_DATE(?, 'DD-MM-YYYY HH24:MI:SS') - INTERVAL '2' HOUR AND TO_DATE(?, 'DD-MM-YYYY HH24:MI:SS') + INTERVAL '2' HOUR group by nbTables,NbConvives";
         PreparedStatement prep = connect.prepareStatement(sql);
         prep.setInt(1, reservation.getIdRestaurant());
         prep.setString(2, reservation.getDateReservation());
         prep.setString(3, reservation.getDateReservation());
         ResultSet rs = prep.executeQuery();
         if(rs.next()) {
-            int nbTablesOccupees = rs.getInt("nbTablesOccupees");
+            int nbConvives = rs.getInt("NbConvives");
+            int nbReservations = rs.getInt("nbReservations");
+            int nbTablesOccupees = (int) (nbReservations * Math.ceil(nbConvives/4.));
             int nbTablesTotal = rs.getInt("nbTables");
             System.out.println("nbTablesOccupees : " + nbTablesOccupees);
             System.out.println("nbTablesTotal : " + nbTablesTotal);
