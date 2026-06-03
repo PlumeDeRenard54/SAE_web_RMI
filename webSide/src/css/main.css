@@ -9,3 +9,7 @@
 .bg-light{
     border-radius: 20px;
 }
+
+.nav-pills .nav-link.active {
+    background-color: black !important;
+}

@@ -5,25 +5,42 @@
   var __getOwnPropNames = Object.getOwnPropertyNames;
   var __getProtoOf = Object.getPrototypeOf;
   var __hasOwnProp = Object.prototype.hasOwnProperty;
-  var __commonJS = (cb, mod) => function __require() {
-    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
-  };
+  var __commonJS = (cb, mod) =>
+    function __require() {
+      return (
+        mod ||
+          (0, cb[__getOwnPropNames(cb)[0]])(
+            (mod = { exports: {} }).exports,
+            mod,
+          ),
+        mod.exports
+      );
+    };
   var __copyProps = (to, from, except, desc) => {
-    if (from && typeof from === "object" || typeof from === "function") {
+    if ((from && typeof from === "object") || typeof from === "function") {
       for (let key of __getOwnPropNames(from))
         if (!__hasOwnProp.call(to, key) && key !== except)
-          __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+          __defProp(to, key, {
+            get: () => from[key],
+            enumerable:
+              !(desc = __getOwnPropDesc(from, key)) || desc.enumerable,
+          });
     }
     return to;
   };
-  var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
-    // If the importer is in node compatibility mode or this is not an ESM
-    // file that has been converted to a CommonJS file using a Babel-
-    // compatible transform (i.e. "__esModule" has not been set), then set
-    // "default" to the CommonJS "module.exports" for node compatibility.
-    isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
-    mod
-  ));
+  var __toESM = (mod, isNodeMode, target) => (
+    (target = mod != null ? __create(__getProtoOf(mod)) : {}),
+    __copyProps(
+      // If the importer is in node compatibility mode or this is not an ESM
+      // file that has been converted to a CommonJS file using a Babel-
+      // compatible transform (i.e. "__esModule" has not been set), then set
+      // "default" to the CommonJS "module.exports" for node compatibility.
+      isNodeMode || !mod || !mod.__esModule
+        ? __defProp(target, "default", { value: mod, enumerable: true })
+        : target,
+      mod,
+    )
+  );
   var __async = (__this, __arguments, generator) => {
     return new Promise((resolve, reject) => {
       var fulfilled = (value) => {
@@ -40,7 +57,10 @@
           reject(e);
         }
       };
-      var step = (x) => x.done ? resolve(x.value) : Promise.resolve(x.value).then(fulfilled, rejected);
+      var step = (x) =>
+        x.done
+          ? resolve(x.value)
+          : Promise.resolve(x.value).then(fulfilled, rejected);
       step((generator = generator.apply(__this, __arguments)).next());
     });
   };
@@ -48,9 +68,17 @@
   // node_modules/leaflet/dist/leaflet-src.js
   var require_leaflet_src = __commonJS({
     "node_modules/leaflet/dist/leaflet-src.js"(exports, module) {
-      (function(global, factory) {
-        typeof exports === "object" && typeof module !== "undefined" ? factory(exports) : typeof define === "function" && define.amd ? define(["exports"], factory) : (global = typeof globalThis !== "undefined" ? globalThis : global || self, factory(global.leaflet = {}));
-      })(exports, function(exports2) {
+      (function (global, factory) {
+        typeof exports === "object" && typeof module !== "undefined"
+          ? factory(exports)
+          : typeof define === "function" && define.amd
+            ? define(["exports"], factory)
+            : ((global =
+                typeof globalThis !== "undefined"
+                  ? globalThis
+                  : global || self),
+              factory((global.leaflet = {})));
+      })(exports, function (exports2) {
         "use strict";
         var version = "1.9.4";
         function extend(dest) {
@@ -63,22 +91,26 @@
           }
           return dest;
         }
-        var create$2 = Object.create || function() {
-          function F() {
-          }
-          return function(proto) {
-            F.prototype = proto;
-            return new F();
-          };
-        }();
+        var create$2 =
+          Object.create ||
+          (function () {
+            function F() {}
+            return function (proto) {
+              F.prototype = proto;
+              return new F();
+            };
+          })();
         function bind(fn, obj) {
           var slice = Array.prototype.slice;
           if (fn.bind) {
             return fn.bind.apply(fn, slice.call(arguments, 1));
           }
           var args = slice.call(arguments, 2);
-          return function() {
-            return fn.apply(obj, args.length ? args.concat(slice.call(arguments)) : arguments);
+          return function () {
+            return fn.apply(
+              obj,
+              args.length ? args.concat(slice.call(arguments)) : arguments,
+            );
           };
         }
         var lastId = 0;
@@ -90,14 +122,14 @@
         }
         function throttle(fn, time, context) {
           var lock, args, wrapperFn, later;
-          later = function() {
+          later = function () {
             lock = false;
             if (args) {
               wrapperFn.apply(context, args);
               args = false;
             }
           };
-          wrapperFn = function() {
+          wrapperFn = function () {
             if (lock) {
               args = arguments;
             } else {
@@ -109,8 +141,12 @@
           return wrapperFn;
         }
         function wrapNum(x, range, includeMax) {
-          var max = range[1], min = range[0], d = max - min;
-          return x === max && includeMax ? x : ((x - min) % d + d) % d + min;
+          var max = range[1],
+            min = range[0],
+            d = max - min;
+          return x === max && includeMax
+            ? x
+            : ((((x - min) % d) + d) % d) + min;
         }
         function falseFn() {
           return false;
@@ -140,13 +176,20 @@
         function getParamString(obj, existingUrl, uppercase) {
           var params = [];
           for (var i in obj) {
-            params.push(encodeURIComponent(uppercase ? i.toUpperCase() : i) + "=" + encodeURIComponent(obj[i]));
+            params.push(
+              encodeURIComponent(uppercase ? i.toUpperCase() : i) +
+                "=" +
+                encodeURIComponent(obj[i]),
+            );
           }
-          return (!existingUrl || existingUrl.indexOf("?") === -1 ? "?" : "&") + params.join("&");
+          return (
+            (!existingUrl || existingUrl.indexOf("?") === -1 ? "?" : "&") +
+            params.join("&")
+          );
         }
         var templateRe = /\{ *([\w_ -]+) *\}/g;
         function template(str, data) {
-          return str.replace(templateRe, function(str2, key) {
+          return str.replace(templateRe, function (str2, key) {
             var value = data[key];
             if (value === void 0) {
               throw new Error("No value provided for variable " + str2);
@@ -156,9 +199,11 @@
             return value;
           });
         }
-        var isArray = Array.isArray || function(obj) {
-          return Object.prototype.toString.call(obj) === "[object Array]";
-        };
+        var isArray =
+          Array.isArray ||
+          function (obj) {
+            return Object.prototype.toString.call(obj) === "[object Array]";
+          };
         function indexOf(array, el) {
           for (var i = 0; i < array.length; i++) {
             if (array[i] === el) {
@@ -167,20 +212,33 @@
           }
           return -1;
         }
-        var emptyImageUrl = "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=";
+        var emptyImageUrl =
+          "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=";
         function getPrefixed(name) {
-          return window["webkit" + name] || window["moz" + name] || window["ms" + name];
+          return (
+            window["webkit" + name] ||
+            window["moz" + name] ||
+            window["ms" + name]
+          );
         }
         var lastTime = 0;
         function timeoutDefer(fn) {
-          var time = +/* @__PURE__ */ new Date(), timeToCall = Math.max(0, 16 - (time - lastTime));
+          var time = +(/* @__PURE__ */ new Date()),
+            timeToCall = Math.max(0, 16 - (time - lastTime));
           lastTime = time + timeToCall;
           return window.setTimeout(fn, timeToCall);
         }
-        var requestFn = window.requestAnimationFrame || getPrefixed("RequestAnimationFrame") || timeoutDefer;
-        var cancelFn = window.cancelAnimationFrame || getPrefixed("CancelAnimationFrame") || getPrefixed("CancelRequestAnimationFrame") || function(id) {
-          window.clearTimeout(id);
-        };
+        var requestFn =
+          window.requestAnimationFrame ||
+          getPrefixed("RequestAnimationFrame") ||
+          timeoutDefer;
+        var cancelFn =
+          window.cancelAnimationFrame ||
+          getPrefixed("CancelAnimationFrame") ||
+          getPrefixed("CancelRequestAnimationFrame") ||
+          function (id) {
+            window.clearTimeout(id);
+          };
         function requestAnimFrame(fn, context, immediate) {
           if (immediate && requestFn === timeoutDefer) {
             fn.call(context);
@@ -217,24 +275,27 @@
           requestFn,
           cancelFn,
           requestAnimFrame,
-          cancelAnimFrame
+          cancelAnimFrame,
         };
-        function Class() {
-        }
-        Class.extend = function(props) {
-          var NewClass = function() {
+        function Class() {}
+        Class.extend = function (props) {
+          var NewClass = function () {
             setOptions(this);
             if (this.initialize) {
               this.initialize.apply(this, arguments);
             }
             this.callInitHooks();
           };
-          var parentProto = NewClass.__super__ = this.prototype;
+          var parentProto = (NewClass.__super__ = this.prototype);
           var proto = create$2(parentProto);
           proto.constructor = NewClass;
           NewClass.prototype = proto;
           for (var i in this) {
-            if (Object.prototype.hasOwnProperty.call(this, i) && i !== "prototype" && i !== "__super__") {
+            if (
+              Object.prototype.hasOwnProperty.call(this, i) &&
+              i !== "prototype" &&
+              i !== "__super__"
+            ) {
               NewClass[i] = this[i];
             }
           }
@@ -249,11 +310,13 @@
           delete proto.statics;
           delete proto.includes;
           if (proto.options) {
-            proto.options = parentProto.options ? create$2(parentProto.options) : {};
+            proto.options = parentProto.options
+              ? create$2(parentProto.options)
+              : {};
             extend(proto.options, props.options);
           }
           proto._initHooks = [];
-          proto.callInitHooks = function() {
+          proto.callInitHooks = function () {
             if (this._initHooksCalled) {
               return;
             }
@@ -267,7 +330,7 @@
           };
           return NewClass;
         };
-        Class.include = function(props) {
+        Class.include = function (props) {
           var parentOptions = this.prototype.options;
           extend(this.prototype, props);
           if (props.options) {
@@ -276,15 +339,18 @@
           }
           return this;
         };
-        Class.mergeOptions = function(options) {
+        Class.mergeOptions = function (options) {
           extend(this.prototype.options, options);
           return this;
         };
-        Class.addInitHook = function(fn) {
+        Class.addInitHook = function (fn) {
           var args = Array.prototype.slice.call(arguments, 1);
-          var init = typeof fn === "function" ? fn : function() {
-            this[fn].apply(this, args);
-          };
+          var init =
+            typeof fn === "function"
+              ? fn
+              : function () {
+                  this[fn].apply(this, args);
+                };
           this.prototype._initHooks = this.prototype._initHooks || [];
           this.prototype._initHooks.push(init);
           return this;
@@ -296,7 +362,10 @@
           includes = isArray(includes) ? includes : [includes];
           for (var i = 0; i < includes.length; i++) {
             if (includes[i] === L.Mixin.Events) {
-              console.warn("Deprecated include of L.Mixin.Events: this property will be removed in future releases, please inherit from L.Evented instead.", new Error().stack);
+              console.warn(
+                "Deprecated include of L.Mixin.Events: this property will be removed in future releases, please inherit from L.Evented instead.",
+                new Error().stack,
+              );
             }
           }
         }
@@ -308,7 +377,7 @@
            * @method on(eventMap: Object): this
            * Adds a set of type/listener pairs, e.g. `{click: onClick, mousemove: onMouseMove}`
            */
-          on: function(types, fn, context) {
+          on: function (types, fn, context) {
             if (typeof types === "object") {
               for (var type in types) {
                 this._on(type, types[type], fn);
@@ -332,7 +401,7 @@
            * @method off: this
            * Removes all listeners to all events on the object. This includes implicitly attached events.
            */
-          off: function(types, fn, context) {
+          off: function (types, fn, context) {
             if (!arguments.length) {
               delete this._events;
             } else if (typeof types === "object") {
@@ -353,7 +422,7 @@
             return this;
           },
           // attach listener (without syntactic sugar now)
-          _on: function(type, fn, context, _once) {
+          _on: function (type, fn, context, _once) {
             if (typeof fn !== "function") {
               console.warn("wrong listener type: " + typeof fn);
               return;
@@ -372,7 +441,7 @@
             this._events[type] = this._events[type] || [];
             this._events[type].push(newListener);
           },
-          _off: function(type, fn, context) {
+          _off: function (type, fn, context) {
             var listeners, i, len;
             if (!this._events) {
               return;
@@ -408,14 +477,14 @@
           // Fires an event of the specified type. You can optionally provide a data
           // object — the first argument of the listener function will contain its
           // properties. The event can optionally be propagated to event parents.
-          fire: function(type, data, propagate) {
+          fire: function (type, data, propagate) {
             if (!this.listens(type, propagate)) {
               return this;
             }
             var event = extend({}, data, {
               type,
               target: this,
-              sourceTarget: data && data.sourceTarget || this
+              sourceTarget: (data && data.sourceTarget) || this,
             });
             if (this._events) {
               var listeners = this._events[type];
@@ -441,7 +510,7 @@
           // @method listens(type: String, fn: Function, context?: Object, propagate?: Boolean): Boolean
           // Returns `true` if a particular event type has any listeners attached to it.
           // The verification can optionally be propagated, it will return `true` if parents have the listener attached to it.
-          listens: function(type, fn, context, propagate) {
+          listens: function (type, fn, context, propagate) {
             if (typeof type !== "string") {
               console.warn('"string" type argument expected');
             }
@@ -459,7 +528,9 @@
             }
             if (propagate) {
               for (var id in this._eventParents) {
-                if (this._eventParents[id].listens(type, fn, context, propagate)) {
+                if (
+                  this._eventParents[id].listens(type, fn, context, propagate)
+                ) {
                   return true;
                 }
               }
@@ -467,7 +538,7 @@
             return false;
           },
           // returns the index (number) or false
-          _listens: function(type, fn, context) {
+          _listens: function (type, fn, context) {
             if (!this._events) {
               return false;
             }
@@ -487,7 +558,7 @@
           },
           // @method once(…): this
           // Behaves as [`on(…)`](#evented-on), except the listener will only get fired once and then removed.
-          once: function(types, fn, context) {
+          once: function (types, fn, context) {
             if (typeof types === "object") {
               for (var type in types) {
                 this._on(type, types[type], fn, true);
@@ -502,27 +573,34 @@
           },
           // @method addEventParent(obj: Evented): this
           // Adds an event parent - an `Evented` that will receive propagated events
-          addEventParent: function(obj) {
+          addEventParent: function (obj) {
             this._eventParents = this._eventParents || {};
             this._eventParents[stamp(obj)] = obj;
             return this;
           },
           // @method removeEventParent(obj: Evented): this
           // Removes an event parent, so it will stop receiving propagated events
-          removeEventParent: function(obj) {
+          removeEventParent: function (obj) {
             if (this._eventParents) {
               delete this._eventParents[stamp(obj)];
             }
             return this;
           },
-          _propagateEvent: function(e) {
+          _propagateEvent: function (e) {
             for (var id in this._eventParents) {
-              this._eventParents[id].fire(e.type, extend({
-                layer: e.target,
-                propagatedFrom: e.target
-              }, e), true);
+              this._eventParents[id].fire(
+                e.type,
+                extend(
+                  {
+                    layer: e.target,
+                    propagatedFrom: e.target,
+                  },
+                  e,
+                ),
+                true,
+              );
             }
-          }
+          },
         };
         Events.addEventListener = Events.on;
         Events.removeEventListener = Events.clearAllEventListeners = Events.off;
@@ -534,51 +612,53 @@
           this.x = round ? Math.round(x) : x;
           this.y = round ? Math.round(y) : y;
         }
-        var trunc = Math.trunc || function(v) {
-          return v > 0 ? Math.floor(v) : Math.ceil(v);
-        };
+        var trunc =
+          Math.trunc ||
+          function (v) {
+            return v > 0 ? Math.floor(v) : Math.ceil(v);
+          };
         Point.prototype = {
           // @method clone(): Point
           // Returns a copy of the current point.
-          clone: function() {
+          clone: function () {
             return new Point(this.x, this.y);
           },
           // @method add(otherPoint: Point): Point
           // Returns the result of addition of the current and the given points.
-          add: function(point) {
+          add: function (point) {
             return this.clone()._add(toPoint(point));
           },
-          _add: function(point) {
+          _add: function (point) {
             this.x += point.x;
             this.y += point.y;
             return this;
           },
           // @method subtract(otherPoint: Point): Point
           // Returns the result of subtraction of the given point from the current.
-          subtract: function(point) {
+          subtract: function (point) {
             return this.clone()._subtract(toPoint(point));
           },
-          _subtract: function(point) {
+          _subtract: function (point) {
             this.x -= point.x;
             this.y -= point.y;
             return this;
           },
           // @method divideBy(num: Number): Point
           // Returns the result of division of the current point by the given number.
-          divideBy: function(num) {
+          divideBy: function (num) {
             return this.clone()._divideBy(num);
           },
-          _divideBy: function(num) {
+          _divideBy: function (num) {
             this.x /= num;
             this.y /= num;
             return this;
           },
           // @method multiplyBy(num: Number): Point
           // Returns the result of multiplication of the current point by the given number.
-          multiplyBy: function(num) {
+          multiplyBy: function (num) {
             return this.clone()._multiplyBy(num);
           },
-          _multiplyBy: function(num) {
+          _multiplyBy: function (num) {
             this.x *= num;
             this.y *= num;
             return this;
@@ -588,79 +668,85 @@
           // `scale`. In linear algebra terms, multiply the point by the
           // [scaling matrix](https://en.wikipedia.org/wiki/Scaling_%28geometry%29#Matrix_representation)
           // defined by `scale`.
-          scaleBy: function(point) {
+          scaleBy: function (point) {
             return new Point(this.x * point.x, this.y * point.y);
           },
           // @method unscaleBy(scale: Point): Point
           // Inverse of `scaleBy`. Divide each coordinate of the current point by
           // each coordinate of `scale`.
-          unscaleBy: function(point) {
+          unscaleBy: function (point) {
             return new Point(this.x / point.x, this.y / point.y);
           },
           // @method round(): Point
           // Returns a copy of the current point with rounded coordinates.
-          round: function() {
+          round: function () {
             return this.clone()._round();
           },
-          _round: function() {
+          _round: function () {
             this.x = Math.round(this.x);
             this.y = Math.round(this.y);
             return this;
           },
           // @method floor(): Point
           // Returns a copy of the current point with floored coordinates (rounded down).
-          floor: function() {
+          floor: function () {
             return this.clone()._floor();
           },
-          _floor: function() {
+          _floor: function () {
             this.x = Math.floor(this.x);
             this.y = Math.floor(this.y);
             return this;
           },
           // @method ceil(): Point
           // Returns a copy of the current point with ceiled coordinates (rounded up).
-          ceil: function() {
+          ceil: function () {
             return this.clone()._ceil();
           },
-          _ceil: function() {
+          _ceil: function () {
             this.x = Math.ceil(this.x);
             this.y = Math.ceil(this.y);
             return this;
           },
           // @method trunc(): Point
           // Returns a copy of the current point with truncated coordinates (rounded towards zero).
-          trunc: function() {
+          trunc: function () {
             return this.clone()._trunc();
           },
-          _trunc: function() {
+          _trunc: function () {
             this.x = trunc(this.x);
             this.y = trunc(this.y);
             return this;
           },
           // @method distanceTo(otherPoint: Point): Number
           // Returns the cartesian distance between the current and the given points.
-          distanceTo: function(point) {
+          distanceTo: function (point) {
             point = toPoint(point);
-            var x = point.x - this.x, y = point.y - this.y;
+            var x = point.x - this.x,
+              y = point.y - this.y;
             return Math.sqrt(x * x + y * y);
           },
           // @method equals(otherPoint: Point): Boolean
           // Returns `true` if the given point has the same coordinates.
-          equals: function(point) {
+          equals: function (point) {
             point = toPoint(point);
             return point.x === this.x && point.y === this.y;
           },
           // @method contains(otherPoint: Point): Boolean
           // Returns `true` if both coordinates of the given point are less than the corresponding current point coordinates (in absolute values).
-          contains: function(point) {
+          contains: function (point) {
             point = toPoint(point);
-            return Math.abs(point.x) <= Math.abs(this.x) && Math.abs(point.y) <= Math.abs(this.y);
+            return (
+              Math.abs(point.x) <= Math.abs(this.x) &&
+              Math.abs(point.y) <= Math.abs(this.y)
+            );
           },
           // @method toString(): String
           // Returns a string representation of the point for debugging purposes.
-          toString: function() {
-            return "Point(" + formatNum(this.x) + ", " + formatNum(this.y) + ")";
-          }
+          toString: function () {
+            return (
+              "Point(" + formatNum(this.x) + ", " + formatNum(this.y) + ")"
+            );
+          },
         };
         function toPoint(x, y, round) {
           if (x instanceof Point) {
@@ -692,12 +778,16 @@
           // @alternative
           // @method extend(otherBounds: Bounds): this
           // Extend the bounds to contain the given bounds
-          extend: function(obj) {
+          extend: function (obj) {
             var min2, max2;
             if (!obj) {
               return this;
             }
-            if (obj instanceof Point || typeof obj[0] === "number" || "x" in obj) {
+            if (
+              obj instanceof Point ||
+              typeof obj[0] === "number" ||
+              "x" in obj
+            ) {
               min2 = max2 = toPoint(obj);
             } else {
               obj = toBounds(obj);
@@ -720,36 +810,36 @@
           },
           // @method getCenter(round?: Boolean): Point
           // Returns the center point of the bounds.
-          getCenter: function(round) {
+          getCenter: function (round) {
             return toPoint(
               (this.min.x + this.max.x) / 2,
               (this.min.y + this.max.y) / 2,
-              round
+              round,
             );
           },
           // @method getBottomLeft(): Point
           // Returns the bottom-left point of the bounds.
-          getBottomLeft: function() {
+          getBottomLeft: function () {
             return toPoint(this.min.x, this.max.y);
           },
           // @method getTopRight(): Point
           // Returns the top-right point of the bounds.
-          getTopRight: function() {
+          getTopRight: function () {
             return toPoint(this.max.x, this.min.y);
           },
           // @method getTopLeft(): Point
           // Returns the top-left point of the bounds (i.e. [`this.min`](#bounds-min)).
-          getTopLeft: function() {
+          getTopLeft: function () {
             return this.min;
           },
           // @method getBottomRight(): Point
           // Returns the bottom-right point of the bounds (i.e. [`this.max`](#bounds-max)).
-          getBottomRight: function() {
+          getBottomRight: function () {
             return this.max;
           },
           // @method getSize(): Point
           // Returns the size of the given bounds
-          getSize: function() {
+          getSize: function () {
             return this.max.subtract(this.min);
           },
           // @method contains(otherBounds: Bounds): Boolean
@@ -757,7 +847,7 @@
           // @alternative
           // @method contains(point: Point): Boolean
           // Returns `true` if the rectangle contains the given point.
-          contains: function(obj) {
+          contains: function (obj) {
             var min, max;
             if (typeof obj[0] === "number" || obj instanceof Point) {
               obj = toPoint(obj);
@@ -770,49 +860,70 @@
             } else {
               min = max = obj;
             }
-            return min.x >= this.min.x && max.x <= this.max.x && min.y >= this.min.y && max.y <= this.max.y;
+            return (
+              min.x >= this.min.x &&
+              max.x <= this.max.x &&
+              min.y >= this.min.y &&
+              max.y <= this.max.y
+            );
           },
           // @method intersects(otherBounds: Bounds): Boolean
           // Returns `true` if the rectangle intersects the given bounds. Two bounds
           // intersect if they have at least one point in common.
-          intersects: function(bounds) {
+          intersects: function (bounds) {
             bounds = toBounds(bounds);
-            var min = this.min, max = this.max, min2 = bounds.min, max2 = bounds.max, xIntersects = max2.x >= min.x && min2.x <= max.x, yIntersects = max2.y >= min.y && min2.y <= max.y;
+            var min = this.min,
+              max = this.max,
+              min2 = bounds.min,
+              max2 = bounds.max,
+              xIntersects = max2.x >= min.x && min2.x <= max.x,
+              yIntersects = max2.y >= min.y && min2.y <= max.y;
             return xIntersects && yIntersects;
           },
           // @method overlaps(otherBounds: Bounds): Boolean
           // Returns `true` if the rectangle overlaps the given bounds. Two bounds
           // overlap if their intersection is an area.
-          overlaps: function(bounds) {
+          overlaps: function (bounds) {
             bounds = toBounds(bounds);
-            var min = this.min, max = this.max, min2 = bounds.min, max2 = bounds.max, xOverlaps = max2.x > min.x && min2.x < max.x, yOverlaps = max2.y > min.y && min2.y < max.y;
+            var min = this.min,
+              max = this.max,
+              min2 = bounds.min,
+              max2 = bounds.max,
+              xOverlaps = max2.x > min.x && min2.x < max.x,
+              yOverlaps = max2.y > min.y && min2.y < max.y;
             return xOverlaps && yOverlaps;
           },
           // @method isValid(): Boolean
           // Returns `true` if the bounds are properly initialized.
-          isValid: function() {
+          isValid: function () {
             return !!(this.min && this.max);
           },
           // @method pad(bufferRatio: Number): Bounds
           // Returns bounds created by extending or retracting the current bounds by a given ratio in each direction.
           // For example, a ratio of 0.5 extends the bounds by 50% in each direction.
           // Negative values will retract the bounds.
-          pad: function(bufferRatio) {
-            var min = this.min, max = this.max, heightBuffer = Math.abs(min.x - max.x) * bufferRatio, widthBuffer = Math.abs(min.y - max.y) * bufferRatio;
+          pad: function (bufferRatio) {
+            var min = this.min,
+              max = this.max,
+              heightBuffer = Math.abs(min.x - max.x) * bufferRatio,
+              widthBuffer = Math.abs(min.y - max.y) * bufferRatio;
             return toBounds(
               toPoint(min.x - heightBuffer, min.y - widthBuffer),
-              toPoint(max.x + heightBuffer, max.y + widthBuffer)
+              toPoint(max.x + heightBuffer, max.y + widthBuffer),
             );
           },
           // @method equals(otherBounds: Bounds): Boolean
           // Returns `true` if the rectangle is equivalent to the given bounds.
-          equals: function(bounds) {
+          equals: function (bounds) {
             if (!bounds) {
               return false;
             }
             bounds = toBounds(bounds);
-            return this.min.equals(bounds.getTopLeft()) && this.max.equals(bounds.getBottomRight());
-          }
+            return (
+              this.min.equals(bounds.getTopLeft()) &&
+              this.max.equals(bounds.getBottomRight())
+            );
+          },
         };
         function toBounds(a, b) {
           if (!a || a instanceof Bounds) {
@@ -835,8 +946,11 @@
           // @alternative
           // @method extend(otherBounds: LatLngBounds): this
           // Extend the bounds to contain the given bounds
-          extend: function(obj) {
-            var sw = this._southWest, ne = this._northEast, sw2, ne2;
+          extend: function (obj) {
+            var sw = this._southWest,
+              ne = this._northEast,
+              sw2,
+              ne2;
             if (obj instanceof LatLng) {
               sw2 = obj;
               ne2 = obj;
@@ -847,7 +961,9 @@
                 return this;
               }
             } else {
-              return obj ? this.extend(toLatLng(obj) || toLatLngBounds(obj)) : this;
+              return obj
+                ? this.extend(toLatLng(obj) || toLatLngBounds(obj))
+                : this;
             }
             if (!sw && !ne) {
               this._southWest = new LatLng(sw2.lat, sw2.lng);
@@ -864,59 +980,62 @@
           // Returns bounds created by extending or retracting the current bounds by a given ratio in each direction.
           // For example, a ratio of 0.5 extends the bounds by 50% in each direction.
           // Negative values will retract the bounds.
-          pad: function(bufferRatio) {
-            var sw = this._southWest, ne = this._northEast, heightBuffer = Math.abs(sw.lat - ne.lat) * bufferRatio, widthBuffer = Math.abs(sw.lng - ne.lng) * bufferRatio;
+          pad: function (bufferRatio) {
+            var sw = this._southWest,
+              ne = this._northEast,
+              heightBuffer = Math.abs(sw.lat - ne.lat) * bufferRatio,
+              widthBuffer = Math.abs(sw.lng - ne.lng) * bufferRatio;
             return new LatLngBounds(
               new LatLng(sw.lat - heightBuffer, sw.lng - widthBuffer),
-              new LatLng(ne.lat + heightBuffer, ne.lng + widthBuffer)
+              new LatLng(ne.lat + heightBuffer, ne.lng + widthBuffer),
             );
           },
           // @method getCenter(): LatLng
           // Returns the center point of the bounds.
-          getCenter: function() {
+          getCenter: function () {
             return new LatLng(
               (this._southWest.lat + this._northEast.lat) / 2,
-              (this._southWest.lng + this._northEast.lng) / 2
+              (this._southWest.lng + this._northEast.lng) / 2,
             );
           },
           // @method getSouthWest(): LatLng
           // Returns the south-west point of the bounds.
-          getSouthWest: function() {
+          getSouthWest: function () {
             return this._southWest;
           },
           // @method getNorthEast(): LatLng
           // Returns the north-east point of the bounds.
-          getNorthEast: function() {
+          getNorthEast: function () {
             return this._northEast;
           },
           // @method getNorthWest(): LatLng
           // Returns the north-west point of the bounds.
-          getNorthWest: function() {
+          getNorthWest: function () {
             return new LatLng(this.getNorth(), this.getWest());
           },
           // @method getSouthEast(): LatLng
           // Returns the south-east point of the bounds.
-          getSouthEast: function() {
+          getSouthEast: function () {
             return new LatLng(this.getSouth(), this.getEast());
           },
           // @method getWest(): Number
           // Returns the west longitude of the bounds
-          getWest: function() {
+          getWest: function () {
             return this._southWest.lng;
           },
           // @method getSouth(): Number
           // Returns the south latitude of the bounds
-          getSouth: function() {
+          getSouth: function () {
             return this._southWest.lat;
           },
           // @method getEast(): Number
           // Returns the east longitude of the bounds
-          getEast: function() {
+          getEast: function () {
             return this._northEast.lng;
           },
           // @method getNorth(): Number
           // Returns the north latitude of the bounds
-          getNorth: function() {
+          getNorth: function () {
             return this._northEast.lat;
           },
           // @method contains(otherBounds: LatLngBounds): Boolean
@@ -924,54 +1043,84 @@
           // @alternative
           // @method contains (latlng: LatLng): Boolean
           // Returns `true` if the rectangle contains the given point.
-          contains: function(obj) {
-            if (typeof obj[0] === "number" || obj instanceof LatLng || "lat" in obj) {
+          contains: function (obj) {
+            if (
+              typeof obj[0] === "number" ||
+              obj instanceof LatLng ||
+              "lat" in obj
+            ) {
               obj = toLatLng(obj);
             } else {
               obj = toLatLngBounds(obj);
             }
-            var sw = this._southWest, ne = this._northEast, sw2, ne2;
+            var sw = this._southWest,
+              ne = this._northEast,
+              sw2,
+              ne2;
             if (obj instanceof LatLngBounds) {
               sw2 = obj.getSouthWest();
               ne2 = obj.getNorthEast();
             } else {
               sw2 = ne2 = obj;
             }
-            return sw2.lat >= sw.lat && ne2.lat <= ne.lat && sw2.lng >= sw.lng && ne2.lng <= ne.lng;
+            return (
+              sw2.lat >= sw.lat &&
+              ne2.lat <= ne.lat &&
+              sw2.lng >= sw.lng &&
+              ne2.lng <= ne.lng
+            );
           },
           // @method intersects(otherBounds: LatLngBounds): Boolean
           // Returns `true` if the rectangle intersects the given bounds. Two bounds intersect if they have at least one point in common.
-          intersects: function(bounds) {
+          intersects: function (bounds) {
             bounds = toLatLngBounds(bounds);
-            var sw = this._southWest, ne = this._northEast, sw2 = bounds.getSouthWest(), ne2 = bounds.getNorthEast(), latIntersects = ne2.lat >= sw.lat && sw2.lat <= ne.lat, lngIntersects = ne2.lng >= sw.lng && sw2.lng <= ne.lng;
+            var sw = this._southWest,
+              ne = this._northEast,
+              sw2 = bounds.getSouthWest(),
+              ne2 = bounds.getNorthEast(),
+              latIntersects = ne2.lat >= sw.lat && sw2.lat <= ne.lat,
+              lngIntersects = ne2.lng >= sw.lng && sw2.lng <= ne.lng;
             return latIntersects && lngIntersects;
           },
           // @method overlaps(otherBounds: LatLngBounds): Boolean
           // Returns `true` if the rectangle overlaps the given bounds. Two bounds overlap if their intersection is an area.
-          overlaps: function(bounds) {
+          overlaps: function (bounds) {
             bounds = toLatLngBounds(bounds);
-            var sw = this._southWest, ne = this._northEast, sw2 = bounds.getSouthWest(), ne2 = bounds.getNorthEast(), latOverlaps = ne2.lat > sw.lat && sw2.lat < ne.lat, lngOverlaps = ne2.lng > sw.lng && sw2.lng < ne.lng;
+            var sw = this._southWest,
+              ne = this._northEast,
+              sw2 = bounds.getSouthWest(),
+              ne2 = bounds.getNorthEast(),
+              latOverlaps = ne2.lat > sw.lat && sw2.lat < ne.lat,
+              lngOverlaps = ne2.lng > sw.lng && sw2.lng < ne.lng;
             return latOverlaps && lngOverlaps;
           },
           // @method toBBoxString(): String
           // Returns a string with bounding box coordinates in a 'southwest_lng,southwest_lat,northeast_lng,northeast_lat' format. Useful for sending requests to web services that return geo data.
-          toBBoxString: function() {
-            return [this.getWest(), this.getSouth(), this.getEast(), this.getNorth()].join(",");
+          toBBoxString: function () {
+            return [
+              this.getWest(),
+              this.getSouth(),
+              this.getEast(),
+              this.getNorth(),
+            ].join(",");
           },
           // @method equals(otherBounds: LatLngBounds, maxMargin?: Number): Boolean
           // Returns `true` if the rectangle is equivalent (within a small margin of error) to the given bounds. The margin of error can be overridden by setting `maxMargin` to a small number.
-          equals: function(bounds, maxMargin) {
+          equals: function (bounds, maxMargin) {
             if (!bounds) {
               return false;
             }
             bounds = toLatLngBounds(bounds);
-            return this._southWest.equals(bounds.getSouthWest(), maxMargin) && this._northEast.equals(bounds.getNorthEast(), maxMargin);
+            return (
+              this._southWest.equals(bounds.getSouthWest(), maxMargin) &&
+              this._northEast.equals(bounds.getNorthEast(), maxMargin)
+            );
           },
           // @method isValid(): Boolean
           // Returns `true` if the bounds are properly initialized.
-          isValid: function() {
+          isValid: function () {
             return !!(this._southWest && this._northEast);
-          }
+          },
         };
         function toLatLngBounds(a, b) {
           if (a instanceof LatLngBounds) {
@@ -981,7 +1130,9 @@
         }
         function LatLng(lat, lng, alt) {
           if (isNaN(lat) || isNaN(lng)) {
-            throw new Error("Invalid LatLng object: (" + lat + ", " + lng + ")");
+            throw new Error(
+              "Invalid LatLng object: (" + lat + ", " + lng + ")",
+            );
           }
           this.lat = +lat;
           this.lng = +lng;
@@ -992,44 +1143,51 @@
         LatLng.prototype = {
           // @method equals(otherLatLng: LatLng, maxMargin?: Number): Boolean
           // Returns `true` if the given `LatLng` point is at the same position (within a small margin of error). The margin of error can be overridden by setting `maxMargin` to a small number.
-          equals: function(obj, maxMargin) {
+          equals: function (obj, maxMargin) {
             if (!obj) {
               return false;
             }
             obj = toLatLng(obj);
             var margin = Math.max(
               Math.abs(this.lat - obj.lat),
-              Math.abs(this.lng - obj.lng)
+              Math.abs(this.lng - obj.lng),
             );
             return margin <= (maxMargin === void 0 ? 1e-9 : maxMargin);
           },
           // @method toString(): String
           // Returns a string representation of the point (for debugging purposes).
-          toString: function(precision) {
-            return "LatLng(" + formatNum(this.lat, precision) + ", " + formatNum(this.lng, precision) + ")";
+          toString: function (precision) {
+            return (
+              "LatLng(" +
+              formatNum(this.lat, precision) +
+              ", " +
+              formatNum(this.lng, precision) +
+              ")"
+            );
           },
           // @method distanceTo(otherLatLng: LatLng): Number
           // Returns the distance (in meters) to the given `LatLng` calculated using the [Spherical Law of Cosines](https://en.wikipedia.org/wiki/Spherical_law_of_cosines).
-          distanceTo: function(other) {
+          distanceTo: function (other) {
             return Earth.distance(this, toLatLng(other));
           },
           // @method wrap(): LatLng
           // Returns a new `LatLng` object with the longitude wrapped so it's always between -180 and +180 degrees.
-          wrap: function() {
+          wrap: function () {
             return Earth.wrapLatLng(this);
           },
           // @method toBounds(sizeInMeters: Number): LatLngBounds
           // Returns a new `LatLngBounds` object in which each boundary is `sizeInMeters/2` meters apart from the `LatLng`.
-          toBounds: function(sizeInMeters) {
-            var latAccuracy = 180 * sizeInMeters / 40075017, lngAccuracy = latAccuracy / Math.cos(Math.PI / 180 * this.lat);
+          toBounds: function (sizeInMeters) {
+            var latAccuracy = (180 * sizeInMeters) / 40075017,
+              lngAccuracy = latAccuracy / Math.cos((Math.PI / 180) * this.lat);
             return toLatLngBounds(
               [this.lat - latAccuracy, this.lng - lngAccuracy],
-              [this.lat + latAccuracy, this.lng + lngAccuracy]
+              [this.lat + latAccuracy, this.lng + lngAccuracy],
             );
           },
-          clone: function() {
+          clone: function () {
             return new LatLng(this.lat, this.lng, this.alt);
-          }
+          },
         };
         function toLatLng(a, b, c) {
           if (a instanceof LatLng) {
@@ -1058,49 +1216,57 @@
         var CRS = {
           // @method latLngToPoint(latlng: LatLng, zoom: Number): Point
           // Projects geographical coordinates into pixel coordinates for a given zoom.
-          latLngToPoint: function(latlng, zoom2) {
-            var projectedPoint = this.projection.project(latlng), scale2 = this.scale(zoom2);
+          latLngToPoint: function (latlng, zoom2) {
+            var projectedPoint = this.projection.project(latlng),
+              scale2 = this.scale(zoom2);
             return this.transformation._transform(projectedPoint, scale2);
           },
           // @method pointToLatLng(point: Point, zoom: Number): LatLng
           // The inverse of `latLngToPoint`. Projects pixel coordinates on a given
           // zoom into geographical coordinates.
-          pointToLatLng: function(point, zoom2) {
-            var scale2 = this.scale(zoom2), untransformedPoint = this.transformation.untransform(point, scale2);
+          pointToLatLng: function (point, zoom2) {
+            var scale2 = this.scale(zoom2),
+              untransformedPoint = this.transformation.untransform(
+                point,
+                scale2,
+              );
             return this.projection.unproject(untransformedPoint);
           },
           // @method project(latlng: LatLng): Point
           // Projects geographical coordinates into coordinates in units accepted for
           // this CRS (e.g. meters for EPSG:3857, for passing it to WMS services).
-          project: function(latlng) {
+          project: function (latlng) {
             return this.projection.project(latlng);
           },
           // @method unproject(point: Point): LatLng
           // Given a projected coordinate returns the corresponding LatLng.
           // The inverse of `project`.
-          unproject: function(point) {
+          unproject: function (point) {
             return this.projection.unproject(point);
           },
           // @method scale(zoom: Number): Number
           // Returns the scale used when transforming projected coordinates into
           // pixel coordinates for a particular zoom. For example, it returns
           // `256 * 2^zoom` for Mercator-based CRS.
-          scale: function(zoom2) {
+          scale: function (zoom2) {
             return 256 * Math.pow(2, zoom2);
           },
           // @method zoom(scale: Number): Number
           // Inverse of `scale()`, returns the zoom level corresponding to a scale
           // factor of `scale`.
-          zoom: function(scale2) {
+          zoom: function (scale2) {
             return Math.log(scale2 / 256) / Math.LN2;
           },
           // @method getProjectedBounds(zoom: Number): Bounds
           // Returns the projection's bounds scaled and transformed for the provided `zoom`.
-          getProjectedBounds: function(zoom2) {
+          getProjectedBounds: function (zoom2) {
             if (this.infinite) {
               return null;
             }
-            var b = this.projection.bounds, s = this.scale(zoom2), min = this.transformation.transform(b.min, s), max = this.transformation.transform(b.max, s);
+            var b = this.projection.bounds,
+              s = this.scale(zoom2),
+              min = this.transformation.transform(b.min, s),
+              max = this.transformation.transform(b.max, s);
             return new Bounds(min, max);
           },
           // @method distance(latlng1: LatLng, latlng2: LatLng): Number
@@ -1123,22 +1289,34 @@
           // @method wrapLatLng(latlng: LatLng): LatLng
           // Returns a `LatLng` where lat and lng has been wrapped according to the
           // CRS's `wrapLat` and `wrapLng` properties, if they are outside the CRS's bounds.
-          wrapLatLng: function(latlng) {
-            var lng = this.wrapLng ? wrapNum(latlng.lng, this.wrapLng, true) : latlng.lng, lat = this.wrapLat ? wrapNum(latlng.lat, this.wrapLat, true) : latlng.lat, alt = latlng.alt;
+          wrapLatLng: function (latlng) {
+            var lng = this.wrapLng
+                ? wrapNum(latlng.lng, this.wrapLng, true)
+                : latlng.lng,
+              lat = this.wrapLat
+                ? wrapNum(latlng.lat, this.wrapLat, true)
+                : latlng.lat,
+              alt = latlng.alt;
             return new LatLng(lat, lng, alt);
           },
           // @method wrapLatLngBounds(bounds: LatLngBounds): LatLngBounds
           // Returns a `LatLngBounds` with the same size as the given one, ensuring
           // that its center is within the CRS's bounds.
           // Only accepts actual `L.LatLngBounds` instances, not arrays.
-          wrapLatLngBounds: function(bounds) {
-            var center = bounds.getCenter(), newCenter = this.wrapLatLng(center), latShift = center.lat - newCenter.lat, lngShift = center.lng - newCenter.lng;
+          wrapLatLngBounds: function (bounds) {
+            var center = bounds.getCenter(),
+              newCenter = this.wrapLatLng(center),
+              latShift = center.lat - newCenter.lat,
+              lngShift = center.lng - newCenter.lng;
             if (latShift === 0 && lngShift === 0) {
               return bounds;
             }
-            var sw = bounds.getSouthWest(), ne = bounds.getNorthEast(), newSw = new LatLng(sw.lat - latShift, sw.lng - lngShift), newNe = new LatLng(ne.lat - latShift, ne.lng - lngShift);
+            var sw = bounds.getSouthWest(),
+              ne = bounds.getNorthEast(),
+              newSw = new LatLng(sw.lat - latShift, sw.lng - lngShift),
+              newNe = new LatLng(ne.lat - latShift, ne.lng - lngShift);
             return new LatLngBounds(newSw, newNe);
-          }
+          },
         };
         var Earth = extend({}, CRS, {
           wrapLng: [-180, 180],
@@ -1147,33 +1325,44 @@
           // see https://rosettacode.org/wiki/Haversine_formula
           R: 6371e3,
           // distance between two geographical points using spherical law of cosines approximation
-          distance: function(latlng1, latlng2) {
-            var rad = Math.PI / 180, lat1 = latlng1.lat * rad, lat2 = latlng2.lat * rad, sinDLat = Math.sin((latlng2.lat - latlng1.lat) * rad / 2), sinDLon = Math.sin((latlng2.lng - latlng1.lng) * rad / 2), a = sinDLat * sinDLat + Math.cos(lat1) * Math.cos(lat2) * sinDLon * sinDLon, c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+          distance: function (latlng1, latlng2) {
+            var rad = Math.PI / 180,
+              lat1 = latlng1.lat * rad,
+              lat2 = latlng2.lat * rad,
+              sinDLat = Math.sin(((latlng2.lat - latlng1.lat) * rad) / 2),
+              sinDLon = Math.sin(((latlng2.lng - latlng1.lng) * rad) / 2),
+              a =
+                sinDLat * sinDLat +
+                Math.cos(lat1) * Math.cos(lat2) * sinDLon * sinDLon,
+              c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
             return this.R * c;
-          }
+          },
         });
         var earthRadius = 6378137;
         var SphericalMercator = {
           R: earthRadius,
           MAX_LATITUDE: 85.0511287798,
-          project: function(latlng) {
-            var d = Math.PI / 180, max = this.MAX_LATITUDE, lat = Math.max(Math.min(max, latlng.lat), -max), sin = Math.sin(lat * d);
+          project: function (latlng) {
+            var d = Math.PI / 180,
+              max = this.MAX_LATITUDE,
+              lat = Math.max(Math.min(max, latlng.lat), -max),
+              sin = Math.sin(lat * d);
             return new Point(
               this.R * latlng.lng * d,
-              this.R * Math.log((1 + sin) / (1 - sin)) / 2
+              (this.R * Math.log((1 + sin) / (1 - sin))) / 2,
             );
           },
-          unproject: function(point) {
+          unproject: function (point) {
             var d = 180 / Math.PI;
             return new LatLng(
               (2 * Math.atan(Math.exp(point.y / this.R)) - Math.PI / 2) * d,
-              point.x * d / this.R
+              (point.x * d) / this.R,
             );
           },
-          bounds: function() {
+          bounds: (function () {
             var d = earthRadius * Math.PI;
             return new Bounds([-d, -d], [d, d]);
-          }()
+          })(),
         };
         function Transformation(a, b, c, d) {
           if (isArray(a)) {
@@ -1192,11 +1381,11 @@
           // @method transform(point: Point, scale?: Number): Point
           // Returns a transformed point, optionally multiplied by the given scale.
           // Only accepts actual `L.Point` instances, not arrays.
-          transform: function(point, scale2) {
+          transform: function (point, scale2) {
             return this._transform(point.clone(), scale2);
           },
           // destructive transform (faster)
-          _transform: function(point, scale2) {
+          _transform: function (point, scale2) {
             scale2 = scale2 || 1;
             point.x = scale2 * (this._a * point.x + this._b);
             point.y = scale2 * (this._c * point.y + this._d);
@@ -1205,13 +1394,13 @@
           // @method untransform(point: Point, scale?: Number): Point
           // Returns the reverse transformation of the given point, optionally divided
           // by the given scale. Only accepts actual `L.Point` instances, not arrays.
-          untransform: function(point, scale2) {
+          untransform: function (point, scale2) {
             scale2 = scale2 || 1;
             return new Point(
               (point.x / scale2 - this._b) / this._a,
-              (point.y / scale2 - this._d) / this._c
+              (point.y / scale2 - this._d) / this._c,
             );
-          }
+          },
         };
         function toTransformation(a, b, c, d) {
           return new Transformation(a, b, c, d);
@@ -1219,26 +1408,32 @@
         var EPSG3857 = extend({}, Earth, {
           code: "EPSG:3857",
           projection: SphericalMercator,
-          transformation: function() {
+          transformation: (function () {
             var scale2 = 0.5 / (Math.PI * SphericalMercator.R);
             return toTransformation(scale2, 0.5, -scale2, 0.5);
-          }()
+          })(),
         });
         var EPSG900913 = extend({}, EPSG3857, {
-          code: "EPSG:900913"
+          code: "EPSG:900913",
         });
         function svgCreate(name) {
           return document.createElementNS("http://www.w3.org/2000/svg", name);
         }
         function pointsToPath(rings, closed) {
-          var str = "", i, j, len, len2, points, p;
+          var str = "",
+            i,
+            j,
+            len,
+            len2,
+            points,
+            p;
           for (i = 0, len = rings.length; i < len; i++) {
             points = rings[i];
             for (j = 0, len2 = points.length; j < len2; j++) {
               p = points[j];
               str += (j ? "L" : "M") + p.x + " " + p.y;
             }
-            str += closed ? Browser.svg ? "z" : "x" : "";
+            str += closed ? (Browser.svg ? "z" : "x") : "";
           }
           return str || "M0 0";
         }
@@ -1248,9 +1443,17 @@
         var edge = "msLaunchUri" in navigator && !("documentMode" in document);
         var webkit = userAgentContains("webkit");
         var android = userAgentContains("android");
-        var android23 = userAgentContains("android 2") || userAgentContains("android 3");
-        var webkitVer = parseInt(/WebKit\/([0-9]+)|$/.exec(navigator.userAgent)[1], 10);
-        var androidStock = android && userAgentContains("Google") && webkitVer < 537 && !("AudioNode" in window);
+        var android23 =
+          userAgentContains("android 2") || userAgentContains("android 3");
+        var webkitVer = parseInt(
+          /WebKit\/([0-9]+)|$/.exec(navigator.userAgent)[1],
+          10,
+        );
+        var androidStock =
+          android &&
+          userAgentContains("Google") &&
+          webkitVer < 537 &&
+          !("AudioNode" in window);
         var opera = !!window.opera;
         var chrome = !edge && userAgentContains("chrome");
         var gecko = userAgentContains("gecko") && !webkit && !opera && !ie;
@@ -1259,10 +1462,18 @@
         var opera12 = "OTransition" in style;
         var win = navigator.platform.indexOf("Win") === 0;
         var ie3d = ie && "transition" in style;
-        var webkit3d = "WebKitCSSMatrix" in window && "m11" in new window.WebKitCSSMatrix() && !android23;
+        var webkit3d =
+          "WebKitCSSMatrix" in window &&
+          "m11" in new window.WebKitCSSMatrix() &&
+          !android23;
         var gecko3d = "MozPerspective" in style;
-        var any3d = !window.L_DISABLE_3D && (ie3d || webkit3d || gecko3d) && !opera12 && !phantom;
-        var mobile = typeof orientation !== "undefined" || userAgentContains("mobile");
+        var any3d =
+          !window.L_DISABLE_3D &&
+          (ie3d || webkit3d || gecko3d) &&
+          !opera12 &&
+          !phantom;
+        var mobile =
+          typeof orientation !== "undefined" || userAgentContains("mobile");
         var mobileWebkit = mobile && webkit;
         var mobileWebkit3d = mobile && webkit3d;
         var msPointer = !window.PointerEvent && window.MSPointerEvent;
@@ -1271,41 +1482,55 @@
         var touch = !window.L_NO_TOUCH && (touchNative || pointer);
         var mobileOpera = mobile && opera;
         var mobileGecko = mobile && gecko;
-        var retina = (window.devicePixelRatio || window.screen.deviceXDPI / window.screen.logicalXDPI) > 1;
-        var passiveEvents = function() {
+        var retina =
+          (window.devicePixelRatio ||
+            window.screen.deviceXDPI / window.screen.logicalXDPI) > 1;
+        var passiveEvents = (function () {
           var supportsPassiveOption = false;
           try {
             var opts = Object.defineProperty({}, "passive", {
-              get: function() {
+              get: function () {
                 supportsPassiveOption = true;
-              }
+              },
             });
             window.addEventListener("testPassiveEventSupport", falseFn, opts);
-            window.removeEventListener("testPassiveEventSupport", falseFn, opts);
-          } catch (e) {
-          }
+            window.removeEventListener(
+              "testPassiveEventSupport",
+              falseFn,
+              opts,
+            );
+          } catch (e) {}
           return supportsPassiveOption;
-        }();
-        var canvas$1 = function() {
+        })();
+        var canvas$1 = (function () {
           return !!document.createElement("canvas").getContext;
-        }();
-        var svg$1 = !!(document.createElementNS && svgCreate("svg").createSVGRect);
-        var inlineSvg = !!svg$1 && function() {
-          var div = document.createElement("div");
-          div.innerHTML = "<svg/>";
-          return (div.firstChild && div.firstChild.namespaceURI) === "http://www.w3.org/2000/svg";
-        }();
-        var vml = !svg$1 && function() {
-          try {
+        })();
+        var svg$1 = !!(
+          document.createElementNS && svgCreate("svg").createSVGRect
+        );
+        var inlineSvg =
+          !!svg$1 &&
+          (function () {
             var div = document.createElement("div");
-            div.innerHTML = '<v:shape adj="1"/>';
-            var shape = div.firstChild;
-            shape.style.behavior = "url(#default#VML)";
-            return shape && typeof shape.adj === "object";
-          } catch (e) {
-            return false;
-          }
-        }();
+            div.innerHTML = "<svg/>";
+            return (
+              (div.firstChild && div.firstChild.namespaceURI) ===
+              "http://www.w3.org/2000/svg"
+            );
+          })();
+        var vml =
+          !svg$1 &&
+          (function () {
+            try {
+              var div = document.createElement("div");
+              div.innerHTML = '<v:shape adj="1"/>';
+              var shape = div.firstChild;
+              shape.style.behavior = "url(#default#VML)";
+              return shape && typeof shape.adj === "object";
+            } catch (e) {
+              return false;
+            }
+          })();
         var mac = navigator.platform.indexOf("Mac") === 0;
         var linux = navigator.platform.indexOf("Linux") === 0;
         function userAgentContains(str) {
@@ -1346,23 +1571,25 @@
           vml,
           inlineSvg,
           mac,
-          linux
+          linux,
         };
         var POINTER_DOWN = Browser.msPointer ? "MSPointerDown" : "pointerdown";
         var POINTER_MOVE = Browser.msPointer ? "MSPointerMove" : "pointermove";
         var POINTER_UP = Browser.msPointer ? "MSPointerUp" : "pointerup";
-        var POINTER_CANCEL = Browser.msPointer ? "MSPointerCancel" : "pointercancel";
+        var POINTER_CANCEL = Browser.msPointer
+          ? "MSPointerCancel"
+          : "pointercancel";
         var pEvent = {
           touchstart: POINTER_DOWN,
           touchmove: POINTER_MOVE,
           touchend: POINTER_UP,
-          touchcancel: POINTER_CANCEL
+          touchcancel: POINTER_CANCEL,
         };
         var handle = {
           touchstart: _onPointerStart,
           touchmove: _handlePointer,
           touchend: _handlePointer,
-          touchcancel: _handlePointer
+          touchcancel: _handlePointer,
         };
         var _pointers = {};
         var _pointerDocListener = false;
@@ -1417,13 +1644,18 @@
           handler(e);
         }
         function _onPointerStart(handler, e) {
-          if (e.MSPOINTER_TYPE_TOUCH && e.pointerType === e.MSPOINTER_TYPE_TOUCH) {
+          if (
+            e.MSPOINTER_TYPE_TOUCH &&
+            e.pointerType === e.MSPOINTER_TYPE_TOUCH
+          ) {
             preventDefault(e);
           }
           _handlePointer(handler, e);
         }
         function makeDblclick(event) {
-          var newEvent = {}, prop, i;
+          var newEvent = {},
+            prop,
+            i;
           for (i in event) {
             prop = event[i];
             newEvent[i] = prop && prop.bind ? prop.bind(event) : prop;
@@ -1438,21 +1670,31 @@
         var delay = 200;
         function addDoubleTapListener(obj, handler) {
           obj.addEventListener("dblclick", handler);
-          var last = 0, detail;
+          var last = 0,
+            detail;
           function simDblclick(e) {
             if (e.detail !== 1) {
               detail = e.detail;
               return;
             }
-            if (e.pointerType === "mouse" || e.sourceCapabilities && !e.sourceCapabilities.firesTouchEvents) {
+            if (
+              e.pointerType === "mouse" ||
+              (e.sourceCapabilities && !e.sourceCapabilities.firesTouchEvents)
+            ) {
               return;
             }
             var path = getPropagationPath(e);
-            if (path.some(function(el) {
-              return el instanceof HTMLLabelElement && el.attributes.for;
-            }) && !path.some(function(el) {
-              return el instanceof HTMLInputElement || el instanceof HTMLSelectElement;
-            })) {
+            if (
+              path.some(function (el) {
+                return el instanceof HTMLLabelElement && el.attributes.for;
+              }) &&
+              !path.some(function (el) {
+                return (
+                  el instanceof HTMLInputElement ||
+                  el instanceof HTMLSelectElement
+                );
+              })
+            ) {
               return;
             }
             var now = Date.now();
@@ -1469,25 +1711,37 @@
           obj.addEventListener("click", simDblclick);
           return {
             dblclick: handler,
-            simDblclick
+            simDblclick,
           };
         }
         function removeDoubleTapListener(obj, handlers) {
           obj.removeEventListener("dblclick", handlers.dblclick);
           obj.removeEventListener("click", handlers.simDblclick);
         }
-        var TRANSFORM = testProp(
-          ["transform", "webkitTransform", "OTransform", "MozTransform", "msTransform"]
-        );
-        var TRANSITION = testProp(
-          ["webkitTransition", "transition", "OTransition", "MozTransition", "msTransition"]
-        );
-        var TRANSITION_END = TRANSITION === "webkitTransition" || TRANSITION === "OTransition" ? TRANSITION + "End" : "transitionend";
+        var TRANSFORM = testProp([
+          "transform",
+          "webkitTransform",
+          "OTransform",
+          "MozTransform",
+          "msTransform",
+        ]);
+        var TRANSITION = testProp([
+          "webkitTransition",
+          "transition",
+          "OTransition",
+          "MozTransition",
+          "msTransition",
+        ]);
+        var TRANSITION_END =
+          TRANSITION === "webkitTransition" || TRANSITION === "OTransition"
+            ? TRANSITION + "End"
+            : "transitionend";
         function get(id) {
           return typeof id === "string" ? document.getElementById(id) : id;
         }
         function getStyle(el, style2) {
-          var value = el.style[style2] || el.currentStyle && el.currentStyle[style2];
+          var value =
+            el.style[style2] || (el.currentStyle && el.currentStyle[style2]);
           if ((!value || value === "auto") && document.defaultView) {
             var css = document.defaultView.getComputedStyle(el, null);
             value = css ? css[style2] : null;
@@ -1530,7 +1784,10 @@
             return el.classList.contains(name);
           }
           var className = getClass(el);
-          return className.length > 0 && new RegExp("(^|\\s)" + name + "(\\s|$)").test(className);
+          return (
+            className.length > 0 &&
+            new RegExp("(^|\\s)" + name + "(\\s|$)").test(className)
+          );
         }
         function addClass(el, name) {
           if (el.classList !== void 0) {
@@ -1547,7 +1804,10 @@
           if (el.classList !== void 0) {
             el.classList.remove(name);
           } else {
-            setClass(el, trim((" " + getClass(el) + " ").replace(" " + name + " ", " ")));
+            setClass(
+              el,
+              trim((" " + getClass(el) + " ").replace(" " + name + " ", " ")),
+            );
           }
         }
         function setClass(el, name) {
@@ -1561,7 +1821,9 @@
           if (el.correspondingElement) {
             el = el.correspondingElement;
           }
-          return el.className.baseVal === void 0 ? el.className : el.className.baseVal;
+          return el.className.baseVal === void 0
+            ? el.className
+            : el.className.baseVal;
         }
         function setOpacity(el, value) {
           if ("opacity" in el.style) {
@@ -1571,7 +1833,8 @@
           }
         }
         function _setOpacityIE(el, value) {
-          var filter = false, filterName = "DXImageTransform.Microsoft.Alpha";
+          var filter = false,
+            filterName = "DXImageTransform.Microsoft.Alpha";
           try {
             filter = el.filters.item(filterName);
           } catch (e) {
@@ -1584,7 +1847,8 @@
             filter.Enabled = value !== 100;
             filter.Opacity = value;
           } else {
-            el.style.filter += " progid:" + filterName + "(opacity=" + value + ")";
+            el.style.filter +=
+              " progid:" + filterName + "(opacity=" + value + ")";
           }
         }
         function testProp(props) {
@@ -1598,7 +1862,11 @@
         }
         function setTransform(el, offset, scale2) {
           var pos = offset || new Point(0, 0);
-          el.style[TRANSFORM] = (Browser.ie3d ? "translate(" + pos.x + "px," + pos.y + "px)" : "translate3d(" + pos.x + "px," + pos.y + "px,0)") + (scale2 ? " scale(" + scale2 + ")" : "");
+          el.style[TRANSFORM] =
+            (Browser.ie3d
+              ? "translate(" + pos.x + "px," + pos.y + "px)"
+              : "translate3d(" + pos.x + "px," + pos.y + "px,0)") +
+            (scale2 ? " scale(" + scale2 + ")" : "");
         }
         function setPosition(el, point) {
           el._leaflet_pos = point;
@@ -1616,24 +1884,28 @@
         var enableTextSelection;
         var _userSelect;
         if ("onselectstart" in document) {
-          disableTextSelection = function() {
+          disableTextSelection = function () {
             on(window, "selectstart", preventDefault);
           };
-          enableTextSelection = function() {
+          enableTextSelection = function () {
             off(window, "selectstart", preventDefault);
           };
         } else {
-          var userSelectProperty = testProp(
-            ["userSelect", "WebkitUserSelect", "OUserSelect", "MozUserSelect", "msUserSelect"]
-          );
-          disableTextSelection = function() {
+          var userSelectProperty = testProp([
+            "userSelect",
+            "WebkitUserSelect",
+            "OUserSelect",
+            "MozUserSelect",
+            "msUserSelect",
+          ]);
+          disableTextSelection = function () {
             if (userSelectProperty) {
               var style2 = document.documentElement.style;
               _userSelect = style2[userSelectProperty];
               style2[userSelectProperty] = "none";
             }
           };
-          enableTextSelection = function() {
+          enableTextSelection = function () {
             if (userSelectProperty) {
               document.documentElement.style[userSelectProperty] = _userSelect;
               _userSelect = void 0;
@@ -1672,7 +1944,10 @@
         function getSizedParentNode(element) {
           do {
             element = element.parentNode;
-          } while ((!element.offsetWidth || !element.offsetHeight) && element !== document.body);
+          } while (
+            (!element.offsetWidth || !element.offsetHeight) &&
+            element !== document.body
+          );
           return element;
         }
         function getScale(element) {
@@ -1680,7 +1955,7 @@
           return {
             x: rect.width / element.offsetWidth || 1,
             y: rect.height / element.offsetHeight || 1,
-            boundingClientRect: rect
+            boundingClientRect: rect,
           };
         }
         var DomUtil = {
@@ -1716,7 +1991,7 @@
           preventOutline,
           restoreOutline,
           getSizedParentNode,
-          getScale
+          getScale,
         };
         function on(obj, types, fn, context) {
           if (types && typeof types === "object") {
@@ -1743,7 +2018,7 @@
           } else {
             types = splitWords(types);
             if (arguments.length === 2) {
-              batchRemove(obj, function(type2) {
+              batchRemove(obj, function (type2) {
                 return indexOf(types, type2) !== -1;
               });
             } else {
@@ -1765,26 +2040,39 @@
         var mouseSubst = {
           mouseenter: "mouseover",
           mouseleave: "mouseout",
-          wheel: !("onwheel" in window) && "mousewheel"
+          wheel: !("onwheel" in window) && "mousewheel",
         };
         function addOne(obj, type, fn, context) {
           var id = type + stamp(fn) + (context ? "_" + stamp(context) : "");
           if (obj[eventsKey] && obj[eventsKey][id]) {
             return this;
           }
-          var handler = function(e) {
+          var handler = function (e) {
             return fn.call(context || obj, e || window.event);
           };
           var originalHandler = handler;
-          if (!Browser.touchNative && Browser.pointer && type.indexOf("touch") === 0) {
+          if (
+            !Browser.touchNative &&
+            Browser.pointer &&
+            type.indexOf("touch") === 0
+          ) {
             handler = addPointerListener(obj, type, handler);
           } else if (Browser.touch && type === "dblclick") {
             handler = addDoubleTapListener(obj, handler);
           } else if ("addEventListener" in obj) {
-            if (type === "touchstart" || type === "touchmove" || type === "wheel" || type === "mousewheel") {
-              obj.addEventListener(mouseSubst[type] || type, handler, Browser.passiveEvents ? { passive: false } : false);
+            if (
+              type === "touchstart" ||
+              type === "touchmove" ||
+              type === "wheel" ||
+              type === "mousewheel"
+            ) {
+              obj.addEventListener(
+                mouseSubst[type] || type,
+                handler,
+                Browser.passiveEvents ? { passive: false } : false,
+              );
             } else if (type === "mouseenter" || type === "mouseleave") {
-              handler = function(e) {
+              handler = function (e) {
                 e = e || window.event;
                 if (isExternalTarget(obj, e)) {
                   originalHandler(e);
@@ -1806,7 +2094,11 @@
           if (!handler) {
             return this;
           }
-          if (!Browser.touchNative && Browser.pointer && type.indexOf("touch") === 0) {
+          if (
+            !Browser.touchNative &&
+            Browser.pointer &&
+            type.indexOf("touch") === 0
+          ) {
             removePointerListener(obj, type, handler);
           } else if (Browser.touch && type === "dblclick") {
             removeDoubleTapListener(obj, handler);
@@ -1865,41 +2157,49 @@
           if (!container) {
             return new Point(e.clientX, e.clientY);
           }
-          var scale2 = getScale(container), offset = scale2.boundingClientRect;
+          var scale2 = getScale(container),
+            offset = scale2.boundingClientRect;
           return new Point(
             // offset.left/top values are in page scale (like clientX/Y),
             // whereas clientLeft/Top (border width) values are the original values (before CSS scale applies).
             (e.clientX - offset.left) / scale2.x - container.clientLeft,
-            (e.clientY - offset.top) / scale2.y - container.clientTop
+            (e.clientY - offset.top) / scale2.y - container.clientTop,
           );
         }
-        var wheelPxFactor = Browser.linux && Browser.chrome ? window.devicePixelRatio : Browser.mac ? window.devicePixelRatio * 3 : window.devicePixelRatio > 0 ? 2 * window.devicePixelRatio : 1;
+        var wheelPxFactor =
+          Browser.linux && Browser.chrome
+            ? window.devicePixelRatio
+            : Browser.mac
+              ? window.devicePixelRatio * 3
+              : window.devicePixelRatio > 0
+                ? 2 * window.devicePixelRatio
+                : 1;
         function getWheelDelta(e) {
-          return Browser.edge ? e.wheelDeltaY / 2 : (
-            // Don't trust window-geometry-based delta
-            e.deltaY && e.deltaMode === 0 ? -e.deltaY / wheelPxFactor : (
-              // Pixels
-              e.deltaY && e.deltaMode === 1 ? -e.deltaY * 20 : (
-                // Lines
-                e.deltaY && e.deltaMode === 2 ? -e.deltaY * 60 : (
-                  // Pages
-                  e.deltaX || e.deltaZ ? 0 : (
-                    // Skip horizontal/depth wheel events
-                    e.wheelDelta ? (e.wheelDeltaY || e.wheelDelta) / 2 : (
-                      // Legacy IE pixels
-                      e.detail && Math.abs(e.detail) < 32765 ? -e.detail * 20 : (
-                        // Legacy Moz lines
-                        e.detail ? e.detail / -32765 * 60 : (
-                          // Legacy Moz pages
-                          0
-                        )
-                      )
-                    )
-                  )
-                )
-              )
-            )
-          );
+          return Browser.edge
+            ? e.wheelDeltaY / 2
+            : // Don't trust window-geometry-based delta
+              e.deltaY && e.deltaMode === 0
+              ? -e.deltaY / wheelPxFactor
+              : // Pixels
+                e.deltaY && e.deltaMode === 1
+                ? -e.deltaY * 20
+                : // Lines
+                  e.deltaY && e.deltaMode === 2
+                  ? -e.deltaY * 60
+                  : // Pages
+                    e.deltaX || e.deltaZ
+                    ? 0
+                    : // Skip horizontal/depth wheel events
+                      e.wheelDelta
+                      ? (e.wheelDeltaY || e.wheelDelta) / 2
+                      : // Legacy IE pixels
+                        e.detail && Math.abs(e.detail) < 32765
+                        ? -e.detail * 20
+                        : // Legacy Moz lines
+                          e.detail
+                          ? (e.detail / -32765) * 60
+                          : // Legacy Moz pages
+                            0;
         }
         function isExternalTarget(el, e) {
           var related = e.relatedTarget;
@@ -1929,7 +2229,7 @@
           getWheelDelta,
           isExternalTarget,
           addListener: on,
-          removeListener: off
+          removeListener: off,
         };
         var PosAnimation = Evented.extend({
           // @method run(el: HTMLElement, newPos: Point, duration?: Number, easeLinearity?: Number)
@@ -1937,7 +2237,7 @@
           // duration in seconds (`0.25` by default) and easing linearity factor (3rd
           // argument of the [cubic bezier curve](https://cubic-bezier.com/#0,0,.5,1),
           // `0.5` by default).
-          run: function(el, newPos, duration, easeLinearity) {
+          run: function (el, newPos, duration, easeLinearity) {
             this.stop();
             this._el = el;
             this._inProgress = true;
@@ -1945,25 +2245,26 @@
             this._easeOutPower = 1 / Math.max(easeLinearity || 0.5, 0.2);
             this._startPos = getPosition(el);
             this._offset = newPos.subtract(this._startPos);
-            this._startTime = +/* @__PURE__ */ new Date();
+            this._startTime = +(/* @__PURE__ */ new Date());
             this.fire("start");
             this._animate();
           },
           // @method stop()
           // Stops the animation (if currently running).
-          stop: function() {
+          stop: function () {
             if (!this._inProgress) {
               return;
             }
             this._step(true);
             this._complete();
           },
-          _animate: function() {
+          _animate: function () {
             this._animId = requestAnimFrame(this._animate, this);
             this._step();
           },
-          _step: function(round) {
-            var elapsed = +/* @__PURE__ */ new Date() - this._startTime, duration = this._duration * 1e3;
+          _step: function (round) {
+            var elapsed = +(/* @__PURE__ */ new Date()) - this._startTime,
+              duration = this._duration * 1e3;
             if (elapsed < duration) {
               this._runFrame(this._easeOut(elapsed / duration), round);
             } else {
@@ -1971,7 +2272,7 @@
               this._complete();
             }
           },
-          _runFrame: function(progress, round) {
+          _runFrame: function (progress, round) {
             var pos = this._startPos.add(this._offset.multiplyBy(progress));
             if (round) {
               pos._round();
@@ -1979,14 +2280,14 @@
             setPosition(this._el, pos);
             this.fire("step");
           },
-          _complete: function() {
+          _complete: function () {
             cancelAnimFrame(this._animId);
             this._inProgress = false;
             this.fire("end");
           },
-          _easeOut: function(t) {
+          _easeOut: function (t) {
             return 1 - Math.pow(1 - t, this._easeOutPower);
-          }
+          },
         });
         var Map = Evented.extend({
           options: {
@@ -2063,9 +2364,9 @@
             zoomDelta: 1,
             // @option trackResize: Boolean = true
             // Whether the map automatically handles browser window resize to update itself.
-            trackResize: true
+            trackResize: true,
           },
-          initialize: function(id, options) {
+          initialize: function (id, options) {
             options = setOptions(this, options);
             this._handlers = [];
             this._layers = {};
@@ -2082,10 +2383,16 @@
               this._zoom = this._limitZoom(options.zoom);
             }
             if (options.center && options.zoom !== void 0) {
-              this.setView(toLatLng(options.center), options.zoom, { reset: true });
+              this.setView(toLatLng(options.center), options.zoom, {
+                reset: true,
+              });
             }
             this.callInitHooks();
-            this._zoomAnimated = TRANSITION && Browser.any3d && !Browser.mobileOpera && this.options.zoomAnimation;
+            this._zoomAnimated =
+              TRANSITION &&
+              Browser.any3d &&
+              !Browser.mobileOpera &&
+              this.options.zoomAnimation;
             if (this._zoomAnimated) {
               this._createAnimProxy();
               on(this._proxy, TRANSITION_END, this._catchTransitionEnd, this);
@@ -2096,28 +2403,46 @@
           // @method setView(center: LatLng, zoom: Number, options?: Zoom/pan options): this
           // Sets the view of the map (geographical center and zoom) with the given
           // animation options.
-          setView: function(center, zoom2, options) {
+          setView: function (center, zoom2, options) {
             zoom2 = zoom2 === void 0 ? this._zoom : this._limitZoom(zoom2);
-            center = this._limitCenter(toLatLng(center), zoom2, this.options.maxBounds);
+            center = this._limitCenter(
+              toLatLng(center),
+              zoom2,
+              this.options.maxBounds,
+            );
             options = options || {};
             this._stop();
             if (this._loaded && !options.reset && options !== true) {
               if (options.animate !== void 0) {
-                options.zoom = extend({ animate: options.animate }, options.zoom);
-                options.pan = extend({ animate: options.animate, duration: options.duration }, options.pan);
+                options.zoom = extend(
+                  { animate: options.animate },
+                  options.zoom,
+                );
+                options.pan = extend(
+                  { animate: options.animate, duration: options.duration },
+                  options.pan,
+                );
               }
-              var moved = this._zoom !== zoom2 ? this._tryAnimatedZoom && this._tryAnimatedZoom(center, zoom2, options.zoom) : this._tryAnimatedPan(center, options.pan);
+              var moved =
+                this._zoom !== zoom2
+                  ? this._tryAnimatedZoom &&
+                    this._tryAnimatedZoom(center, zoom2, options.zoom)
+                  : this._tryAnimatedPan(center, options.pan);
               if (moved) {
                 clearTimeout(this._sizeTimer);
                 return this;
               }
             }
-            this._resetView(center, zoom2, options.pan && options.pan.noMoveStart);
+            this._resetView(
+              center,
+              zoom2,
+              options.pan && options.pan.noMoveStart,
+            );
             return this;
           },
           // @method setZoom(zoom: Number, options?: Zoom/pan options): this
           // Sets the zoom of the map.
-          setZoom: function(zoom2, options) {
+          setZoom: function (zoom2, options) {
             if (!this._loaded) {
               this._zoom = zoom2;
               return this;
@@ -2126,13 +2451,13 @@
           },
           // @method zoomIn(delta?: Number, options?: Zoom options): this
           // Increases the zoom of the map by `delta` ([`zoomDelta`](#map-zoomdelta) by default).
-          zoomIn: function(delta, options) {
+          zoomIn: function (delta, options) {
             delta = delta || (Browser.any3d ? this.options.zoomDelta : 1);
             return this.setZoom(this._zoom + delta, options);
           },
           // @method zoomOut(delta?: Number, options?: Zoom options): this
           // Decreases the zoom of the map by `delta` ([`zoomDelta`](#map-zoomdelta) by default).
-          zoomOut: function(delta, options) {
+          zoomOut: function (delta, options) {
             delta = delta || (Browser.any3d ? this.options.zoomDelta : 1);
             return this.setZoom(this._zoom - delta, options);
           },
@@ -2142,31 +2467,63 @@
           // @alternative
           // @method setZoomAround(offset: Point, zoom: Number, options: Zoom options): this
           // Zooms the map while keeping a specified pixel on the map (relative to the top-left corner) stationary.
-          setZoomAround: function(latlng, zoom2, options) {
-            var scale2 = this.getZoomScale(zoom2), viewHalf = this.getSize().divideBy(2), containerPoint = latlng instanceof Point ? latlng : this.latLngToContainerPoint(latlng), centerOffset = containerPoint.subtract(viewHalf).multiplyBy(1 - 1 / scale2), newCenter = this.containerPointToLatLng(viewHalf.add(centerOffset));
+          setZoomAround: function (latlng, zoom2, options) {
+            var scale2 = this.getZoomScale(zoom2),
+              viewHalf = this.getSize().divideBy(2),
+              containerPoint =
+                latlng instanceof Point
+                  ? latlng
+                  : this.latLngToContainerPoint(latlng),
+              centerOffset = containerPoint
+                .subtract(viewHalf)
+                .multiplyBy(1 - 1 / scale2),
+              newCenter = this.containerPointToLatLng(
+                viewHalf.add(centerOffset),
+              );
             return this.setView(newCenter, zoom2, { zoom: options });
           },
-          _getBoundsCenterZoom: function(bounds, options) {
+          _getBoundsCenterZoom: function (bounds, options) {
             options = options || {};
-            bounds = bounds.getBounds ? bounds.getBounds() : toLatLngBounds(bounds);
-            var paddingTL = toPoint(options.paddingTopLeft || options.padding || [0, 0]), paddingBR = toPoint(options.paddingBottomRight || options.padding || [0, 0]), zoom2 = this.getBoundsZoom(bounds, false, paddingTL.add(paddingBR));
-            zoom2 = typeof options.maxZoom === "number" ? Math.min(options.maxZoom, zoom2) : zoom2;
+            bounds = bounds.getBounds
+              ? bounds.getBounds()
+              : toLatLngBounds(bounds);
+            var paddingTL = toPoint(
+                options.paddingTopLeft || options.padding || [0, 0],
+              ),
+              paddingBR = toPoint(
+                options.paddingBottomRight || options.padding || [0, 0],
+              ),
+              zoom2 = this.getBoundsZoom(
+                bounds,
+                false,
+                paddingTL.add(paddingBR),
+              );
+            zoom2 =
+              typeof options.maxZoom === "number"
+                ? Math.min(options.maxZoom, zoom2)
+                : zoom2;
             if (zoom2 === Infinity) {
               return {
                 center: bounds.getCenter(),
-                zoom: zoom2
+                zoom: zoom2,
               };
             }
-            var paddingOffset = paddingBR.subtract(paddingTL).divideBy(2), swPoint = this.project(bounds.getSouthWest(), zoom2), nePoint = this.project(bounds.getNorthEast(), zoom2), center = this.unproject(swPoint.add(nePoint).divideBy(2).add(paddingOffset), zoom2);
+            var paddingOffset = paddingBR.subtract(paddingTL).divideBy(2),
+              swPoint = this.project(bounds.getSouthWest(), zoom2),
+              nePoint = this.project(bounds.getNorthEast(), zoom2),
+              center = this.unproject(
+                swPoint.add(nePoint).divideBy(2).add(paddingOffset),
+                zoom2,
+              );
             return {
               center,
-              zoom: zoom2
+              zoom: zoom2,
             };
           },
           // @method fitBounds(bounds: LatLngBounds, options?: fitBounds options): this
           // Sets a map view that contains the given geographical bounds with the
           // maximum zoom level possible.
-          fitBounds: function(bounds, options) {
+          fitBounds: function (bounds, options) {
             bounds = toLatLngBounds(bounds);
             if (!bounds.isValid()) {
               throw new Error("Bounds are not valid.");
@@ -2177,32 +2534,44 @@
           // @method fitWorld(options?: fitBounds options): this
           // Sets a map view that mostly contains the whole world with the maximum
           // zoom level possible.
-          fitWorld: function(options) {
-            return this.fitBounds([[-90, -180], [90, 180]], options);
+          fitWorld: function (options) {
+            return this.fitBounds(
+              [
+                [-90, -180],
+                [90, 180],
+              ],
+              options,
+            );
           },
           // @method panTo(latlng: LatLng, options?: Pan options): this
           // Pans the map to a given center.
-          panTo: function(center, options) {
+          panTo: function (center, options) {
             return this.setView(center, this._zoom, { pan: options });
           },
           // @method panBy(offset: Point, options?: Pan options): this
           // Pans the map by a given number of pixels (animated).
-          panBy: function(offset, options) {
+          panBy: function (offset, options) {
             offset = toPoint(offset).round();
             options = options || {};
             if (!offset.x && !offset.y) {
               return this.fire("moveend");
             }
             if (options.animate !== true && !this.getSize().contains(offset)) {
-              this._resetView(this.unproject(this.project(this.getCenter()).add(offset)), this.getZoom());
+              this._resetView(
+                this.unproject(this.project(this.getCenter()).add(offset)),
+                this.getZoom(),
+              );
               return this;
             }
             if (!this._panAnim) {
               this._panAnim = new PosAnimation();
-              this._panAnim.on({
-                "step": this._onPanTransitionStep,
-                "end": this._onPanTransitionEnd
-              }, this);
+              this._panAnim.on(
+                {
+                  step: this._onPanTransitionStep,
+                  end: this._onPanTransitionEnd,
+                },
+                this,
+              );
             }
             if (!options.noMoveStart) {
               this.fire("movestart");
@@ -2210,7 +2579,12 @@
             if (options.animate !== false) {
               addClass(this._mapPane, "leaflet-pan-anim");
               var newPos = this._getMapPanePos().subtract(offset).round();
-              this._panAnim.run(this._mapPane, newPos, options.duration || 0.25, options.easeLinearity);
+              this._panAnim.run(
+                this._mapPane,
+                newPos,
+                options.duration || 0.25,
+                options.easeLinearity,
+              );
             } else {
               this._rawPanBy(offset);
               this.fire("move").fire("moveend");
@@ -2220,18 +2594,30 @@
           // @method flyTo(latlng: LatLng, zoom?: Number, options?: Zoom/pan options): this
           // Sets the view of the map (geographical center and zoom) performing a smooth
           // pan-zoom animation.
-          flyTo: function(targetCenter, targetZoom, options) {
+          flyTo: function (targetCenter, targetZoom, options) {
             options = options || {};
             if (options.animate === false || !Browser.any3d) {
               return this.setView(targetCenter, targetZoom, options);
             }
             this._stop();
-            var from = this.project(this.getCenter()), to = this.project(targetCenter), size = this.getSize(), startZoom = this._zoom;
+            var from = this.project(this.getCenter()),
+              to = this.project(targetCenter),
+              size = this.getSize(),
+              startZoom = this._zoom;
             targetCenter = toLatLng(targetCenter);
             targetZoom = targetZoom === void 0 ? startZoom : targetZoom;
-            var w0 = Math.max(size.x, size.y), w1 = w0 * this.getZoomScale(startZoom, targetZoom), u1 = to.distanceTo(from) || 1, rho = 1.42, rho2 = rho * rho;
+            var w0 = Math.max(size.x, size.y),
+              w1 = w0 * this.getZoomScale(startZoom, targetZoom),
+              u1 = to.distanceTo(from) || 1,
+              rho = 1.42,
+              rho2 = rho * rho;
             function r(i) {
-              var s1 = i ? -1 : 1, s2 = i ? w1 : w0, t1 = w1 * w1 - w0 * w0 + s1 * rho2 * rho2 * u1 * u1, b1 = 2 * s2 * rho2 * u1, b = t1 / b1, sq = Math.sqrt(b * b + 1) - b;
+              var s1 = i ? -1 : 1,
+                s2 = i ? w1 : w0,
+                t1 = w1 * w1 - w0 * w0 + s1 * rho2 * rho2 * u1 * u1,
+                b1 = 2 * s2 * rho2 * u1,
+                b = t1 / b1,
+                sq = Math.sqrt(b * b + 1) - b;
               var log = sq < 1e-9 ? -18 : Math.log(sq);
               return log;
             }
@@ -2249,20 +2635,28 @@
               return w0 * (cosh(r0) / cosh(r0 + rho * s));
             }
             function u(s) {
-              return w0 * (cosh(r0) * tanh(r0 + rho * s) - sinh(r0)) / rho2;
+              return (w0 * (cosh(r0) * tanh(r0 + rho * s) - sinh(r0))) / rho2;
             }
             function easeOut(t) {
               return 1 - Math.pow(1 - t, 1.5);
             }
-            var start = Date.now(), S = (r(1) - r0) / rho, duration = options.duration ? 1e3 * options.duration : 1e3 * S * 0.8;
+            var start = Date.now(),
+              S = (r(1) - r0) / rho,
+              duration = options.duration
+                ? 1e3 * options.duration
+                : 1e3 * S * 0.8;
             function frame() {
-              var t = (Date.now() - start) / duration, s = easeOut(t) * S;
+              var t = (Date.now() - start) / duration,
+                s = easeOut(t) * S;
               if (t <= 1) {
                 this._flyToFrame = requestAnimFrame(frame, this);
                 this._move(
-                  this.unproject(from.add(to.subtract(from).multiplyBy(u(s) / u1)), startZoom),
+                  this.unproject(
+                    from.add(to.subtract(from).multiplyBy(u(s) / u1)),
+                    startZoom,
+                  ),
                   this.getScaleZoom(w0 / w(s), startZoom),
-                  { flyTo: true }
+                  { flyTo: true },
                 );
               } else {
                 this._move(targetCenter, targetZoom)._moveEnd(true);
@@ -2275,13 +2669,13 @@
           // @method flyToBounds(bounds: LatLngBounds, options?: fitBounds options): this
           // Sets the view of the map with a smooth animation like [`flyTo`](#map-flyto),
           // but takes a bounds parameter like [`fitBounds`](#map-fitbounds).
-          flyToBounds: function(bounds, options) {
+          flyToBounds: function (bounds, options) {
             var target = this._getBoundsCenterZoom(bounds, options);
             return this.flyTo(target.center, target.zoom, options);
           },
           // @method setMaxBounds(bounds: LatLngBounds): this
           // Restricts the map view to the given bounds (see the [maxBounds](#map-maxbounds) option).
-          setMaxBounds: function(bounds) {
+          setMaxBounds: function (bounds) {
             bounds = toLatLngBounds(bounds);
             if (this.listens("moveend", this._panInsideMaxBounds)) {
               this.off("moveend", this._panInsideMaxBounds);
@@ -2298,7 +2692,7 @@
           },
           // @method setMinZoom(zoom: Number): this
           // Sets the lower limit for the available zoom levels (see the [minZoom](#map-minzoom) option).
-          setMinZoom: function(zoom2) {
+          setMinZoom: function (zoom2) {
             var oldZoom = this.options.minZoom;
             this.options.minZoom = zoom2;
             if (this._loaded && oldZoom !== zoom2) {
@@ -2311,7 +2705,7 @@
           },
           // @method setMaxZoom(zoom: Number): this
           // Sets the upper limit for the available zoom levels (see the [maxZoom](#map-maxzoom) option).
-          setMaxZoom: function(zoom2) {
+          setMaxZoom: function (zoom2) {
             var oldZoom = this.options.maxZoom;
             this.options.maxZoom = zoom2;
             if (this._loaded && oldZoom !== zoom2) {
@@ -2324,9 +2718,14 @@
           },
           // @method panInsideBounds(bounds: LatLngBounds, options?: Pan options): this
           // Pans the map to the closest view that would lie inside the given bounds (if it's not already), controlling the animation using the options specific, if any.
-          panInsideBounds: function(bounds, options) {
+          panInsideBounds: function (bounds, options) {
             this._enforcingBounds = true;
-            var center = this.getCenter(), newCenter = this._limitCenter(center, this._zoom, toLatLngBounds(bounds));
+            var center = this.getCenter(),
+              newCenter = this._limitCenter(
+                center,
+                this._zoom,
+                toLatLngBounds(bounds),
+              );
             if (!center.equals(newCenter)) {
               this.panTo(newCenter, options);
             }
@@ -2338,13 +2737,29 @@
           // padding options to fit the display to more restricted bounds.
           // If `latlng` is already within the (optionally padded) display bounds,
           // the map will not be panned.
-          panInside: function(latlng, options) {
+          panInside: function (latlng, options) {
             options = options || {};
-            var paddingTL = toPoint(options.paddingTopLeft || options.padding || [0, 0]), paddingBR = toPoint(options.paddingBottomRight || options.padding || [0, 0]), pixelCenter = this.project(this.getCenter()), pixelPoint = this.project(latlng), pixelBounds = this.getPixelBounds(), paddedBounds = toBounds([pixelBounds.min.add(paddingTL), pixelBounds.max.subtract(paddingBR)]), paddedSize = paddedBounds.getSize();
+            var paddingTL = toPoint(
+                options.paddingTopLeft || options.padding || [0, 0],
+              ),
+              paddingBR = toPoint(
+                options.paddingBottomRight || options.padding || [0, 0],
+              ),
+              pixelCenter = this.project(this.getCenter()),
+              pixelPoint = this.project(latlng),
+              pixelBounds = this.getPixelBounds(),
+              paddedBounds = toBounds([
+                pixelBounds.min.add(paddingTL),
+                pixelBounds.max.subtract(paddingBR),
+              ]),
+              paddedSize = paddedBounds.getSize();
             if (!paddedBounds.contains(pixelPoint)) {
               this._enforcingBounds = true;
               var centerOffset = pixelPoint.subtract(paddedBounds.getCenter());
-              var offset = paddedBounds.extend(pixelPoint).getSize().subtract(paddedSize);
+              var offset = paddedBounds
+                .extend(pixelPoint)
+                .getSize()
+                .subtract(paddedSize);
               pixelCenter.x += centerOffset.x < 0 ? -offset.x : offset.x;
               pixelCenter.y += centerOffset.y < 0 ? -offset.y : offset.y;
               this.panTo(this.unproject(pixelCenter), options);
@@ -2364,18 +2779,24 @@
           // Checks if the map container size changed and updates the map if so —
           // call it after you've changed the map size dynamically, also animating
           // pan by default.
-          invalidateSize: function(options) {
+          invalidateSize: function (options) {
             if (!this._loaded) {
               return this;
             }
-            options = extend({
-              animate: false,
-              pan: true
-            }, options === true ? { animate: true } : options);
+            options = extend(
+              {
+                animate: false,
+                pan: true,
+              },
+              options === true ? { animate: true } : options,
+            );
             var oldSize = this.getSize();
             this._sizeChanged = true;
             this._lastCenter = null;
-            var newSize = this.getSize(), oldCenter = oldSize.divideBy(2).round(), newCenter = newSize.divideBy(2).round(), offset = oldCenter.subtract(newCenter);
+            var newSize = this.getSize(),
+              oldCenter = oldSize.divideBy(2).round(),
+              newCenter = newSize.divideBy(2).round(),
+              offset = oldCenter.subtract(newCenter);
             if (!offset.x && !offset.y) {
               return this;
             }
@@ -2388,20 +2809,23 @@
               this.fire("move");
               if (options.debounceMoveend) {
                 clearTimeout(this._sizeTimer);
-                this._sizeTimer = setTimeout(bind(this.fire, this, "moveend"), 200);
+                this._sizeTimer = setTimeout(
+                  bind(this.fire, this, "moveend"),
+                  200,
+                );
               } else {
                 this.fire("moveend");
               }
             }
             return this.fire("resize", {
               oldSize,
-              newSize
+              newSize,
             });
           },
           // @section Methods for modifying map state
           // @method stop(): this
           // Stops the currently running `panTo` or `flyTo` animation, if any.
-          stop: function() {
+          stop: function () {
             this.setZoom(this._limitZoom(this._zoom));
             if (!this.options.zoomSnap) {
               this.fire("viewreset");
@@ -2417,27 +2841,39 @@
           // Note that, if your page doesn't use HTTPS, this method will fail in
           // modern browsers ([Chrome 50 and newer](https://sites.google.com/a/chromium.org/dev/Home/chromium-security/deprecating-powerful-features-on-insecure-origins))
           // See `Locate options` for more details.
-          locate: function(options) {
-            options = this._locateOptions = extend({
-              timeout: 1e4,
-              watch: false
-              // setView: false
-              // maxZoom: <Number>
-              // maximumAge: 0
-              // enableHighAccuracy: false
-            }, options);
+          locate: function (options) {
+            options = this._locateOptions = extend(
+              {
+                timeout: 1e4,
+                watch: false,
+                // setView: false
+                // maxZoom: <Number>
+                // maximumAge: 0
+                // enableHighAccuracy: false
+              },
+              options,
+            );
             if (!("geolocation" in navigator)) {
               this._handleGeolocationError({
                 code: 0,
-                message: "Geolocation not supported."
+                message: "Geolocation not supported.",
               });
               return this;
             }
-            var onResponse = bind(this._handleGeolocationResponse, this), onError = bind(this._handleGeolocationError, this);
+            var onResponse = bind(this._handleGeolocationResponse, this),
+              onError = bind(this._handleGeolocationError, this);
             if (options.watch) {
-              this._locationWatchId = navigator.geolocation.watchPosition(onResponse, onError, options);
+              this._locationWatchId = navigator.geolocation.watchPosition(
+                onResponse,
+                onError,
+                options,
+              );
             } else {
-              navigator.geolocation.getCurrentPosition(onResponse, onError, options);
+              navigator.geolocation.getCurrentPosition(
+                onResponse,
+                onError,
+                options,
+              );
             }
             return this;
           },
@@ -2445,7 +2881,7 @@
           // Stops watching location previously initiated by `map.locate({watch: true})`
           // and aborts resetting the map view if map.locate was called with
           // `{setView: true}`.
-          stopLocate: function() {
+          stopLocate: function () {
             if (navigator.geolocation && navigator.geolocation.clearWatch) {
               navigator.geolocation.clearWatch(this._locationWatchId);
             }
@@ -2454,32 +2890,46 @@
             }
             return this;
           },
-          _handleGeolocationError: function(error) {
+          _handleGeolocationError: function (error) {
             if (!this._container._leaflet_id) {
               return;
             }
-            var c = error.code, message = error.message || (c === 1 ? "permission denied" : c === 2 ? "position unavailable" : "timeout");
+            var c = error.code,
+              message =
+                error.message ||
+                (c === 1
+                  ? "permission denied"
+                  : c === 2
+                    ? "position unavailable"
+                    : "timeout");
             if (this._locateOptions.setView && !this._loaded) {
               this.fitWorld();
             }
             this.fire("locationerror", {
               code: c,
-              message: "Geolocation error: " + message + "."
+              message: "Geolocation error: " + message + ".",
             });
           },
-          _handleGeolocationResponse: function(pos) {
+          _handleGeolocationResponse: function (pos) {
             if (!this._container._leaflet_id) {
               return;
             }
-            var lat = pos.coords.latitude, lng = pos.coords.longitude, latlng = new LatLng(lat, lng), bounds = latlng.toBounds(pos.coords.accuracy * 2), options = this._locateOptions;
+            var lat = pos.coords.latitude,
+              lng = pos.coords.longitude,
+              latlng = new LatLng(lat, lng),
+              bounds = latlng.toBounds(pos.coords.accuracy * 2),
+              options = this._locateOptions;
             if (options.setView) {
               var zoom2 = this.getBoundsZoom(bounds);
-              this.setView(latlng, options.maxZoom ? Math.min(zoom2, options.maxZoom) : zoom2);
+              this.setView(
+                latlng,
+                options.maxZoom ? Math.min(zoom2, options.maxZoom) : zoom2,
+              );
             }
             var data = {
               latlng,
               bounds,
-              timestamp: pos.timestamp
+              timestamp: pos.timestamp,
             };
             for (var i in pos.coords) {
               if (typeof pos.coords[i] === "number") {
@@ -2492,11 +2942,11 @@
           // @section Other Methods
           // @method addHandler(name: String, HandlerClass: Function): this
           // Adds a new `Handler` to the map, given its name and constructor function.
-          addHandler: function(name, HandlerClass) {
+          addHandler: function (name, HandlerClass) {
             if (!HandlerClass) {
               return this;
             }
-            var handler = this[name] = new HandlerClass(this);
+            var handler = (this[name] = new HandlerClass(this));
             this._handlers.push(handler);
             if (this.options[name]) {
               handler.enable();
@@ -2505,13 +2955,15 @@
           },
           // @method remove(): this
           // Destroys the map and clears all related event listeners.
-          remove: function() {
+          remove: function () {
             this._initEvents(true);
             if (this.options.maxBounds) {
               this.off("moveend", this._panInsideMaxBounds);
             }
             if (this._containerId !== this._container._leaflet_id) {
-              throw new Error("Map container is being reused by another instance");
+              throw new Error(
+                "Map container is being reused by another instance",
+              );
             }
             try {
               delete this._container._leaflet_id;
@@ -2554,8 +3006,11 @@
           // Creates a new [map pane](#map-pane) with the given name if it doesn't exist already,
           // then returns it. The pane is created as a child of `container`, or
           // as a child of the main map pane if not set.
-          createPane: function(name, container) {
-            var className = "leaflet-pane" + (name ? " leaflet-" + name.replace("Pane", "") + "-pane" : ""), pane = create$1("div", className, container || this._mapPane);
+          createPane: function (name, container) {
+            var className =
+                "leaflet-pane" +
+                (name ? " leaflet-" + name.replace("Pane", "") + "-pane" : ""),
+              pane = create$1("div", className, container || this._mapPane);
             if (name) {
               this._panes[name] = pane;
             }
@@ -2564,7 +3019,7 @@
           // @section Methods for Getting Map State
           // @method getCenter(): LatLng
           // Returns the geographical center of the map view
-          getCenter: function() {
+          getCenter: function () {
             this._checkIfLoaded();
             if (this._lastCenter && !this._moved()) {
               return this._lastCenter.clone();
@@ -2573,48 +3028,73 @@
           },
           // @method getZoom(): Number
           // Returns the current zoom level of the map view
-          getZoom: function() {
+          getZoom: function () {
             return this._zoom;
           },
           // @method getBounds(): LatLngBounds
           // Returns the geographical bounds visible in the current map view
-          getBounds: function() {
-            var bounds = this.getPixelBounds(), sw = this.unproject(bounds.getBottomLeft()), ne = this.unproject(bounds.getTopRight());
+          getBounds: function () {
+            var bounds = this.getPixelBounds(),
+              sw = this.unproject(bounds.getBottomLeft()),
+              ne = this.unproject(bounds.getTopRight());
             return new LatLngBounds(sw, ne);
           },
           // @method getMinZoom(): Number
           // Returns the minimum zoom level of the map (if set in the `minZoom` option of the map or of any layers), or `0` by default.
-          getMinZoom: function() {
-            return this.options.minZoom === void 0 ? this._layersMinZoom || 0 : this.options.minZoom;
+          getMinZoom: function () {
+            return this.options.minZoom === void 0
+              ? this._layersMinZoom || 0
+              : this.options.minZoom;
           },
           // @method getMaxZoom(): Number
           // Returns the maximum zoom level of the map (if set in the `maxZoom` option of the map or of any layers).
-          getMaxZoom: function() {
-            return this.options.maxZoom === void 0 ? this._layersMaxZoom === void 0 ? Infinity : this._layersMaxZoom : this.options.maxZoom;
+          getMaxZoom: function () {
+            return this.options.maxZoom === void 0
+              ? this._layersMaxZoom === void 0
+                ? Infinity
+                : this._layersMaxZoom
+              : this.options.maxZoom;
           },
           // @method getBoundsZoom(bounds: LatLngBounds, inside?: Boolean, padding?: Point): Number
           // Returns the maximum zoom level on which the given bounds fit to the map
           // view in its entirety. If `inside` (optional) is set to `true`, the method
           // instead returns the minimum zoom level on which the map view fits into
           // the given bounds in its entirety.
-          getBoundsZoom: function(bounds, inside, padding) {
+          getBoundsZoom: function (bounds, inside, padding) {
             bounds = toLatLngBounds(bounds);
             padding = toPoint(padding || [0, 0]);
-            var zoom2 = this.getZoom() || 0, min = this.getMinZoom(), max = this.getMaxZoom(), nw = bounds.getNorthWest(), se = bounds.getSouthEast(), size = this.getSize().subtract(padding), boundsSize = toBounds(this.project(se, zoom2), this.project(nw, zoom2)).getSize(), snap = Browser.any3d ? this.options.zoomSnap : 1, scalex = size.x / boundsSize.x, scaley = size.y / boundsSize.y, scale2 = inside ? Math.max(scalex, scaley) : Math.min(scalex, scaley);
+            var zoom2 = this.getZoom() || 0,
+              min = this.getMinZoom(),
+              max = this.getMaxZoom(),
+              nw = bounds.getNorthWest(),
+              se = bounds.getSouthEast(),
+              size = this.getSize().subtract(padding),
+              boundsSize = toBounds(
+                this.project(se, zoom2),
+                this.project(nw, zoom2),
+              ).getSize(),
+              snap = Browser.any3d ? this.options.zoomSnap : 1,
+              scalex = size.x / boundsSize.x,
+              scaley = size.y / boundsSize.y,
+              scale2 = inside
+                ? Math.max(scalex, scaley)
+                : Math.min(scalex, scaley);
             zoom2 = this.getScaleZoom(scale2, zoom2);
             if (snap) {
               zoom2 = Math.round(zoom2 / (snap / 100)) * (snap / 100);
-              zoom2 = inside ? Math.ceil(zoom2 / snap) * snap : Math.floor(zoom2 / snap) * snap;
+              zoom2 = inside
+                ? Math.ceil(zoom2 / snap) * snap
+                : Math.floor(zoom2 / snap) * snap;
             }
             return Math.max(min, Math.min(max, zoom2));
           },
           // @method getSize(): Point
           // Returns the current size of the map container (in pixels).
-          getSize: function() {
+          getSize: function () {
             if (!this._size || this._sizeChanged) {
               this._size = new Point(
                 this._container.clientWidth || 0,
-                this._container.clientHeight || 0
+                this._container.clientHeight || 0,
               );
               this._sizeChanged = false;
             }
@@ -2623,7 +3103,7 @@
           // @method getPixelBounds(): Bounds
           // Returns the bounds of the current map view in projected pixel
           // coordinates (sometimes useful in layer and overlay implementations).
-          getPixelBounds: function(center, zoom2) {
+          getPixelBounds: function (center, zoom2) {
             var topLeftPoint = this._getTopLeftPoint(center, zoom2);
             return new Bounds(topLeftPoint, topLeftPoint.add(this.getSize()));
           },
@@ -2633,38 +3113,40 @@
           // @method getPixelOrigin(): Point
           // Returns the projected pixel coordinates of the top left point of
           // the map layer (useful in custom layer and overlay implementations).
-          getPixelOrigin: function() {
+          getPixelOrigin: function () {
             this._checkIfLoaded();
             return this._pixelOrigin;
           },
           // @method getPixelWorldBounds(zoom?: Number): Bounds
           // Returns the world's bounds in pixel coordinates for zoom level `zoom`.
           // If `zoom` is omitted, the map's current zoom level is used.
-          getPixelWorldBounds: function(zoom2) {
-            return this.options.crs.getProjectedBounds(zoom2 === void 0 ? this.getZoom() : zoom2);
+          getPixelWorldBounds: function (zoom2) {
+            return this.options.crs.getProjectedBounds(
+              zoom2 === void 0 ? this.getZoom() : zoom2,
+            );
           },
           // @section Other Methods
           // @method getPane(pane: String|HTMLElement): HTMLElement
           // Returns a [map pane](#map-pane), given its name or its HTML element (its identity).
-          getPane: function(pane) {
+          getPane: function (pane) {
             return typeof pane === "string" ? this._panes[pane] : pane;
           },
           // @method getPanes(): Object
           // Returns a plain object containing the names of all [panes](#map-pane) as keys and
           // the panes as values.
-          getPanes: function() {
+          getPanes: function () {
             return this._panes;
           },
           // @method getContainer: HTMLElement
           // Returns the HTML element that contains the map.
-          getContainer: function() {
+          getContainer: function () {
             return this._container;
           },
           // @section Conversion Methods
           // @method getZoomScale(toZoom: Number, fromZoom: Number): Number
           // Returns the scale factor to be applied to a map transition from zoom level
           // `fromZoom` to `toZoom`. Used internally to help with zoom animations.
-          getZoomScale: function(toZoom, fromZoom) {
+          getZoomScale: function (toZoom, fromZoom) {
             var crs = this.options.crs;
             fromZoom = fromZoom === void 0 ? this._zoom : fromZoom;
             return crs.scale(toZoom) / crs.scale(fromZoom);
@@ -2673,7 +3155,7 @@
           // Returns the zoom level that the map would end up at, if it is at `fromZoom`
           // level and everything is scaled by a factor of `scale`. Inverse of
           // [`getZoomScale`](#map-getZoomScale).
-          getScaleZoom: function(scale2, fromZoom) {
+          getScaleZoom: function (scale2, fromZoom) {
             var crs = this.options.crs;
             fromZoom = fromZoom === void 0 ? this._zoom : fromZoom;
             var zoom2 = crs.zoom(scale2 * crs.scale(fromZoom));
@@ -2684,27 +3166,27 @@
           // of the map's CRS, then scales it according to `zoom` and the CRS's
           // `Transformation`. The result is pixel coordinate relative to
           // the CRS origin.
-          project: function(latlng, zoom2) {
+          project: function (latlng, zoom2) {
             zoom2 = zoom2 === void 0 ? this._zoom : zoom2;
             return this.options.crs.latLngToPoint(toLatLng(latlng), zoom2);
           },
           // @method unproject(point: Point, zoom: Number): LatLng
           // Inverse of [`project`](#map-project).
-          unproject: function(point, zoom2) {
+          unproject: function (point, zoom2) {
             zoom2 = zoom2 === void 0 ? this._zoom : zoom2;
             return this.options.crs.pointToLatLng(toPoint(point), zoom2);
           },
           // @method layerPointToLatLng(point: Point): LatLng
           // Given a pixel coordinate relative to the [origin pixel](#map-getpixelorigin),
           // returns the corresponding geographical coordinate (for the current zoom level).
-          layerPointToLatLng: function(point) {
+          layerPointToLatLng: function (point) {
             var projectedPoint = toPoint(point).add(this.getPixelOrigin());
             return this.unproject(projectedPoint);
           },
           // @method latLngToLayerPoint(latlng: LatLng): Point
           // Given a geographical coordinate, returns the corresponding pixel coordinate
           // relative to the [origin pixel](#map-getpixelorigin).
-          latLngToLayerPoint: function(latlng) {
+          latLngToLayerPoint: function (latlng) {
             var projectedPoint = this.project(toLatLng(latlng))._round();
             return projectedPoint._subtract(this.getPixelOrigin());
           },
@@ -2714,7 +3196,7 @@
           // CRS's bounds.
           // By default this means longitude is wrapped around the dateline so its
           // value is between -180 and +180 degrees.
-          wrapLatLng: function(latlng) {
+          wrapLatLng: function (latlng) {
             return this.options.crs.wrapLatLng(toLatLng(latlng));
           },
           // @method wrapLatLngBounds(bounds: LatLngBounds): LatLngBounds
@@ -2723,61 +3205,68 @@
           // By default this means the center longitude is wrapped around the dateline so its
           // value is between -180 and +180 degrees, and the majority of the bounds
           // overlaps the CRS's bounds.
-          wrapLatLngBounds: function(latlng) {
+          wrapLatLngBounds: function (latlng) {
             return this.options.crs.wrapLatLngBounds(toLatLngBounds(latlng));
           },
           // @method distance(latlng1: LatLng, latlng2: LatLng): Number
           // Returns the distance between two geographical coordinates according to
           // the map's CRS. By default this measures distance in meters.
-          distance: function(latlng1, latlng2) {
-            return this.options.crs.distance(toLatLng(latlng1), toLatLng(latlng2));
+          distance: function (latlng1, latlng2) {
+            return this.options.crs.distance(
+              toLatLng(latlng1),
+              toLatLng(latlng2),
+            );
           },
           // @method containerPointToLayerPoint(point: Point): Point
           // Given a pixel coordinate relative to the map container, returns the corresponding
           // pixel coordinate relative to the [origin pixel](#map-getpixelorigin).
-          containerPointToLayerPoint: function(point) {
+          containerPointToLayerPoint: function (point) {
             return toPoint(point).subtract(this._getMapPanePos());
           },
           // @method layerPointToContainerPoint(point: Point): Point
           // Given a pixel coordinate relative to the [origin pixel](#map-getpixelorigin),
           // returns the corresponding pixel coordinate relative to the map container.
-          layerPointToContainerPoint: function(point) {
+          layerPointToContainerPoint: function (point) {
             return toPoint(point).add(this._getMapPanePos());
           },
           // @method containerPointToLatLng(point: Point): LatLng
           // Given a pixel coordinate relative to the map container, returns
           // the corresponding geographical coordinate (for the current zoom level).
-          containerPointToLatLng: function(point) {
+          containerPointToLatLng: function (point) {
             var layerPoint = this.containerPointToLayerPoint(toPoint(point));
             return this.layerPointToLatLng(layerPoint);
           },
           // @method latLngToContainerPoint(latlng: LatLng): Point
           // Given a geographical coordinate, returns the corresponding pixel coordinate
           // relative to the map container.
-          latLngToContainerPoint: function(latlng) {
-            return this.layerPointToContainerPoint(this.latLngToLayerPoint(toLatLng(latlng)));
+          latLngToContainerPoint: function (latlng) {
+            return this.layerPointToContainerPoint(
+              this.latLngToLayerPoint(toLatLng(latlng)),
+            );
           },
           // @method mouseEventToContainerPoint(ev: MouseEvent): Point
           // Given a MouseEvent object, returns the pixel coordinate relative to the
           // map container where the event took place.
-          mouseEventToContainerPoint: function(e) {
+          mouseEventToContainerPoint: function (e) {
             return getMousePosition(e, this._container);
           },
           // @method mouseEventToLayerPoint(ev: MouseEvent): Point
           // Given a MouseEvent object, returns the pixel coordinate relative to
           // the [origin pixel](#map-getpixelorigin) where the event took place.
-          mouseEventToLayerPoint: function(e) {
-            return this.containerPointToLayerPoint(this.mouseEventToContainerPoint(e));
+          mouseEventToLayerPoint: function (e) {
+            return this.containerPointToLayerPoint(
+              this.mouseEventToContainerPoint(e),
+            );
           },
           // @method mouseEventToLatLng(ev: MouseEvent): LatLng
           // Given a MouseEvent object, returns geographical coordinate where the
           // event took place.
-          mouseEventToLatLng: function(e) {
+          mouseEventToLatLng: function (e) {
             return this.layerPointToLatLng(this.mouseEventToLayerPoint(e));
           },
           // map initialization methods
-          _initContainer: function(id) {
-            var container = this._container = get(id);
+          _initContainer: function (id) {
+            var container = (this._container = get(id));
             if (!container) {
               throw new Error("Map container not found.");
             } else if (container._leaflet_id) {
@@ -2786,12 +3275,25 @@
             on(container, "scroll", this._onScroll, this);
             this._containerId = stamp(container);
           },
-          _initLayout: function() {
+          _initLayout: function () {
             var container = this._container;
             this._fadeAnimated = this.options.fadeAnimation && Browser.any3d;
-            addClass(container, "leaflet-container" + (Browser.touch ? " leaflet-touch" : "") + (Browser.retina ? " leaflet-retina" : "") + (Browser.ielt9 ? " leaflet-oldie" : "") + (Browser.safari ? " leaflet-safari" : "") + (this._fadeAnimated ? " leaflet-fade-anim" : ""));
+            addClass(
+              container,
+              "leaflet-container" +
+                (Browser.touch ? " leaflet-touch" : "") +
+                (Browser.retina ? " leaflet-retina" : "") +
+                (Browser.ielt9 ? " leaflet-oldie" : "") +
+                (Browser.safari ? " leaflet-safari" : "") +
+                (this._fadeAnimated ? " leaflet-fade-anim" : ""),
+            );
             var position = getStyle(container, "position");
-            if (position !== "absolute" && position !== "relative" && position !== "fixed" && position !== "sticky") {
+            if (
+              position !== "absolute" &&
+              position !== "relative" &&
+              position !== "fixed" &&
+              position !== "sticky"
+            ) {
               container.style.position = "relative";
             }
             this._initPanes();
@@ -2799,8 +3301,8 @@
               this._initControlPos();
             }
           },
-          _initPanes: function() {
-            var panes = this._panes = {};
+          _initPanes: function () {
+            var panes = (this._panes = {});
             this._paneRenderers = {};
             this._mapPane = this.createPane("mapPane", this._container);
             setPosition(this._mapPane, new Point(0, 0));
@@ -2817,20 +3319,22 @@
           },
           // private methods that modify map state
           // @section Map state change events
-          _resetView: function(center, zoom2, noMoveStart) {
+          _resetView: function (center, zoom2, noMoveStart) {
             setPosition(this._mapPane, new Point(0, 0));
             var loading = !this._loaded;
             this._loaded = true;
             zoom2 = this._limitZoom(zoom2);
             this.fire("viewprereset");
             var zoomChanged = this._zoom !== zoom2;
-            this._moveStart(zoomChanged, noMoveStart)._move(center, zoom2)._moveEnd(zoomChanged);
+            this._moveStart(zoomChanged, noMoveStart)
+              ._move(center, zoom2)
+              ._moveEnd(zoomChanged);
             this.fire("viewreset");
             if (loading) {
               this.fire("load");
             }
           },
-          _moveStart: function(zoomChanged, noMoveStart) {
+          _moveStart: function (zoomChanged, noMoveStart) {
             if (zoomChanged) {
               this.fire("zoomstart");
             }
@@ -2839,7 +3343,7 @@
             }
             return this;
           },
-          _move: function(center, zoom2, data, supressEvent) {
+          _move: function (center, zoom2, data, supressEvent) {
             if (zoom2 === void 0) {
               zoom2 = this._zoom;
             }
@@ -2848,7 +3352,7 @@
             this._lastCenter = center;
             this._pixelOrigin = this._getNewPixelOrigin(center);
             if (!supressEvent) {
-              if (zoomChanged || data && data.pinch) {
+              if (zoomChanged || (data && data.pinch)) {
                 this.fire("zoom", data);
               }
               this.fire("move", data);
@@ -2857,73 +3361,90 @@
             }
             return this;
           },
-          _moveEnd: function(zoomChanged) {
+          _moveEnd: function (zoomChanged) {
             if (zoomChanged) {
               this.fire("zoomend");
             }
             return this.fire("moveend");
           },
-          _stop: function() {
+          _stop: function () {
             cancelAnimFrame(this._flyToFrame);
             if (this._panAnim) {
               this._panAnim.stop();
             }
             return this;
           },
-          _rawPanBy: function(offset) {
+          _rawPanBy: function (offset) {
             setPosition(this._mapPane, this._getMapPanePos().subtract(offset));
           },
-          _getZoomSpan: function() {
+          _getZoomSpan: function () {
             return this.getMaxZoom() - this.getMinZoom();
           },
-          _panInsideMaxBounds: function() {
+          _panInsideMaxBounds: function () {
             if (!this._enforcingBounds) {
               this.panInsideBounds(this.options.maxBounds);
             }
           },
-          _checkIfLoaded: function() {
+          _checkIfLoaded: function () {
             if (!this._loaded) {
               throw new Error("Set map center and zoom first.");
             }
           },
           // DOM event handling
           // @section Interaction events
-          _initEvents: function(remove2) {
+          _initEvents: function (remove2) {
             this._targets = {};
             this._targets[stamp(this._container)] = this;
             var onOff = remove2 ? off : on;
-            onOff(this._container, "click dblclick mousedown mouseup mouseover mouseout mousemove contextmenu keypress keydown keyup", this._handleDOMEvent, this);
+            onOff(
+              this._container,
+              "click dblclick mousedown mouseup mouseover mouseout mousemove contextmenu keypress keydown keyup",
+              this._handleDOMEvent,
+              this,
+            );
             if (this.options.trackResize) {
               onOff(window, "resize", this._onResize, this);
             }
             if (Browser.any3d && this.options.transform3DLimit) {
-              (remove2 ? this.off : this.on).call(this, "moveend", this._onMoveEnd);
+              (remove2 ? this.off : this.on).call(
+                this,
+                "moveend",
+                this._onMoveEnd,
+              );
             }
           },
-          _onResize: function() {
+          _onResize: function () {
             cancelAnimFrame(this._resizeRequest);
-            this._resizeRequest = requestAnimFrame(
-              function() {
-                this.invalidateSize({ debounceMoveend: true });
-              },
-              this
-            );
+            this._resizeRequest = requestAnimFrame(function () {
+              this.invalidateSize({ debounceMoveend: true });
+            }, this);
           },
-          _onScroll: function() {
+          _onScroll: function () {
             this._container.scrollTop = 0;
             this._container.scrollLeft = 0;
           },
-          _onMoveEnd: function() {
+          _onMoveEnd: function () {
             var pos = this._getMapPanePos();
-            if (Math.max(Math.abs(pos.x), Math.abs(pos.y)) >= this.options.transform3DLimit) {
+            if (
+              Math.max(Math.abs(pos.x), Math.abs(pos.y)) >=
+              this.options.transform3DLimit
+            ) {
               this._resetView(this.getCenter(), this.getZoom());
             }
           },
-          _findEventTargets: function(e, type) {
-            var targets = [], target, isHover = type === "mouseout" || type === "mouseover", src = e.target || e.srcElement, dragging = false;
+          _findEventTargets: function (e, type) {
+            var targets = [],
+              target,
+              isHover = type === "mouseout" || type === "mouseover",
+              src = e.target || e.srcElement,
+              dragging = false;
             while (src) {
               target = this._targets[stamp(src)];
-              if (target && (type === "click" || type === "preclick") && this._draggableMoved(target)) {
+              if (
+                target &&
+                (type === "click" || type === "preclick") &&
+                this._draggableMoved(target)
+              ) {
                 dragging = true;
                 break;
               }
@@ -2941,12 +3462,17 @@
               }
               src = src.parentNode;
             }
-            if (!targets.length && !dragging && !isHover && this.listens(type, true)) {
+            if (
+              !targets.length &&
+              !dragging &&
+              !isHover &&
+              this.listens(type, true)
+            ) {
               targets = [this];
             }
             return targets;
           },
-          _isClickDisabled: function(el) {
+          _isClickDisabled: function (el) {
             while (el && el !== this._container) {
               if (el["_leaflet_disable_click"]) {
                 return true;
@@ -2954,9 +3480,13 @@
               el = el.parentNode;
             }
           },
-          _handleDOMEvent: function(e) {
+          _handleDOMEvent: function (e) {
             var el = e.target || e.srcElement;
-            if (!this._loaded || el["_leaflet_disable_events"] || e.type === "click" && this._isClickDisabled(el)) {
+            if (
+              !this._loaded ||
+              el["_leaflet_disable_events"] ||
+              (e.type === "click" && this._isClickDisabled(el))
+            ) {
               return;
             }
             var type = e.type;
@@ -2965,8 +3495,14 @@
             }
             this._fireDOMEvent(e, type);
           },
-          _mouseEvents: ["click", "dblclick", "mouseover", "mouseout", "contextmenu"],
-          _fireDOMEvent: function(e, type, canvasTargets) {
+          _mouseEvents: [
+            "click",
+            "dblclick",
+            "mouseover",
+            "mouseout",
+            "contextmenu",
+          ],
+          _fireDOMEvent: function (e, type, canvasTargets) {
             if (e.type === "click") {
               var synth = extend({}, e);
               synth.type = "preclick";
@@ -2990,26 +3526,44 @@
             }
             var target = targets[0];
             var data = {
-              originalEvent: e
+              originalEvent: e,
             };
-            if (e.type !== "keypress" && e.type !== "keydown" && e.type !== "keyup") {
-              var isMarker = target.getLatLng && (!target._radius || target._radius <= 10);
-              data.containerPoint = isMarker ? this.latLngToContainerPoint(target.getLatLng()) : this.mouseEventToContainerPoint(e);
-              data.layerPoint = this.containerPointToLayerPoint(data.containerPoint);
-              data.latlng = isMarker ? target.getLatLng() : this.layerPointToLatLng(data.layerPoint);
+            if (
+              e.type !== "keypress" &&
+              e.type !== "keydown" &&
+              e.type !== "keyup"
+            ) {
+              var isMarker =
+                target.getLatLng && (!target._radius || target._radius <= 10);
+              data.containerPoint = isMarker
+                ? this.latLngToContainerPoint(target.getLatLng())
+                : this.mouseEventToContainerPoint(e);
+              data.layerPoint = this.containerPointToLayerPoint(
+                data.containerPoint,
+              );
+              data.latlng = isMarker
+                ? target.getLatLng()
+                : this.layerPointToLatLng(data.layerPoint);
             }
             for (i = 0; i < targets.length; i++) {
               targets[i].fire(type, data, true);
-              if (data.originalEvent._stopped || targets[i].options.bubblingMouseEvents === false && indexOf(this._mouseEvents, type) !== -1) {
+              if (
+                data.originalEvent._stopped ||
+                (targets[i].options.bubblingMouseEvents === false &&
+                  indexOf(this._mouseEvents, type) !== -1)
+              ) {
                 return;
               }
             }
           },
-          _draggableMoved: function(obj) {
+          _draggableMoved: function (obj) {
             obj = obj.dragging && obj.dragging.enabled() ? obj : this;
-            return obj.dragging && obj.dragging.moved() || this.boxZoom && this.boxZoom.moved();
+            return (
+              (obj.dragging && obj.dragging.moved()) ||
+              (this.boxZoom && this.boxZoom.moved())
+            );
           },
-          _clearHandlers: function() {
+          _clearHandlers: function () {
             for (var i = 0, len = this._handlers.length; i < len; i++) {
               this._handlers[i].disable();
             }
@@ -3019,7 +3573,7 @@
           // Runs the given function `fn` when the map gets initialized with
           // a view (center and zoom) and at least one layer, or immediately
           // if it's already initialized, optionally passing a function context.
-          whenReady: function(callback, context) {
+          whenReady: function (callback, context) {
             if (this._loaded) {
               callback.call(context || this, { target: this });
             } else {
@@ -3028,142 +3582,218 @@
             return this;
           },
           // private methods for getting map state
-          _getMapPanePos: function() {
+          _getMapPanePos: function () {
             return getPosition(this._mapPane) || new Point(0, 0);
           },
-          _moved: function() {
+          _moved: function () {
             var pos = this._getMapPanePos();
             return pos && !pos.equals([0, 0]);
           },
-          _getTopLeftPoint: function(center, zoom2) {
-            var pixelOrigin = center && zoom2 !== void 0 ? this._getNewPixelOrigin(center, zoom2) : this.getPixelOrigin();
+          _getTopLeftPoint: function (center, zoom2) {
+            var pixelOrigin =
+              center && zoom2 !== void 0
+                ? this._getNewPixelOrigin(center, zoom2)
+                : this.getPixelOrigin();
             return pixelOrigin.subtract(this._getMapPanePos());
           },
-          _getNewPixelOrigin: function(center, zoom2) {
+          _getNewPixelOrigin: function (center, zoom2) {
             var viewHalf = this.getSize()._divideBy(2);
-            return this.project(center, zoom2)._subtract(viewHalf)._add(this._getMapPanePos())._round();
+            return this.project(center, zoom2)
+              ._subtract(viewHalf)
+              ._add(this._getMapPanePos())
+              ._round();
           },
-          _latLngToNewLayerPoint: function(latlng, zoom2, center) {
+          _latLngToNewLayerPoint: function (latlng, zoom2, center) {
             var topLeft = this._getNewPixelOrigin(center, zoom2);
             return this.project(latlng, zoom2)._subtract(topLeft);
           },
-          _latLngBoundsToNewLayerBounds: function(latLngBounds, zoom2, center) {
+          _latLngBoundsToNewLayerBounds: function (
+            latLngBounds,
+            zoom2,
+            center,
+          ) {
             var topLeft = this._getNewPixelOrigin(center, zoom2);
             return toBounds([
-              this.project(latLngBounds.getSouthWest(), zoom2)._subtract(topLeft),
-              this.project(latLngBounds.getNorthWest(), zoom2)._subtract(topLeft),
-              this.project(latLngBounds.getSouthEast(), zoom2)._subtract(topLeft),
-              this.project(latLngBounds.getNorthEast(), zoom2)._subtract(topLeft)
+              this.project(latLngBounds.getSouthWest(), zoom2)._subtract(
+                topLeft,
+              ),
+              this.project(latLngBounds.getNorthWest(), zoom2)._subtract(
+                topLeft,
+              ),
+              this.project(latLngBounds.getSouthEast(), zoom2)._subtract(
+                topLeft,
+              ),
+              this.project(latLngBounds.getNorthEast(), zoom2)._subtract(
+                topLeft,
+              ),
             ]);
           },
           // layer point of the current center
-          _getCenterLayerPoint: function() {
+          _getCenterLayerPoint: function () {
             return this.containerPointToLayerPoint(this.getSize()._divideBy(2));
           },
           // offset of the specified place to the current center in pixels
-          _getCenterOffset: function(latlng) {
-            return this.latLngToLayerPoint(latlng).subtract(this._getCenterLayerPoint());
+          _getCenterOffset: function (latlng) {
+            return this.latLngToLayerPoint(latlng).subtract(
+              this._getCenterLayerPoint(),
+            );
           },
           // adjust center for view to get inside bounds
-          _limitCenter: function(center, zoom2, bounds) {
+          _limitCenter: function (center, zoom2, bounds) {
             if (!bounds) {
               return center;
             }
-            var centerPoint = this.project(center, zoom2), viewHalf = this.getSize().divideBy(2), viewBounds = new Bounds(centerPoint.subtract(viewHalf), centerPoint.add(viewHalf)), offset = this._getBoundsOffset(viewBounds, bounds, zoom2);
+            var centerPoint = this.project(center, zoom2),
+              viewHalf = this.getSize().divideBy(2),
+              viewBounds = new Bounds(
+                centerPoint.subtract(viewHalf),
+                centerPoint.add(viewHalf),
+              ),
+              offset = this._getBoundsOffset(viewBounds, bounds, zoom2);
             if (Math.abs(offset.x) <= 1 && Math.abs(offset.y) <= 1) {
               return center;
             }
             return this.unproject(centerPoint.add(offset), zoom2);
           },
           // adjust offset for view to get inside bounds
-          _limitOffset: function(offset, bounds) {
+          _limitOffset: function (offset, bounds) {
             if (!bounds) {
               return offset;
             }
-            var viewBounds = this.getPixelBounds(), newBounds = new Bounds(viewBounds.min.add(offset), viewBounds.max.add(offset));
+            var viewBounds = this.getPixelBounds(),
+              newBounds = new Bounds(
+                viewBounds.min.add(offset),
+                viewBounds.max.add(offset),
+              );
             return offset.add(this._getBoundsOffset(newBounds, bounds));
           },
           // returns offset needed for pxBounds to get inside maxBounds at a specified zoom
-          _getBoundsOffset: function(pxBounds, maxBounds, zoom2) {
+          _getBoundsOffset: function (pxBounds, maxBounds, zoom2) {
             var projectedMaxBounds = toBounds(
-              this.project(maxBounds.getNorthEast(), zoom2),
-              this.project(maxBounds.getSouthWest(), zoom2)
-            ), minOffset = projectedMaxBounds.min.subtract(pxBounds.min), maxOffset = projectedMaxBounds.max.subtract(pxBounds.max), dx = this._rebound(minOffset.x, -maxOffset.x), dy = this._rebound(minOffset.y, -maxOffset.y);
+                this.project(maxBounds.getNorthEast(), zoom2),
+                this.project(maxBounds.getSouthWest(), zoom2),
+              ),
+              minOffset = projectedMaxBounds.min.subtract(pxBounds.min),
+              maxOffset = projectedMaxBounds.max.subtract(pxBounds.max),
+              dx = this._rebound(minOffset.x, -maxOffset.x),
+              dy = this._rebound(minOffset.y, -maxOffset.y);
             return new Point(dx, dy);
           },
-          _rebound: function(left, right) {
-            return left + right > 0 ? Math.round(left - right) / 2 : Math.max(0, Math.ceil(left)) - Math.max(0, Math.floor(right));
+          _rebound: function (left, right) {
+            return left + right > 0
+              ? Math.round(left - right) / 2
+              : Math.max(0, Math.ceil(left)) - Math.max(0, Math.floor(right));
           },
-          _limitZoom: function(zoom2) {
-            var min = this.getMinZoom(), max = this.getMaxZoom(), snap = Browser.any3d ? this.options.zoomSnap : 1;
+          _limitZoom: function (zoom2) {
+            var min = this.getMinZoom(),
+              max = this.getMaxZoom(),
+              snap = Browser.any3d ? this.options.zoomSnap : 1;
             if (snap) {
               zoom2 = Math.round(zoom2 / snap) * snap;
             }
             return Math.max(min, Math.min(max, zoom2));
           },
-          _onPanTransitionStep: function() {
+          _onPanTransitionStep: function () {
             this.fire("move");
           },
-          _onPanTransitionEnd: function() {
+          _onPanTransitionEnd: function () {
             removeClass(this._mapPane, "leaflet-pan-anim");
             this.fire("moveend");
           },
-          _tryAnimatedPan: function(center, options) {
+          _tryAnimatedPan: function (center, options) {
             var offset = this._getCenterOffset(center)._trunc();
-            if ((options && options.animate) !== true && !this.getSize().contains(offset)) {
+            if (
+              (options && options.animate) !== true &&
+              !this.getSize().contains(offset)
+            ) {
               return false;
             }
             this.panBy(offset, options);
             return true;
           },
-          _createAnimProxy: function() {
-            var proxy = this._proxy = create$1("div", "leaflet-proxy leaflet-zoom-animated");
+          _createAnimProxy: function () {
+            var proxy = (this._proxy = create$1(
+              "div",
+              "leaflet-proxy leaflet-zoom-animated",
+            ));
             this._panes.mapPane.appendChild(proxy);
-            this.on("zoomanim", function(e) {
-              var prop = TRANSFORM, transform = this._proxy.style[prop];
-              setTransform(this._proxy, this.project(e.center, e.zoom), this.getZoomScale(e.zoom, 1));
-              if (transform === this._proxy.style[prop] && this._animatingZoom) {
-                this._onZoomTransitionEnd();
-              }
-            }, this);
+            this.on(
+              "zoomanim",
+              function (e) {
+                var prop = TRANSFORM,
+                  transform = this._proxy.style[prop];
+                setTransform(
+                  this._proxy,
+                  this.project(e.center, e.zoom),
+                  this.getZoomScale(e.zoom, 1),
+                );
+                if (
+                  transform === this._proxy.style[prop] &&
+                  this._animatingZoom
+                ) {
+                  this._onZoomTransitionEnd();
+                }
+              },
+              this,
+            );
             this.on("load moveend", this._animMoveEnd, this);
             this._on("unload", this._destroyAnimProxy, this);
           },
-          _destroyAnimProxy: function() {
+          _destroyAnimProxy: function () {
             remove(this._proxy);
             this.off("load moveend", this._animMoveEnd, this);
             delete this._proxy;
           },
-          _animMoveEnd: function() {
-            var c = this.getCenter(), z = this.getZoom();
-            setTransform(this._proxy, this.project(c, z), this.getZoomScale(z, 1));
+          _animMoveEnd: function () {
+            var c = this.getCenter(),
+              z = this.getZoom();
+            setTransform(
+              this._proxy,
+              this.project(c, z),
+              this.getZoomScale(z, 1),
+            );
           },
-          _catchTransitionEnd: function(e) {
-            if (this._animatingZoom && e.propertyName.indexOf("transform") >= 0) {
+          _catchTransitionEnd: function (e) {
+            if (
+              this._animatingZoom &&
+              e.propertyName.indexOf("transform") >= 0
+            ) {
               this._onZoomTransitionEnd();
             }
           },
-          _nothingToAnimate: function() {
-            return !this._container.getElementsByClassName("leaflet-zoom-animated").length;
+          _nothingToAnimate: function () {
+            return !this._container.getElementsByClassName(
+              "leaflet-zoom-animated",
+            ).length;
           },
-          _tryAnimatedZoom: function(center, zoom2, options) {
+          _tryAnimatedZoom: function (center, zoom2, options) {
             if (this._animatingZoom) {
               return true;
             }
             options = options || {};
-            if (!this._zoomAnimated || options.animate === false || this._nothingToAnimate() || Math.abs(zoom2 - this._zoom) > this.options.zoomAnimationThreshold) {
+            if (
+              !this._zoomAnimated ||
+              options.animate === false ||
+              this._nothingToAnimate() ||
+              Math.abs(zoom2 - this._zoom) > this.options.zoomAnimationThreshold
+            ) {
               return false;
             }
-            var scale2 = this.getZoomScale(zoom2), offset = this._getCenterOffset(center)._divideBy(1 - 1 / scale2);
+            var scale2 = this.getZoomScale(zoom2),
+              offset = this._getCenterOffset(center)._divideBy(1 - 1 / scale2);
             if (options.animate !== true && !this.getSize().contains(offset)) {
               return false;
             }
-            requestAnimFrame(function() {
-              this._moveStart(true, options.noMoveStart || false)._animateZoom(center, zoom2, true);
+            requestAnimFrame(function () {
+              this._moveStart(true, options.noMoveStart || false)._animateZoom(
+                center,
+                zoom2,
+                true,
+              );
             }, this);
             return true;
           },
-          _animateZoom: function(center, zoom2, startAnim, noUpdate) {
+          _animateZoom: function (center, zoom2, startAnim, noUpdate) {
             if (!this._mapPane) {
               return;
             }
@@ -3176,15 +3806,20 @@
             this.fire("zoomanim", {
               center,
               zoom: zoom2,
-              noUpdate
+              noUpdate,
             });
             if (!this._tempFireZoomEvent) {
               this._tempFireZoomEvent = this._zoom !== this._animateToZoom;
             }
-            this._move(this._animateToCenter, this._animateToZoom, void 0, true);
+            this._move(
+              this._animateToCenter,
+              this._animateToZoom,
+              void 0,
+              true,
+            );
             setTimeout(bind(this._onZoomTransitionEnd, this), 250);
           },
-          _onZoomTransitionEnd: function() {
+          _onZoomTransitionEnd: function () {
             if (!this._animatingZoom) {
               return;
             }
@@ -3192,14 +3827,19 @@
               removeClass(this._mapPane, "leaflet-zoom-anim");
             }
             this._animatingZoom = false;
-            this._move(this._animateToCenter, this._animateToZoom, void 0, true);
+            this._move(
+              this._animateToCenter,
+              this._animateToZoom,
+              void 0,
+              true,
+            );
             if (this._tempFireZoomEvent) {
               this.fire("zoom");
             }
             delete this._tempFireZoomEvent;
             this.fire("move");
             this._moveEnd(true);
-          }
+          },
         });
         function createMap(id, options) {
           return new Map(id, options);
@@ -3211,9 +3851,9 @@
             // @option position: String = 'topright'
             // The position of the control (one of the map corners). Possible values are `'topleft'`,
             // `'topright'`, `'bottomleft'` or `'bottomright'`
-            position: "topright"
+            position: "topright",
           },
-          initialize: function(options) {
+          initialize: function (options) {
             setOptions(this, options);
           },
           /* @section
@@ -3222,12 +3862,12 @@
            * @method getPosition: string
            * Returns the position of the control.
            */
-          getPosition: function() {
+          getPosition: function () {
             return this.options.position;
           },
           // @method setPosition(position: string): this
           // Sets the position of the control.
-          setPosition: function(position) {
+          setPosition: function (position) {
             var map3 = this._map;
             if (map3) {
               map3.removeControl(this);
@@ -3240,15 +3880,17 @@
           },
           // @method getContainer: HTMLElement
           // Returns the HTMLElement that contains the control.
-          getContainer: function() {
+          getContainer: function () {
             return this._container;
           },
           // @method addTo(map: Map): this
           // Adds the control to the given map.
-          addTo: function(map3) {
+          addTo: function (map3) {
             this.remove();
             this._map = map3;
-            var container = this._container = this.onAdd(map3), pos = this.getPosition(), corner = map3._controlCorners[pos];
+            var container = (this._container = this.onAdd(map3)),
+              pos = this.getPosition(),
+              corner = map3._controlCorners[pos];
             addClass(container, "leaflet-control");
             if (pos.indexOf("bottom") !== -1) {
               corner.insertBefore(container, corner.firstChild);
@@ -3260,7 +3902,7 @@
           },
           // @method remove: this
           // Removes the control from the map it is currently active on.
-          remove: function() {
+          remove: function () {
             if (!this._map) {
               return this;
             }
@@ -3272,30 +3914,36 @@
             this._map = null;
             return this;
           },
-          _refocusOnMap: function(e) {
+          _refocusOnMap: function (e) {
             if (this._map && e && e.screenX > 0 && e.screenY > 0) {
               this._map.getContainer().focus();
             }
-          }
+          },
         });
-        var control = function(options) {
+        var control = function (options) {
           return new Control(options);
         };
         Map.include({
           // @method addControl(control: Control): this
           // Adds the given control to the map
-          addControl: function(control2) {
+          addControl: function (control2) {
             control2.addTo(this);
             return this;
           },
           // @method removeControl(control: Control): this
           // Removes the given control from the map
-          removeControl: function(control2) {
+          removeControl: function (control2) {
             control2.remove();
             return this;
           },
-          _initControlPos: function() {
-            var corners = this._controlCorners = {}, l = "leaflet-", container = this._controlContainer = create$1("div", l + "control-container", this._container);
+          _initControlPos: function () {
+            var corners = (this._controlCorners = {}),
+              l = "leaflet-",
+              container = (this._controlContainer = create$1(
+                "div",
+                l + "control-container",
+                this._container,
+              ));
             function createCorner(vSide, hSide) {
               var className = l + vSide + " " + l + hSide;
               corners[vSide + hSide] = create$1("div", className, container);
@@ -3305,14 +3953,14 @@
             createCorner("bottom", "left");
             createCorner("bottom", "right");
           },
-          _clearControlPos: function() {
+          _clearControlPos: function () {
             for (var i in this._controlCorners) {
               remove(this._controlCorners[i]);
             }
             remove(this._controlContainer);
             delete this._controlCorners;
             delete this._controlContainer;
-          }
+          },
         });
         var Layers = Control.extend({
           // @section
@@ -3338,11 +3986,11 @@
             // The function receives both the `L.Layer` instances and their names, as in
             // `sortFunction(layerA, layerB, nameA, nameB)`.
             // By default, it sorts layers alphabetically by their name.
-            sortFunction: function(layerA, layerB, nameA, nameB) {
+            sortFunction: function (layerA, layerB, nameA, nameB) {
               return nameA < nameB ? -1 : nameB < nameA ? 1 : 0;
-            }
+            },
           },
-          initialize: function(baseLayers, overlays, options) {
+          initialize: function (baseLayers, overlays, options) {
             setOptions(this, options);
             this._layerControlInputs = [];
             this._layers = [];
@@ -3356,7 +4004,7 @@
               this._addLayer(overlays[i], i, true);
             }
           },
-          onAdd: function(map3) {
+          onAdd: function (map3) {
             this._initLayout();
             this._update();
             this._map = map3;
@@ -3366,31 +4014,35 @@
             }
             return this._container;
           },
-          addTo: function(map3) {
+          addTo: function (map3) {
             Control.prototype.addTo.call(this, map3);
             return this._expandIfNotCollapsed();
           },
-          onRemove: function() {
+          onRemove: function () {
             this._map.off("zoomend", this._checkDisabledLayers, this);
             for (var i = 0; i < this._layers.length; i++) {
-              this._layers[i].layer.off("add remove", this._onLayerChange, this);
+              this._layers[i].layer.off(
+                "add remove",
+                this._onLayerChange,
+                this,
+              );
             }
           },
           // @method addBaseLayer(layer: Layer, name: String): this
           // Adds a base layer (radio button entry) with the given name to the control.
-          addBaseLayer: function(layer, name) {
+          addBaseLayer: function (layer, name) {
             this._addLayer(layer, name);
             return this._map ? this._update() : this;
           },
           // @method addOverlay(layer: Layer, name: String): this
           // Adds an overlay (checkbox entry) with the given name to the control.
-          addOverlay: function(layer, name) {
+          addOverlay: function (layer, name) {
             this._addLayer(layer, name, true);
             return this._map ? this._update() : this;
           },
           // @method removeLayer(layer: Layer): this
           // Remove the given layer from the control.
-          removeLayer: function(layer) {
+          removeLayer: function (layer) {
             layer.off("add remove", this._onLayerChange, this);
             var obj = this._getLayer(stamp(layer));
             if (obj) {
@@ -3400,10 +4052,11 @@
           },
           // @method expand(): this
           // Expand the control container if collapsed.
-          expand: function() {
+          expand: function () {
             addClass(this._container, "leaflet-control-layers-expanded");
             this._section.style.height = null;
-            var acceptableHeight = this._map.getSize().y - (this._container.offsetTop + 50);
+            var acceptableHeight =
+              this._map.getSize().y - (this._container.offsetTop + 50);
             if (acceptableHeight < this._section.clientHeight) {
               addClass(this._section, "leaflet-control-layers-scrollbar");
               this._section.style.height = acceptableHeight + "px";
@@ -3415,67 +4068,103 @@
           },
           // @method collapse(): this
           // Collapse the control container if expanded.
-          collapse: function() {
+          collapse: function () {
             removeClass(this._container, "leaflet-control-layers-expanded");
             return this;
           },
-          _initLayout: function() {
-            var className = "leaflet-control-layers", container = this._container = create$1("div", className), collapsed = this.options.collapsed;
+          _initLayout: function () {
+            var className = "leaflet-control-layers",
+              container = (this._container = create$1("div", className)),
+              collapsed = this.options.collapsed;
             container.setAttribute("aria-haspopup", true);
             disableClickPropagation(container);
             disableScrollPropagation(container);
-            var section = this._section = create$1("section", className + "-list");
+            var section = (this._section = create$1(
+              "section",
+              className + "-list",
+            ));
             if (collapsed) {
               this._map.on("click", this.collapse, this);
-              on(container, {
-                mouseenter: this._expandSafely,
-                mouseleave: this.collapse
-              }, this);
+              on(
+                container,
+                {
+                  mouseenter: this._expandSafely,
+                  mouseleave: this.collapse,
+                },
+                this,
+              );
             }
-            var link = this._layersLink = create$1("a", className + "-toggle", container);
+            var link = (this._layersLink = create$1(
+              "a",
+              className + "-toggle",
+              container,
+            ));
             link.href = "#";
             link.title = "Layers";
             link.setAttribute("role", "button");
-            on(link, {
-              keydown: function(e) {
-                if (e.keyCode === 13) {
+            on(
+              link,
+              {
+                keydown: function (e) {
+                  if (e.keyCode === 13) {
+                    this._expandSafely();
+                  }
+                },
+                // Certain screen readers intercept the key event and instead send a click event
+                click: function (e) {
+                  preventDefault(e);
                   this._expandSafely();
-                }
+                },
               },
-              // Certain screen readers intercept the key event and instead send a click event
-              click: function(e) {
-                preventDefault(e);
-                this._expandSafely();
-              }
-            }, this);
+              this,
+            );
             if (!collapsed) {
               this.expand();
             }
-            this._baseLayersList = create$1("div", className + "-base", section);
-            this._separator = create$1("div", className + "-separator", section);
-            this._overlaysList = create$1("div", className + "-overlays", section);
+            this._baseLayersList = create$1(
+              "div",
+              className + "-base",
+              section,
+            );
+            this._separator = create$1(
+              "div",
+              className + "-separator",
+              section,
+            );
+            this._overlaysList = create$1(
+              "div",
+              className + "-overlays",
+              section,
+            );
             container.appendChild(section);
           },
-          _getLayer: function(id) {
+          _getLayer: function (id) {
             for (var i = 0; i < this._layers.length; i++) {
               if (this._layers[i] && stamp(this._layers[i].layer) === id) {
                 return this._layers[i];
               }
             }
           },
-          _addLayer: function(layer, name, overlay) {
+          _addLayer: function (layer, name, overlay) {
             if (this._map) {
               layer.on("add remove", this._onLayerChange, this);
             }
             this._layers.push({
               layer,
               name,
-              overlay
+              overlay,
             });
             if (this.options.sortLayers) {
-              this._layers.sort(bind(function(a, b) {
-                return this.options.sortFunction(a.layer, b.layer, a.name, b.name);
-              }, this));
+              this._layers.sort(
+                bind(function (a, b) {
+                  return this.options.sortFunction(
+                    a.layer,
+                    b.layer,
+                    a.name,
+                    b.name,
+                  );
+                }, this),
+              );
             }
             if (this.options.autoZIndex && layer.setZIndex) {
               this._lastZIndex++;
@@ -3483,14 +4172,18 @@
             }
             this._expandIfNotCollapsed();
           },
-          _update: function() {
+          _update: function () {
             if (!this._container) {
               return this;
             }
             empty(this._baseLayersList);
             empty(this._overlaysList);
             this._layerControlInputs = [];
-            var baseLayersPresent, overlaysPresent, i, obj, baseLayersCount = 0;
+            var baseLayersPresent,
+              overlaysPresent,
+              i,
+              obj,
+              baseLayersCount = 0;
             for (i = 0; i < this._layers.length; i++) {
               obj = this._layers[i];
               this._addItem(obj);
@@ -3500,37 +4193,56 @@
             }
             if (this.options.hideSingleBase) {
               baseLayersPresent = baseLayersPresent && baseLayersCount > 1;
-              this._baseLayersList.style.display = baseLayersPresent ? "" : "none";
+              this._baseLayersList.style.display = baseLayersPresent
+                ? ""
+                : "none";
             }
-            this._separator.style.display = overlaysPresent && baseLayersPresent ? "" : "none";
+            this._separator.style.display =
+              overlaysPresent && baseLayersPresent ? "" : "none";
             return this;
           },
-          _onLayerChange: function(e) {
+          _onLayerChange: function (e) {
             if (!this._handlingClick) {
               this._update();
             }
             var obj = this._getLayer(stamp(e.target));
-            var type = obj.overlay ? e.type === "add" ? "overlayadd" : "overlayremove" : e.type === "add" ? "baselayerchange" : null;
+            var type = obj.overlay
+              ? e.type === "add"
+                ? "overlayadd"
+                : "overlayremove"
+              : e.type === "add"
+                ? "baselayerchange"
+                : null;
             if (type) {
               this._map.fire(type, obj);
             }
           },
           // IE7 bugs out if you create a radio dynamically, so you have to do it this hacky way (see https://stackoverflow.com/a/119079)
-          _createRadioElement: function(name, checked) {
-            var radioHtml = '<input type="radio" class="leaflet-control-layers-selector" name="' + name + '"' + (checked ? ' checked="checked"' : "") + "/>";
+          _createRadioElement: function (name, checked) {
+            var radioHtml =
+              '<input type="radio" class="leaflet-control-layers-selector" name="' +
+              name +
+              '"' +
+              (checked ? ' checked="checked"' : "") +
+              "/>";
             var radioFragment = document.createElement("div");
             radioFragment.innerHTML = radioHtml;
             return radioFragment.firstChild;
           },
-          _addItem: function(obj) {
-            var label = document.createElement("label"), checked = this._map.hasLayer(obj.layer), input;
+          _addItem: function (obj) {
+            var label = document.createElement("label"),
+              checked = this._map.hasLayer(obj.layer),
+              input;
             if (obj.overlay) {
               input = document.createElement("input");
               input.type = "checkbox";
               input.className = "leaflet-control-layers-selector";
               input.defaultChecked = checked;
             } else {
-              input = this._createRadioElement("leaflet-base-layers_" + stamp(this), checked);
+              input = this._createRadioElement(
+                "leaflet-base-layers_" + stamp(this),
+                checked,
+              );
             }
             this._layerControlInputs.push(input);
             input.layerId = stamp(obj.layer);
@@ -3541,17 +4253,22 @@
             label.appendChild(holder);
             holder.appendChild(input);
             holder.appendChild(name);
-            var container = obj.overlay ? this._overlaysList : this._baseLayersList;
+            var container = obj.overlay
+              ? this._overlaysList
+              : this._baseLayersList;
             container.appendChild(label);
             this._checkDisabledLayers();
             return label;
           },
-          _onInputClick: function() {
+          _onInputClick: function () {
             if (this._preventClick) {
               return;
             }
-            var inputs = this._layerControlInputs, input, layer;
-            var addedLayers = [], removedLayers = [];
+            var inputs = this._layerControlInputs,
+              input,
+              layer;
+            var addedLayers = [],
+              removedLayers = [];
             this._handlingClick = true;
             for (var i = inputs.length - 1; i >= 0; i--) {
               input = inputs[i];
@@ -3575,33 +4292,40 @@
             this._handlingClick = false;
             this._refocusOnMap();
           },
-          _checkDisabledLayers: function() {
-            var inputs = this._layerControlInputs, input, layer, zoom2 = this._map.getZoom();
+          _checkDisabledLayers: function () {
+            var inputs = this._layerControlInputs,
+              input,
+              layer,
+              zoom2 = this._map.getZoom();
             for (var i = inputs.length - 1; i >= 0; i--) {
               input = inputs[i];
               layer = this._getLayer(input.layerId).layer;
-              input.disabled = layer.options.minZoom !== void 0 && zoom2 < layer.options.minZoom || layer.options.maxZoom !== void 0 && zoom2 > layer.options.maxZoom;
+              input.disabled =
+                (layer.options.minZoom !== void 0 &&
+                  zoom2 < layer.options.minZoom) ||
+                (layer.options.maxZoom !== void 0 &&
+                  zoom2 > layer.options.maxZoom);
             }
           },
-          _expandIfNotCollapsed: function() {
+          _expandIfNotCollapsed: function () {
             if (this._map && !this.options.collapsed) {
               this.expand();
             }
             return this;
           },
-          _expandSafely: function() {
+          _expandSafely: function () {
             var section = this._section;
             this._preventClick = true;
             on(section, "click", preventDefault);
             this.expand();
             var that = this;
-            setTimeout(function() {
+            setTimeout(function () {
               off(section, "click", preventDefault);
               that._preventClick = false;
             });
-          }
+          },
         });
-        var layers = function(baseLayers, overlays, options) {
+        var layers = function (baseLayers, overlays, options) {
           return new Layers(baseLayers, overlays, options);
         };
         var Zoom = Control.extend({
@@ -3620,52 +4344,58 @@
             zoomOutText: '<span aria-hidden="true">&#x2212;</span>',
             // @option zoomOutTitle: String = 'Zoom out'
             // The title set on the 'zoom out' button.
-            zoomOutTitle: "Zoom out"
+            zoomOutTitle: "Zoom out",
           },
-          onAdd: function(map3) {
-            var zoomName = "leaflet-control-zoom", container = create$1("div", zoomName + " leaflet-bar"), options = this.options;
+          onAdd: function (map3) {
+            var zoomName = "leaflet-control-zoom",
+              container = create$1("div", zoomName + " leaflet-bar"),
+              options = this.options;
             this._zoomInButton = this._createButton(
               options.zoomInText,
               options.zoomInTitle,
               zoomName + "-in",
               container,
-              this._zoomIn
+              this._zoomIn,
             );
             this._zoomOutButton = this._createButton(
               options.zoomOutText,
               options.zoomOutTitle,
               zoomName + "-out",
               container,
-              this._zoomOut
+              this._zoomOut,
             );
             this._updateDisabled();
             map3.on("zoomend zoomlevelschange", this._updateDisabled, this);
             return container;
           },
-          onRemove: function(map3) {
+          onRemove: function (map3) {
             map3.off("zoomend zoomlevelschange", this._updateDisabled, this);
           },
-          disable: function() {
+          disable: function () {
             this._disabled = true;
             this._updateDisabled();
             return this;
           },
-          enable: function() {
+          enable: function () {
             this._disabled = false;
             this._updateDisabled();
             return this;
           },
-          _zoomIn: function(e) {
+          _zoomIn: function (e) {
             if (!this._disabled && this._map._zoom < this._map.getMaxZoom()) {
-              this._map.zoomIn(this._map.options.zoomDelta * (e.shiftKey ? 3 : 1));
+              this._map.zoomIn(
+                this._map.options.zoomDelta * (e.shiftKey ? 3 : 1),
+              );
             }
           },
-          _zoomOut: function(e) {
+          _zoomOut: function (e) {
             if (!this._disabled && this._map._zoom > this._map.getMinZoom()) {
-              this._map.zoomOut(this._map.options.zoomDelta * (e.shiftKey ? 3 : 1));
+              this._map.zoomOut(
+                this._map.options.zoomDelta * (e.shiftKey ? 3 : 1),
+              );
             }
           },
-          _createButton: function(html, title, className, container, fn) {
+          _createButton: function (html, title, className, container, fn) {
             var link = create$1("a", className, container);
             link.innerHTML = html;
             link.href = "#";
@@ -3678,8 +4408,9 @@
             on(link, "click", this._refocusOnMap, this);
             return link;
           },
-          _updateDisabled: function() {
-            var map3 = this._map, className = "leaflet-disabled";
+          _updateDisabled: function () {
+            var map3 = this._map,
+              className = "leaflet-disabled";
             removeClass(this._zoomInButton, className);
             removeClass(this._zoomOutButton, className);
             this._zoomInButton.setAttribute("aria-disabled", "false");
@@ -3692,18 +4423,18 @@
               addClass(this._zoomInButton, className);
               this._zoomInButton.setAttribute("aria-disabled", "true");
             }
-          }
+          },
         });
         Map.mergeOptions({
-          zoomControl: true
+          zoomControl: true,
         });
-        Map.addInitHook(function() {
+        Map.addInitHook(function () {
           if (this.options.zoomControl) {
             this.zoomControl = new Zoom();
             this.addControl(this.zoomControl);
           }
         });
-        var zoom = function(options) {
+        var zoom = function (options) {
           return new Zoom(options);
         };
         var Scale = Control.extend({
@@ -3719,21 +4450,31 @@
             metric: true,
             // @option imperial: Boolean = True
             // Whether to show the imperial scale line (mi/ft).
-            imperial: true
+            imperial: true,
             // @option updateWhenIdle: Boolean = false
             // If `true`, the control is updated on [`moveend`](#map-moveend), otherwise it's always up-to-date (updated on [`move`](#map-move)).
           },
-          onAdd: function(map3) {
-            var className = "leaflet-control-scale", container = create$1("div", className), options = this.options;
+          onAdd: function (map3) {
+            var className = "leaflet-control-scale",
+              container = create$1("div", className),
+              options = this.options;
             this._addScales(options, className + "-line", container);
-            map3.on(options.updateWhenIdle ? "moveend" : "move", this._update, this);
+            map3.on(
+              options.updateWhenIdle ? "moveend" : "move",
+              this._update,
+              this,
+            );
             map3.whenReady(this._update, this);
             return container;
           },
-          onRemove: function(map3) {
-            map3.off(this.options.updateWhenIdle ? "moveend" : "move", this._update, this);
+          onRemove: function (map3) {
+            map3.off(
+              this.options.updateWhenIdle ? "moveend" : "move",
+              this._update,
+              this,
+            );
           },
-          _addScales: function(options, className, container) {
+          _addScales: function (options, className, container) {
             if (options.metric) {
               this._mScale = create$1("div", className, container);
             }
@@ -3741,15 +4482,16 @@
               this._iScale = create$1("div", className, container);
             }
           },
-          _update: function() {
-            var map3 = this._map, y = map3.getSize().y / 2;
+          _update: function () {
+            var map3 = this._map,
+              y = map3.getSize().y / 2;
             var maxMeters = map3.distance(
               map3.containerPointToLatLng([0, y]),
-              map3.containerPointToLatLng([this.options.maxWidth, y])
+              map3.containerPointToLatLng([this.options.maxWidth, y]),
             );
             this._updateScales(maxMeters);
           },
-          _updateScales: function(maxMeters) {
+          _updateScales: function (maxMeters) {
             if (this.options.metric && maxMeters) {
               this._updateMetric(maxMeters);
             }
@@ -3757,12 +4499,16 @@
               this._updateImperial(maxMeters);
             }
           },
-          _updateMetric: function(maxMeters) {
-            var meters = this._getRoundNum(maxMeters), label = meters < 1e3 ? meters + " m" : meters / 1e3 + " km";
+          _updateMetric: function (maxMeters) {
+            var meters = this._getRoundNum(maxMeters),
+              label = meters < 1e3 ? meters + " m" : meters / 1e3 + " km";
             this._updateScale(this._mScale, label, meters / maxMeters);
           },
-          _updateImperial: function(maxMeters) {
-            var maxFeet = maxMeters * 3.2808399, maxMiles, miles, feet;
+          _updateImperial: function (maxMeters) {
+            var maxFeet = maxMeters * 3.2808399,
+              maxMiles,
+              miles,
+              feet;
             if (maxFeet > 5280) {
               maxMiles = maxFeet / 5280;
               miles = this._getRoundNum(maxMiles);
@@ -3772,20 +4518,23 @@
               this._updateScale(this._iScale, feet + " ft", feet / maxFeet);
             }
           },
-          _updateScale: function(scale2, text, ratio) {
-            scale2.style.width = Math.round(this.options.maxWidth * ratio) + "px";
+          _updateScale: function (scale2, text, ratio) {
+            scale2.style.width =
+              Math.round(this.options.maxWidth * ratio) + "px";
             scale2.innerHTML = text;
           },
-          _getRoundNum: function(num) {
-            var pow10 = Math.pow(10, (Math.floor(num) + "").length - 1), d = num / pow10;
+          _getRoundNum: function (num) {
+            var pow10 = Math.pow(10, (Math.floor(num) + "").length - 1),
+              d = num / pow10;
             d = d >= 10 ? 10 : d >= 5 ? 5 : d >= 3 ? 3 : d >= 2 ? 2 : 1;
             return pow10 * d;
-          }
+          },
         });
-        var scale = function(options) {
+        var scale = function (options) {
           return new Scale(options);
         };
-        var ukrainianFlag = '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8" class="leaflet-attribution-flag"><path fill="#4C7BE1" d="M0 0h12v4H0z"/><path fill="#FFD500" d="M0 4h12v3H0z"/><path fill="#E0BC00" d="M0 7h12v1H0z"/></svg>';
+        var ukrainianFlag =
+          '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8" class="leaflet-attribution-flag"><path fill="#4C7BE1" d="M0 0h12v4H0z"/><path fill="#FFD500" d="M0 4h12v3H0z"/><path fill="#E0BC00" d="M0 7h12v1H0z"/></svg>';
         var Attribution = Control.extend({
           // @section
           // @aka Control.Attribution options
@@ -3793,13 +4542,16 @@
             position: "bottomright",
             // @option prefix: String|false = 'Leaflet'
             // The HTML text shown before the attributions. Pass `false` to disable.
-            prefix: '<a href="https://leafletjs.com" title="A JavaScript library for interactive maps">' + (Browser.inlineSvg ? ukrainianFlag + " " : "") + "Leaflet</a>"
+            prefix:
+              '<a href="https://leafletjs.com" title="A JavaScript library for interactive maps">' +
+              (Browser.inlineSvg ? ukrainianFlag + " " : "") +
+              "Leaflet</a>",
           },
-          initialize: function(options) {
+          initialize: function (options) {
             setOptions(this, options);
             this._attributions = {};
           },
-          onAdd: function(map3) {
+          onAdd: function (map3) {
             map3.attributionControl = this;
             this._container = create$1("div", "leaflet-control-attribution");
             disableClickPropagation(this._container);
@@ -3812,27 +4564,31 @@
             map3.on("layeradd", this._addAttribution, this);
             return this._container;
           },
-          onRemove: function(map3) {
+          onRemove: function (map3) {
             map3.off("layeradd", this._addAttribution, this);
           },
-          _addAttribution: function(ev) {
+          _addAttribution: function (ev) {
             if (ev.layer.getAttribution) {
               this.addAttribution(ev.layer.getAttribution());
-              ev.layer.once("remove", function() {
-                this.removeAttribution(ev.layer.getAttribution());
-              }, this);
+              ev.layer.once(
+                "remove",
+                function () {
+                  this.removeAttribution(ev.layer.getAttribution());
+                },
+                this,
+              );
             }
           },
           // @method setPrefix(prefix: String|false): this
           // The HTML text shown before the attributions. Pass `false` to disable.
-          setPrefix: function(prefix) {
+          setPrefix: function (prefix) {
             this.options.prefix = prefix;
             this._update();
             return this;
           },
           // @method addAttribution(text: String): this
           // Adds an attribution text (e.g. `'&copy; OpenStreetMap contributors'`).
-          addAttribution: function(text) {
+          addAttribution: function (text) {
             if (!text) {
               return this;
             }
@@ -3845,7 +4601,7 @@
           },
           // @method removeAttribution(text: String): this
           // Removes an attribution text.
-          removeAttribution: function(text) {
+          removeAttribution: function (text) {
             if (!text) {
               return this;
             }
@@ -3855,7 +4611,7 @@
             }
             return this;
           },
-          _update: function() {
+          _update: function () {
             if (!this._map) {
               return;
             }
@@ -3872,18 +4628,20 @@
             if (attribs.length) {
               prefixAndAttribs.push(attribs.join(", "));
             }
-            this._container.innerHTML = prefixAndAttribs.join(' <span aria-hidden="true">|</span> ');
-          }
+            this._container.innerHTML = prefixAndAttribs.join(
+              ' <span aria-hidden="true">|</span> ',
+            );
+          },
         });
         Map.mergeOptions({
-          attributionControl: true
+          attributionControl: true,
         });
-        Map.addInitHook(function() {
+        Map.addInitHook(function () {
           if (this.options.attributionControl) {
             new Attribution().addTo(this);
           }
         });
-        var attribution = function(options) {
+        var attribution = function (options) {
           return new Attribution(options);
         };
         Control.Layers = Layers;
@@ -3895,12 +4653,12 @@
         control.scale = scale;
         control.attribution = attribution;
         var Handler = Class.extend({
-          initialize: function(map3) {
+          initialize: function (map3) {
             this._map = map3;
           },
           // @method enable(): this
           // Enables the handler
-          enable: function() {
+          enable: function () {
             if (this._enabled) {
               return this;
             }
@@ -3910,7 +4668,7 @@
           },
           // @method disable(): this
           // Disables the handler
-          disable: function() {
+          disable: function () {
             if (!this._enabled) {
               return this;
             }
@@ -3920,9 +4678,9 @@
           },
           // @method enabled(): Boolean
           // Returns `true` if the handler is enabled
-          enabled: function() {
+          enabled: function () {
             return !!this._enabled;
-          }
+          },
           // @section Extension methods
           // Classes inheriting from `Handler` must implement the two following methods:
           // @method addHooks()
@@ -3930,7 +4688,7 @@
           // @method removeHooks()
           // Called when the handler is disabled, should remove the event hooks added previously.
         });
-        Handler.addTo = function(map3, name) {
+        Handler.addTo = function (map3, name) {
           map3.addHandler(name, this);
           return this;
         };
@@ -3943,11 +4701,16 @@
             // @option clickTolerance: Number = 3
             // The max number of pixels a user can shift the mouse pointer during a click
             // for it to be considered a valid click (as opposed to a mouse drag).
-            clickTolerance: 3
+            clickTolerance: 3,
           },
           // @constructor L.Draggable(el: HTMLElement, dragHandle?: HTMLElement, preventOutline?: Boolean, options?: Draggable options)
           // Creates a `Draggable` object for moving `el` when you start dragging the `dragHandle` element (equals `el` itself by default).
-          initialize: function(element, dragStartTarget, preventOutline2, options) {
+          initialize: function (
+            element,
+            dragStartTarget,
+            preventOutline2,
+            options,
+          ) {
             setOptions(this, options);
             this._element = element;
             this._dragStartTarget = dragStartTarget || element;
@@ -3955,7 +4718,7 @@
           },
           // @method enable()
           // Enables the dragging ability
-          enable: function() {
+          enable: function () {
             if (this._enabled) {
               return;
             }
@@ -3964,7 +4727,7 @@
           },
           // @method disable()
           // Disables the dragging ability
-          disable: function() {
+          disable: function () {
             if (!this._enabled) {
               return;
             }
@@ -3975,7 +4738,7 @@
             this._enabled = false;
             this._moved = false;
           },
-          _onDown: function(e) {
+          _onDown: function (e) {
             if (!this._enabled) {
               return;
             }
@@ -3989,7 +4752,11 @@
               }
               return;
             }
-            if (Draggable._dragging || e.shiftKey || e.which !== 1 && e.button !== 1 && !e.touches) {
+            if (
+              Draggable._dragging ||
+              e.shiftKey ||
+              (e.which !== 1 && e.button !== 1 && !e.touches)
+            ) {
               return;
             }
             Draggable._dragging = this;
@@ -4002,15 +4769,26 @@
               return;
             }
             this.fire("down");
-            var first = e.touches ? e.touches[0] : e, sizedParent = getSizedParentNode(this._element);
+            var first = e.touches ? e.touches[0] : e,
+              sizedParent = getSizedParentNode(this._element);
             this._startPoint = new Point(first.clientX, first.clientY);
             this._startPos = getPosition(this._element);
             this._parentScale = getScale(sizedParent);
             var mouseevent = e.type === "mousedown";
-            on(document, mouseevent ? "mousemove" : "touchmove", this._onMove, this);
-            on(document, mouseevent ? "mouseup" : "touchend touchcancel", this._onUp, this);
+            on(
+              document,
+              mouseevent ? "mousemove" : "touchmove",
+              this._onMove,
+              this,
+            );
+            on(
+              document,
+              mouseevent ? "mouseup" : "touchend touchcancel",
+              this._onUp,
+              this,
+            );
           },
-          _onMove: function(e) {
+          _onMove: function (e) {
             if (!this._enabled) {
               return;
             }
@@ -4018,11 +4796,17 @@
               this._moved = true;
               return;
             }
-            var first = e.touches && e.touches.length === 1 ? e.touches[0] : e, offset = new Point(first.clientX, first.clientY)._subtract(this._startPoint);
+            var first = e.touches && e.touches.length === 1 ? e.touches[0] : e,
+              offset = new Point(first.clientX, first.clientY)._subtract(
+                this._startPoint,
+              );
             if (!offset.x && !offset.y) {
               return;
             }
-            if (Math.abs(offset.x) + Math.abs(offset.y) < this.options.clickTolerance) {
+            if (
+              Math.abs(offset.x) + Math.abs(offset.y) <
+              this.options.clickTolerance
+            ) {
               return;
             }
             offset.x /= this._parentScale.x;
@@ -4033,7 +4817,10 @@
               this._moved = true;
               addClass(document.body, "leaflet-dragging");
               this._lastTarget = e.target || e.srcElement;
-              if (window.SVGElementInstance && this._lastTarget instanceof window.SVGElementInstance) {
+              if (
+                window.SVGElementInstance &&
+                this._lastTarget instanceof window.SVGElementInstance
+              ) {
                 this._lastTarget = this._lastTarget.correspondingUseElement;
               }
               addClass(this._lastTarget, "leaflet-drag-target");
@@ -4043,19 +4830,19 @@
             this._lastEvent = e;
             this._updatePosition();
           },
-          _updatePosition: function() {
+          _updatePosition: function () {
             var e = { originalEvent: this._lastEvent };
             this.fire("predrag", e);
             setPosition(this._element, this._newPos);
             this.fire("drag", e);
           },
-          _onUp: function() {
+          _onUp: function () {
             if (!this._enabled) {
               return;
             }
             this.finishDrag();
           },
-          finishDrag: function(noInertia) {
+          finishDrag: function (noInertia) {
             removeClass(document.body, "leaflet-dragging");
             if (this._lastTarget) {
               removeClass(this._lastTarget, "leaflet-drag-target");
@@ -4071,13 +4858,22 @@
             if (fireDragend) {
               this.fire("dragend", {
                 noInertia,
-                distance: this._newPos.distanceTo(this._startPos)
+                distance: this._newPos.distanceTo(this._startPos),
               });
             }
-          }
+          },
         });
         function clipPolygon(points, bounds, round) {
-          var clippedPoints, edges = [1, 4, 2, 8], i, j, k, a, b, len, edge2, p;
+          var clippedPoints,
+            edges = [1, 4, 2, 8],
+            i,
+            j,
+            k,
+            a,
+            b,
+            len,
+            edge2,
+            p;
           for (i = 0, len = points.length; i < len; i++) {
             points[i]._code = _getBitCode(points[i], bounds);
           }
@@ -4110,12 +4906,16 @@
             throw new Error("latlngs not passed");
           }
           if (!isFlat(latlngs)) {
-            console.warn("latlngs are not flat! Only the first ring will be used");
+            console.warn(
+              "latlngs are not flat! Only the first ring will be used",
+            );
             latlngs = latlngs[0];
           }
           var centroidLatLng = toLatLng([0, 0]);
           var bounds = toLatLngBounds(latlngs);
-          var areaBounds = bounds.getNorthWest().distanceTo(bounds.getSouthWest()) * bounds.getNorthEast().distanceTo(bounds.getNorthWest());
+          var areaBounds =
+            bounds.getNorthWest().distanceTo(bounds.getSouthWest()) *
+            bounds.getNorthEast().distanceTo(bounds.getNorthWest());
           if (areaBounds < 1700) {
             centroidLatLng = centroid(latlngs);
           }
@@ -4123,7 +4923,14 @@
           var points = [];
           for (i = 0; i < len; i++) {
             var latlng = toLatLng(latlngs[i]);
-            points.push(crs.project(toLatLng([latlng.lat - centroidLatLng.lat, latlng.lng - centroidLatLng.lng])));
+            points.push(
+              crs.project(
+                toLatLng([
+                  latlng.lat - centroidLatLng.lat,
+                  latlng.lng - centroidLatLng.lng,
+                ]),
+              ),
+            );
           }
           area = x = y = 0;
           for (i = 0, j = len - 1; i < len; j = i++) {
@@ -4140,7 +4947,10 @@
             center = [x / area, y / area];
           }
           var latlngCenter = crs.unproject(toPoint(center));
-          return toLatLng([latlngCenter.lat + centroidLatLng.lat, latlngCenter.lng + centroidLatLng.lng]);
+          return toLatLng([
+            latlngCenter.lat + centroidLatLng.lat,
+            latlngCenter.lng + centroidLatLng.lng,
+          ]);
         }
         function centroid(coords) {
           var latSum = 0;
@@ -4158,7 +4968,7 @@
           __proto__: null,
           clipPolygon,
           polygonCenter,
-          centroid
+          centroid,
         };
         function simplify(points, tolerance) {
           if (!tolerance || !points.length) {
@@ -4176,10 +4986,14 @@
           return _sqClosestPointOnSegment(p, p1, p2);
         }
         function _simplifyDP(points, sqTolerance) {
-          var len = points.length, ArrayConstructor = typeof Uint8Array !== void 0 + "" ? Uint8Array : Array, markers = new ArrayConstructor(len);
+          var len = points.length,
+            ArrayConstructor =
+              typeof Uint8Array !== void 0 + "" ? Uint8Array : Array,
+            markers = new ArrayConstructor(len);
           markers[0] = markers[len - 1] = 1;
           _simplifyDPStep(points, markers, sqTolerance, 0, len - 1);
-          var i, newPoints = [];
+          var i,
+            newPoints = [];
           for (i = 0; i < len; i++) {
             if (markers[i]) {
               newPoints.push(points[i]);
@@ -4188,9 +5002,17 @@
           return newPoints;
         }
         function _simplifyDPStep(points, markers, sqTolerance, first, last) {
-          var maxSqDist = 0, index2, i, sqDist;
+          var maxSqDist = 0,
+            index2,
+            i,
+            sqDist;
           for (i = first + 1; i <= last - 1; i++) {
-            sqDist = _sqClosestPointOnSegment(points[i], points[first], points[last], true);
+            sqDist = _sqClosestPointOnSegment(
+              points[i],
+              points[first],
+              points[last],
+              true,
+            );
             if (sqDist > maxSqDist) {
               index2 = i;
               maxSqDist = sqDist;
@@ -4217,7 +5039,11 @@
         }
         var _lastCode;
         function clipSegment(a, b, bounds, useLastCode, round) {
-          var codeA = useLastCode ? _lastCode : _getBitCode(a, bounds), codeB = _getBitCode(b, bounds), codeOut, p, newCode;
+          var codeA = useLastCode ? _lastCode : _getBitCode(a, bounds),
+            codeB = _getBitCode(b, bounds),
+            codeOut,
+            p,
+            newCode;
           _lastCode = codeB;
           while (true) {
             if (!(codeA | codeB)) {
@@ -4239,19 +5065,24 @@
           }
         }
         function _getEdgeIntersection(a, b, code, bounds, round) {
-          var dx = b.x - a.x, dy = b.y - a.y, min = bounds.min, max = bounds.max, x, y;
+          var dx = b.x - a.x,
+            dy = b.y - a.y,
+            min = bounds.min,
+            max = bounds.max,
+            x,
+            y;
           if (code & 8) {
-            x = a.x + dx * (max.y - a.y) / dy;
+            x = a.x + (dx * (max.y - a.y)) / dy;
             y = max.y;
           } else if (code & 4) {
-            x = a.x + dx * (min.y - a.y) / dy;
+            x = a.x + (dx * (min.y - a.y)) / dy;
             y = min.y;
           } else if (code & 2) {
             x = max.x;
-            y = a.y + dy * (max.x - a.x) / dx;
+            y = a.y + (dy * (max.x - a.x)) / dx;
           } else if (code & 1) {
             x = min.x;
-            y = a.y + dy * (min.x - a.x) / dx;
+            y = a.y + (dy * (min.x - a.x)) / dx;
           }
           return new Point(x, y, round);
         }
@@ -4270,11 +5101,17 @@
           return code;
         }
         function _sqDist(p1, p2) {
-          var dx = p2.x - p1.x, dy = p2.y - p1.y;
+          var dx = p2.x - p1.x,
+            dy = p2.y - p1.y;
           return dx * dx + dy * dy;
         }
         function _sqClosestPointOnSegment(p, p1, p2, sqDist) {
-          var x = p1.x, y = p1.y, dx = p2.x - x, dy = p2.y - y, dot = dx * dx + dy * dy, t;
+          var x = p1.x,
+            y = p1.y,
+            dx = p2.x - x,
+            dy = p2.y - y,
+            dot = dx * dx + dy * dy,
+            t;
           if (dot > 0) {
             t = ((p.x - x) * dx + (p.y - y) * dy) / dot;
             if (t > 1) {
@@ -4290,10 +5127,16 @@
           return sqDist ? dx * dx + dy * dy : new Point(x, y);
         }
         function isFlat(latlngs) {
-          return !isArray(latlngs[0]) || typeof latlngs[0][0] !== "object" && typeof latlngs[0][0] !== "undefined";
+          return (
+            !isArray(latlngs[0]) ||
+            (typeof latlngs[0][0] !== "object" &&
+              typeof latlngs[0][0] !== "undefined")
+          );
         }
         function _flat(latlngs) {
-          console.warn("Deprecated use of _flat, please use L.LineUtil.isFlat instead.");
+          console.warn(
+            "Deprecated use of _flat, please use L.LineUtil.isFlat instead.",
+          );
           return isFlat(latlngs);
         }
         function polylineCenter(latlngs, crs) {
@@ -4302,12 +5145,16 @@
             throw new Error("latlngs not passed");
           }
           if (!isFlat(latlngs)) {
-            console.warn("latlngs are not flat! Only the first ring will be used");
+            console.warn(
+              "latlngs are not flat! Only the first ring will be used",
+            );
             latlngs = latlngs[0];
           }
           var centroidLatLng = toLatLng([0, 0]);
           var bounds = toLatLngBounds(latlngs);
-          var areaBounds = bounds.getNorthWest().distanceTo(bounds.getSouthWest()) * bounds.getNorthEast().distanceTo(bounds.getNorthWest());
+          var areaBounds =
+            bounds.getNorthWest().distanceTo(bounds.getSouthWest()) *
+            bounds.getNorthEast().distanceTo(bounds.getNorthWest());
           if (areaBounds < 1700) {
             centroidLatLng = centroid(latlngs);
           }
@@ -4315,7 +5162,14 @@
           var points = [];
           for (i = 0; i < len; i++) {
             var latlng = toLatLng(latlngs[i]);
-            points.push(crs.project(toLatLng([latlng.lat - centroidLatLng.lat, latlng.lng - centroidLatLng.lng])));
+            points.push(
+              crs.project(
+                toLatLng([
+                  latlng.lat - centroidLatLng.lat,
+                  latlng.lng - centroidLatLng.lng,
+                ]),
+              ),
+            );
           }
           for (i = 0, halfDist = 0; i < len - 1; i++) {
             halfDist += points[i].distanceTo(points[i + 1]) / 2;
@@ -4332,14 +5186,17 @@
                 ratio = (dist - halfDist) / segDist;
                 center = [
                   p2.x - ratio * (p2.x - p1.x),
-                  p2.y - ratio * (p2.y - p1.y)
+                  p2.y - ratio * (p2.y - p1.y),
                 ];
                 break;
               }
             }
           }
           var latlngCenter = crs.unproject(toPoint(center));
-          return toLatLng([latlngCenter.lat + centroidLatLng.lat, latlngCenter.lng + centroidLatLng.lng]);
+          return toLatLng([
+            latlngCenter.lat + centroidLatLng.lat,
+            latlngCenter.lng + centroidLatLng.lng,
+          ]);
         }
         var LineUtil = {
           __proto__: null,
@@ -4352,71 +5209,91 @@
           _sqClosestPointOnSegment,
           isFlat,
           _flat,
-          polylineCenter
+          polylineCenter,
         };
         var LonLat = {
-          project: function(latlng) {
+          project: function (latlng) {
             return new Point(latlng.lng, latlng.lat);
           },
-          unproject: function(point) {
+          unproject: function (point) {
             return new LatLng(point.y, point.x);
           },
-          bounds: new Bounds([-180, -90], [180, 90])
+          bounds: new Bounds([-180, -90], [180, 90]),
         };
         var Mercator = {
           R: 6378137,
           R_MINOR: 6356752314245179e-9,
-          bounds: new Bounds([-2003750834279e-5, -1549657073972e-5], [2003750834279e-5, 1876465623138e-5]),
-          project: function(latlng) {
-            var d = Math.PI / 180, r = this.R, y = latlng.lat * d, tmp = this.R_MINOR / r, e = Math.sqrt(1 - tmp * tmp), con = e * Math.sin(y);
-            var ts = Math.tan(Math.PI / 4 - y / 2) / Math.pow((1 - con) / (1 + con), e / 2);
+          bounds: new Bounds(
+            [-2003750834279e-5, -1549657073972e-5],
+            [2003750834279e-5, 1876465623138e-5],
+          ),
+          project: function (latlng) {
+            var d = Math.PI / 180,
+              r = this.R,
+              y = latlng.lat * d,
+              tmp = this.R_MINOR / r,
+              e = Math.sqrt(1 - tmp * tmp),
+              con = e * Math.sin(y);
+            var ts =
+              Math.tan(Math.PI / 4 - y / 2) /
+              Math.pow((1 - con) / (1 + con), e / 2);
             y = -r * Math.log(Math.max(ts, 1e-10));
             return new Point(latlng.lng * d * r, y);
           },
-          unproject: function(point) {
-            var d = 180 / Math.PI, r = this.R, tmp = this.R_MINOR / r, e = Math.sqrt(1 - tmp * tmp), ts = Math.exp(-point.y / r), phi = Math.PI / 2 - 2 * Math.atan(ts);
-            for (var i = 0, dphi = 0.1, con; i < 15 && Math.abs(dphi) > 1e-7; i++) {
+          unproject: function (point) {
+            var d = 180 / Math.PI,
+              r = this.R,
+              tmp = this.R_MINOR / r,
+              e = Math.sqrt(1 - tmp * tmp),
+              ts = Math.exp(-point.y / r),
+              phi = Math.PI / 2 - 2 * Math.atan(ts);
+            for (
+              var i = 0, dphi = 0.1, con;
+              i < 15 && Math.abs(dphi) > 1e-7;
+              i++
+            ) {
               con = e * Math.sin(phi);
               con = Math.pow((1 - con) / (1 + con), e / 2);
               dphi = Math.PI / 2 - 2 * Math.atan(ts * con) - phi;
               phi += dphi;
             }
-            return new LatLng(phi * d, point.x * d / r);
-          }
+            return new LatLng(phi * d, (point.x * d) / r);
+          },
         };
         var index = {
           __proto__: null,
           LonLat,
           Mercator,
-          SphericalMercator
+          SphericalMercator,
         };
         var EPSG3395 = extend({}, Earth, {
           code: "EPSG:3395",
           projection: Mercator,
-          transformation: function() {
+          transformation: (function () {
             var scale2 = 0.5 / (Math.PI * Mercator.R);
             return toTransformation(scale2, 0.5, -scale2, 0.5);
-          }()
+          })(),
         });
         var EPSG4326 = extend({}, Earth, {
           code: "EPSG:4326",
           projection: LonLat,
-          transformation: toTransformation(1 / 180, 1, -1 / 180, 0.5)
+          transformation: toTransformation(1 / 180, 1, -1 / 180, 0.5),
         });
         var Simple = extend({}, CRS, {
           projection: LonLat,
           transformation: toTransformation(1, 0, -1, 0),
-          scale: function(zoom2) {
+          scale: function (zoom2) {
             return Math.pow(2, zoom2);
           },
-          zoom: function(scale2) {
+          zoom: function (scale2) {
             return Math.log(scale2) / Math.LN2;
           },
-          distance: function(latlng1, latlng2) {
-            var dx = latlng2.lng - latlng1.lng, dy = latlng2.lat - latlng1.lat;
+          distance: function (latlng1, latlng2) {
+            var dx = latlng2.lng - latlng1.lng,
+              dy = latlng2.lat - latlng1.lat;
             return Math.sqrt(dx * dx + dy * dy);
           },
-          infinite: true
+          infinite: true,
         });
         CRS.Earth = Earth;
         CRS.EPSG3395 = EPSG3395;
@@ -4433,7 +5310,7 @@
             // @option attribution: String = null
             // String to be shown in the attribution control, e.g. "© OpenStreetMap contributors". It describes the layer data and is often a legal obligation towards copyright holders and tile providers.
             attribution: null,
-            bubblingMouseEvents: true
+            bubblingMouseEvents: true,
           },
           /* @section
            * Classes extending `L.Layer` will inherit the following methods:
@@ -4441,13 +5318,13 @@
            * @method addTo(map: Map|LayerGroup): this
            * Adds the layer to the given map or layer group.
            */
-          addTo: function(map3) {
+          addTo: function (map3) {
             map3.addLayer(this);
             return this;
           },
           // @method remove: this
           // Removes the layer from the map it is currently active on.
-          remove: function() {
+          remove: function () {
             return this.removeFrom(this._map || this._mapToAdd);
           },
           // @method removeFrom(map: Map): this
@@ -4456,7 +5333,7 @@
           // @alternative
           // @method removeFrom(group: LayerGroup): this
           // Removes the layer from the given `LayerGroup`
-          removeFrom: function(obj) {
+          removeFrom: function (obj) {
             if (obj) {
               obj.removeLayer(this);
             }
@@ -4464,23 +5341,25 @@
           },
           // @method getPane(name? : String): HTMLElement
           // Returns the `HTMLElement` representing the named pane on the map. If `name` is omitted, returns the pane for this layer.
-          getPane: function(name) {
-            return this._map.getPane(name ? this.options[name] || name : this.options.pane);
+          getPane: function (name) {
+            return this._map.getPane(
+              name ? this.options[name] || name : this.options.pane,
+            );
           },
-          addInteractiveTarget: function(targetEl) {
+          addInteractiveTarget: function (targetEl) {
             this._map._targets[stamp(targetEl)] = this;
             return this;
           },
-          removeInteractiveTarget: function(targetEl) {
+          removeInteractiveTarget: function (targetEl) {
             delete this._map._targets[stamp(targetEl)];
             return this;
           },
           // @method getAttribution: String
           // Used by the `attribution control`, returns the [attribution option](#gridlayer-attribution).
-          getAttribution: function() {
+          getAttribution: function () {
             return this.options.attribution;
           },
-          _layerAdd: function(e) {
+          _layerAdd: function (e) {
             var map3 = e.target;
             if (!map3.hasLayer(this)) {
               return;
@@ -4490,19 +5369,23 @@
             if (this.getEvents) {
               var events = this.getEvents();
               map3.on(events, this);
-              this.once("remove", function() {
-                map3.off(events, this);
-              }, this);
+              this.once(
+                "remove",
+                function () {
+                  map3.off(events, this);
+                },
+                this,
+              );
             }
             this.onAdd(map3);
             this.fire("add");
             map3.fire("layeradd", { layer: this });
-          }
+          },
         });
         Map.include({
           // @method addLayer(layer: Layer): this
           // Adds the given layer to the map
-          addLayer: function(layer) {
+          addLayer: function (layer) {
             if (!layer._layerAdd) {
               throw new Error("The provided object is not a Layer.");
             }
@@ -4520,7 +5403,7 @@
           },
           // @method removeLayer(layer: Layer): this
           // Removes the given layer from the map.
-          removeLayer: function(layer) {
+          removeLayer: function (layer) {
             var id = stamp(layer);
             if (!this._layers[id]) {
               return this;
@@ -4538,7 +5421,7 @@
           },
           // @method hasLayer(layer: Layer): Boolean
           // Returns `true` if the given layer is currently added to the map
-          hasLayer: function(layer) {
+          hasLayer: function (layer) {
             return stamp(layer) in this._layers;
           },
           /* @method eachLayer(fn: Function, context?: Object): this
@@ -4549,53 +5432,72 @@
            * });
            * ```
            */
-          eachLayer: function(method, context) {
+          eachLayer: function (method, context) {
             for (var i in this._layers) {
               method.call(context, this._layers[i]);
             }
             return this;
           },
-          _addLayers: function(layers2) {
-            layers2 = layers2 ? isArray(layers2) ? layers2 : [layers2] : [];
+          _addLayers: function (layers2) {
+            layers2 = layers2 ? (isArray(layers2) ? layers2 : [layers2]) : [];
             for (var i = 0, len = layers2.length; i < len; i++) {
               this.addLayer(layers2[i]);
             }
           },
-          _addZoomLimit: function(layer) {
-            if (!isNaN(layer.options.maxZoom) || !isNaN(layer.options.minZoom)) {
+          _addZoomLimit: function (layer) {
+            if (
+              !isNaN(layer.options.maxZoom) ||
+              !isNaN(layer.options.minZoom)
+            ) {
               this._zoomBoundLayers[stamp(layer)] = layer;
               this._updateZoomLevels();
             }
           },
-          _removeZoomLimit: function(layer) {
+          _removeZoomLimit: function (layer) {
             var id = stamp(layer);
             if (this._zoomBoundLayers[id]) {
               delete this._zoomBoundLayers[id];
               this._updateZoomLevels();
             }
           },
-          _updateZoomLevels: function() {
-            var minZoom = Infinity, maxZoom = -Infinity, oldZoomSpan = this._getZoomSpan();
+          _updateZoomLevels: function () {
+            var minZoom = Infinity,
+              maxZoom = -Infinity,
+              oldZoomSpan = this._getZoomSpan();
             for (var i in this._zoomBoundLayers) {
               var options = this._zoomBoundLayers[i].options;
-              minZoom = options.minZoom === void 0 ? minZoom : Math.min(minZoom, options.minZoom);
-              maxZoom = options.maxZoom === void 0 ? maxZoom : Math.max(maxZoom, options.maxZoom);
+              minZoom =
+                options.minZoom === void 0
+                  ? minZoom
+                  : Math.min(minZoom, options.minZoom);
+              maxZoom =
+                options.maxZoom === void 0
+                  ? maxZoom
+                  : Math.max(maxZoom, options.maxZoom);
             }
             this._layersMaxZoom = maxZoom === -Infinity ? void 0 : maxZoom;
             this._layersMinZoom = minZoom === Infinity ? void 0 : minZoom;
             if (oldZoomSpan !== this._getZoomSpan()) {
               this.fire("zoomlevelschange");
             }
-            if (this.options.maxZoom === void 0 && this._layersMaxZoom && this.getZoom() > this._layersMaxZoom) {
+            if (
+              this.options.maxZoom === void 0 &&
+              this._layersMaxZoom &&
+              this.getZoom() > this._layersMaxZoom
+            ) {
               this.setZoom(this._layersMaxZoom);
             }
-            if (this.options.minZoom === void 0 && this._layersMinZoom && this.getZoom() < this._layersMinZoom) {
+            if (
+              this.options.minZoom === void 0 &&
+              this._layersMinZoom &&
+              this.getZoom() < this._layersMinZoom
+            ) {
               this.setZoom(this._layersMinZoom);
             }
-          }
+          },
         });
         var LayerGroup = Layer.extend({
-          initialize: function(layers2, options) {
+          initialize: function (layers2, options) {
             setOptions(this, options);
             this._layers = {};
             var i, len;
@@ -4607,7 +5509,7 @@
           },
           // @method addLayer(layer: Layer): this
           // Adds the given layer to the group.
-          addLayer: function(layer) {
+          addLayer: function (layer) {
             var id = this.getLayerId(layer);
             this._layers[id] = layer;
             if (this._map) {
@@ -4620,7 +5522,7 @@
           // @alternative
           // @method removeLayer(id: Number): this
           // Removes the layer with the given internal ID from the group.
-          removeLayer: function(layer) {
+          removeLayer: function (layer) {
             var id = layer in this._layers ? layer : this.getLayerId(layer);
             if (this._map && this._layers[id]) {
               this._map.removeLayer(this._layers[id]);
@@ -4633,21 +5535,24 @@
           // @alternative
           // @method hasLayer(id: Number): Boolean
           // Returns `true` if the given internal ID is currently added to the group.
-          hasLayer: function(layer) {
-            var layerId = typeof layer === "number" ? layer : this.getLayerId(layer);
+          hasLayer: function (layer) {
+            var layerId =
+              typeof layer === "number" ? layer : this.getLayerId(layer);
             return layerId in this._layers;
           },
           // @method clearLayers(): this
           // Removes all the layers from the group.
-          clearLayers: function() {
+          clearLayers: function () {
             return this.eachLayer(this.removeLayer, this);
           },
           // @method invoke(methodName: String, …): this
           // Calls `methodName` on every layer contained in this group, passing any
           // additional parameters. Has no effect if the layers contained do not
           // implement `methodName`.
-          invoke: function(methodName) {
-            var args = Array.prototype.slice.call(arguments, 1), i, layer;
+          invoke: function (methodName) {
+            var args = Array.prototype.slice.call(arguments, 1),
+              i,
+              layer;
             for (i in this._layers) {
               layer = this._layers[i];
               if (layer[methodName]) {
@@ -4656,10 +5561,10 @@
             }
             return this;
           },
-          onAdd: function(map3) {
+          onAdd: function (map3) {
             this.eachLayer(map3.addLayer, map3);
           },
-          onRemove: function(map3) {
+          onRemove: function (map3) {
             this.eachLayer(map3.removeLayer, map3);
           },
           // @method eachLayer(fn: Function, context?: Object): this
@@ -4669,7 +5574,7 @@
           // 	layer.bindPopup('Hello');
           // });
           // ```
-          eachLayer: function(method, context) {
+          eachLayer: function (method, context) {
             for (var i in this._layers) {
               method.call(context, this._layers[i]);
             }
@@ -4677,32 +5582,32 @@
           },
           // @method getLayer(id: Number): Layer
           // Returns the layer with the given internal ID.
-          getLayer: function(id) {
+          getLayer: function (id) {
             return this._layers[id];
           },
           // @method getLayers(): Layer[]
           // Returns an array of all the layers added to the group.
-          getLayers: function() {
+          getLayers: function () {
             var layers2 = [];
             this.eachLayer(layers2.push, layers2);
             return layers2;
           },
           // @method setZIndex(zIndex: Number): this
           // Calls `setZIndex` on every layer contained in this group, passing the z-index.
-          setZIndex: function(zIndex) {
+          setZIndex: function (zIndex) {
             return this.invoke("setZIndex", zIndex);
           },
           // @method getLayerId(layer: Layer): Number
           // Returns the internal ID for a layer
-          getLayerId: function(layer) {
+          getLayerId: function (layer) {
             return stamp(layer);
-          }
+          },
         });
-        var layerGroup = function(layers2, options) {
+        var layerGroup = function (layers2, options) {
           return new LayerGroup(layers2, options);
         };
         var FeatureGroup = LayerGroup.extend({
-          addLayer: function(layer) {
+          addLayer: function (layer) {
             if (this.hasLayer(layer)) {
               return this;
             }
@@ -4710,7 +5615,7 @@
             LayerGroup.prototype.addLayer.call(this, layer);
             return this.fire("layeradd", { layer });
           },
-          removeLayer: function(layer) {
+          removeLayer: function (layer) {
             if (!this.hasLayer(layer)) {
               return this;
             }
@@ -4723,31 +5628,33 @@
           },
           // @method setStyle(style: Path options): this
           // Sets the given path options to each layer of the group that has a `setStyle` method.
-          setStyle: function(style2) {
+          setStyle: function (style2) {
             return this.invoke("setStyle", style2);
           },
           // @method bringToFront(): this
           // Brings the layer group to the top of all other layers
-          bringToFront: function() {
+          bringToFront: function () {
             return this.invoke("bringToFront");
           },
           // @method bringToBack(): this
           // Brings the layer group to the back of all other layers
-          bringToBack: function() {
+          bringToBack: function () {
             return this.invoke("bringToBack");
           },
           // @method getBounds(): LatLngBounds
           // Returns the LatLngBounds of the Feature Group (created from bounds and coordinates of its children).
-          getBounds: function() {
+          getBounds: function () {
             var bounds = new LatLngBounds();
             for (var id in this._layers) {
               var layer = this._layers[id];
-              bounds.extend(layer.getBounds ? layer.getBounds() : layer.getLatLng());
+              bounds.extend(
+                layer.getBounds ? layer.getBounds() : layer.getLatLng(),
+              );
             }
             return bounds;
-          }
+          },
         });
-        var featureGroup = function(layers2, options) {
+        var featureGroup = function (layers2, options) {
           return new FeatureGroup(layers2, options);
         };
         var Icon = Class.extend({
@@ -4797,45 +5704,59 @@
             // Whether the crossOrigin attribute will be added to the tiles.
             // If a String is provided, all tiles will have their crossOrigin attribute set to the String provided. This is needed if you want to access tile pixel data.
             // Refer to [CORS Settings](https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_settings_attributes) for valid String values.
-            crossOrigin: false
+            crossOrigin: false,
           },
-          initialize: function(options) {
+          initialize: function (options) {
             setOptions(this, options);
           },
           // @method createIcon(oldIcon?: HTMLElement): HTMLElement
           // Called internally when the icon has to be shown, returns a `<img>` HTML element
           // styled according to the options.
-          createIcon: function(oldIcon) {
+          createIcon: function (oldIcon) {
             return this._createIcon("icon", oldIcon);
           },
           // @method createShadow(oldIcon?: HTMLElement): HTMLElement
           // As `createIcon`, but for the shadow beneath it.
-          createShadow: function(oldIcon) {
+          createShadow: function (oldIcon) {
             return this._createIcon("shadow", oldIcon);
           },
-          _createIcon: function(name, oldIcon) {
+          _createIcon: function (name, oldIcon) {
             var src = this._getIconUrl(name);
             if (!src) {
               if (name === "icon") {
-                throw new Error("iconUrl not set in Icon options (see the docs).");
+                throw new Error(
+                  "iconUrl not set in Icon options (see the docs).",
+                );
               }
               return null;
             }
-            var img = this._createImg(src, oldIcon && oldIcon.tagName === "IMG" ? oldIcon : null);
+            var img = this._createImg(
+              src,
+              oldIcon && oldIcon.tagName === "IMG" ? oldIcon : null,
+            );
             this._setIconStyles(img, name);
             if (this.options.crossOrigin || this.options.crossOrigin === "") {
-              img.crossOrigin = this.options.crossOrigin === true ? "" : this.options.crossOrigin;
+              img.crossOrigin =
+                this.options.crossOrigin === true
+                  ? ""
+                  : this.options.crossOrigin;
             }
             return img;
           },
-          _setIconStyles: function(img, name) {
+          _setIconStyles: function (img, name) {
             var options = this.options;
             var sizeOption = options[name + "Size"];
             if (typeof sizeOption === "number") {
               sizeOption = [sizeOption, sizeOption];
             }
-            var size = toPoint(sizeOption), anchor = toPoint(name === "shadow" && options.shadowAnchor || options.iconAnchor || size && size.divideBy(2, true));
-            img.className = "leaflet-marker-" + name + " " + (options.className || "");
+            var size = toPoint(sizeOption),
+              anchor = toPoint(
+                (name === "shadow" && options.shadowAnchor) ||
+                  options.iconAnchor ||
+                  (size && size.divideBy(2, true)),
+              );
+            img.className =
+              "leaflet-marker-" + name + " " + (options.className || "");
             if (anchor) {
               img.style.marginLeft = -anchor.x + "px";
               img.style.marginTop = -anchor.y + "px";
@@ -4845,14 +5766,17 @@
               img.style.height = size.y + "px";
             }
           },
-          _createImg: function(src, el) {
+          _createImg: function (src, el) {
             el = el || document.createElement("img");
             el.src = src;
             return el;
           },
-          _getIconUrl: function(name) {
-            return Browser.retina && this.options[name + "RetinaUrl"] || this.options[name + "Url"];
-          }
+          _getIconUrl: function (name) {
+            return (
+              (Browser.retina && this.options[name + "RetinaUrl"]) ||
+              this.options[name + "Url"]
+            );
+          },
         });
         function icon(options) {
           return new Icon(options);
@@ -4866,25 +5790,34 @@
             iconAnchor: [12, 41],
             popupAnchor: [1, -34],
             tooltipAnchor: [16, -28],
-            shadowSize: [41, 41]
+            shadowSize: [41, 41],
           },
-          _getIconUrl: function(name) {
+          _getIconUrl: function (name) {
             if (typeof IconDefault.imagePath !== "string") {
               IconDefault.imagePath = this._detectIconPath();
             }
-            return (this.options.imagePath || IconDefault.imagePath) + Icon.prototype._getIconUrl.call(this, name);
+            return (
+              (this.options.imagePath || IconDefault.imagePath) +
+              Icon.prototype._getIconUrl.call(this, name)
+            );
           },
-          _stripUrl: function(path) {
-            var strip = function(str, re, idx) {
+          _stripUrl: function (path) {
+            var strip = function (str, re, idx) {
               var match = re.exec(str);
               return match && match[idx];
             };
             path = strip(path, /^url\((['"])?(.+)\1\)$/, 2);
             return path && strip(path, /^(.*)marker-icon\.png$/, 1);
           },
-          _detectIconPath: function() {
-            var el = create$1("div", "leaflet-default-icon-path", document.body);
-            var path = getStyle(el, "background-image") || getStyle(el, "backgroundImage");
+          _detectIconPath: function () {
+            var el = create$1(
+              "div",
+              "leaflet-default-icon-path",
+              document.body,
+            );
+            var path =
+              getStyle(el, "background-image") ||
+              getStyle(el, "backgroundImage");
             document.body.removeChild(el);
             path = this._stripUrl(path);
             if (path) {
@@ -4894,72 +5827,104 @@
             if (!link) {
               return "";
             }
-            return link.href.substring(0, link.href.length - "leaflet.css".length - 1);
-          }
+            return link.href.substring(
+              0,
+              link.href.length - "leaflet.css".length - 1,
+            );
+          },
         });
         var MarkerDrag = Handler.extend({
-          initialize: function(marker2) {
+          initialize: function (marker2) {
             this._marker = marker2;
           },
-          addHooks: function() {
+          addHooks: function () {
             var icon2 = this._marker._icon;
             if (!this._draggable) {
               this._draggable = new Draggable(icon2, icon2, true);
             }
-            this._draggable.on({
-              dragstart: this._onDragStart,
-              predrag: this._onPreDrag,
-              drag: this._onDrag,
-              dragend: this._onDragEnd
-            }, this).enable();
+            this._draggable
+              .on(
+                {
+                  dragstart: this._onDragStart,
+                  predrag: this._onPreDrag,
+                  drag: this._onDrag,
+                  dragend: this._onDragEnd,
+                },
+                this,
+              )
+              .enable();
             addClass(icon2, "leaflet-marker-draggable");
           },
-          removeHooks: function() {
-            this._draggable.off({
-              dragstart: this._onDragStart,
-              predrag: this._onPreDrag,
-              drag: this._onDrag,
-              dragend: this._onDragEnd
-            }, this).disable();
+          removeHooks: function () {
+            this._draggable
+              .off(
+                {
+                  dragstart: this._onDragStart,
+                  predrag: this._onPreDrag,
+                  drag: this._onDrag,
+                  dragend: this._onDragEnd,
+                },
+                this,
+              )
+              .disable();
             if (this._marker._icon) {
               removeClass(this._marker._icon, "leaflet-marker-draggable");
             }
           },
-          moved: function() {
+          moved: function () {
             return this._draggable && this._draggable._moved;
           },
-          _adjustPan: function(e) {
-            var marker2 = this._marker, map3 = marker2._map, speed = this._marker.options.autoPanSpeed, padding = this._marker.options.autoPanPadding, iconPos = getPosition(marker2._icon), bounds = map3.getPixelBounds(), origin = map3.getPixelOrigin();
+          _adjustPan: function (e) {
+            var marker2 = this._marker,
+              map3 = marker2._map,
+              speed = this._marker.options.autoPanSpeed,
+              padding = this._marker.options.autoPanPadding,
+              iconPos = getPosition(marker2._icon),
+              bounds = map3.getPixelBounds(),
+              origin = map3.getPixelOrigin();
             var panBounds = toBounds(
               bounds.min._subtract(origin).add(padding),
-              bounds.max._subtract(origin).subtract(padding)
+              bounds.max._subtract(origin).subtract(padding),
             );
             if (!panBounds.contains(iconPos)) {
               var movement = toPoint(
-                (Math.max(panBounds.max.x, iconPos.x) - panBounds.max.x) / (bounds.max.x - panBounds.max.x) - (Math.min(panBounds.min.x, iconPos.x) - panBounds.min.x) / (bounds.min.x - panBounds.min.x),
-                (Math.max(panBounds.max.y, iconPos.y) - panBounds.max.y) / (bounds.max.y - panBounds.max.y) - (Math.min(panBounds.min.y, iconPos.y) - panBounds.min.y) / (bounds.min.y - panBounds.min.y)
+                (Math.max(panBounds.max.x, iconPos.x) - panBounds.max.x) /
+                  (bounds.max.x - panBounds.max.x) -
+                  (Math.min(panBounds.min.x, iconPos.x) - panBounds.min.x) /
+                    (bounds.min.x - panBounds.min.x),
+                (Math.max(panBounds.max.y, iconPos.y) - panBounds.max.y) /
+                  (bounds.max.y - panBounds.max.y) -
+                  (Math.min(panBounds.min.y, iconPos.y) - panBounds.min.y) /
+                    (bounds.min.y - panBounds.min.y),
               ).multiplyBy(speed);
               map3.panBy(movement, { animate: false });
               this._draggable._newPos._add(movement);
               this._draggable._startPos._add(movement);
               setPosition(marker2._icon, this._draggable._newPos);
               this._onDrag(e);
-              this._panRequest = requestAnimFrame(this._adjustPan.bind(this, e));
+              this._panRequest = requestAnimFrame(
+                this._adjustPan.bind(this, e),
+              );
             }
           },
-          _onDragStart: function() {
+          _onDragStart: function () {
             this._oldLatLng = this._marker.getLatLng();
             this._marker.closePopup && this._marker.closePopup();
             this._marker.fire("movestart").fire("dragstart");
           },
-          _onPreDrag: function(e) {
+          _onPreDrag: function (e) {
             if (this._marker.options.autoPan) {
               cancelAnimFrame(this._panRequest);
-              this._panRequest = requestAnimFrame(this._adjustPan.bind(this, e));
+              this._panRequest = requestAnimFrame(
+                this._adjustPan.bind(this, e),
+              );
             }
           },
-          _onDrag: function(e) {
-            var marker2 = this._marker, shadow = marker2._shadow, iconPos = getPosition(marker2._icon), latlng = marker2._map.layerPointToLatLng(iconPos);
+          _onDrag: function (e) {
+            var marker2 = this._marker,
+              shadow = marker2._shadow,
+              iconPos = getPosition(marker2._icon),
+              latlng = marker2._map.layerPointToLatLng(iconPos);
             if (shadow) {
               setPosition(shadow, iconPos);
             }
@@ -4968,11 +5933,11 @@
             e.oldLatLng = this._oldLatLng;
             marker2.fire("move", e).fire("drag", e);
           },
-          _onDragEnd: function(e) {
+          _onDragEnd: function (e) {
             cancelAnimFrame(this._panRequest);
             delete this._oldLatLng;
             this._marker.fire("moveend").fire("dragend", e);
-          }
+          },
         });
         var Marker = Layer.extend({
           // @section
@@ -5036,25 +6001,26 @@
             autoPanPadding: [50, 50],
             // @option autoPanSpeed: Number = 10
             // Number of pixels the map should pan by.
-            autoPanSpeed: 10
+            autoPanSpeed: 10,
           },
           /* @section
            *
            * In addition to [shared layer methods](#Layer) like `addTo()` and `remove()` and [popup methods](#Popup) like bindPopup() you can also use the following methods:
            */
-          initialize: function(latlng, options) {
+          initialize: function (latlng, options) {
             setOptions(this, options);
             this._latlng = toLatLng(latlng);
           },
-          onAdd: function(map3) {
-            this._zoomAnimated = this._zoomAnimated && map3.options.markerZoomAnimation;
+          onAdd: function (map3) {
+            this._zoomAnimated =
+              this._zoomAnimated && map3.options.markerZoomAnimation;
             if (this._zoomAnimated) {
               map3.on("zoomanim", this._animateZoom, this);
             }
             this._initIcon();
             this.update();
           },
-          onRemove: function(map3) {
+          onRemove: function (map3) {
             if (this.dragging && this.dragging.enabled()) {
               this.options.draggable = true;
               this.dragging.removeHooks();
@@ -5066,20 +6032,20 @@
             this._removeIcon();
             this._removeShadow();
           },
-          getEvents: function() {
+          getEvents: function () {
             return {
               zoom: this.update,
-              viewreset: this.update
+              viewreset: this.update,
             };
           },
           // @method getLatLng: LatLng
           // Returns the current geographical position of the marker.
-          getLatLng: function() {
+          getLatLng: function () {
             return this._latlng;
           },
           // @method setLatLng(latlng: LatLng): this
           // Changes the marker position to the given point.
-          setLatLng: function(latlng) {
+          setLatLng: function (latlng) {
             var oldLatLng = this._latlng;
             this._latlng = toLatLng(latlng);
             this.update();
@@ -5087,18 +6053,18 @@
           },
           // @method setZIndexOffset(offset: Number): this
           // Changes the [zIndex offset](#marker-zindexoffset) of the marker.
-          setZIndexOffset: function(offset) {
+          setZIndexOffset: function (offset) {
             this.options.zIndexOffset = offset;
             return this.update();
           },
           // @method getIcon: Icon
           // Returns the current icon used by the marker
-          getIcon: function() {
+          getIcon: function () {
             return this.options.icon;
           },
           // @method setIcon(icon: Icon): this
           // Changes the marker icon.
-          setIcon: function(icon2) {
+          setIcon: function (icon2) {
             this.options.icon = icon2;
             if (this._map) {
               this._initIcon();
@@ -5109,19 +6075,22 @@
             }
             return this;
           },
-          getElement: function() {
+          getElement: function () {
             return this._icon;
           },
-          update: function() {
+          update: function () {
             if (this._icon && this._map) {
               var pos = this._map.latLngToLayerPoint(this._latlng).round();
               this._setPos(pos);
             }
             return this;
           },
-          _initIcon: function() {
-            var options = this.options, classToAdd = "leaflet-zoom-" + (this._zoomAnimated ? "animated" : "hide");
-            var icon2 = options.icon.createIcon(this._icon), addIcon = false;
+          _initIcon: function () {
+            var options = this.options,
+              classToAdd =
+                "leaflet-zoom-" + (this._zoomAnimated ? "animated" : "hide");
+            var icon2 = options.icon.createIcon(this._icon),
+              addIcon = false;
             if (icon2 !== this._icon) {
               if (this._icon) {
                 this._removeIcon();
@@ -5143,13 +6112,14 @@
             if (options.riseOnHover) {
               this.on({
                 mouseover: this._bringToFront,
-                mouseout: this._resetZIndex
+                mouseout: this._resetZIndex,
               });
             }
             if (this.options.autoPanOnFocus) {
               on(icon2, "focus", this._panOnFocus, this);
             }
-            var newShadow = options.icon.createShadow(this._shadow), addShadow = false;
+            var newShadow = options.icon.createShadow(this._shadow),
+              addShadow = false;
             if (newShadow !== this._shadow) {
               this._removeShadow();
               addShadow = true;
@@ -5170,11 +6140,11 @@
               this.getPane(options.shadowPane).appendChild(this._shadow);
             }
           },
-          _removeIcon: function() {
+          _removeIcon: function () {
             if (this.options.riseOnHover) {
               this.off({
                 mouseover: this._bringToFront,
-                mouseout: this._resetZIndex
+                mouseout: this._resetZIndex,
               });
             }
             if (this.options.autoPanOnFocus) {
@@ -5184,13 +6154,13 @@
             this.removeInteractiveTarget(this._icon);
             this._icon = null;
           },
-          _removeShadow: function() {
+          _removeShadow: function () {
             if (this._shadow) {
               remove(this._shadow);
             }
             this._shadow = null;
           },
-          _setPos: function(pos) {
+          _setPos: function (pos) {
             if (this._icon) {
               setPosition(this._icon, pos);
             }
@@ -5200,16 +6170,18 @@
             this._zIndex = pos.y + this.options.zIndexOffset;
             this._resetZIndex();
           },
-          _updateZIndex: function(offset) {
+          _updateZIndex: function (offset) {
             if (this._icon) {
               this._icon.style.zIndex = this._zIndex + offset;
             }
           },
-          _animateZoom: function(opt) {
-            var pos = this._map._latLngToNewLayerPoint(this._latlng, opt.zoom, opt.center).round();
+          _animateZoom: function (opt) {
+            var pos = this._map
+              ._latLngToNewLayerPoint(this._latlng, opt.zoom, opt.center)
+              .round();
             this._setPos(pos);
           },
-          _initInteraction: function() {
+          _initInteraction: function () {
             if (!this.options.interactive) {
               return;
             }
@@ -5229,14 +6201,14 @@
           },
           // @method setOpacity(opacity: Number): this
           // Changes the opacity of the marker.
-          setOpacity: function(opacity) {
+          setOpacity: function (opacity) {
             this.options.opacity = opacity;
             if (this._map) {
               this._updateOpacity();
             }
             return this;
           },
-          _updateOpacity: function() {
+          _updateOpacity: function () {
             var opacity = this.options.opacity;
             if (this._icon) {
               setOpacity(this._icon, opacity);
@@ -5245,31 +6217,35 @@
               setOpacity(this._shadow, opacity);
             }
           },
-          _bringToFront: function() {
+          _bringToFront: function () {
             this._updateZIndex(this.options.riseOffset);
           },
-          _resetZIndex: function() {
+          _resetZIndex: function () {
             this._updateZIndex(0);
           },
-          _panOnFocus: function() {
+          _panOnFocus: function () {
             var map3 = this._map;
             if (!map3) {
               return;
             }
             var iconOpts = this.options.icon.options;
-            var size = iconOpts.iconSize ? toPoint(iconOpts.iconSize) : toPoint(0, 0);
-            var anchor = iconOpts.iconAnchor ? toPoint(iconOpts.iconAnchor) : toPoint(0, 0);
+            var size = iconOpts.iconSize
+              ? toPoint(iconOpts.iconSize)
+              : toPoint(0, 0);
+            var anchor = iconOpts.iconAnchor
+              ? toPoint(iconOpts.iconAnchor)
+              : toPoint(0, 0);
             map3.panInside(this._latlng, {
               paddingTopLeft: anchor,
-              paddingBottomRight: size.subtract(anchor)
+              paddingBottomRight: size.subtract(anchor),
             });
           },
-          _getPopupAnchor: function() {
+          _getPopupAnchor: function () {
             return this.options.icon.options.popupAnchor;
           },
-          _getTooltipAnchor: function() {
+          _getTooltipAnchor: function () {
             return this.options.icon.options.tooltipAnchor;
-          }
+          },
         });
         function marker(latlng, options) {
           return new Marker(latlng, options);
@@ -5320,22 +6296,22 @@
             // @option bubblingMouseEvents: Boolean = true
             // When `true`, a mouse event on this path will trigger the same event on the map
             // (unless [`L.DomEvent.stopPropagation`](#domevent-stoppropagation) is used).
-            bubblingMouseEvents: true
+            bubblingMouseEvents: true,
           },
-          beforeAdd: function(map3) {
+          beforeAdd: function (map3) {
             this._renderer = map3.getRenderer(this);
           },
-          onAdd: function() {
+          onAdd: function () {
             this._renderer._initPath(this);
             this._reset();
             this._renderer._addPath(this);
           },
-          onRemove: function() {
+          onRemove: function () {
             this._renderer._removePath(this);
           },
           // @method redraw(): this
           // Redraws the layer. Sometimes useful after you changed the coordinates that the path uses.
-          redraw: function() {
+          redraw: function () {
             if (this._map) {
               this._renderer._updatePath(this);
             }
@@ -5343,11 +6319,15 @@
           },
           // @method setStyle(style: Path options): this
           // Changes the appearance of a Path based on the options in the `Path options` object.
-          setStyle: function(style2) {
+          setStyle: function (style2) {
             setOptions(this, style2);
             if (this._renderer) {
               this._renderer._updateStyle(this);
-              if (this.options.stroke && style2 && Object.prototype.hasOwnProperty.call(style2, "weight")) {
+              if (
+                this.options.stroke &&
+                style2 &&
+                Object.prototype.hasOwnProperty.call(style2, "weight")
+              ) {
                 this._updateBounds();
               }
             }
@@ -5355,7 +6335,7 @@
           },
           // @method bringToFront(): this
           // Brings the layer to the top of all path layers.
-          bringToFront: function() {
+          bringToFront: function () {
             if (this._renderer) {
               this._renderer._bringToFront(this);
             }
@@ -5363,22 +6343,25 @@
           },
           // @method bringToBack(): this
           // Brings the layer to the bottom of all path layers.
-          bringToBack: function() {
+          bringToBack: function () {
             if (this._renderer) {
               this._renderer._bringToBack(this);
             }
             return this;
           },
-          getElement: function() {
+          getElement: function () {
             return this._path;
           },
-          _reset: function() {
+          _reset: function () {
             this._project();
             this._update();
           },
-          _clickTolerance: function() {
-            return (this.options.stroke ? this.options.weight / 2 : 0) + (this._renderer.options.tolerance || 0);
-          }
+          _clickTolerance: function () {
+            return (
+              (this.options.stroke ? this.options.weight / 2 : 0) +
+              (this._renderer.options.tolerance || 0)
+            );
+          },
         });
         var CircleMarker = Path.extend({
           // @section
@@ -5387,16 +6370,16 @@
             fill: true,
             // @option radius: Number = 10
             // Radius of the circle marker, in pixels
-            radius: 10
+            radius: 10,
           },
-          initialize: function(latlng, options) {
+          initialize: function (latlng, options) {
             setOptions(this, options);
             this._latlng = toLatLng(latlng);
             this._radius = this.options.radius;
           },
           // @method setLatLng(latLng: LatLng): this
           // Sets the position of a circle marker to a new location.
-          setLatLng: function(latlng) {
+          setLatLng: function (latlng) {
             var oldLatLng = this._latlng;
             this._latlng = toLatLng(latlng);
             this.redraw();
@@ -5404,55 +6387,65 @@
           },
           // @method getLatLng(): LatLng
           // Returns the current geographical position of the circle marker
-          getLatLng: function() {
+          getLatLng: function () {
             return this._latlng;
           },
           // @method setRadius(radius: Number): this
           // Sets the radius of a circle marker. Units are in pixels.
-          setRadius: function(radius) {
+          setRadius: function (radius) {
             this.options.radius = this._radius = radius;
             return this.redraw();
           },
           // @method getRadius(): Number
           // Returns the current radius of the circle
-          getRadius: function() {
+          getRadius: function () {
             return this._radius;
           },
-          setStyle: function(options) {
-            var radius = options && options.radius || this._radius;
+          setStyle: function (options) {
+            var radius = (options && options.radius) || this._radius;
             Path.prototype.setStyle.call(this, options);
             this.setRadius(radius);
             return this;
           },
-          _project: function() {
+          _project: function () {
             this._point = this._map.latLngToLayerPoint(this._latlng);
             this._updateBounds();
           },
-          _updateBounds: function() {
-            var r = this._radius, r2 = this._radiusY || r, w = this._clickTolerance(), p = [r + w, r2 + w];
-            this._pxBounds = new Bounds(this._point.subtract(p), this._point.add(p));
+          _updateBounds: function () {
+            var r = this._radius,
+              r2 = this._radiusY || r,
+              w = this._clickTolerance(),
+              p = [r + w, r2 + w];
+            this._pxBounds = new Bounds(
+              this._point.subtract(p),
+              this._point.add(p),
+            );
           },
-          _update: function() {
+          _update: function () {
             if (this._map) {
               this._updatePath();
             }
           },
-          _updatePath: function() {
+          _updatePath: function () {
             this._renderer._updateCircle(this);
           },
-          _empty: function() {
-            return this._radius && !this._renderer._bounds.intersects(this._pxBounds);
+          _empty: function () {
+            return (
+              this._radius && !this._renderer._bounds.intersects(this._pxBounds)
+            );
           },
           // Needed by the `Canvas` renderer for interactivity
-          _containsPoint: function(p) {
-            return p.distanceTo(this._point) <= this._radius + this._clickTolerance();
-          }
+          _containsPoint: function (p) {
+            return (
+              p.distanceTo(this._point) <= this._radius + this._clickTolerance()
+            );
+          },
         });
         function circleMarker(latlng, options) {
           return new CircleMarker(latlng, options);
         }
         var Circle = CircleMarker.extend({
-          initialize: function(latlng, options, legacyOptions) {
+          initialize: function (latlng, options, legacyOptions) {
             if (typeof options === "number") {
               options = extend({}, legacyOptions, { radius: options });
             }
@@ -5465,42 +6458,60 @@
           },
           // @method setRadius(radius: Number): this
           // Sets the radius of a circle. Units are in meters.
-          setRadius: function(radius) {
+          setRadius: function (radius) {
             this._mRadius = radius;
             return this.redraw();
           },
           // @method getRadius(): Number
           // Returns the current radius of a circle. Units are in meters.
-          getRadius: function() {
+          getRadius: function () {
             return this._mRadius;
           },
           // @method getBounds(): LatLngBounds
           // Returns the `LatLngBounds` of the path.
-          getBounds: function() {
+          getBounds: function () {
             var half = [this._radius, this._radiusY || this._radius];
             return new LatLngBounds(
               this._map.layerPointToLatLng(this._point.subtract(half)),
-              this._map.layerPointToLatLng(this._point.add(half))
+              this._map.layerPointToLatLng(this._point.add(half)),
             );
           },
           setStyle: Path.prototype.setStyle,
-          _project: function() {
-            var lng = this._latlng.lng, lat = this._latlng.lat, map3 = this._map, crs = map3.options.crs;
+          _project: function () {
+            var lng = this._latlng.lng,
+              lat = this._latlng.lat,
+              map3 = this._map,
+              crs = map3.options.crs;
             if (crs.distance === Earth.distance) {
-              var d = Math.PI / 180, latR = this._mRadius / Earth.R / d, top = map3.project([lat + latR, lng]), bottom = map3.project([lat - latR, lng]), p = top.add(bottom).divideBy(2), lat2 = map3.unproject(p).lat, lngR = Math.acos((Math.cos(latR * d) - Math.sin(lat * d) * Math.sin(lat2 * d)) / (Math.cos(lat * d) * Math.cos(lat2 * d))) / d;
+              var d = Math.PI / 180,
+                latR = this._mRadius / Earth.R / d,
+                top = map3.project([lat + latR, lng]),
+                bottom = map3.project([lat - latR, lng]),
+                p = top.add(bottom).divideBy(2),
+                lat2 = map3.unproject(p).lat,
+                lngR =
+                  Math.acos(
+                    (Math.cos(latR * d) -
+                      Math.sin(lat * d) * Math.sin(lat2 * d)) /
+                      (Math.cos(lat * d) * Math.cos(lat2 * d)),
+                  ) / d;
               if (isNaN(lngR) || lngR === 0) {
-                lngR = latR / Math.cos(Math.PI / 180 * lat);
+                lngR = latR / Math.cos((Math.PI / 180) * lat);
               }
               this._point = p.subtract(map3.getPixelOrigin());
-              this._radius = isNaN(lngR) ? 0 : p.x - map3.project([lat2, lng - lngR]).x;
+              this._radius = isNaN(lngR)
+                ? 0
+                : p.x - map3.project([lat2, lng - lngR]).x;
               this._radiusY = p.y - top.y;
             } else {
-              var latlng2 = crs.unproject(crs.project(this._latlng).subtract([this._mRadius, 0]));
+              var latlng2 = crs.unproject(
+                crs.project(this._latlng).subtract([this._mRadius, 0]),
+              );
               this._point = map3.latLngToLayerPoint(this._latlng);
               this._radius = this._point.x - map3.latLngToLayerPoint(latlng2).x;
             }
             this._updateBounds();
-          }
+          },
         });
         function circle(latlng, options, legacyOptions) {
           return new Circle(latlng, options, legacyOptions);
@@ -5515,32 +6526,36 @@
             smoothFactor: 1,
             // @option noClip: Boolean = false
             // Disable polyline clipping.
-            noClip: false
+            noClip: false,
           },
-          initialize: function(latlngs, options) {
+          initialize: function (latlngs, options) {
             setOptions(this, options);
             this._setLatLngs(latlngs);
           },
           // @method getLatLngs(): LatLng[]
           // Returns an array of the points in the path, or nested arrays of points in case of multi-polyline.
-          getLatLngs: function() {
+          getLatLngs: function () {
             return this._latlngs;
           },
           // @method setLatLngs(latlngs: LatLng[]): this
           // Replaces all the points in the polyline with the given array of geographical points.
-          setLatLngs: function(latlngs) {
+          setLatLngs: function (latlngs) {
             this._setLatLngs(latlngs);
             return this.redraw();
           },
           // @method isEmpty(): Boolean
           // Returns `true` if the Polyline has no LatLngs.
-          isEmpty: function() {
+          isEmpty: function () {
             return !this._latlngs.length;
           },
           // @method closestLayerPoint(p: Point): Point
           // Returns the point closest to `p` on the Polyline.
-          closestLayerPoint: function(p) {
-            var minDistance = Infinity, minPoint = null, closest = _sqClosestPointOnSegment, p1, p2;
+          closestLayerPoint: function (p) {
+            var minDistance = Infinity,
+              minPoint = null,
+              closest = _sqClosestPointOnSegment,
+              p1,
+              p2;
             for (var j = 0, jLen = this._parts.length; j < jLen; j++) {
               var points = this._parts[j];
               for (var i = 1, len = points.length; i < len; i++) {
@@ -5560,7 +6575,7 @@
           },
           // @method getCenter(): LatLng
           // Returns the center ([centroid](https://en.wikipedia.org/wiki/Centroid)) of the polyline.
-          getCenter: function() {
+          getCenter: function () {
             if (!this._map) {
               throw new Error("Must add layer to map before using getCenter()");
             }
@@ -5568,30 +6583,31 @@
           },
           // @method getBounds(): LatLngBounds
           // Returns the `LatLngBounds` of the path.
-          getBounds: function() {
+          getBounds: function () {
             return this._bounds;
           },
           // @method addLatLng(latlng: LatLng, latlngs?: LatLng[]): this
           // Adds a given point to the polyline. By default, adds to the first ring of
           // the polyline in case of a multi-polyline, but can be overridden by passing
           // a specific ring as a LatLng array (that you can earlier access with [`getLatLngs`](#polyline-getlatlngs)).
-          addLatLng: function(latlng, latlngs) {
+          addLatLng: function (latlng, latlngs) {
             latlngs = latlngs || this._defaultShape();
             latlng = toLatLng(latlng);
             latlngs.push(latlng);
             this._bounds.extend(latlng);
             return this.redraw();
           },
-          _setLatLngs: function(latlngs) {
+          _setLatLngs: function (latlngs) {
             this._bounds = new LatLngBounds();
             this._latlngs = this._convertLatLngs(latlngs);
           },
-          _defaultShape: function() {
+          _defaultShape: function () {
             return isFlat(this._latlngs) ? this._latlngs : this._latlngs[0];
           },
           // recursively convert latlngs input into actual LatLng instances; calculate bounds along the way
-          _convertLatLngs: function(latlngs) {
-            var result = [], flat = isFlat(latlngs);
+          _convertLatLngs: function (latlngs) {
+            var result = [],
+              flat = isFlat(latlngs);
             for (var i = 0, len = latlngs.length; i < len; i++) {
               if (flat) {
                 result[i] = toLatLng(latlngs[i]);
@@ -5602,7 +6618,7 @@
             }
             return result;
           },
-          _project: function() {
+          _project: function () {
             var pxBounds = new Bounds();
             this._rings = [];
             this._projectLatlngs(this._latlngs, this._rings, pxBounds);
@@ -5611,19 +6627,23 @@
               this._updateBounds();
             }
           },
-          _updateBounds: function() {
-            var w = this._clickTolerance(), p = new Point(w, w);
+          _updateBounds: function () {
+            var w = this._clickTolerance(),
+              p = new Point(w, w);
             if (!this._rawPxBounds) {
               return;
             }
             this._pxBounds = new Bounds([
               this._rawPxBounds.min.subtract(p),
-              this._rawPxBounds.max.add(p)
+              this._rawPxBounds.max.add(p),
             ]);
           },
           // recursively turns latlngs into a set of rings with projected coordinates
-          _projectLatlngs: function(latlngs, result, projectedBounds) {
-            var flat = latlngs[0] instanceof LatLng, len = latlngs.length, i, ring;
+          _projectLatlngs: function (latlngs, result, projectedBounds) {
+            var flat = latlngs[0] instanceof LatLng,
+              len = latlngs.length,
+              i,
+              ring;
             if (flat) {
               ring = [];
               for (i = 0; i < len; i++) {
@@ -5638,7 +6658,7 @@
             }
           },
           // clip polyline by renderer bounds so that we have less to render for performance
-          _clipPoints: function() {
+          _clipPoints: function () {
             var bounds = this._renderer._bounds;
             this._parts = [];
             if (!this._pxBounds || !this._pxBounds.intersects(bounds)) {
@@ -5648,11 +6668,24 @@
               this._parts = this._rings;
               return;
             }
-            var parts = this._parts, i, j, k, len, len2, segment, points;
+            var parts = this._parts,
+              i,
+              j,
+              k,
+              len,
+              len2,
+              segment,
+              points;
             for (i = 0, k = 0, len = this._rings.length; i < len; i++) {
               points = this._rings[i];
               for (j = 0, len2 = points.length; j < len2 - 1; j++) {
-                segment = clipSegment(points[j], points[j + 1], bounds, j, true);
+                segment = clipSegment(
+                  points[j],
+                  points[j + 1],
+                  bounds,
+                  j,
+                  true,
+                );
                 if (!segment) {
                   continue;
                 }
@@ -5666,13 +6699,14 @@
             }
           },
           // simplify each clipped part of the polyline for performance
-          _simplifyPoints: function() {
-            var parts = this._parts, tolerance = this.options.smoothFactor;
+          _simplifyPoints: function () {
+            var parts = this._parts,
+              tolerance = this.options.smoothFactor;
             for (var i = 0, len = parts.length; i < len; i++) {
               parts[i] = simplify(parts[i], tolerance);
             }
           },
-          _update: function() {
+          _update: function () {
             if (!this._map) {
               return;
             }
@@ -5680,12 +6714,18 @@
             this._simplifyPoints();
             this._updatePath();
           },
-          _updatePath: function() {
+          _updatePath: function () {
             this._renderer._updatePoly(this);
           },
           // Needed by the `Canvas` renderer for interactivity
-          _containsPoint: function(p, closed) {
-            var i, j, k, len, len2, part, w = this._clickTolerance();
+          _containsPoint: function (p, closed) {
+            var i,
+              j,
+              k,
+              len,
+              len2,
+              part,
+              w = this._clickTolerance();
             if (!this._pxBounds || !this._pxBounds.contains(p)) {
               return false;
             }
@@ -5701,7 +6741,7 @@
               }
             }
             return false;
-          }
+          },
         });
         function polyline(latlngs, options) {
           return new Polyline(latlngs, options);
@@ -5709,37 +6749,46 @@
         Polyline._flat = _flat;
         var Polygon = Polyline.extend({
           options: {
-            fill: true
+            fill: true,
           },
-          isEmpty: function() {
+          isEmpty: function () {
             return !this._latlngs.length || !this._latlngs[0].length;
           },
           // @method getCenter(): LatLng
           // Returns the center ([centroid](http://en.wikipedia.org/wiki/Centroid)) of the Polygon.
-          getCenter: function() {
+          getCenter: function () {
             if (!this._map) {
               throw new Error("Must add layer to map before using getCenter()");
             }
             return polygonCenter(this._defaultShape(), this._map.options.crs);
           },
-          _convertLatLngs: function(latlngs) {
-            var result = Polyline.prototype._convertLatLngs.call(this, latlngs), len = result.length;
-            if (len >= 2 && result[0] instanceof LatLng && result[0].equals(result[len - 1])) {
+          _convertLatLngs: function (latlngs) {
+            var result = Polyline.prototype._convertLatLngs.call(this, latlngs),
+              len = result.length;
+            if (
+              len >= 2 &&
+              result[0] instanceof LatLng &&
+              result[0].equals(result[len - 1])
+            ) {
               result.pop();
             }
             return result;
           },
-          _setLatLngs: function(latlngs) {
+          _setLatLngs: function (latlngs) {
             Polyline.prototype._setLatLngs.call(this, latlngs);
             if (isFlat(this._latlngs)) {
               this._latlngs = [this._latlngs];
             }
           },
-          _defaultShape: function() {
-            return isFlat(this._latlngs[0]) ? this._latlngs[0] : this._latlngs[0][0];
+          _defaultShape: function () {
+            return isFlat(this._latlngs[0])
+              ? this._latlngs[0]
+              : this._latlngs[0][0];
           },
-          _clipPoints: function() {
-            var bounds = this._renderer._bounds, w = this.options.weight, p = new Point(w, w);
+          _clipPoints: function () {
+            var bounds = this._renderer._bounds,
+              w = this.options.weight,
+              p = new Point(w, w);
             bounds = new Bounds(bounds.min.subtract(p), bounds.max.add(p));
             this._parts = [];
             if (!this._pxBounds || !this._pxBounds.intersects(bounds)) {
@@ -5756,12 +6805,20 @@
               }
             }
           },
-          _updatePath: function() {
+          _updatePath: function () {
             this._renderer._updatePoly(this, true);
           },
           // Needed by the `Canvas` renderer for interactivity
-          _containsPoint: function(p) {
-            var inside = false, part, p1, p2, i, j, k, len, len2;
+          _containsPoint: function (p) {
+            var inside = false,
+              part,
+              p1,
+              p2,
+              i,
+              j,
+              k,
+              len,
+              len2;
             if (!this._pxBounds || !this._pxBounds.contains(p)) {
               return false;
             }
@@ -5770,13 +6827,18 @@
               for (j = 0, len2 = part.length, k = len2 - 1; j < len2; k = j++) {
                 p1 = part[j];
                 p2 = part[k];
-                if (p1.y > p.y !== p2.y > p.y && p.x < (p2.x - p1.x) * (p.y - p1.y) / (p2.y - p1.y) + p1.x) {
+                if (
+                  p1.y > p.y !== p2.y > p.y &&
+                  p.x < ((p2.x - p1.x) * (p.y - p1.y)) / (p2.y - p1.y) + p1.x
+                ) {
                   inside = !inside;
                 }
               }
             }
-            return inside || Polyline.prototype._containsPoint.call(this, p, true);
-          }
+            return (
+              inside || Polyline.prototype._containsPoint.call(this, p, true)
+            );
+          },
         });
         function polygon(latlngs, options) {
           return new Polygon(latlngs, options);
@@ -5831,7 +6893,7 @@
            * @option markersInheritOptions: Boolean = false
            * Whether default Markers for "Point" type Features inherit from group options.
            */
-          initialize: function(geojson, options) {
+          initialize: function (geojson, options) {
             setOptions(this, options);
             this._layers = {};
             if (geojson) {
@@ -5840,12 +6902,20 @@
           },
           // @method addData( <GeoJSON> data ): this
           // Adds a GeoJSON object to the layer.
-          addData: function(geojson) {
-            var features = isArray(geojson) ? geojson : geojson.features, i, len, feature;
+          addData: function (geojson) {
+            var features = isArray(geojson) ? geojson : geojson.features,
+              i,
+              len,
+              feature;
             if (features) {
               for (i = 0, len = features.length; i < len; i++) {
                 feature = features[i];
-                if (feature.geometries || feature.geometry || feature.features || feature.coordinates) {
+                if (
+                  feature.geometries ||
+                  feature.geometry ||
+                  feature.features ||
+                  feature.coordinates
+                ) {
                   this.addData(feature);
                 }
               }
@@ -5870,7 +6940,7 @@
           // @method resetStyle( <Path> layer? ): this
           // Resets the given vector layer's style to the original GeoJSON style, useful for resetting style after hover events.
           // If `layer` is omitted, the style of all features in the current layer is reset.
-          resetStyle: function(layer) {
+          resetStyle: function (layer) {
             if (layer === void 0) {
               return this.eachLayer(this.resetStyle, this);
             }
@@ -5880,22 +6950,32 @@
           },
           // @method setStyle( <Function> style ): this
           // Changes styles of GeoJSON vector layers with the given style function.
-          setStyle: function(style2) {
-            return this.eachLayer(function(layer) {
+          setStyle: function (style2) {
+            return this.eachLayer(function (layer) {
               this._setLayerStyle(layer, style2);
             }, this);
           },
-          _setLayerStyle: function(layer, style2) {
+          _setLayerStyle: function (layer, style2) {
             if (layer.setStyle) {
               if (typeof style2 === "function") {
                 style2 = style2(layer.feature);
               }
               layer.setStyle(style2);
             }
-          }
+          },
         });
         function geometryToLayer(geojson, options) {
-          var geometry = geojson.type === "Feature" ? geojson.geometry : geojson, coords = geometry ? geometry.coordinates : null, layers2 = [], pointToLayer = options && options.pointToLayer, _coordsToLatLng = options && options.coordsToLatLng || coordsToLatLng, latlng, latlngs, i, len;
+          var geometry =
+              geojson.type === "Feature" ? geojson.geometry : geojson,
+            coords = geometry ? geometry.coordinates : null,
+            layers2 = [],
+            pointToLayer = options && options.pointToLayer,
+            _coordsToLatLng =
+              (options && options.coordsToLatLng) || coordsToLatLng,
+            latlng,
+            latlngs,
+            i,
+            len;
           if (!coords && !geometry) {
             return null;
           }
@@ -5906,24 +6986,37 @@
             case "MultiPoint":
               for (i = 0, len = coords.length; i < len; i++) {
                 latlng = _coordsToLatLng(coords[i]);
-                layers2.push(_pointToLayer(pointToLayer, geojson, latlng, options));
+                layers2.push(
+                  _pointToLayer(pointToLayer, geojson, latlng, options),
+                );
               }
               return new FeatureGroup(layers2);
             case "LineString":
             case "MultiLineString":
-              latlngs = coordsToLatLngs(coords, geometry.type === "LineString" ? 0 : 1, _coordsToLatLng);
+              latlngs = coordsToLatLngs(
+                coords,
+                geometry.type === "LineString" ? 0 : 1,
+                _coordsToLatLng,
+              );
               return new Polyline(latlngs, options);
             case "Polygon":
             case "MultiPolygon":
-              latlngs = coordsToLatLngs(coords, geometry.type === "Polygon" ? 1 : 2, _coordsToLatLng);
+              latlngs = coordsToLatLngs(
+                coords,
+                geometry.type === "Polygon" ? 1 : 2,
+                _coordsToLatLng,
+              );
               return new Polygon(latlngs, options);
             case "GeometryCollection":
               for (i = 0, len = geometry.geometries.length; i < len; i++) {
-                var geoLayer = geometryToLayer({
-                  geometry: geometry.geometries[i],
-                  type: "Feature",
-                  properties: geojson.properties
-                }, options);
+                var geoLayer = geometryToLayer(
+                  {
+                    geometry: geometry.geometries[i],
+                    type: "Feature",
+                    properties: geojson.properties,
+                  },
+                  options,
+                );
                 if (geoLayer) {
                   layers2.push(geoLayer);
                 }
@@ -5931,7 +7024,10 @@
               return new FeatureGroup(layers2);
             case "FeatureCollection":
               for (i = 0, len = geometry.features.length; i < len; i++) {
-                var featureLayer = geometryToLayer(geometry.features[i], options);
+                var featureLayer = geometryToLayer(
+                  geometry.features[i],
+                  options,
+                );
                 if (featureLayer) {
                   layers2.push(featureLayer);
                 }
@@ -5942,7 +7038,12 @@
           }
         }
         function _pointToLayer(pointToLayerFn, geojson, latlng, options) {
-          return pointToLayerFn ? pointToLayerFn(geojson, latlng) : new Marker(latlng, options && options.markersInheritOptions && options);
+          return pointToLayerFn
+            ? pointToLayerFn(geojson, latlng)
+            : new Marker(
+                latlng,
+                options && options.markersInheritOptions && options,
+              );
         }
         function coordsToLatLng(coords) {
           return new LatLng(coords[1], coords[0], coords[2]);
@@ -5950,19 +7051,39 @@
         function coordsToLatLngs(coords, levelsDeep, _coordsToLatLng) {
           var latlngs = [];
           for (var i = 0, len = coords.length, latlng; i < len; i++) {
-            latlng = levelsDeep ? coordsToLatLngs(coords[i], levelsDeep - 1, _coordsToLatLng) : (_coordsToLatLng || coordsToLatLng)(coords[i]);
+            latlng = levelsDeep
+              ? coordsToLatLngs(coords[i], levelsDeep - 1, _coordsToLatLng)
+              : (_coordsToLatLng || coordsToLatLng)(coords[i]);
             latlngs.push(latlng);
           }
           return latlngs;
         }
         function latLngToCoords(latlng, precision) {
           latlng = toLatLng(latlng);
-          return latlng.alt !== void 0 ? [formatNum(latlng.lng, precision), formatNum(latlng.lat, precision), formatNum(latlng.alt, precision)] : [formatNum(latlng.lng, precision), formatNum(latlng.lat, precision)];
+          return latlng.alt !== void 0
+            ? [
+                formatNum(latlng.lng, precision),
+                formatNum(latlng.lat, precision),
+                formatNum(latlng.alt, precision),
+              ]
+            : [
+                formatNum(latlng.lng, precision),
+                formatNum(latlng.lat, precision),
+              ];
         }
         function latLngsToCoords(latlngs, levelsDeep, closed, precision) {
           var coords = [];
           for (var i = 0, len = latlngs.length; i < len; i++) {
-            coords.push(levelsDeep ? latLngsToCoords(latlngs[i], isFlat(latlngs[i]) ? 0 : levelsDeep - 1, closed, precision) : latLngToCoords(latlngs[i], precision));
+            coords.push(
+              levelsDeep
+                ? latLngsToCoords(
+                    latlngs[i],
+                    isFlat(latlngs[i]) ? 0 : levelsDeep - 1,
+                    closed,
+                    precision,
+                  )
+                : latLngToCoords(latlngs[i], precision),
+            );
           }
           if (!levelsDeep && closed && coords.length > 0) {
             coords.push(coords[0].slice());
@@ -5970,73 +7091,93 @@
           return coords;
         }
         function getFeature(layer, newGeometry) {
-          return layer.feature ? extend({}, layer.feature, { geometry: newGeometry }) : asFeature(newGeometry);
+          return layer.feature
+            ? extend({}, layer.feature, { geometry: newGeometry })
+            : asFeature(newGeometry);
         }
         function asFeature(geojson) {
-          if (geojson.type === "Feature" || geojson.type === "FeatureCollection") {
+          if (
+            geojson.type === "Feature" ||
+            geojson.type === "FeatureCollection"
+          ) {
             return geojson;
           }
           return {
             type: "Feature",
             properties: {},
-            geometry: geojson
+            geometry: geojson,
           };
         }
         var PointToGeoJSON = {
-          toGeoJSON: function(precision) {
+          toGeoJSON: function (precision) {
             return getFeature(this, {
               type: "Point",
-              coordinates: latLngToCoords(this.getLatLng(), precision)
+              coordinates: latLngToCoords(this.getLatLng(), precision),
             });
-          }
+          },
         };
         Marker.include(PointToGeoJSON);
         Circle.include(PointToGeoJSON);
         CircleMarker.include(PointToGeoJSON);
         Polyline.include({
-          toGeoJSON: function(precision) {
+          toGeoJSON: function (precision) {
             var multi = !isFlat(this._latlngs);
-            var coords = latLngsToCoords(this._latlngs, multi ? 1 : 0, false, precision);
+            var coords = latLngsToCoords(
+              this._latlngs,
+              multi ? 1 : 0,
+              false,
+              precision,
+            );
             return getFeature(this, {
               type: (multi ? "Multi" : "") + "LineString",
-              coordinates: coords
+              coordinates: coords,
             });
-          }
+          },
         });
         Polygon.include({
-          toGeoJSON: function(precision) {
-            var holes = !isFlat(this._latlngs), multi = holes && !isFlat(this._latlngs[0]);
-            var coords = latLngsToCoords(this._latlngs, multi ? 2 : holes ? 1 : 0, true, precision);
+          toGeoJSON: function (precision) {
+            var holes = !isFlat(this._latlngs),
+              multi = holes && !isFlat(this._latlngs[0]);
+            var coords = latLngsToCoords(
+              this._latlngs,
+              multi ? 2 : holes ? 1 : 0,
+              true,
+              precision,
+            );
             if (!holes) {
               coords = [coords];
             }
             return getFeature(this, {
               type: (multi ? "Multi" : "") + "Polygon",
-              coordinates: coords
+              coordinates: coords,
             });
-          }
+          },
         });
         LayerGroup.include({
-          toMultiPoint: function(precision) {
+          toMultiPoint: function (precision) {
             var coords = [];
-            this.eachLayer(function(layer) {
+            this.eachLayer(function (layer) {
               coords.push(layer.toGeoJSON(precision).geometry.coordinates);
             });
             return getFeature(this, {
               type: "MultiPoint",
-              coordinates: coords
+              coordinates: coords,
             });
           },
           // @method toGeoJSON(precision?: Number|false): Object
           // Coordinates values are rounded with [`formatNum`](#util-formatnum) function with given `precision`.
           // Returns a [`GeoJSON`](https://en.wikipedia.org/wiki/GeoJSON) representation of the layer group (as a GeoJSON `FeatureCollection`, `GeometryCollection`, or `MultiPoint`).
-          toGeoJSON: function(precision) {
-            var type = this.feature && this.feature.geometry && this.feature.geometry.type;
+          toGeoJSON: function (precision) {
+            var type =
+              this.feature &&
+              this.feature.geometry &&
+              this.feature.geometry.type;
             if (type === "MultiPoint") {
               return this.toMultiPoint(precision);
             }
-            var isGeometryCollection = type === "GeometryCollection", jsons = [];
-            this.eachLayer(function(layer) {
+            var isGeometryCollection = type === "GeometryCollection",
+              jsons = [];
+            this.eachLayer(function (layer) {
               if (layer.toGeoJSON) {
                 var json = layer.toGeoJSON(precision);
                 if (isGeometryCollection) {
@@ -6054,14 +7195,14 @@
             if (isGeometryCollection) {
               return getFeature(this, {
                 geometries: jsons,
-                type: "GeometryCollection"
+                type: "GeometryCollection",
               });
             }
             return {
               type: "FeatureCollection",
-              features: jsons
+              features: jsons,
             };
-          }
+          },
         });
         function geoJSON(geojson, options) {
           return new GeoJSON(geojson, options);
@@ -6093,14 +7234,14 @@
             zIndex: 1,
             // @option className: String = ''
             // A custom class name to assign to the image. Empty by default.
-            className: ""
+            className: "",
           },
-          initialize: function(url, bounds, options) {
+          initialize: function (url, bounds, options) {
             this._url = url;
             this._bounds = toLatLngBounds(bounds);
             setOptions(this, options);
           },
-          onAdd: function() {
+          onAdd: function () {
             if (!this._image) {
               this._initImage();
               if (this.options.opacity < 1) {
@@ -6114,7 +7255,7 @@
             this.getPane().appendChild(this._image);
             this._reset();
           },
-          onRemove: function() {
+          onRemove: function () {
             remove(this._image);
             if (this.options.interactive) {
               this.removeInteractiveTarget(this._image);
@@ -6122,14 +7263,14 @@
           },
           // @method setOpacity(opacity: Number): this
           // Sets the opacity of the overlay.
-          setOpacity: function(opacity) {
+          setOpacity: function (opacity) {
             this.options.opacity = opacity;
             if (this._image) {
               this._updateOpacity();
             }
             return this;
           },
-          setStyle: function(styleOpts) {
+          setStyle: function (styleOpts) {
             if (styleOpts.opacity) {
               this.setOpacity(styleOpts.opacity);
             }
@@ -6137,7 +7278,7 @@
           },
           // @method bringToFront(): this
           // Brings the layer to the top of all overlays.
-          bringToFront: function() {
+          bringToFront: function () {
             if (this._map) {
               toFront(this._image);
             }
@@ -6145,7 +7286,7 @@
           },
           // @method bringToBack(): this
           // Brings the layer to the bottom of all overlays.
-          bringToBack: function() {
+          bringToBack: function () {
             if (this._map) {
               toBack(this._image);
             }
@@ -6153,7 +7294,7 @@
           },
           // @method setUrl(url: String): this
           // Changes the URL of the image.
-          setUrl: function(url) {
+          setUrl: function (url) {
             this._url = url;
             if (this._image) {
               this._image.src = url;
@@ -6162,17 +7303,17 @@
           },
           // @method setBounds(bounds: LatLngBounds): this
           // Update the bounds that this ImageOverlay covers
-          setBounds: function(bounds) {
+          setBounds: function (bounds) {
             this._bounds = toLatLngBounds(bounds);
             if (this._map) {
               this._reset();
             }
             return this;
           },
-          getEvents: function() {
+          getEvents: function () {
             var events = {
               zoom: this._reset,
-              viewreset: this._reset
+              viewreset: this._reset,
             };
             if (this._zoomAnimated) {
               events.zoomanim = this._animateZoom;
@@ -6181,25 +7322,27 @@
           },
           // @method setZIndex(value: Number): this
           // Changes the [zIndex](#imageoverlay-zindex) of the image overlay.
-          setZIndex: function(value) {
+          setZIndex: function (value) {
             this.options.zIndex = value;
             this._updateZIndex();
             return this;
           },
           // @method getBounds(): LatLngBounds
           // Get the bounds that this ImageOverlay covers
-          getBounds: function() {
+          getBounds: function () {
             return this._bounds;
           },
           // @method getElement(): HTMLElement
           // Returns the instance of [`HTMLImageElement`](https://developer.mozilla.org/docs/Web/API/HTMLImageElement)
           // used by this overlay.
-          getElement: function() {
+          getElement: function () {
             return this._image;
           },
-          _initImage: function() {
+          _initImage: function () {
             var wasElementSupplied = this._url.tagName === "IMG";
-            var img = this._image = wasElementSupplied ? this._url : create$1("img");
+            var img = (this._image = wasElementSupplied
+              ? this._url
+              : create$1("img"));
             addClass(img, "leaflet-image-layer");
             if (this._zoomAnimated) {
               addClass(img, "leaflet-zoom-animated");
@@ -6212,7 +7355,10 @@
             img.onload = bind(this.fire, this, "load");
             img.onerror = bind(this._overlayOnError, this, "error");
             if (this.options.crossOrigin || this.options.crossOrigin === "") {
-              img.crossOrigin = this.options.crossOrigin === true ? "" : this.options.crossOrigin;
+              img.crossOrigin =
+                this.options.crossOrigin === true
+                  ? ""
+                  : this.options.crossOrigin;
             }
             if (this.options.zIndex) {
               this._updateZIndex();
@@ -6224,28 +7370,39 @@
             img.src = this._url;
             img.alt = this.options.alt;
           },
-          _animateZoom: function(e) {
-            var scale2 = this._map.getZoomScale(e.zoom), offset = this._map._latLngBoundsToNewLayerBounds(this._bounds, e.zoom, e.center).min;
+          _animateZoom: function (e) {
+            var scale2 = this._map.getZoomScale(e.zoom),
+              offset = this._map._latLngBoundsToNewLayerBounds(
+                this._bounds,
+                e.zoom,
+                e.center,
+              ).min;
             setTransform(this._image, offset, scale2);
           },
-          _reset: function() {
-            var image = this._image, bounds = new Bounds(
-              this._map.latLngToLayerPoint(this._bounds.getNorthWest()),
-              this._map.latLngToLayerPoint(this._bounds.getSouthEast())
-            ), size = bounds.getSize();
+          _reset: function () {
+            var image = this._image,
+              bounds = new Bounds(
+                this._map.latLngToLayerPoint(this._bounds.getNorthWest()),
+                this._map.latLngToLayerPoint(this._bounds.getSouthEast()),
+              ),
+              size = bounds.getSize();
             setPosition(image, bounds.min);
             image.style.width = size.x + "px";
             image.style.height = size.y + "px";
           },
-          _updateOpacity: function() {
+          _updateOpacity: function () {
             setOpacity(this._image, this.options.opacity);
           },
-          _updateZIndex: function() {
-            if (this._image && this.options.zIndex !== void 0 && this.options.zIndex !== null) {
+          _updateZIndex: function () {
+            if (
+              this._image &&
+              this.options.zIndex !== void 0 &&
+              this.options.zIndex !== null
+            ) {
               this._image.style.zIndex = this.options.zIndex;
             }
           },
-          _overlayOnError: function() {
+          _overlayOnError: function () {
             this.fire("error");
             var errorUrl = this.options.errorOverlayUrl;
             if (errorUrl && this._url !== errorUrl) {
@@ -6255,11 +7412,11 @@
           },
           // @method getCenter(): LatLng
           // Returns the center of the ImageOverlay.
-          getCenter: function() {
+          getCenter: function () {
             return this._bounds.getCenter();
-          }
+          },
         });
-        var imageOverlay = function(url, bounds, options) {
+        var imageOverlay = function (url, bounds, options) {
           return new ImageOverlay(url, bounds, options);
         };
         var VideoOverlay = ImageOverlay.extend({
@@ -6282,11 +7439,13 @@
             muted: false,
             // @option playsInline: Boolean = true
             // Mobile browsers will play the video right where it is instead of open it up in fullscreen mode.
-            playsInline: true
+            playsInline: true,
           },
-          _initImage: function() {
+          _initImage: function () {
             var wasElementSupplied = this._url.tagName === "VIDEO";
-            var vid = this._image = wasElementSupplied ? this._url : create$1("video");
+            var vid = (this._image = wasElementSupplied
+              ? this._url
+              : create$1("video"));
             addClass(vid, "leaflet-image-layer");
             if (this._zoomAnimated) {
               addClass(vid, "leaflet-zoom-animated");
@@ -6309,7 +7468,10 @@
             if (!isArray(this._url)) {
               this._url = [this._url];
             }
-            if (!this.options.keepAspectRatio && Object.prototype.hasOwnProperty.call(vid.style, "objectFit")) {
+            if (
+              !this.options.keepAspectRatio &&
+              Object.prototype.hasOwnProperty.call(vid.style, "objectFit")
+            ) {
               vid.style["objectFit"] = "fill";
             }
             vid.autoplay = !!this.options.autoplay;
@@ -6321,7 +7483,7 @@
               source.src = this._url[i];
               vid.appendChild(source);
             }
-          }
+          },
           // @method getElement(): HTMLVideoElement
           // Returns the instance of [`HTMLVideoElement`](https://developer.mozilla.org/docs/Web/API/HTMLVideoElement)
           // used by this overlay.
@@ -6330,8 +7492,8 @@
           return new VideoOverlay(video, bounds, options);
         }
         var SVGOverlay = ImageOverlay.extend({
-          _initImage: function() {
-            var el = this._image = this._url;
+          _initImage: function () {
+            var el = (this._image = this._url);
             addClass(el, "leaflet-image-layer");
             if (this._zoomAnimated) {
               addClass(el, "leaflet-zoom-animated");
@@ -6341,7 +7503,7 @@
             }
             el.onselectstart = falseFn;
             el.onmousemove = falseFn;
-          }
+          },
           // @method getElement(): SVGElement
           // Returns the instance of [`SVGElement`](https://developer.mozilla.org/docs/Web/API/SVGElement)
           // used by this overlay.
@@ -6368,9 +7530,9 @@
             // @option content: String|HTMLElement|Function = ''
             // Sets the HTML content of the overlay while initializing. If a function is passed the source layer will be
             // passed to the function. The function should return a `String` or `HTMLElement` to be used in the overlay.
-            content: ""
+            content: "",
           },
-          initialize: function(options, source) {
+          initialize: function (options, source) {
             if (options && (options instanceof LatLng || isArray(options))) {
               this._latlng = toLatLng(options);
               setOptions(this, source);
@@ -6385,7 +7547,7 @@
           // @method openOn(map: Map): this
           // Adds the overlay to the map.
           // Alternative to `map.openPopup(popup)`/`.openTooltip(tooltip)`.
-          openOn: function(map3) {
+          openOn: function (map3) {
             map3 = arguments.length ? map3 : this._source._map;
             if (!map3.hasLayer(this)) {
               map3.addLayer(this);
@@ -6396,7 +7558,7 @@
           // Closes the overlay.
           // Alternative to `map.closePopup(popup)`/`.closeTooltip(tooltip)`
           // and `layer.closePopup()`/`.closeTooltip()`.
-          close: function() {
+          close: function () {
             if (this._map) {
               this._map.removeLayer(this);
             }
@@ -6406,7 +7568,7 @@
           // Opens or closes the overlay bound to layer depending on its current state.
           // Argument may be omitted only for overlay bound to layer.
           // Alternative to `layer.togglePopup()`/`.toggleTooltip()`.
-          toggle: function(layer) {
+          toggle: function (layer) {
             if (this._map) {
               this.close();
             } else {
@@ -6420,7 +7582,7 @@
             }
             return this;
           },
-          onAdd: function(map3) {
+          onAdd: function (map3) {
             this._zoomAnimated = map3._zoomAnimated;
             if (!this._container) {
               this._initLayout();
@@ -6440,10 +7602,13 @@
               this.addInteractiveTarget(this._container);
             }
           },
-          onRemove: function(map3) {
+          onRemove: function (map3) {
             if (map3._fadeAnimated) {
               setOpacity(this._container, 0);
-              this._removeTimeout = setTimeout(bind(remove, void 0, this._container), 200);
+              this._removeTimeout = setTimeout(
+                bind(remove, void 0, this._container),
+                200,
+              );
             } else {
               remove(this._container);
             }
@@ -6455,12 +7620,12 @@
           // @namespace DivOverlay
           // @method getLatLng: LatLng
           // Returns the geographical point of the overlay.
-          getLatLng: function() {
+          getLatLng: function () {
             return this._latlng;
           },
           // @method setLatLng(latlng: LatLng): this
           // Sets the geographical point where the overlay will open.
-          setLatLng: function(latlng) {
+          setLatLng: function (latlng) {
             this._latlng = toLatLng(latlng);
             if (this._map) {
               this._updatePosition();
@@ -6470,25 +7635,25 @@
           },
           // @method getContent: String|HTMLElement
           // Returns the content of the overlay.
-          getContent: function() {
+          getContent: function () {
             return this._content;
           },
           // @method setContent(htmlContent: String|HTMLElement|Function): this
           // Sets the HTML content of the overlay. If a function is passed the source layer will be passed to the function.
           // The function should return a `String` or `HTMLElement` to be used in the overlay.
-          setContent: function(content) {
+          setContent: function (content) {
             this._content = content;
             this.update();
             return this;
           },
           // @method getElement: String|HTMLElement
           // Returns the HTML container of the overlay.
-          getElement: function() {
+          getElement: function () {
             return this._container;
           },
           // @method update: null
           // Updates the overlay content, layout and position. Useful for updating the overlay after something inside changed, e.g. image loaded.
-          update: function() {
+          update: function () {
             if (!this._map) {
               return;
             }
@@ -6499,10 +7664,10 @@
             this._container.style.visibility = "";
             this._adjustPan();
           },
-          getEvents: function() {
+          getEvents: function () {
             var events = {
               zoom: this._updatePosition,
-              viewreset: this._updatePosition
+              viewreset: this._updatePosition,
             };
             if (this._zoomAnimated) {
               events.zoomanim = this._animateZoom;
@@ -6511,12 +7676,12 @@
           },
           // @method isOpen: Boolean
           // Returns `true` when the overlay is visible on the map.
-          isOpen: function() {
+          isOpen: function () {
             return !!this._map && this._map.hasLayer(this);
           },
           // @method bringToFront: this
           // Brings this overlay in front of other overlays (in the same map pane).
-          bringToFront: function() {
+          bringToFront: function () {
             if (this._map) {
               toFront(this._container);
             }
@@ -6524,14 +7689,14 @@
           },
           // @method bringToBack: this
           // Brings this overlay to the back of other overlays (in the same map pane).
-          bringToBack: function() {
+          bringToBack: function () {
             if (this._map) {
               toBack(this._container);
             }
             return this;
           },
           // prepare bound overlay to open: update latlng pos / content source (for FeatureGroup)
-          _prepareOpen: function(latlng) {
+          _prepareOpen: function (latlng) {
             var source = this._source;
             if (!source._map) {
               return false;
@@ -6567,12 +7732,15 @@
             }
             return true;
           },
-          _updateContent: function() {
+          _updateContent: function () {
             if (!this._content) {
               return;
             }
             var node = this._contentNode;
-            var content = typeof this._content === "function" ? this._content(this._source || this) : this._content;
+            var content =
+              typeof this._content === "function"
+                ? this._content(this._source || this)
+                : this._content;
             if (typeof content === "string") {
               node.innerHTML = content;
             } else {
@@ -6583,26 +7751,30 @@
             }
             this.fire("contentupdate");
           },
-          _updatePosition: function() {
+          _updatePosition: function () {
             if (!this._map) {
               return;
             }
-            var pos = this._map.latLngToLayerPoint(this._latlng), offset = toPoint(this.options.offset), anchor = this._getAnchor();
+            var pos = this._map.latLngToLayerPoint(this._latlng),
+              offset = toPoint(this.options.offset),
+              anchor = this._getAnchor();
             if (this._zoomAnimated) {
               setPosition(this._container, pos.add(anchor));
             } else {
               offset = offset.add(pos).add(anchor);
             }
-            var bottom = this._containerBottom = -offset.y, left = this._containerLeft = -Math.round(this._containerWidth / 2) + offset.x;
+            var bottom = (this._containerBottom = -offset.y),
+              left = (this._containerLeft =
+                -Math.round(this._containerWidth / 2) + offset.x);
             this._container.style.bottom = bottom + "px";
             this._container.style.left = left + "px";
           },
-          _getAnchor: function() {
+          _getAnchor: function () {
             return [0, 0];
-          }
+          },
         });
         Map.include({
-          _initOverlay: function(OverlayClass, content, latlng, options) {
+          _initOverlay: function (OverlayClass, content, latlng, options) {
             var overlay = content;
             if (!(overlay instanceof OverlayClass)) {
               overlay = new OverlayClass(options).setContent(content);
@@ -6611,10 +7783,10 @@
               overlay.setLatLng(latlng);
             }
             return overlay;
-          }
+          },
         });
         Layer.include({
-          _initOverlay: function(OverlayClass, old, content, options) {
+          _initOverlay: function (OverlayClass, old, content, options) {
             var overlay = content;
             if (overlay instanceof OverlayClass) {
               setOptions(overlay, options);
@@ -6624,7 +7796,7 @@
               overlay.setContent(content);
             }
             return overlay;
-          }
+          },
         });
         var Popup = DivOverlay.extend({
           // @section
@@ -6683,21 +7855,25 @@
             // on the map. Defaults to the map's [`closePopupOnClick`](#map-closepopuponclick) option.
             // @option className: String = ''
             // A custom CSS class name to assign to the popup.
-            className: ""
+            className: "",
           },
           // @namespace Popup
           // @method openOn(map: Map): this
           // Alternative to `map.openPopup(popup)`.
           // Adds the popup to the map and closes the previous one.
-          openOn: function(map3) {
+          openOn: function (map3) {
             map3 = arguments.length ? map3 : this._source._map;
-            if (!map3.hasLayer(this) && map3._popup && map3._popup.options.autoClose) {
+            if (
+              !map3.hasLayer(this) &&
+              map3._popup &&
+              map3._popup.options.autoClose
+            ) {
               map3.removeLayer(map3._popup);
             }
             map3._popup = this;
             return DivOverlay.prototype.openOn.call(this, map3);
           },
-          onAdd: function(map3) {
+          onAdd: function (map3) {
             DivOverlay.prototype.onAdd.call(this, map3);
             map3.fire("popupopen", { popup: this });
             if (this._source) {
@@ -6707,7 +7883,7 @@
               }
             }
           },
-          onRemove: function(map3) {
+          onRemove: function (map3) {
             DivOverlay.prototype.onRemove.call(this, map3);
             map3.fire("popupclose", { popup: this });
             if (this._source) {
@@ -6717,9 +7893,13 @@
               }
             }
           },
-          getEvents: function() {
+          getEvents: function () {
             var events = DivOverlay.prototype.getEvents.call(this);
-            if (this.options.closeOnClick !== void 0 ? this.options.closeOnClick : this._map.options.closePopupOnClick) {
+            if (
+              this.options.closeOnClick !== void 0
+                ? this.options.closeOnClick
+                : this._map.options.closePopupOnClick
+            ) {
               events.preclick = this.close;
             }
             if (this.options.keepInView) {
@@ -6727,32 +7907,54 @@
             }
             return events;
           },
-          _initLayout: function() {
-            var prefix = "leaflet-popup", container = this._container = create$1(
+          _initLayout: function () {
+            var prefix = "leaflet-popup",
+              container = (this._container = create$1(
+                "div",
+                prefix +
+                  " " +
+                  (this.options.className || "") +
+                  " leaflet-zoom-animated",
+              ));
+            var wrapper = (this._wrapper = create$1(
               "div",
-              prefix + " " + (this.options.className || "") + " leaflet-zoom-animated"
-            );
-            var wrapper = this._wrapper = create$1("div", prefix + "-content-wrapper", container);
+              prefix + "-content-wrapper",
+              container,
+            ));
             this._contentNode = create$1("div", prefix + "-content", wrapper);
             disableClickPropagation(container);
             disableScrollPropagation(this._contentNode);
             on(container, "contextmenu", stopPropagation);
-            this._tipContainer = create$1("div", prefix + "-tip-container", container);
+            this._tipContainer = create$1(
+              "div",
+              prefix + "-tip-container",
+              container,
+            );
             this._tip = create$1("div", prefix + "-tip", this._tipContainer);
             if (this.options.closeButton) {
-              var closeButton = this._closeButton = create$1("a", prefix + "-close-button", container);
+              var closeButton = (this._closeButton = create$1(
+                "a",
+                prefix + "-close-button",
+                container,
+              ));
               closeButton.setAttribute("role", "button");
               closeButton.setAttribute("aria-label", "Close popup");
               closeButton.href = "#close";
               closeButton.innerHTML = '<span aria-hidden="true">&#215;</span>';
-              on(closeButton, "click", function(ev) {
-                preventDefault(ev);
-                this.close();
-              }, this);
+              on(
+                closeButton,
+                "click",
+                function (ev) {
+                  preventDefault(ev);
+                  this.close();
+                },
+                this,
+              );
             }
           },
-          _updateLayout: function() {
-            var container = this._contentNode, style2 = container.style;
+          _updateLayout: function () {
+            var container = this._contentNode,
+              style2 = container.style;
             style2.width = "";
             style2.whiteSpace = "nowrap";
             var width = container.offsetWidth;
@@ -6761,7 +7963,9 @@
             style2.width = width + 1 + "px";
             style2.whiteSpace = "";
             style2.height = "";
-            var height = container.offsetHeight, maxHeight = this.options.maxHeight, scrolledClass = "leaflet-popup-scrolled";
+            var height = container.offsetHeight,
+              maxHeight = this.options.maxHeight,
+              scrolledClass = "leaflet-popup-scrolled";
             if (maxHeight && height > maxHeight) {
               style2.height = maxHeight + "px";
               addClass(container, scrolledClass);
@@ -6770,11 +7974,16 @@
             }
             this._containerWidth = this._container.offsetWidth;
           },
-          _animateZoom: function(e) {
-            var pos = this._map._latLngToNewLayerPoint(this._latlng, e.zoom, e.center), anchor = this._getAnchor();
+          _animateZoom: function (e) {
+            var pos = this._map._latLngToNewLayerPoint(
+                this._latlng,
+                e.zoom,
+                e.center,
+              ),
+              anchor = this._getAnchor();
             setPosition(this._container, pos.add(anchor));
           },
-          _adjustPan: function() {
+          _adjustPan: function () {
             if (!this.options.autoPan) {
               return;
             }
@@ -6785,9 +7994,27 @@
               this._autopanning = false;
               return;
             }
-            var map3 = this._map, marginBottom = parseInt(getStyle(this._container, "marginBottom"), 10) || 0, containerHeight = this._container.offsetHeight + marginBottom, containerWidth = this._containerWidth, layerPos = new Point(this._containerLeft, -containerHeight - this._containerBottom);
+            var map3 = this._map,
+              marginBottom =
+                parseInt(getStyle(this._container, "marginBottom"), 10) || 0,
+              containerHeight = this._container.offsetHeight + marginBottom,
+              containerWidth = this._containerWidth,
+              layerPos = new Point(
+                this._containerLeft,
+                -containerHeight - this._containerBottom,
+              );
             layerPos._add(getPosition(this._container));
-            var containerPos = map3.layerPointToContainerPoint(layerPos), padding = toPoint(this.options.autoPanPadding), paddingTL = toPoint(this.options.autoPanPaddingTopLeft || padding), paddingBR = toPoint(this.options.autoPanPaddingBottomRight || padding), size = map3.getSize(), dx = 0, dy = 0;
+            var containerPos = map3.layerPointToContainerPoint(layerPos),
+              padding = toPoint(this.options.autoPanPadding),
+              paddingTL = toPoint(
+                this.options.autoPanPaddingTopLeft || padding,
+              ),
+              paddingBR = toPoint(
+                this.options.autoPanPaddingBottomRight || padding,
+              ),
+              size = map3.getSize(),
+              dx = 0,
+              dy = 0;
             if (containerPos.x + containerWidth + paddingBR.x > size.x) {
               dx = containerPos.x + containerWidth - size.x + paddingBR.x;
             }
@@ -6807,15 +8034,19 @@
               map3.fire("autopanstart").panBy([dx, dy]);
             }
           },
-          _getAnchor: function() {
-            return toPoint(this._source && this._source._getPopupAnchor ? this._source._getPopupAnchor() : [0, 0]);
-          }
+          _getAnchor: function () {
+            return toPoint(
+              this._source && this._source._getPopupAnchor
+                ? this._source._getPopupAnchor()
+                : [0, 0],
+            );
+          },
         });
-        var popup = function(options, source) {
+        var popup = function (options, source) {
           return new Popup(options, source);
         };
         Map.mergeOptions({
-          closePopupOnClick: true
+          closePopupOnClick: true,
         });
         Map.include({
           // @method openPopup(popup: Popup): this
@@ -6823,33 +8054,38 @@
           // @alternative
           // @method openPopup(content: String|HTMLElement, latlng: LatLng, options?: Popup options): this
           // Creates a popup with the specified content and options and opens it in the given point on a map.
-          openPopup: function(popup2, latlng, options) {
+          openPopup: function (popup2, latlng, options) {
             this._initOverlay(Popup, popup2, latlng, options).openOn(this);
             return this;
           },
           // @method closePopup(popup?: Popup): this
           // Closes the popup previously opened with [openPopup](#map-openpopup) (or the given one).
-          closePopup: function(popup2) {
+          closePopup: function (popup2) {
             popup2 = arguments.length ? popup2 : this._popup;
             if (popup2) {
               popup2.close();
             }
             return this;
-          }
+          },
         });
         Layer.include({
           // @method bindPopup(content: String|HTMLElement|Function|Popup, options?: Popup options): this
           // Binds a popup to the layer with the passed `content` and sets up the
           // necessary event listeners. If a `Function` is passed it will receive
           // the layer as the first argument and should return a `String` or `HTMLElement`.
-          bindPopup: function(content, options) {
-            this._popup = this._initOverlay(Popup, this._popup, content, options);
+          bindPopup: function (content, options) {
+            this._popup = this._initOverlay(
+              Popup,
+              this._popup,
+              content,
+              options,
+            );
             if (!this._popupHandlersAdded) {
               this.on({
                 click: this._openPopup,
                 keypress: this._onKeyPress,
                 remove: this.closePopup,
-                move: this._movePopup
+                move: this._movePopup,
               });
               this._popupHandlersAdded = true;
             }
@@ -6857,13 +8093,13 @@
           },
           // @method unbindPopup(): this
           // Removes the popup previously bound with `bindPopup`.
-          unbindPopup: function() {
+          unbindPopup: function () {
             if (this._popup) {
               this.off({
                 click: this._openPopup,
                 keypress: this._onKeyPress,
                 remove: this.closePopup,
-                move: this._movePopup
+                move: this._movePopup,
               });
               this._popupHandlersAdded = false;
               this._popup = null;
@@ -6872,7 +8108,7 @@
           },
           // @method openPopup(latlng?: LatLng): this
           // Opens the bound popup at the specified `latlng` or at the default popup anchor if no `latlng` is passed.
-          openPopup: function(latlng) {
+          openPopup: function (latlng) {
             if (this._popup) {
               if (!(this instanceof FeatureGroup)) {
                 this._popup._source = this;
@@ -6885,7 +8121,7 @@
           },
           // @method closePopup(): this
           // Closes the popup bound to this layer if it is open.
-          closePopup: function() {
+          closePopup: function () {
             if (this._popup) {
               this._popup.close();
             }
@@ -6893,7 +8129,7 @@
           },
           // @method togglePopup(): this
           // Opens or closes the popup bound to this layer depending on its current state.
-          togglePopup: function() {
+          togglePopup: function () {
             if (this._popup) {
               this._popup.toggle(this);
             }
@@ -6901,12 +8137,12 @@
           },
           // @method isPopupOpen(): boolean
           // Returns `true` if the popup bound to this layer is currently open.
-          isPopupOpen: function() {
+          isPopupOpen: function () {
             return this._popup ? this._popup.isOpen() : false;
           },
           // @method setPopupContent(content: String|HTMLElement|Popup): this
           // Sets the content of the popup bound to this layer.
-          setPopupContent: function(content) {
+          setPopupContent: function (content) {
             if (this._popup) {
               this._popup.setContent(content);
             }
@@ -6914,10 +8150,10 @@
           },
           // @method getPopup(): Popup
           // Returns the popup bound to this layer.
-          getPopup: function() {
+          getPopup: function () {
             return this._popup;
           },
-          _openPopup: function(e) {
+          _openPopup: function (e) {
             if (!this._popup || !this._map) {
               return;
             }
@@ -6934,14 +8170,14 @@
             this._popup._source = target;
             this.openPopup(e.latlng);
           },
-          _movePopup: function(e) {
+          _movePopup: function (e) {
             this._popup.setLatLng(e.latlng);
           },
-          _onKeyPress: function(e) {
+          _onKeyPress: function (e) {
             if (e.originalEvent.keyCode === 13) {
               this._openPopup(e);
             }
-          }
+          },
         });
         var Tooltip = DivOverlay.extend({
           // @section
@@ -6967,9 +8203,9 @@
             sticky: false,
             // @option opacity: Number = 0.9
             // Tooltip container opacity.
-            opacity: 0.9
+            opacity: 0.9,
           },
-          onAdd: function(map3) {
+          onAdd: function (map3) {
             DivOverlay.prototype.onAdd.call(this, map3);
             this.setOpacity(this.options.opacity);
             map3.fire("tooltipopen", { tooltip: this });
@@ -6978,7 +8214,7 @@
               this._source.fire("tooltipopen", { tooltip: this }, true);
             }
           },
-          onRemove: function(map3) {
+          onRemove: function (map3) {
             DivOverlay.prototype.onRemove.call(this, map3);
             map3.fire("tooltipclose", { tooltip: this });
             if (this._source) {
@@ -6986,25 +8222,42 @@
               this._source.fire("tooltipclose", { tooltip: this }, true);
             }
           },
-          getEvents: function() {
+          getEvents: function () {
             var events = DivOverlay.prototype.getEvents.call(this);
             if (!this.options.permanent) {
               events.preclick = this.close;
             }
             return events;
           },
-          _initLayout: function() {
-            var prefix = "leaflet-tooltip", className = prefix + " " + (this.options.className || "") + " leaflet-zoom-" + (this._zoomAnimated ? "animated" : "hide");
+          _initLayout: function () {
+            var prefix = "leaflet-tooltip",
+              className =
+                prefix +
+                " " +
+                (this.options.className || "") +
+                " leaflet-zoom-" +
+                (this._zoomAnimated ? "animated" : "hide");
             this._contentNode = this._container = create$1("div", className);
             this._container.setAttribute("role", "tooltip");
-            this._container.setAttribute("id", "leaflet-tooltip-" + stamp(this));
+            this._container.setAttribute(
+              "id",
+              "leaflet-tooltip-" + stamp(this),
+            );
           },
-          _updateLayout: function() {
-          },
-          _adjustPan: function() {
-          },
-          _setPosition: function(pos) {
-            var subX, subY, map3 = this._map, container = this._container, centerPoint = map3.latLngToContainerPoint(map3.getCenter()), tooltipPoint = map3.layerPointToContainerPoint(pos), direction = this.options.direction, tooltipWidth = container.offsetWidth, tooltipHeight = container.offsetHeight, offset = toPoint(this.options.offset), anchor = this._getAnchor();
+          _updateLayout: function () {},
+          _adjustPan: function () {},
+          _setPosition: function (pos) {
+            var subX,
+              subY,
+              map3 = this._map,
+              container = this._container,
+              centerPoint = map3.latLngToContainerPoint(map3.getCenter()),
+              tooltipPoint = map3.layerPointToContainerPoint(pos),
+              direction = this.options.direction,
+              tooltipWidth = container.offsetWidth,
+              tooltipHeight = container.offsetHeight,
+              offset = toPoint(this.options.offset),
+              anchor = this._getAnchor();
             if (direction === "top") {
               subX = tooltipWidth / 2;
               subY = tooltipHeight;
@@ -7029,7 +8282,10 @@
               subX = tooltipWidth + (offset.x + anchor.x) * 2;
               subY = tooltipHeight / 2;
             }
-            pos = pos.subtract(toPoint(subX, subY, true)).add(offset).add(anchor);
+            pos = pos
+              .subtract(toPoint(subX, subY, true))
+              .add(offset)
+              .add(anchor);
             removeClass(container, "leaflet-tooltip-right");
             removeClass(container, "leaflet-tooltip-left");
             removeClass(container, "leaflet-tooltip-top");
@@ -7037,25 +8293,35 @@
             addClass(container, "leaflet-tooltip-" + direction);
             setPosition(container, pos);
           },
-          _updatePosition: function() {
+          _updatePosition: function () {
             var pos = this._map.latLngToLayerPoint(this._latlng);
             this._setPosition(pos);
           },
-          setOpacity: function(opacity) {
+          setOpacity: function (opacity) {
             this.options.opacity = opacity;
             if (this._container) {
               setOpacity(this._container, opacity);
             }
           },
-          _animateZoom: function(e) {
-            var pos = this._map._latLngToNewLayerPoint(this._latlng, e.zoom, e.center);
+          _animateZoom: function (e) {
+            var pos = this._map._latLngToNewLayerPoint(
+              this._latlng,
+              e.zoom,
+              e.center,
+            );
             this._setPosition(pos);
           },
-          _getAnchor: function() {
-            return toPoint(this._source && this._source._getTooltipAnchor && !this.options.sticky ? this._source._getTooltipAnchor() : [0, 0]);
-          }
+          _getAnchor: function () {
+            return toPoint(
+              this._source &&
+                this._source._getTooltipAnchor &&
+                !this.options.sticky
+                ? this._source._getTooltipAnchor()
+                : [0, 0],
+            );
+          },
         });
-        var tooltip = function(options, source) {
+        var tooltip = function (options, source) {
           return new Tooltip(options, source);
         };
         Map.include({
@@ -7064,36 +8330,45 @@
           // @alternative
           // @method openTooltip(content: String|HTMLElement, latlng: LatLng, options?: Tooltip options): this
           // Creates a tooltip with the specified content and options and open it.
-          openTooltip: function(tooltip2, latlng, options) {
+          openTooltip: function (tooltip2, latlng, options) {
             this._initOverlay(Tooltip, tooltip2, latlng, options).openOn(this);
             return this;
           },
           // @method closeTooltip(tooltip: Tooltip): this
           // Closes the tooltip given as parameter.
-          closeTooltip: function(tooltip2) {
+          closeTooltip: function (tooltip2) {
             tooltip2.close();
             return this;
-          }
+          },
         });
         Layer.include({
           // @method bindTooltip(content: String|HTMLElement|Function|Tooltip, options?: Tooltip options): this
           // Binds a tooltip to the layer with the passed `content` and sets up the
           // necessary event listeners. If a `Function` is passed it will receive
           // the layer as the first argument and should return a `String` or `HTMLElement`.
-          bindTooltip: function(content, options) {
+          bindTooltip: function (content, options) {
             if (this._tooltip && this.isTooltipOpen()) {
               this.unbindTooltip();
             }
-            this._tooltip = this._initOverlay(Tooltip, this._tooltip, content, options);
+            this._tooltip = this._initOverlay(
+              Tooltip,
+              this._tooltip,
+              content,
+              options,
+            );
             this._initTooltipInteractions();
-            if (this._tooltip.options.permanent && this._map && this._map.hasLayer(this)) {
+            if (
+              this._tooltip.options.permanent &&
+              this._map &&
+              this._map.hasLayer(this)
+            ) {
               this.openTooltip();
             }
             return this;
           },
           // @method unbindTooltip(): this
           // Removes the tooltip previously bound with `bindTooltip`.
-          unbindTooltip: function() {
+          unbindTooltip: function () {
             if (this._tooltip) {
               this._initTooltipInteractions(true);
               this.closeTooltip();
@@ -7101,14 +8376,15 @@
             }
             return this;
           },
-          _initTooltipInteractions: function(remove2) {
+          _initTooltipInteractions: function (remove2) {
             if (!remove2 && this._tooltipHandlersAdded) {
               return;
             }
-            var onOff = remove2 ? "off" : "on", events = {
-              remove: this.closeTooltip,
-              move: this._moveTooltip
-            };
+            var onOff = remove2 ? "off" : "on",
+              events = {
+                remove: this.closeTooltip,
+                move: this._moveTooltip,
+              };
             if (!this._tooltip.options.permanent) {
               events.mouseover = this._openTooltip;
               events.mouseout = this.closeTooltip;
@@ -7129,7 +8405,7 @@
           },
           // @method openTooltip(latlng?: LatLng): this
           // Opens the bound tooltip at the specified `latlng` or at the default tooltip anchor if no `latlng` is passed.
-          openTooltip: function(latlng) {
+          openTooltip: function (latlng) {
             if (this._tooltip) {
               if (!(this instanceof FeatureGroup)) {
                 this._tooltip._source = this;
@@ -7147,14 +8423,14 @@
           },
           // @method closeTooltip(): this
           // Closes the tooltip bound to this layer if it is open.
-          closeTooltip: function() {
+          closeTooltip: function () {
             if (this._tooltip) {
               return this._tooltip.close();
             }
           },
           // @method toggleTooltip(): this
           // Opens or closes the tooltip bound to this layer depending on its current state.
-          toggleTooltip: function() {
+          toggleTooltip: function () {
             if (this._tooltip) {
               this._tooltip.toggle(this);
             }
@@ -7162,12 +8438,12 @@
           },
           // @method isTooltipOpen(): boolean
           // Returns `true` if the tooltip bound to this layer is currently open.
-          isTooltipOpen: function() {
+          isTooltipOpen: function () {
             return this._tooltip.isOpen();
           },
           // @method setTooltipContent(content: String|HTMLElement|Tooltip): this
           // Sets the content of the tooltip bound to this layer.
-          setTooltipContent: function(content) {
+          setTooltipContent: function (content) {
             if (this._tooltip) {
               this._tooltip.setContent(content);
             }
@@ -7175,40 +8451,51 @@
           },
           // @method getTooltip(): Tooltip
           // Returns the tooltip bound to this layer.
-          getTooltip: function() {
+          getTooltip: function () {
             return this._tooltip;
           },
-          _addFocusListeners: function() {
+          _addFocusListeners: function () {
             if (this.getElement) {
               this._addFocusListenersOnLayer(this);
             } else if (this.eachLayer) {
               this.eachLayer(this._addFocusListenersOnLayer, this);
             }
           },
-          _addFocusListenersOnLayer: function(layer) {
-            var el = typeof layer.getElement === "function" && layer.getElement();
+          _addFocusListenersOnLayer: function (layer) {
+            var el =
+              typeof layer.getElement === "function" && layer.getElement();
             if (el) {
-              on(el, "focus", function() {
-                this._tooltip._source = layer;
-                this.openTooltip();
-              }, this);
+              on(
+                el,
+                "focus",
+                function () {
+                  this._tooltip._source = layer;
+                  this.openTooltip();
+                },
+                this,
+              );
               on(el, "blur", this.closeTooltip, this);
             }
           },
-          _setAriaDescribedByOnLayer: function(layer) {
-            var el = typeof layer.getElement === "function" && layer.getElement();
+          _setAriaDescribedByOnLayer: function (layer) {
+            var el =
+              typeof layer.getElement === "function" && layer.getElement();
             if (el) {
               el.setAttribute("aria-describedby", this._tooltip._container.id);
             }
           },
-          _openTooltip: function(e) {
+          _openTooltip: function (e) {
             if (!this._tooltip || !this._map) {
               return;
             }
-            if (this._map.dragging && this._map.dragging.moving() && !this._openOnceFlag) {
+            if (
+              this._map.dragging &&
+              this._map.dragging.moving() &&
+              !this._openOnceFlag
+            ) {
               this._openOnceFlag = true;
               var that = this;
-              this._map.once("moveend", function() {
+              this._map.once("moveend", function () {
                 that._openOnceFlag = false;
                 that._openTooltip(e);
               });
@@ -7217,15 +8504,19 @@
             this._tooltip._source = e.layer || e.target;
             this.openTooltip(this._tooltip.options.sticky ? e.latlng : void 0);
           },
-          _moveTooltip: function(e) {
-            var latlng = e.latlng, containerPoint, layerPoint;
+          _moveTooltip: function (e) {
+            var latlng = e.latlng,
+              containerPoint,
+              layerPoint;
             if (this._tooltip.options.sticky && e.originalEvent) {
-              containerPoint = this._map.mouseEventToContainerPoint(e.originalEvent);
+              containerPoint = this._map.mouseEventToContainerPoint(
+                e.originalEvent,
+              );
               layerPoint = this._map.containerPointToLayerPoint(containerPoint);
               latlng = this._map.layerPointToLatLng(layerPoint);
             }
             this._tooltip.setLatLng(latlng);
-          }
+          },
         });
         var DivIcon = Icon.extend({
           options: {
@@ -7242,10 +8533,14 @@
             // @option bgPos: Point = [0, 0]
             // Optional relative position of the background, in pixels
             bgPos: null,
-            className: "leaflet-div-icon"
+            className: "leaflet-div-icon",
           },
-          createIcon: function(oldIcon) {
-            var div = oldIcon && oldIcon.tagName === "DIV" ? oldIcon : document.createElement("div"), options = this.options;
+          createIcon: function (oldIcon) {
+            var div =
+                oldIcon && oldIcon.tagName === "DIV"
+                  ? oldIcon
+                  : document.createElement("div"),
+              options = this.options;
             if (options.html instanceof Element) {
               empty(div);
               div.appendChild(options.html);
@@ -7259,9 +8554,9 @@
             this._setIconStyles(div, "icon");
             return div;
           },
-          createShadow: function() {
+          createShadow: function () {
             return null;
-          }
+          },
         });
         function divIcon(options) {
           return new DivIcon(options);
@@ -7326,21 +8621,21 @@
             className: "",
             // @option keepBuffer: Number = 2
             // When panning the map, keep this many rows and columns of tiles before unloading them.
-            keepBuffer: 2
+            keepBuffer: 2,
           },
-          initialize: function(options) {
+          initialize: function (options) {
             setOptions(this, options);
           },
-          onAdd: function() {
+          onAdd: function () {
             this._initContainer();
             this._levels = {};
             this._tiles = {};
             this._resetView();
           },
-          beforeAdd: function(map3) {
+          beforeAdd: function (map3) {
             map3._addZoomLimit(this);
           },
-          onRemove: function(map3) {
+          onRemove: function (map3) {
             this._removeAllTiles();
             remove(this._container);
             map3._removeZoomLimit(this);
@@ -7349,7 +8644,7 @@
           },
           // @method bringToFront: this
           // Brings the tile layer to the top of all tile layers.
-          bringToFront: function() {
+          bringToFront: function () {
             if (this._map) {
               toFront(this._container);
               this._setAutoZIndex(Math.max);
@@ -7358,7 +8653,7 @@
           },
           // @method bringToBack: this
           // Brings the tile layer to the bottom of all tile layers.
-          bringToBack: function() {
+          bringToBack: function () {
             if (this._map) {
               toBack(this._container);
               this._setAutoZIndex(Math.min);
@@ -7367,31 +8662,31 @@
           },
           // @method getContainer: HTMLElement
           // Returns the HTML element that contains the tiles for this layer.
-          getContainer: function() {
+          getContainer: function () {
             return this._container;
           },
           // @method setOpacity(opacity: Number): this
           // Changes the [opacity](#gridlayer-opacity) of the grid layer.
-          setOpacity: function(opacity) {
+          setOpacity: function (opacity) {
             this.options.opacity = opacity;
             this._updateOpacity();
             return this;
           },
           // @method setZIndex(zIndex: Number): this
           // Changes the [zIndex](#gridlayer-zindex) of the grid layer.
-          setZIndex: function(zIndex) {
+          setZIndex: function (zIndex) {
             this.options.zIndex = zIndex;
             this._updateZIndex();
             return this;
           },
           // @method isLoading: Boolean
           // Returns `true` if any tile in the grid layer has not finished loading.
-          isLoading: function() {
+          isLoading: function () {
             return this._loading;
           },
           // @method redraw: this
           // Causes the layer to clear all the tiles and request them again.
-          redraw: function() {
+          redraw: function () {
             if (this._map) {
               this._removeAllTiles();
               var tileZoom = this._clampZoom(this._map.getZoom());
@@ -7403,16 +8698,20 @@
             }
             return this;
           },
-          getEvents: function() {
+          getEvents: function () {
             var events = {
               viewprereset: this._invalidateAll,
               viewreset: this._resetView,
               zoom: this._resetView,
-              moveend: this._onMoveEnd
+              moveend: this._onMoveEnd,
             };
             if (!this.options.updateWhenIdle) {
               if (!this._onMove) {
-                this._onMove = throttle(this._onMoveEnd, this.options.updateInterval, this);
+                this._onMove = throttle(
+                  this._onMoveEnd,
+                  this.options.updateInterval,
+                  this,
+                );
               }
               events.move = this._onMove;
             }
@@ -7427,23 +8726,28 @@
           // Called only internally, must be overridden by classes extending `GridLayer`.
           // Returns the `HTMLElement` corresponding to the given `coords`. If the `done` callback
           // is specified, it must be called when the tile has finished loading and drawing.
-          createTile: function() {
+          createTile: function () {
             return document.createElement("div");
           },
           // @section
           // @method getTileSize: Point
           // Normalizes the [tileSize option](#gridlayer-tilesize) into a point. Used by the `createTile()` method.
-          getTileSize: function() {
+          getTileSize: function () {
             var s = this.options.tileSize;
             return s instanceof Point ? s : new Point(s, s);
           },
-          _updateZIndex: function() {
-            if (this._container && this.options.zIndex !== void 0 && this.options.zIndex !== null) {
+          _updateZIndex: function () {
+            if (
+              this._container &&
+              this.options.zIndex !== void 0 &&
+              this.options.zIndex !== null
+            ) {
               this._container.style.zIndex = this.options.zIndex;
             }
           },
-          _setAutoZIndex: function(compare) {
-            var layers2 = this.getPane().children, edgeZIndex = -compare(-Infinity, Infinity);
+          _setAutoZIndex: function (compare) {
+            var layers2 = this.getPane().children,
+              edgeZIndex = -compare(-Infinity, Infinity);
             for (var i = 0, len = layers2.length, zIndex; i < len; i++) {
               zIndex = layers2[i].style.zIndex;
               if (layers2[i] !== this._container && zIndex) {
@@ -7455,7 +8759,7 @@
               this._updateZIndex();
             }
           },
-          _updateOpacity: function() {
+          _updateOpacity: function () {
             if (!this._map) {
               return;
             }
@@ -7463,7 +8767,9 @@
               return;
             }
             setOpacity(this._container, this.options.opacity);
-            var now = +/* @__PURE__ */ new Date(), nextFrame = false, willPrune = false;
+            var now = +(/* @__PURE__ */ new Date()),
+              nextFrame = false,
+              willPrune = false;
             for (var key in this._tiles) {
               var tile = this._tiles[key];
               if (!tile.current || !tile.loaded) {
@@ -7491,19 +8797,23 @@
             }
           },
           _onOpaqueTile: falseFn,
-          _initContainer: function() {
+          _initContainer: function () {
             if (this._container) {
               return;
             }
-            this._container = create$1("div", "leaflet-layer " + (this.options.className || ""));
+            this._container = create$1(
+              "div",
+              "leaflet-layer " + (this.options.className || ""),
+            );
             this._updateZIndex();
             if (this.options.opacity < 1) {
               this._updateOpacity();
             }
             this.getPane().appendChild(this._container);
           },
-          _updateLevels: function() {
-            var zoom2 = this._tileZoom, maxZoom = this.options.maxZoom;
+          _updateLevels: function () {
+            var zoom2 = this._tileZoom,
+              maxZoom = this.options.maxZoom;
             if (zoom2 === void 0) {
               return void 0;
             }
@@ -7519,12 +8829,19 @@
                 delete this._levels[z];
               }
             }
-            var level = this._levels[zoom2], map3 = this._map;
+            var level = this._levels[zoom2],
+              map3 = this._map;
             if (!level) {
               level = this._levels[zoom2] = {};
-              level.el = create$1("div", "leaflet-tile-container leaflet-zoom-animated", this._container);
+              level.el = create$1(
+                "div",
+                "leaflet-tile-container leaflet-zoom-animated",
+                this._container,
+              );
               level.el.style.zIndex = maxZoom;
-              level.origin = map3.project(map3.unproject(map3.getPixelOrigin()), zoom2).round();
+              level.origin = map3
+                .project(map3.unproject(map3.getPixelOrigin()), zoom2)
+                .round();
               level.zoom = zoom2;
               this._setZoomTransform(level, map3.getCenter(), map3.getZoom());
               falseFn(level.el.offsetWidth);
@@ -7536,7 +8853,7 @@
           _onUpdateLevel: falseFn,
           _onRemoveLevel: falseFn,
           _onCreateLevel: falseFn,
-          _pruneTiles: function() {
+          _pruneTiles: function () {
             if (!this._map) {
               return;
             }
@@ -7554,8 +8871,20 @@
               tile = this._tiles[key];
               if (tile.current && !tile.active) {
                 var coords = tile.coords;
-                if (!this._retainParent(coords.x, coords.y, coords.z, coords.z - 5)) {
-                  this._retainChildren(coords.x, coords.y, coords.z, coords.z + 2);
+                if (
+                  !this._retainParent(
+                    coords.x,
+                    coords.y,
+                    coords.z,
+                    coords.z - 5,
+                  )
+                ) {
+                  this._retainChildren(
+                    coords.x,
+                    coords.y,
+                    coords.z,
+                    coords.z + 2,
+                  );
                 }
               }
             }
@@ -7565,7 +8894,7 @@
               }
             }
           },
-          _removeTilesAtZoom: function(zoom2) {
+          _removeTilesAtZoom: function (zoom2) {
             for (var key in this._tiles) {
               if (this._tiles[key].coords.z !== zoom2) {
                 continue;
@@ -7573,12 +8902,12 @@
               this._removeTile(key);
             }
           },
-          _removeAllTiles: function() {
+          _removeAllTiles: function () {
             for (var key in this._tiles) {
               this._removeTile(key);
             }
           },
-          _invalidateAll: function() {
+          _invalidateAll: function () {
             for (var z in this._levels) {
               remove(this._levels[z].el);
               this._onRemoveLevel(Number(z));
@@ -7587,10 +8916,14 @@
             this._removeAllTiles();
             this._tileZoom = void 0;
           },
-          _retainParent: function(x, y, z, minZoom) {
-            var x2 = Math.floor(x / 2), y2 = Math.floor(y / 2), z2 = z - 1, coords2 = new Point(+x2, +y2);
+          _retainParent: function (x, y, z, minZoom) {
+            var x2 = Math.floor(x / 2),
+              y2 = Math.floor(y / 2),
+              z2 = z - 1,
+              coords2 = new Point(+x2, +y2);
             coords2.z = +z2;
-            var key = this._tileCoordsToKey(coords2), tile = this._tiles[key];
+            var key = this._tileCoordsToKey(coords2),
+              tile = this._tiles[key];
             if (tile && tile.active) {
               tile.retain = true;
               return true;
@@ -7602,12 +8935,13 @@
             }
             return false;
           },
-          _retainChildren: function(x, y, z, maxZoom) {
+          _retainChildren: function (x, y, z, maxZoom) {
             for (var i = 2 * x; i < 2 * x + 2; i++) {
               for (var j = 2 * y; j < 2 * y + 2; j++) {
                 var coords = new Point(i, j);
                 coords.z = z + 1;
-                var key = this._tileCoordsToKey(coords), tile = this._tiles[key];
+                var key = this._tileCoordsToKey(coords),
+                  tile = this._tiles[key];
                 if (tile && tile.active) {
                   tile.retain = true;
                   continue;
@@ -7620,31 +8954,48 @@
               }
             }
           },
-          _resetView: function(e) {
+          _resetView: function (e) {
             var animating = e && (e.pinch || e.flyTo);
-            this._setView(this._map.getCenter(), this._map.getZoom(), animating, animating);
+            this._setView(
+              this._map.getCenter(),
+              this._map.getZoom(),
+              animating,
+              animating,
+            );
           },
-          _animateZoom: function(e) {
+          _animateZoom: function (e) {
             this._setView(e.center, e.zoom, true, e.noUpdate);
           },
-          _clampZoom: function(zoom2) {
+          _clampZoom: function (zoom2) {
             var options = this.options;
-            if (void 0 !== options.minNativeZoom && zoom2 < options.minNativeZoom) {
+            if (
+              void 0 !== options.minNativeZoom &&
+              zoom2 < options.minNativeZoom
+            ) {
               return options.minNativeZoom;
             }
-            if (void 0 !== options.maxNativeZoom && options.maxNativeZoom < zoom2) {
+            if (
+              void 0 !== options.maxNativeZoom &&
+              options.maxNativeZoom < zoom2
+            ) {
               return options.maxNativeZoom;
             }
             return zoom2;
           },
-          _setView: function(center, zoom2, noPrune, noUpdate) {
+          _setView: function (center, zoom2, noPrune, noUpdate) {
             var tileZoom = Math.round(zoom2);
-            if (this.options.maxZoom !== void 0 && tileZoom > this.options.maxZoom || this.options.minZoom !== void 0 && tileZoom < this.options.minZoom) {
+            if (
+              (this.options.maxZoom !== void 0 &&
+                tileZoom > this.options.maxZoom) ||
+              (this.options.minZoom !== void 0 &&
+                tileZoom < this.options.minZoom)
+            ) {
               tileZoom = void 0;
             } else {
               tileZoom = this._clampZoom(tileZoom);
             }
-            var tileZoomChanged = this.options.updateWhenZooming && tileZoom !== this._tileZoom;
+            var tileZoomChanged =
+              this.options.updateWhenZooming && tileZoom !== this._tileZoom;
             if (!noUpdate || tileZoomChanged) {
               this._tileZoom = tileZoom;
               if (this._abortLoading) {
@@ -7662,46 +9013,72 @@
             }
             this._setZoomTransforms(center, zoom2);
           },
-          _setZoomTransforms: function(center, zoom2) {
+          _setZoomTransforms: function (center, zoom2) {
             for (var i in this._levels) {
               this._setZoomTransform(this._levels[i], center, zoom2);
             }
           },
-          _setZoomTransform: function(level, center, zoom2) {
-            var scale2 = this._map.getZoomScale(zoom2, level.zoom), translate = level.origin.multiplyBy(scale2).subtract(this._map._getNewPixelOrigin(center, zoom2)).round();
+          _setZoomTransform: function (level, center, zoom2) {
+            var scale2 = this._map.getZoomScale(zoom2, level.zoom),
+              translate = level.origin
+                .multiplyBy(scale2)
+                .subtract(this._map._getNewPixelOrigin(center, zoom2))
+                .round();
             if (Browser.any3d) {
               setTransform(level.el, translate, scale2);
             } else {
               setPosition(level.el, translate);
             }
           },
-          _resetGrid: function() {
-            var map3 = this._map, crs = map3.options.crs, tileSize = this._tileSize = this.getTileSize(), tileZoom = this._tileZoom;
+          _resetGrid: function () {
+            var map3 = this._map,
+              crs = map3.options.crs,
+              tileSize = (this._tileSize = this.getTileSize()),
+              tileZoom = this._tileZoom;
             var bounds = this._map.getPixelWorldBounds(this._tileZoom);
             if (bounds) {
               this._globalTileRange = this._pxBoundsToTileRange(bounds);
             }
-            this._wrapX = crs.wrapLng && !this.options.noWrap && [
-              Math.floor(map3.project([0, crs.wrapLng[0]], tileZoom).x / tileSize.x),
-              Math.ceil(map3.project([0, crs.wrapLng[1]], tileZoom).x / tileSize.y)
-            ];
-            this._wrapY = crs.wrapLat && !this.options.noWrap && [
-              Math.floor(map3.project([crs.wrapLat[0], 0], tileZoom).y / tileSize.x),
-              Math.ceil(map3.project([crs.wrapLat[1], 0], tileZoom).y / tileSize.y)
-            ];
+            this._wrapX = crs.wrapLng &&
+              !this.options.noWrap && [
+                Math.floor(
+                  map3.project([0, crs.wrapLng[0]], tileZoom).x / tileSize.x,
+                ),
+                Math.ceil(
+                  map3.project([0, crs.wrapLng[1]], tileZoom).x / tileSize.y,
+                ),
+              ];
+            this._wrapY = crs.wrapLat &&
+              !this.options.noWrap && [
+                Math.floor(
+                  map3.project([crs.wrapLat[0], 0], tileZoom).y / tileSize.x,
+                ),
+                Math.ceil(
+                  map3.project([crs.wrapLat[1], 0], tileZoom).y / tileSize.y,
+                ),
+              ];
           },
-          _onMoveEnd: function() {
+          _onMoveEnd: function () {
             if (!this._map || this._map._animatingZoom) {
               return;
             }
             this._update();
           },
-          _getTiledPixelBounds: function(center) {
-            var map3 = this._map, mapZoom = map3._animatingZoom ? Math.max(map3._animateToZoom, map3.getZoom()) : map3.getZoom(), scale2 = map3.getZoomScale(mapZoom, this._tileZoom), pixelCenter = map3.project(center, this._tileZoom).floor(), halfSize = map3.getSize().divideBy(scale2 * 2);
-            return new Bounds(pixelCenter.subtract(halfSize), pixelCenter.add(halfSize));
+          _getTiledPixelBounds: function (center) {
+            var map3 = this._map,
+              mapZoom = map3._animatingZoom
+                ? Math.max(map3._animateToZoom, map3.getZoom())
+                : map3.getZoom(),
+              scale2 = map3.getZoomScale(mapZoom, this._tileZoom),
+              pixelCenter = map3.project(center, this._tileZoom).floor(),
+              halfSize = map3.getSize().divideBy(scale2 * 2);
+            return new Bounds(
+              pixelCenter.subtract(halfSize),
+              pixelCenter.add(halfSize),
+            );
           },
           // Private method to load tiles in the grid's active zoom level according to map bounds
-          _update: function(center) {
+          _update: function (center) {
             var map3 = this._map;
             if (!map3) {
               return;
@@ -7713,16 +9090,31 @@
             if (this._tileZoom === void 0) {
               return;
             }
-            var pixelBounds = this._getTiledPixelBounds(center), tileRange = this._pxBoundsToTileRange(pixelBounds), tileCenter = tileRange.getCenter(), queue = [], margin = this.options.keepBuffer, noPruneRange = new Bounds(
-              tileRange.getBottomLeft().subtract([margin, -margin]),
-              tileRange.getTopRight().add([margin, -margin])
-            );
-            if (!(isFinite(tileRange.min.x) && isFinite(tileRange.min.y) && isFinite(tileRange.max.x) && isFinite(tileRange.max.y))) {
+            var pixelBounds = this._getTiledPixelBounds(center),
+              tileRange = this._pxBoundsToTileRange(pixelBounds),
+              tileCenter = tileRange.getCenter(),
+              queue = [],
+              margin = this.options.keepBuffer,
+              noPruneRange = new Bounds(
+                tileRange.getBottomLeft().subtract([margin, -margin]),
+                tileRange.getTopRight().add([margin, -margin]),
+              );
+            if (
+              !(
+                isFinite(tileRange.min.x) &&
+                isFinite(tileRange.min.y) &&
+                isFinite(tileRange.max.x) &&
+                isFinite(tileRange.max.y)
+              )
+            ) {
               throw new Error("Attempted to load an infinite number of tiles");
             }
             for (var key in this._tiles) {
               var c = this._tiles[key].coords;
-              if (c.z !== this._tileZoom || !noPruneRange.contains(new Point(c.x, c.y))) {
+              if (
+                c.z !== this._tileZoom ||
+                !noPruneRange.contains(new Point(c.x, c.y))
+              ) {
                 this._tiles[key].current = false;
               }
             }
@@ -7745,7 +9137,7 @@
                 }
               }
             }
-            queue.sort(function(a, b) {
+            queue.sort(function (a, b) {
               return a.distanceTo(tileCenter) - b.distanceTo(tileCenter);
             });
             if (queue.length !== 0) {
@@ -7760,11 +9152,16 @@
               this._level.el.appendChild(fragment);
             }
           },
-          _isValidTile: function(coords) {
+          _isValidTile: function (coords) {
             var crs = this._map.options.crs;
             if (!crs.infinite) {
               var bounds = this._globalTileRange;
-              if (!crs.wrapLng && (coords.x < bounds.min.x || coords.x > bounds.max.x) || !crs.wrapLat && (coords.y < bounds.min.y || coords.y > bounds.max.y)) {
+              if (
+                (!crs.wrapLng &&
+                  (coords.x < bounds.min.x || coords.x > bounds.max.x)) ||
+                (!crs.wrapLat &&
+                  (coords.y < bounds.min.y || coords.y > bounds.max.y))
+              ) {
                 return false;
               }
             }
@@ -7774,32 +9171,39 @@
             var tileBounds = this._tileCoordsToBounds(coords);
             return toLatLngBounds(this.options.bounds).overlaps(tileBounds);
           },
-          _keyToBounds: function(key) {
+          _keyToBounds: function (key) {
             return this._tileCoordsToBounds(this._keyToTileCoords(key));
           },
-          _tileCoordsToNwSe: function(coords) {
-            var map3 = this._map, tileSize = this.getTileSize(), nwPoint = coords.scaleBy(tileSize), sePoint = nwPoint.add(tileSize), nw = map3.unproject(nwPoint, coords.z), se = map3.unproject(sePoint, coords.z);
+          _tileCoordsToNwSe: function (coords) {
+            var map3 = this._map,
+              tileSize = this.getTileSize(),
+              nwPoint = coords.scaleBy(tileSize),
+              sePoint = nwPoint.add(tileSize),
+              nw = map3.unproject(nwPoint, coords.z),
+              se = map3.unproject(sePoint, coords.z);
             return [nw, se];
           },
           // converts tile coordinates to its geographical bounds
-          _tileCoordsToBounds: function(coords) {
-            var bp = this._tileCoordsToNwSe(coords), bounds = new LatLngBounds(bp[0], bp[1]);
+          _tileCoordsToBounds: function (coords) {
+            var bp = this._tileCoordsToNwSe(coords),
+              bounds = new LatLngBounds(bp[0], bp[1]);
             if (!this.options.noWrap) {
               bounds = this._map.wrapLatLngBounds(bounds);
             }
             return bounds;
           },
           // converts tile coordinates to key for the tile cache
-          _tileCoordsToKey: function(coords) {
+          _tileCoordsToKey: function (coords) {
             return coords.x + ":" + coords.y + ":" + coords.z;
           },
           // converts tile cache key to coordinates
-          _keyToTileCoords: function(key) {
-            var k = key.split(":"), coords = new Point(+k[0], +k[1]);
+          _keyToTileCoords: function (key) {
+            var k = key.split(":"),
+              coords = new Point(+k[0], +k[1]);
             coords.z = +k[2];
             return coords;
           },
-          _removeTile: function(key) {
+          _removeTile: function (key) {
             var tile = this._tiles[key];
             if (!tile) {
               return;
@@ -7808,10 +9212,10 @@
             delete this._tiles[key];
             this.fire("tileunload", {
               tile: tile.el,
-              coords: this._keyToTileCoords(key)
+              coords: this._keyToTileCoords(key),
             });
           },
-          _initTile: function(tile) {
+          _initTile: function (tile) {
             addClass(tile, "leaflet-tile");
             var tileSize = this.getTileSize();
             tile.style.width = tileSize.x + "px";
@@ -7822,9 +9226,13 @@
               setOpacity(tile, this.options.opacity);
             }
           },
-          _addTile: function(coords, container) {
-            var tilePos = this._getTilePos(coords), key = this._tileCoordsToKey(coords);
-            var tile = this.createTile(this._wrapCoords(coords), bind(this._tileReady, this, coords));
+          _addTile: function (coords, container) {
+            var tilePos = this._getTilePos(coords),
+              key = this._tileCoordsToKey(coords);
+            var tile = this.createTile(
+              this._wrapCoords(coords),
+              bind(this._tileReady, this, coords),
+            );
             this._initTile(tile);
             if (this.createTile.length < 2) {
               requestAnimFrame(bind(this._tileReady, this, coords, null, tile));
@@ -7833,20 +9241,20 @@
             this._tiles[key] = {
               el: tile,
               coords,
-              current: true
+              current: true,
             };
             container.appendChild(tile);
             this.fire("tileloadstart", {
               tile,
-              coords
+              coords,
             });
           },
-          _tileReady: function(coords, err, tile) {
+          _tileReady: function (coords, err, tile) {
             if (err) {
               this.fire("tileerror", {
                 error: err,
                 tile,
-                coords
+                coords,
               });
             }
             var key = this._tileCoordsToKey(coords);
@@ -7854,7 +9262,7 @@
             if (!tile) {
               return;
             }
-            tile.loaded = +/* @__PURE__ */ new Date();
+            tile.loaded = +(/* @__PURE__ */ new Date());
             if (this._map._fadeAnimated) {
               setOpacity(tile.el, 0);
               cancelAnimFrame(this._fadeFrame);
@@ -7867,7 +9275,7 @@
               addClass(tile.el, "leaflet-tile-loaded");
               this.fire("tileload", {
                 tile: tile.el,
-                coords
+                coords,
               });
             }
             if (this._noTilesToLoad()) {
@@ -7880,32 +9288,34 @@
               }
             }
           },
-          _getTilePos: function(coords) {
-            return coords.scaleBy(this.getTileSize()).subtract(this._level.origin);
+          _getTilePos: function (coords) {
+            return coords
+              .scaleBy(this.getTileSize())
+              .subtract(this._level.origin);
           },
-          _wrapCoords: function(coords) {
+          _wrapCoords: function (coords) {
             var newCoords = new Point(
               this._wrapX ? wrapNum(coords.x, this._wrapX) : coords.x,
-              this._wrapY ? wrapNum(coords.y, this._wrapY) : coords.y
+              this._wrapY ? wrapNum(coords.y, this._wrapY) : coords.y,
             );
             newCoords.z = coords.z;
             return newCoords;
           },
-          _pxBoundsToTileRange: function(bounds) {
+          _pxBoundsToTileRange: function (bounds) {
             var tileSize = this.getTileSize();
             return new Bounds(
               bounds.min.unscaleBy(tileSize).floor(),
-              bounds.max.unscaleBy(tileSize).ceil().subtract([1, 1])
+              bounds.max.unscaleBy(tileSize).ceil().subtract([1, 1]),
             );
           },
-          _noTilesToLoad: function() {
+          _noTilesToLoad: function () {
             for (var key in this._tiles) {
               if (!this._tiles[key].loaded) {
                 return false;
               }
             }
             return true;
-          }
+          },
         });
         function gridLayer(options) {
           return new GridLayer(options);
@@ -7949,19 +9359,25 @@
             // This may be needed if your map's rendering context has a strict default but your tile provider expects a valid referrer
             // (e.g. to validate an API token).
             // Refer to [HTMLImageElement.referrerPolicy](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/referrerPolicy) for valid String values.
-            referrerPolicy: false
+            referrerPolicy: false,
           },
-          initialize: function(url, options) {
+          initialize: function (url, options) {
             this._url = url;
             options = setOptions(this, options);
             if (options.detectRetina && Browser.retina && options.maxZoom > 0) {
               options.tileSize = Math.floor(options.tileSize / 2);
               if (!options.zoomReverse) {
                 options.zoomOffset++;
-                options.maxZoom = Math.max(options.minZoom, options.maxZoom - 1);
+                options.maxZoom = Math.max(
+                  options.minZoom,
+                  options.maxZoom - 1,
+                );
               } else {
                 options.zoomOffset--;
-                options.minZoom = Math.min(options.maxZoom, options.minZoom + 1);
+                options.minZoom = Math.min(
+                  options.maxZoom,
+                  options.minZoom + 1,
+                );
               }
               options.minZoom = Math.max(0, options.minZoom);
             } else if (!options.zoomReverse) {
@@ -7978,7 +9394,7 @@
           // Updates the layer's URL template and redraws it (unless `noRedraw` is set to `true`).
           // If the URL does not change, the layer will not be redrawn unless
           // the noRedraw parameter is set to false.
-          setUrl: function(url, noRedraw) {
+          setUrl: function (url, noRedraw) {
             if (this._url === url && noRedraw === void 0) {
               noRedraw = true;
             }
@@ -7992,12 +9408,15 @@
           // Called only internally, overrides GridLayer's [`createTile()`](#gridlayer-createtile)
           // to return an `<img>` HTML element with the appropriate image URL given `coords`. The `done`
           // callback is called when the tile has been loaded.
-          createTile: function(coords, done) {
+          createTile: function (coords, done) {
             var tile = document.createElement("img");
             on(tile, "load", bind(this._tileOnLoad, this, done, tile));
             on(tile, "error", bind(this._tileOnError, this, done, tile));
             if (this.options.crossOrigin || this.options.crossOrigin === "") {
-              tile.crossOrigin = this.options.crossOrigin === true ? "" : this.options.crossOrigin;
+              tile.crossOrigin =
+                this.options.crossOrigin === true
+                  ? ""
+                  : this.options.crossOrigin;
             }
             if (typeof this.options.referrerPolicy === "string") {
               tile.referrerPolicy = this.options.referrerPolicy;
@@ -8012,13 +9431,13 @@
           // @method getTileUrl(coords: Object): String
           // Called only internally, returns the URL for a tile given its coordinates.
           // Classes extending `TileLayer` can override this function to provide custom tile URL naming schemes.
-          getTileUrl: function(coords) {
+          getTileUrl: function (coords) {
             var data = {
               r: Browser.retina ? "@2x" : "",
               s: this._getSubdomain(coords),
               x: coords.x,
               y: coords.y,
-              z: this._getZoomForUrl()
+              z: this._getZoomForUrl(),
             };
             if (this._map && !this._map.options.crs.infinite) {
               var invertedY = this._globalTileRange.max.y - coords.y;
@@ -8029,36 +9448,41 @@
             }
             return template(this._url, extend(data, this.options));
           },
-          _tileOnLoad: function(done, tile) {
+          _tileOnLoad: function (done, tile) {
             if (Browser.ielt9) {
               setTimeout(bind(done, this, null, tile), 0);
             } else {
               done(null, tile);
             }
           },
-          _tileOnError: function(done, tile, e) {
+          _tileOnError: function (done, tile, e) {
             var errorUrl = this.options.errorTileUrl;
             if (errorUrl && tile.getAttribute("src") !== errorUrl) {
               tile.src = errorUrl;
             }
             done(e, tile);
           },
-          _onTileRemove: function(e) {
+          _onTileRemove: function (e) {
             e.tile.onload = null;
           },
-          _getZoomForUrl: function() {
-            var zoom2 = this._tileZoom, maxZoom = this.options.maxZoom, zoomReverse = this.options.zoomReverse, zoomOffset = this.options.zoomOffset;
+          _getZoomForUrl: function () {
+            var zoom2 = this._tileZoom,
+              maxZoom = this.options.maxZoom,
+              zoomReverse = this.options.zoomReverse,
+              zoomOffset = this.options.zoomOffset;
             if (zoomReverse) {
               zoom2 = maxZoom - zoom2;
             }
             return zoom2 + zoomOffset;
           },
-          _getSubdomain: function(tilePoint) {
-            var index2 = Math.abs(tilePoint.x + tilePoint.y) % this.options.subdomains.length;
+          _getSubdomain: function (tilePoint) {
+            var index2 =
+              Math.abs(tilePoint.x + tilePoint.y) %
+              this.options.subdomains.length;
             return this.options.subdomains[index2];
           },
           // stops loading all tiles in the background layer
-          _abortLoading: function() {
+          _abortLoading: function () {
             var i, tile;
             for (i in this._tiles) {
               if (this._tiles[i].coords.z !== this._tileZoom) {
@@ -8072,13 +9496,13 @@
                   delete this._tiles[i];
                   this.fire("tileabort", {
                     tile,
-                    coords
+                    coords,
                   });
                 }
               }
             }
           },
-          _removeTile: function(key) {
+          _removeTile: function (key) {
             var tile = this._tiles[key];
             if (!tile) {
               return;
@@ -8086,12 +9510,15 @@
             tile.el.setAttribute("src", emptyImageUrl);
             return GridLayer.prototype._removeTile.call(this, key);
           },
-          _tileReady: function(coords, err, tile) {
-            if (!this._map || tile && tile.getAttribute("src") === emptyImageUrl) {
+          _tileReady: function (coords, err, tile) {
+            if (
+              !this._map ||
+              (tile && tile.getAttribute("src") === emptyImageUrl)
+            ) {
               return;
             }
             return GridLayer.prototype._tileReady.call(this, coords, err, tile);
-          }
+          },
         });
         function tileLayer2(url, options) {
           return new TileLayer(url, options);
@@ -8119,7 +9546,7 @@
             transparent: false,
             // @option version: String = '1.1.1'
             // Version of the WMS service to use
-            version: "1.1.1"
+            version: "1.1.1",
           },
           options: {
             // @option crs: CRS = null
@@ -8128,9 +9555,9 @@
             crs: null,
             // @option uppercase: Boolean = false
             // If `true`, WMS request parameter keys will be uppercase.
-            uppercase: false
+            uppercase: false,
           },
-          initialize: function(url, options) {
+          initialize: function (url, options) {
             this._url = url;
             var wmsParams = extend({}, this.defaultWmsParams);
             for (var i in options) {
@@ -8145,26 +9572,44 @@
             wmsParams.height = tileSize.y * realRetina;
             this.wmsParams = wmsParams;
           },
-          onAdd: function(map3) {
+          onAdd: function (map3) {
             this._crs = this.options.crs || map3.options.crs;
             this._wmsVersion = parseFloat(this.wmsParams.version);
             var projectionKey = this._wmsVersion >= 1.3 ? "crs" : "srs";
             this.wmsParams[projectionKey] = this._crs.code;
             TileLayer.prototype.onAdd.call(this, map3);
           },
-          getTileUrl: function(coords) {
-            var tileBounds = this._tileCoordsToNwSe(coords), crs = this._crs, bounds = toBounds(crs.project(tileBounds[0]), crs.project(tileBounds[1])), min = bounds.min, max = bounds.max, bbox = (this._wmsVersion >= 1.3 && this._crs === EPSG4326 ? [min.y, min.x, max.y, max.x] : [min.x, min.y, max.x, max.y]).join(","), url = TileLayer.prototype.getTileUrl.call(this, coords);
-            return url + getParamString(this.wmsParams, url, this.options.uppercase) + (this.options.uppercase ? "&BBOX=" : "&bbox=") + bbox;
+          getTileUrl: function (coords) {
+            var tileBounds = this._tileCoordsToNwSe(coords),
+              crs = this._crs,
+              bounds = toBounds(
+                crs.project(tileBounds[0]),
+                crs.project(tileBounds[1]),
+              ),
+              min = bounds.min,
+              max = bounds.max,
+              bbox = (
+                this._wmsVersion >= 1.3 && this._crs === EPSG4326
+                  ? [min.y, min.x, max.y, max.x]
+                  : [min.x, min.y, max.x, max.y]
+              ).join(","),
+              url = TileLayer.prototype.getTileUrl.call(this, coords);
+            return (
+              url +
+              getParamString(this.wmsParams, url, this.options.uppercase) +
+              (this.options.uppercase ? "&BBOX=" : "&bbox=") +
+              bbox
+            );
           },
           // @method setParams(params: Object, noRedraw?: Boolean): this
           // Merges an object with the new parameters and re-requests tiles on the current screen (unless `noRedraw` was set to true).
-          setParams: function(params, noRedraw) {
+          setParams: function (params, noRedraw) {
             extend(this.wmsParams, params);
             if (!noRedraw) {
               this.redraw();
             }
             return this;
-          }
+          },
         });
         function tileLayerWMS(url, options) {
           return new TileLayerWMS(url, options);
@@ -8178,14 +9623,14 @@
             // @option padding: Number = 0.1
             // How much to extend the clip area around the map view (relative to its size)
             // e.g. 0.1 would be 10% of map view in each direction
-            padding: 0.1
+            padding: 0.1,
           },
-          initialize: function(options) {
+          initialize: function (options) {
             setOptions(this, options);
             stamp(this);
             this._layers = this._layers || {};
           },
-          onAdd: function() {
+          onAdd: function () {
             if (!this._container) {
               this._initContainer();
               addClass(this._container, "leaflet-zoom-animated");
@@ -8194,59 +9639,74 @@
             this._update();
             this.on("update", this._updatePaths, this);
           },
-          onRemove: function() {
+          onRemove: function () {
             this.off("update", this._updatePaths, this);
             this._destroyContainer();
           },
-          getEvents: function() {
+          getEvents: function () {
             var events = {
               viewreset: this._reset,
               zoom: this._onZoom,
               moveend: this._update,
-              zoomend: this._onZoomEnd
+              zoomend: this._onZoomEnd,
             };
             if (this._zoomAnimated) {
               events.zoomanim = this._onAnimZoom;
             }
             return events;
           },
-          _onAnimZoom: function(ev) {
+          _onAnimZoom: function (ev) {
             this._updateTransform(ev.center, ev.zoom);
           },
-          _onZoom: function() {
+          _onZoom: function () {
             this._updateTransform(this._map.getCenter(), this._map.getZoom());
           },
-          _updateTransform: function(center, zoom2) {
-            var scale2 = this._map.getZoomScale(zoom2, this._zoom), viewHalf = this._map.getSize().multiplyBy(0.5 + this.options.padding), currentCenterPoint = this._map.project(this._center, zoom2), topLeftOffset = viewHalf.multiplyBy(-scale2).add(currentCenterPoint).subtract(this._map._getNewPixelOrigin(center, zoom2));
+          _updateTransform: function (center, zoom2) {
+            var scale2 = this._map.getZoomScale(zoom2, this._zoom),
+              viewHalf = this._map
+                .getSize()
+                .multiplyBy(0.5 + this.options.padding),
+              currentCenterPoint = this._map.project(this._center, zoom2),
+              topLeftOffset = viewHalf
+                .multiplyBy(-scale2)
+                .add(currentCenterPoint)
+                .subtract(this._map._getNewPixelOrigin(center, zoom2));
             if (Browser.any3d) {
               setTransform(this._container, topLeftOffset, scale2);
             } else {
               setPosition(this._container, topLeftOffset);
             }
           },
-          _reset: function() {
+          _reset: function () {
             this._update();
             this._updateTransform(this._center, this._zoom);
             for (var id in this._layers) {
               this._layers[id]._reset();
             }
           },
-          _onZoomEnd: function() {
+          _onZoomEnd: function () {
             for (var id in this._layers) {
               this._layers[id]._project();
             }
           },
-          _updatePaths: function() {
+          _updatePaths: function () {
             for (var id in this._layers) {
               this._layers[id]._update();
             }
           },
-          _update: function() {
-            var p = this.options.padding, size = this._map.getSize(), min = this._map.containerPointToLayerPoint(size.multiplyBy(-p)).round();
-            this._bounds = new Bounds(min, min.add(size.multiplyBy(1 + p * 2)).round());
+          _update: function () {
+            var p = this.options.padding,
+              size = this._map.getSize(),
+              min = this._map
+                .containerPointToLayerPoint(size.multiplyBy(-p))
+                .round();
+            this._bounds = new Bounds(
+              min,
+              min.add(size.multiplyBy(1 + p * 2)).round(),
+            );
             this._center = this._map.getCenter();
             this._zoom = this._map.getZoom();
-          }
+          },
         });
         var Canvas = Renderer.extend({
           // @section
@@ -8254,36 +9714,42 @@
           options: {
             // @option tolerance: Number = 0
             // How much to extend the click tolerance around a path/object on the map.
-            tolerance: 0
+            tolerance: 0,
           },
-          getEvents: function() {
+          getEvents: function () {
             var events = Renderer.prototype.getEvents.call(this);
             events.viewprereset = this._onViewPreReset;
             return events;
           },
-          _onViewPreReset: function() {
+          _onViewPreReset: function () {
             this._postponeUpdatePaths = true;
           },
-          onAdd: function() {
+          onAdd: function () {
             Renderer.prototype.onAdd.call(this);
             this._draw();
           },
-          _initContainer: function() {
-            var container = this._container = document.createElement("canvas");
+          _initContainer: function () {
+            var container = (this._container =
+              document.createElement("canvas"));
             on(container, "mousemove", this._onMouseMove, this);
-            on(container, "click dblclick mousedown mouseup contextmenu", this._onClick, this);
+            on(
+              container,
+              "click dblclick mousedown mouseup contextmenu",
+              this._onClick,
+              this,
+            );
             on(container, "mouseout", this._handleMouseOut, this);
             container["_leaflet_disable_events"] = true;
             this._ctx = container.getContext("2d");
           },
-          _destroyContainer: function() {
+          _destroyContainer: function () {
             cancelAnimFrame(this._redrawRequest);
             delete this._ctx;
             remove(this._container);
             off(this._container);
             delete this._container;
           },
-          _updatePaths: function() {
+          _updatePaths: function () {
             if (this._postponeUpdatePaths) {
               return;
             }
@@ -8295,12 +9761,15 @@
             }
             this._redraw();
           },
-          _update: function() {
+          _update: function () {
             if (this._map._animatingZoom && this._bounds) {
               return;
             }
             Renderer.prototype._update.call(this);
-            var b = this._bounds, container = this._container, size = b.getSize(), m = Browser.retina ? 2 : 1;
+            var b = this._bounds,
+              container = this._container,
+              size = b.getSize(),
+              m = Browser.retina ? 2 : 1;
             setPosition(container, b.min);
             container.width = m * size.x;
             container.height = m * size.y;
@@ -8312,31 +9781,31 @@
             this._ctx.translate(-b.min.x, -b.min.y);
             this.fire("update");
           },
-          _reset: function() {
+          _reset: function () {
             Renderer.prototype._reset.call(this);
             if (this._postponeUpdatePaths) {
               this._postponeUpdatePaths = false;
               this._updatePaths();
             }
           },
-          _initPath: function(layer) {
+          _initPath: function (layer) {
             this._updateDashArray(layer);
             this._layers[stamp(layer)] = layer;
-            var order = layer._order = {
+            var order = (layer._order = {
               layer,
               prev: this._drawLast,
-              next: null
-            };
+              next: null,
+            });
             if (this._drawLast) {
               this._drawLast.next = order;
             }
             this._drawLast = order;
             this._drawFirst = this._drawFirst || this._drawLast;
           },
-          _addPath: function(layer) {
+          _addPath: function (layer) {
             this._requestRedraw(layer);
           },
-          _removePath: function(layer) {
+          _removePath: function (layer) {
             var order = layer._order;
             var next = order.next;
             var prev = order.prev;
@@ -8354,19 +9823,22 @@
             delete this._layers[stamp(layer)];
             this._requestRedraw(layer);
           },
-          _updatePath: function(layer) {
+          _updatePath: function (layer) {
             this._extendRedrawBounds(layer);
             layer._project();
             layer._update();
             this._requestRedraw(layer);
           },
-          _updateStyle: function(layer) {
+          _updateStyle: function (layer) {
             this._updateDashArray(layer);
             this._requestRedraw(layer);
           },
-          _updateDashArray: function(layer) {
+          _updateDashArray: function (layer) {
             if (typeof layer.options.dashArray === "string") {
-              var parts = layer.options.dashArray.split(/[, ]+/), dashArray = [], dashValue, i;
+              var parts = layer.options.dashArray.split(/[, ]+/),
+                dashArray = [],
+                dashValue,
+                i;
               for (i = 0; i < parts.length; i++) {
                 dashValue = Number(parts[i]);
                 if (isNaN(dashValue)) {
@@ -8379,22 +9851,27 @@
               layer.options._dashArray = layer.options.dashArray;
             }
           },
-          _requestRedraw: function(layer) {
+          _requestRedraw: function (layer) {
             if (!this._map) {
               return;
             }
             this._extendRedrawBounds(layer);
-            this._redrawRequest = this._redrawRequest || requestAnimFrame(this._redraw, this);
+            this._redrawRequest =
+              this._redrawRequest || requestAnimFrame(this._redraw, this);
           },
-          _extendRedrawBounds: function(layer) {
+          _extendRedrawBounds: function (layer) {
             if (layer._pxBounds) {
               var padding = (layer.options.weight || 0) + 1;
               this._redrawBounds = this._redrawBounds || new Bounds();
-              this._redrawBounds.extend(layer._pxBounds.min.subtract([padding, padding]));
-              this._redrawBounds.extend(layer._pxBounds.max.add([padding, padding]));
+              this._redrawBounds.extend(
+                layer._pxBounds.min.subtract([padding, padding]),
+              );
+              this._redrawBounds.extend(
+                layer._pxBounds.max.add([padding, padding]),
+              );
             }
           },
-          _redraw: function() {
+          _redraw: function () {
             this._redrawRequest = null;
             if (this._redrawBounds) {
               this._redrawBounds.min._floor();
@@ -8404,7 +9881,7 @@
             this._draw();
             this._redrawBounds = null;
           },
-          _clear: function() {
+          _clear: function () {
             var bounds = this._redrawBounds;
             if (bounds) {
               var size = bounds.getSize();
@@ -8412,12 +9889,18 @@
             } else {
               this._ctx.save();
               this._ctx.setTransform(1, 0, 0, 1, 0, 0);
-              this._ctx.clearRect(0, 0, this._container.width, this._container.height);
+              this._ctx.clearRect(
+                0,
+                0,
+                this._container.width,
+                this._container.height,
+              );
               this._ctx.restore();
             }
           },
-          _draw: function() {
-            var layer, bounds = this._redrawBounds;
+          _draw: function () {
+            var layer,
+              bounds = this._redrawBounds;
             this._ctx.save();
             if (bounds) {
               var size = bounds.getSize();
@@ -8428,18 +9911,27 @@
             this._drawing = true;
             for (var order = this._drawFirst; order; order = order.next) {
               layer = order.layer;
-              if (!bounds || layer._pxBounds && layer._pxBounds.intersects(bounds)) {
+              if (
+                !bounds ||
+                (layer._pxBounds && layer._pxBounds.intersects(bounds))
+              ) {
                 layer._updatePath();
               }
             }
             this._drawing = false;
             this._ctx.restore();
           },
-          _updatePoly: function(layer, closed) {
+          _updatePoly: function (layer, closed) {
             if (!this._drawing) {
               return;
             }
-            var i, j, len2, p, parts = layer._parts, len = parts.length, ctx = this._ctx;
+            var i,
+              j,
+              len2,
+              p,
+              parts = layer._parts,
+              len = parts.length,
+              ctx = this._ctx;
             if (!len) {
               return;
             }
@@ -8455,11 +9947,14 @@
             }
             this._fillStroke(ctx, layer);
           },
-          _updateCircle: function(layer) {
+          _updateCircle: function (layer) {
             if (!this._drawing || layer._empty()) {
               return;
             }
-            var p = layer._point, ctx = this._ctx, r = Math.max(Math.round(layer._radius), 1), s = (Math.max(Math.round(layer._radiusY), 1) || r) / r;
+            var p = layer._point,
+              ctx = this._ctx,
+              r = Math.max(Math.round(layer._radius), 1),
+              s = (Math.max(Math.round(layer._radiusY), 1) || r) / r;
             if (s !== 1) {
               ctx.save();
               ctx.scale(1, s);
@@ -8471,7 +9966,7 @@
             }
             this._fillStroke(ctx, layer);
           },
-          _fillStroke: function(ctx, layer) {
+          _fillStroke: function (ctx, layer) {
             var options = layer.options;
             if (options.fill) {
               ctx.globalAlpha = options.fillOpacity;
@@ -8480,7 +9975,9 @@
             }
             if (options.stroke && options.weight !== 0) {
               if (ctx.setLineDash) {
-                ctx.setLineDash(layer.options && layer.options._dashArray || []);
+                ctx.setLineDash(
+                  (layer.options && layer.options._dashArray) || [],
+                );
               }
               ctx.globalAlpha = options.opacity;
               ctx.lineWidth = options.weight;
@@ -8492,26 +9989,35 @@
           },
           // Canvas obviously doesn't have mouse events for individual drawn objects,
           // so we emulate that by calculating what's under the mouse on mousemove/click manually
-          _onClick: function(e) {
-            var point = this._map.mouseEventToLayerPoint(e), layer, clickedLayer;
+          _onClick: function (e) {
+            var point = this._map.mouseEventToLayerPoint(e),
+              layer,
+              clickedLayer;
             for (var order = this._drawFirst; order; order = order.next) {
               layer = order.layer;
               if (layer.options.interactive && layer._containsPoint(point)) {
-                if (!(e.type === "click" || e.type === "preclick") || !this._map._draggableMoved(layer)) {
+                if (
+                  !(e.type === "click" || e.type === "preclick") ||
+                  !this._map._draggableMoved(layer)
+                ) {
                   clickedLayer = layer;
                 }
               }
             }
             this._fireEvent(clickedLayer ? [clickedLayer] : false, e);
           },
-          _onMouseMove: function(e) {
-            if (!this._map || this._map.dragging.moving() || this._map._animatingZoom) {
+          _onMouseMove: function (e) {
+            if (
+              !this._map ||
+              this._map.dragging.moving() ||
+              this._map._animatingZoom
+            ) {
               return;
             }
             var point = this._map.mouseEventToLayerPoint(e);
             this._handleMouseHover(e, point);
           },
-          _handleMouseOut: function(e) {
+          _handleMouseOut: function (e) {
             var layer = this._hoveredLayer;
             if (layer) {
               removeClass(this._container, "leaflet-interactive");
@@ -8520,7 +10026,7 @@
               this._mouseHoverThrottled = false;
             }
           },
-          _handleMouseHover: function(e, point) {
+          _handleMouseHover: function (e, point) {
             if (this._mouseHoverThrottled) {
               return;
             }
@@ -8539,16 +10045,22 @@
                 this._hoveredLayer = candidateHoveredLayer;
               }
             }
-            this._fireEvent(this._hoveredLayer ? [this._hoveredLayer] : false, e);
+            this._fireEvent(
+              this._hoveredLayer ? [this._hoveredLayer] : false,
+              e,
+            );
             this._mouseHoverThrottled = true;
-            setTimeout(bind(function() {
-              this._mouseHoverThrottled = false;
-            }, this), 32);
+            setTimeout(
+              bind(function () {
+                this._mouseHoverThrottled = false;
+              }, this),
+              32,
+            );
           },
-          _fireEvent: function(layers2, e, type) {
+          _fireEvent: function (layers2, e, type) {
             this._map._fireDOMEvent(e, type || e.type, layers2);
           },
-          _bringToFront: function(layer) {
+          _bringToFront: function (layer) {
             var order = layer._order;
             if (!order) {
               return;
@@ -8571,7 +10083,7 @@
             this._drawLast = order;
             this._requestRedraw(layer);
           },
-          _bringToBack: function(layer) {
+          _bringToBack: function (layer) {
             var order = layer._order;
             if (!order) {
               return;
@@ -8593,58 +10105,67 @@
             this._drawFirst.prev = order;
             this._drawFirst = order;
             this._requestRedraw(layer);
-          }
+          },
         });
         function canvas(options) {
           return Browser.canvas ? new Canvas(options) : null;
         }
-        var vmlCreate = function() {
+        var vmlCreate = (function () {
           try {
             document.namespaces.add("lvml", "urn:schemas-microsoft-com:vml");
-            return function(name) {
+            return function (name) {
               return document.createElement("<lvml:" + name + ' class="lvml">');
             };
-          } catch (e) {
-          }
-          return function(name) {
-            return document.createElement("<" + name + ' xmlns="urn:schemas-microsoft.com:vml" class="lvml">');
+          } catch (e) {}
+          return function (name) {
+            return document.createElement(
+              "<" +
+                name +
+                ' xmlns="urn:schemas-microsoft.com:vml" class="lvml">',
+            );
           };
-        }();
+        })();
         var vmlMixin = {
-          _initContainer: function() {
+          _initContainer: function () {
             this._container = create$1("div", "leaflet-vml-container");
           },
-          _update: function() {
+          _update: function () {
             if (this._map._animatingZoom) {
               return;
             }
             Renderer.prototype._update.call(this);
             this.fire("update");
           },
-          _initPath: function(layer) {
-            var container = layer._container = vmlCreate("shape");
-            addClass(container, "leaflet-vml-shape " + (this.options.className || ""));
+          _initPath: function (layer) {
+            var container = (layer._container = vmlCreate("shape"));
+            addClass(
+              container,
+              "leaflet-vml-shape " + (this.options.className || ""),
+            );
             container.coordsize = "1 1";
             layer._path = vmlCreate("path");
             container.appendChild(layer._path);
             this._updateStyle(layer);
             this._layers[stamp(layer)] = layer;
           },
-          _addPath: function(layer) {
+          _addPath: function (layer) {
             var container = layer._container;
             this._container.appendChild(container);
             if (layer.options.interactive) {
               layer.addInteractiveTarget(container);
             }
           },
-          _removePath: function(layer) {
+          _removePath: function (layer) {
             var container = layer._container;
             remove(container);
             layer.removeInteractiveTarget(container);
             delete this._layers[stamp(layer)];
           },
-          _updateStyle: function(layer) {
-            var stroke = layer._stroke, fill = layer._fill, options = layer.options, container = layer._container;
+          _updateStyle: function (layer) {
+            var stroke = layer._stroke,
+              fill = layer._fill,
+              options = layer.options,
+              container = layer._container;
             container.stroked = !!options.stroke;
             container.filled = !!options.fill;
             if (options.stroke) {
@@ -8656,7 +10177,9 @@
               stroke.color = options.color;
               stroke.opacity = options.opacity;
               if (options.dashArray) {
-                stroke.dashStyle = isArray(options.dashArray) ? options.dashArray.join(" ") : options.dashArray.replace(/( *, *)/g, " ");
+                stroke.dashStyle = isArray(options.dashArray)
+                  ? options.dashArray.join(" ")
+                  : options.dashArray.replace(/( *, *)/g, " ");
               } else {
                 stroke.dashStyle = "";
               }
@@ -8678,53 +10201,74 @@
               layer._fill = null;
             }
           },
-          _updateCircle: function(layer) {
-            var p = layer._point.round(), r = Math.round(layer._radius), r2 = Math.round(layer._radiusY || r);
-            this._setPath(layer, layer._empty() ? "M0 0" : "AL " + p.x + "," + p.y + " " + r + "," + r2 + " 0," + 65535 * 360);
+          _updateCircle: function (layer) {
+            var p = layer._point.round(),
+              r = Math.round(layer._radius),
+              r2 = Math.round(layer._radiusY || r);
+            this._setPath(
+              layer,
+              layer._empty()
+                ? "M0 0"
+                : "AL " +
+                    p.x +
+                    "," +
+                    p.y +
+                    " " +
+                    r +
+                    "," +
+                    r2 +
+                    " 0," +
+                    65535 * 360,
+            );
           },
-          _setPath: function(layer, path) {
+          _setPath: function (layer, path) {
             layer._path.v = path;
           },
-          _bringToFront: function(layer) {
+          _bringToFront: function (layer) {
             toFront(layer._container);
           },
-          _bringToBack: function(layer) {
+          _bringToBack: function (layer) {
             toBack(layer._container);
-          }
+          },
         };
         var create = Browser.vml ? vmlCreate : svgCreate;
         var SVG = Renderer.extend({
-          _initContainer: function() {
+          _initContainer: function () {
             this._container = create("svg");
             this._container.setAttribute("pointer-events", "none");
             this._rootGroup = create("g");
             this._container.appendChild(this._rootGroup);
           },
-          _destroyContainer: function() {
+          _destroyContainer: function () {
             remove(this._container);
             off(this._container);
             delete this._container;
             delete this._rootGroup;
             delete this._svgSize;
           },
-          _update: function() {
+          _update: function () {
             if (this._map._animatingZoom && this._bounds) {
               return;
             }
             Renderer.prototype._update.call(this);
-            var b = this._bounds, size = b.getSize(), container = this._container;
+            var b = this._bounds,
+              size = b.getSize(),
+              container = this._container;
             if (!this._svgSize || !this._svgSize.equals(size)) {
               this._svgSize = size;
               container.setAttribute("width", size.x);
               container.setAttribute("height", size.y);
             }
             setPosition(container, b.min);
-            container.setAttribute("viewBox", [b.min.x, b.min.y, size.x, size.y].join(" "));
+            container.setAttribute(
+              "viewBox",
+              [b.min.x, b.min.y, size.x, size.y].join(" "),
+            );
             this.fire("update");
           },
           // methods below are called by vector layers implementations
-          _initPath: function(layer) {
-            var path = layer._path = create("path");
+          _initPath: function (layer) {
+            var path = (layer._path = create("path"));
             if (layer.options.className) {
               addClass(path, layer.options.className);
             }
@@ -8734,24 +10278,25 @@
             this._updateStyle(layer);
             this._layers[stamp(layer)] = layer;
           },
-          _addPath: function(layer) {
+          _addPath: function (layer) {
             if (!this._rootGroup) {
               this._initContainer();
             }
             this._rootGroup.appendChild(layer._path);
             layer.addInteractiveTarget(layer._path);
           },
-          _removePath: function(layer) {
+          _removePath: function (layer) {
             remove(layer._path);
             layer.removeInteractiveTarget(layer._path);
             delete this._layers[stamp(layer)];
           },
-          _updatePath: function(layer) {
+          _updatePath: function (layer) {
             layer._project();
             layer._update();
           },
-          _updateStyle: function(layer) {
-            var path = layer._path, options = layer.options;
+          _updateStyle: function (layer) {
+            var path = layer._path,
+              options = layer.options;
             if (!path) {
               return;
             }
@@ -8782,24 +10327,38 @@
               path.setAttribute("fill", "none");
             }
           },
-          _updatePoly: function(layer, closed) {
+          _updatePoly: function (layer, closed) {
             this._setPath(layer, pointsToPath(layer._parts, closed));
           },
-          _updateCircle: function(layer) {
-            var p = layer._point, r = Math.max(Math.round(layer._radius), 1), r2 = Math.max(Math.round(layer._radiusY), 1) || r, arc = "a" + r + "," + r2 + " 0 1,0 ";
-            var d = layer._empty() ? "M0 0" : "M" + (p.x - r) + "," + p.y + arc + r * 2 + ",0 " + arc + -r * 2 + ",0 ";
+          _updateCircle: function (layer) {
+            var p = layer._point,
+              r = Math.max(Math.round(layer._radius), 1),
+              r2 = Math.max(Math.round(layer._radiusY), 1) || r,
+              arc = "a" + r + "," + r2 + " 0 1,0 ";
+            var d = layer._empty()
+              ? "M0 0"
+              : "M" +
+                (p.x - r) +
+                "," +
+                p.y +
+                arc +
+                r * 2 +
+                ",0 " +
+                arc +
+                -r * 2 +
+                ",0 ";
             this._setPath(layer, d);
           },
-          _setPath: function(layer, path) {
+          _setPath: function (layer, path) {
             layer._path.setAttribute("d", path);
           },
           // SVG does not have the concept of zIndex so we resort to changing the DOM order of elements
-          _bringToFront: function(layer) {
+          _bringToFront: function (layer) {
             toFront(layer._path);
           },
-          _bringToBack: function(layer) {
+          _bringToBack: function (layer) {
             toBack(layer._path);
-          }
+          },
         });
         if (Browser.vml) {
           SVG.include(vmlMixin);
@@ -8812,8 +10371,12 @@
           // Returns the instance of `Renderer` that should be used to render the given
           // `Path`. It will ensure that the `renderer` options of the map and paths
           // are respected, and that the renderers do exist on the map.
-          getRenderer: function(layer) {
-            var renderer = layer.options.renderer || this._getPaneRenderer(layer.options.pane) || this.options.renderer || this._renderer;
+          getRenderer: function (layer) {
+            var renderer =
+              layer.options.renderer ||
+              this._getPaneRenderer(layer.options.pane) ||
+              this.options.renderer ||
+              this._renderer;
             if (!renderer) {
               renderer = this._renderer = this._createRenderer();
             }
@@ -8822,7 +10385,7 @@
             }
             return renderer;
           },
-          _getPaneRenderer: function(name) {
+          _getPaneRenderer: function (name) {
             if (name === "overlayPane" || name === void 0) {
               return false;
             }
@@ -8833,28 +10396,34 @@
             }
             return renderer;
           },
-          _createRenderer: function(options) {
-            return this.options.preferCanvas && canvas(options) || svg(options);
-          }
+          _createRenderer: function (options) {
+            return (
+              (this.options.preferCanvas && canvas(options)) || svg(options)
+            );
+          },
         });
         var Rectangle = Polygon.extend({
-          initialize: function(latLngBounds, options) {
-            Polygon.prototype.initialize.call(this, this._boundsToLatLngs(latLngBounds), options);
+          initialize: function (latLngBounds, options) {
+            Polygon.prototype.initialize.call(
+              this,
+              this._boundsToLatLngs(latLngBounds),
+              options,
+            );
           },
           // @method setBounds(latLngBounds: LatLngBounds): this
           // Redraws the rectangle with the passed bounds.
-          setBounds: function(latLngBounds) {
+          setBounds: function (latLngBounds) {
             return this.setLatLngs(this._boundsToLatLngs(latLngBounds));
           },
-          _boundsToLatLngs: function(latLngBounds) {
+          _boundsToLatLngs: function (latLngBounds) {
             latLngBounds = toLatLngBounds(latLngBounds);
             return [
               latLngBounds.getSouthWest(),
               latLngBounds.getNorthWest(),
               latLngBounds.getNorthEast(),
-              latLngBounds.getSouthEast()
+              latLngBounds.getSouthEast(),
             ];
-          }
+          },
         });
         function rectangle(latLngBounds, options) {
           return new Rectangle(latLngBounds, options);
@@ -8872,41 +10441,41 @@
           // @option boxZoom: Boolean = true
           // Whether the map can be zoomed to a rectangular area specified by
           // dragging the mouse while pressing the shift key.
-          boxZoom: true
+          boxZoom: true,
         });
         var BoxZoom = Handler.extend({
-          initialize: function(map3) {
+          initialize: function (map3) {
             this._map = map3;
             this._container = map3._container;
             this._pane = map3._panes.overlayPane;
             this._resetStateTimeout = 0;
             map3.on("unload", this._destroy, this);
           },
-          addHooks: function() {
+          addHooks: function () {
             on(this._container, "mousedown", this._onMouseDown, this);
           },
-          removeHooks: function() {
+          removeHooks: function () {
             off(this._container, "mousedown", this._onMouseDown, this);
           },
-          moved: function() {
+          moved: function () {
             return this._moved;
           },
-          _destroy: function() {
+          _destroy: function () {
             remove(this._pane);
             delete this._pane;
           },
-          _resetState: function() {
+          _resetState: function () {
             this._resetStateTimeout = 0;
             this._moved = false;
           },
-          _clearDeferredResetState: function() {
+          _clearDeferredResetState: function () {
             if (this._resetStateTimeout !== 0) {
               clearTimeout(this._resetStateTimeout);
               this._resetStateTimeout = 0;
             }
           },
-          _onMouseDown: function(e) {
-            if (!e.shiftKey || e.which !== 1 && e.button !== 1) {
+          _onMouseDown: function (e) {
+            if (!e.shiftKey || (e.which !== 1 && e.button !== 1)) {
               return false;
             }
             this._clearDeferredResetState();
@@ -8914,14 +10483,18 @@
             disableTextSelection();
             disableImageDrag();
             this._startPoint = this._map.mouseEventToContainerPoint(e);
-            on(document, {
-              contextmenu: stop,
-              mousemove: this._onMouseMove,
-              mouseup: this._onMouseUp,
-              keydown: this._onKeyDown
-            }, this);
+            on(
+              document,
+              {
+                contextmenu: stop,
+                mousemove: this._onMouseMove,
+                mouseup: this._onMouseUp,
+                keydown: this._onKeyDown,
+              },
+              this,
+            );
           },
-          _onMouseMove: function(e) {
+          _onMouseMove: function (e) {
             if (!this._moved) {
               this._moved = true;
               this._box = create$1("div", "leaflet-zoom-box", this._container);
@@ -8929,26 +10502,31 @@
               this._map.fire("boxzoomstart");
             }
             this._point = this._map.mouseEventToContainerPoint(e);
-            var bounds = new Bounds(this._point, this._startPoint), size = bounds.getSize();
+            var bounds = new Bounds(this._point, this._startPoint),
+              size = bounds.getSize();
             setPosition(this._box, bounds.min);
             this._box.style.width = size.x + "px";
             this._box.style.height = size.y + "px";
           },
-          _finish: function() {
+          _finish: function () {
             if (this._moved) {
               remove(this._box);
               removeClass(this._container, "leaflet-crosshair");
             }
             enableTextSelection();
             enableImageDrag();
-            off(document, {
-              contextmenu: stop,
-              mousemove: this._onMouseMove,
-              mouseup: this._onMouseUp,
-              keydown: this._onKeyDown
-            }, this);
+            off(
+              document,
+              {
+                contextmenu: stop,
+                mousemove: this._onMouseMove,
+                mouseup: this._onMouseUp,
+                keydown: this._onKeyDown,
+              },
+              this,
+            );
           },
-          _onMouseUp: function(e) {
+          _onMouseUp: function (e) {
             if (e.which !== 1 && e.button !== 1) {
               return;
             }
@@ -8957,20 +10535,25 @@
               return;
             }
             this._clearDeferredResetState();
-            this._resetStateTimeout = setTimeout(bind(this._resetState, this), 0);
+            this._resetStateTimeout = setTimeout(
+              bind(this._resetState, this),
+              0,
+            );
             var bounds = new LatLngBounds(
               this._map.containerPointToLatLng(this._startPoint),
-              this._map.containerPointToLatLng(this._point)
+              this._map.containerPointToLatLng(this._point),
             );
-            this._map.fitBounds(bounds).fire("boxzoomend", { boxZoomBounds: bounds });
+            this._map
+              .fitBounds(bounds)
+              .fire("boxzoomend", { boxZoomBounds: bounds });
           },
-          _onKeyDown: function(e) {
+          _onKeyDown: function (e) {
             if (e.keyCode === 27) {
               this._finish();
               this._clearDeferredResetState();
               this._resetState();
             }
-          }
+          },
         });
         Map.addInitHook("addHandler", "boxZoom", BoxZoom);
         Map.mergeOptions({
@@ -8979,23 +10562,28 @@
           // zoomed out by double clicking while holding shift. If passed
           // `'center'`, double-click zoom will zoom to the center of the
           //  view regardless of where the mouse was.
-          doubleClickZoom: true
+          doubleClickZoom: true,
         });
         var DoubleClickZoom = Handler.extend({
-          addHooks: function() {
+          addHooks: function () {
             this._map.on("dblclick", this._onDoubleClick, this);
           },
-          removeHooks: function() {
+          removeHooks: function () {
             this._map.off("dblclick", this._onDoubleClick, this);
           },
-          _onDoubleClick: function(e) {
-            var map3 = this._map, oldZoom = map3.getZoom(), delta = map3.options.zoomDelta, zoom2 = e.originalEvent.shiftKey ? oldZoom - delta : oldZoom + delta;
+          _onDoubleClick: function (e) {
+            var map3 = this._map,
+              oldZoom = map3.getZoom(),
+              delta = map3.options.zoomDelta,
+              zoom2 = e.originalEvent.shiftKey
+                ? oldZoom - delta
+                : oldZoom + delta;
             if (map3.options.doubleClickZoom === "center") {
               map3.setZoom(zoom2);
             } else {
               map3.setZoomAround(e.containerPoint, zoom2);
             }
-          }
+          },
         });
         Map.addInitHook("addHandler", "doubleClickZoom", DoubleClickZoom);
         Map.mergeOptions({
@@ -9031,18 +10619,21 @@
           // user to drag outside the bounds at normal speed, higher values will
           // slow down map dragging outside bounds, and `1.0` makes the bounds fully
           // solid, preventing the user from dragging outside the bounds.
-          maxBoundsViscosity: 0
+          maxBoundsViscosity: 0,
         });
         var Drag = Handler.extend({
-          addHooks: function() {
+          addHooks: function () {
             if (!this._draggable) {
               var map3 = this._map;
               this._draggable = new Draggable(map3._mapPane, map3._container);
-              this._draggable.on({
-                dragstart: this._onDragStart,
-                drag: this._onDrag,
-                dragend: this._onDragEnd
-              }, this);
+              this._draggable.on(
+                {
+                  dragstart: this._onDragStart,
+                  drag: this._onDrag,
+                  dragend: this._onDragEnd,
+                },
+                this,
+              );
               this._draggable.on("predrag", this._onPreDragLimit, this);
               if (map3.options.worldCopyJump) {
                 this._draggable.on("predrag", this._onPreDragWrap, this);
@@ -9055,27 +10646,38 @@
             this._positions = [];
             this._times = [];
           },
-          removeHooks: function() {
+          removeHooks: function () {
             removeClass(this._map._container, "leaflet-grab");
             removeClass(this._map._container, "leaflet-touch-drag");
             this._draggable.disable();
           },
-          moved: function() {
+          moved: function () {
             return this._draggable && this._draggable._moved;
           },
-          moving: function() {
+          moving: function () {
             return this._draggable && this._draggable._moving;
           },
-          _onDragStart: function() {
+          _onDragStart: function () {
             var map3 = this._map;
             map3._stop();
-            if (this._map.options.maxBounds && this._map.options.maxBoundsViscosity) {
+            if (
+              this._map.options.maxBounds &&
+              this._map.options.maxBoundsViscosity
+            ) {
               var bounds = toLatLngBounds(this._map.options.maxBounds);
               this._offsetLimit = toBounds(
-                this._map.latLngToContainerPoint(bounds.getNorthWest()).multiplyBy(-1),
-                this._map.latLngToContainerPoint(bounds.getSouthEast()).multiplyBy(-1).add(this._map.getSize())
+                this._map
+                  .latLngToContainerPoint(bounds.getNorthWest())
+                  .multiplyBy(-1),
+                this._map
+                  .latLngToContainerPoint(bounds.getSouthEast())
+                  .multiplyBy(-1)
+                  .add(this._map.getSize()),
               );
-              this._viscosity = Math.min(1, Math.max(0, this._map.options.maxBoundsViscosity));
+              this._viscosity = Math.min(
+                1,
+                Math.max(0, this._map.options.maxBoundsViscosity),
+              );
             } else {
               this._offsetLimit = null;
             }
@@ -9085,34 +10687,39 @@
               this._times = [];
             }
           },
-          _onDrag: function(e) {
+          _onDrag: function (e) {
             if (this._map.options.inertia) {
-              var time = this._lastTime = +/* @__PURE__ */ new Date(), pos = this._lastPos = this._draggable._absPos || this._draggable._newPos;
+              var time = (this._lastTime = +(/* @__PURE__ */ new Date())),
+                pos = (this._lastPos =
+                  this._draggable._absPos || this._draggable._newPos);
               this._positions.push(pos);
               this._times.push(time);
               this._prunePositions(time);
             }
             this._map.fire("move", e).fire("drag", e);
           },
-          _prunePositions: function(time) {
+          _prunePositions: function (time) {
             while (this._positions.length > 1 && time - this._times[0] > 50) {
               this._positions.shift();
               this._times.shift();
             }
           },
-          _onZoomEnd: function() {
-            var pxCenter = this._map.getSize().divideBy(2), pxWorldCenter = this._map.latLngToLayerPoint([0, 0]);
+          _onZoomEnd: function () {
+            var pxCenter = this._map.getSize().divideBy(2),
+              pxWorldCenter = this._map.latLngToLayerPoint([0, 0]);
             this._initialWorldOffset = pxWorldCenter.subtract(pxCenter).x;
             this._worldWidth = this._map.getPixelWorldBounds().getSize().x;
           },
-          _viscousLimit: function(value, threshold) {
+          _viscousLimit: function (value, threshold) {
             return value - (value - threshold) * this._viscosity;
           },
-          _onPreDragLimit: function() {
+          _onPreDragLimit: function () {
             if (!this._viscosity || !this._offsetLimit) {
               return;
             }
-            var offset = this._draggable._newPos.subtract(this._draggable._startPos);
+            var offset = this._draggable._newPos.subtract(
+              this._draggable._startPos,
+            );
             var limit = this._offsetLimit;
             if (offset.x < limit.min.x) {
               offset.x = this._viscousLimit(offset.x, limit.min.x);
@@ -9128,34 +10735,57 @@
             }
             this._draggable._newPos = this._draggable._startPos.add(offset);
           },
-          _onPreDragWrap: function() {
-            var worldWidth = this._worldWidth, halfWidth = Math.round(worldWidth / 2), dx = this._initialWorldOffset, x = this._draggable._newPos.x, newX1 = (x - halfWidth + dx) % worldWidth + halfWidth - dx, newX2 = (x + halfWidth + dx) % worldWidth - halfWidth - dx, newX = Math.abs(newX1 + dx) < Math.abs(newX2 + dx) ? newX1 : newX2;
+          _onPreDragWrap: function () {
+            var worldWidth = this._worldWidth,
+              halfWidth = Math.round(worldWidth / 2),
+              dx = this._initialWorldOffset,
+              x = this._draggable._newPos.x,
+              newX1 = ((x - halfWidth + dx) % worldWidth) + halfWidth - dx,
+              newX2 = ((x + halfWidth + dx) % worldWidth) - halfWidth - dx,
+              newX =
+                Math.abs(newX1 + dx) < Math.abs(newX2 + dx) ? newX1 : newX2;
             this._draggable._absPos = this._draggable._newPos.clone();
             this._draggable._newPos.x = newX;
           },
-          _onDragEnd: function(e) {
-            var map3 = this._map, options = map3.options, noInertia = !options.inertia || e.noInertia || this._times.length < 2;
+          _onDragEnd: function (e) {
+            var map3 = this._map,
+              options = map3.options,
+              noInertia =
+                !options.inertia || e.noInertia || this._times.length < 2;
             map3.fire("dragend", e);
             if (noInertia) {
               map3.fire("moveend");
             } else {
-              this._prunePositions(+/* @__PURE__ */ new Date());
-              var direction = this._lastPos.subtract(this._positions[0]), duration = (this._lastTime - this._times[0]) / 1e3, ease = options.easeLinearity, speedVector = direction.multiplyBy(ease / duration), speed = speedVector.distanceTo([0, 0]), limitedSpeed = Math.min(options.inertiaMaxSpeed, speed), limitedSpeedVector = speedVector.multiplyBy(limitedSpeed / speed), decelerationDuration = limitedSpeed / (options.inertiaDeceleration * ease), offset = limitedSpeedVector.multiplyBy(-decelerationDuration / 2).round();
+              this._prunePositions(+(/* @__PURE__ */ new Date()));
+              var direction = this._lastPos.subtract(this._positions[0]),
+                duration = (this._lastTime - this._times[0]) / 1e3,
+                ease = options.easeLinearity,
+                speedVector = direction.multiplyBy(ease / duration),
+                speed = speedVector.distanceTo([0, 0]),
+                limitedSpeed = Math.min(options.inertiaMaxSpeed, speed),
+                limitedSpeedVector = speedVector.multiplyBy(
+                  limitedSpeed / speed,
+                ),
+                decelerationDuration =
+                  limitedSpeed / (options.inertiaDeceleration * ease),
+                offset = limitedSpeedVector
+                  .multiplyBy(-decelerationDuration / 2)
+                  .round();
               if (!offset.x && !offset.y) {
                 map3.fire("moveend");
               } else {
                 offset = map3._limitOffset(offset, map3.options.maxBounds);
-                requestAnimFrame(function() {
+                requestAnimFrame(function () {
                   map3.panBy(offset, {
                     duration: decelerationDuration,
                     easeLinearity: ease,
                     noMoveStart: true,
-                    animate: true
+                    animate: true,
                   });
                 });
               }
             }
-          }
+          },
         });
         Map.addInitHook("addHandler", "dragging", Drag);
         Map.mergeOptions({
@@ -9165,7 +10795,7 @@
           keyboard: true,
           // @option keyboardPanDelta: Number = 80
           // Amount of pixels to pan when pressing an arrow key.
-          keyboardPanDelta: 80
+          keyboardPanDelta: 80,
         });
         var Keyboard = Handler.extend({
           keyCodes: {
@@ -9174,58 +10804,78 @@
             down: [40],
             up: [38],
             zoomIn: [187, 107, 61, 171],
-            zoomOut: [189, 109, 54, 173]
+            zoomOut: [189, 109, 54, 173],
           },
-          initialize: function(map3) {
+          initialize: function (map3) {
             this._map = map3;
             this._setPanDelta(map3.options.keyboardPanDelta);
             this._setZoomDelta(map3.options.zoomDelta);
           },
-          addHooks: function() {
+          addHooks: function () {
             var container = this._map._container;
             if (container.tabIndex <= 0) {
               container.tabIndex = "0";
             }
-            on(container, {
-              focus: this._onFocus,
-              blur: this._onBlur,
-              mousedown: this._onMouseDown
-            }, this);
-            this._map.on({
-              focus: this._addHooks,
-              blur: this._removeHooks
-            }, this);
+            on(
+              container,
+              {
+                focus: this._onFocus,
+                blur: this._onBlur,
+                mousedown: this._onMouseDown,
+              },
+              this,
+            );
+            this._map.on(
+              {
+                focus: this._addHooks,
+                blur: this._removeHooks,
+              },
+              this,
+            );
           },
-          removeHooks: function() {
+          removeHooks: function () {
             this._removeHooks();
-            off(this._map._container, {
-              focus: this._onFocus,
-              blur: this._onBlur,
-              mousedown: this._onMouseDown
-            }, this);
-            this._map.off({
-              focus: this._addHooks,
-              blur: this._removeHooks
-            }, this);
+            off(
+              this._map._container,
+              {
+                focus: this._onFocus,
+                blur: this._onBlur,
+                mousedown: this._onMouseDown,
+              },
+              this,
+            );
+            this._map.off(
+              {
+                focus: this._addHooks,
+                blur: this._removeHooks,
+              },
+              this,
+            );
           },
-          _onMouseDown: function() {
+          _onMouseDown: function () {
             if (this._focused) {
               return;
             }
-            var body = document.body, docEl = document.documentElement, top = body.scrollTop || docEl.scrollTop, left = body.scrollLeft || docEl.scrollLeft;
+            var body = document.body,
+              docEl = document.documentElement,
+              top = body.scrollTop || docEl.scrollTop,
+              left = body.scrollLeft || docEl.scrollLeft;
             this._map._container.focus();
             window.scrollTo(left, top);
           },
-          _onFocus: function() {
+          _onFocus: function () {
             this._focused = true;
             this._map.fire("focus");
           },
-          _onBlur: function() {
+          _onBlur: function () {
             this._focused = false;
             this._map.fire("blur");
           },
-          _setPanDelta: function(panDelta) {
-            var keys = this._panKeys = {}, codes = this.keyCodes, i, len;
+          _setPanDelta: function (panDelta) {
+            var keys = (this._panKeys = {}),
+              codes = this.keyCodes,
+              i,
+              len;
             for (i = 0, len = codes.left.length; i < len; i++) {
               keys[codes.left[i]] = [-1 * panDelta, 0];
             }
@@ -9239,8 +10889,11 @@
               keys[codes.up[i]] = [0, -1 * panDelta];
             }
           },
-          _setZoomDelta: function(zoomDelta) {
-            var keys = this._zoomKeys = {}, codes = this.keyCodes, i, len;
+          _setZoomDelta: function (zoomDelta) {
+            var keys = (this._zoomKeys = {}),
+              codes = this.keyCodes,
+              i,
+              len;
             for (i = 0, len = codes.zoomIn.length; i < len; i++) {
               keys[codes.zoomIn[i]] = zoomDelta;
             }
@@ -9248,17 +10901,19 @@
               keys[codes.zoomOut[i]] = -zoomDelta;
             }
           },
-          _addHooks: function() {
+          _addHooks: function () {
             on(document, "keydown", this._onKeyDown, this);
           },
-          _removeHooks: function() {
+          _removeHooks: function () {
             off(document, "keydown", this._onKeyDown, this);
           },
-          _onKeyDown: function(e) {
+          _onKeyDown: function (e) {
             if (e.altKey || e.ctrlKey || e.metaKey) {
               return;
             }
-            var key = e.keyCode, map3 = this._map, offset;
+            var key = e.keyCode,
+              map3 = this._map,
+              offset;
             if (key in this._panKeys) {
               if (!map3._panAnim || !map3._panAnim._inProgress) {
                 offset = this._panKeys[key];
@@ -9266,24 +10921,35 @@
                   offset = toPoint(offset).multiplyBy(3);
                 }
                 if (map3.options.maxBounds) {
-                  offset = map3._limitOffset(toPoint(offset), map3.options.maxBounds);
+                  offset = map3._limitOffset(
+                    toPoint(offset),
+                    map3.options.maxBounds,
+                  );
                 }
                 if (map3.options.worldCopyJump) {
-                  var newLatLng = map3.wrapLatLng(map3.unproject(map3.project(map3.getCenter()).add(offset)));
+                  var newLatLng = map3.wrapLatLng(
+                    map3.unproject(map3.project(map3.getCenter()).add(offset)),
+                  );
                   map3.panTo(newLatLng);
                 } else {
                   map3.panBy(offset);
                 }
               }
             } else if (key in this._zoomKeys) {
-              map3.setZoom(map3.getZoom() + (e.shiftKey ? 3 : 1) * this._zoomKeys[key]);
-            } else if (key === 27 && map3._popup && map3._popup.options.closeOnEscapeKey) {
+              map3.setZoom(
+                map3.getZoom() + (e.shiftKey ? 3 : 1) * this._zoomKeys[key],
+              );
+            } else if (
+              key === 27 &&
+              map3._popup &&
+              map3._popup.options.closeOnEscapeKey
+            ) {
               map3.closePopup();
             } else {
               return;
             }
             stop(e);
-          }
+          },
         });
         Map.addInitHook("addHandler", "keyboard", Keyboard);
         Map.mergeOptions({
@@ -9300,33 +10966,42 @@
           // How many scroll pixels (as reported by [L.DomEvent.getWheelDelta](#domevent-getwheeldelta))
           // mean a change of one full zoom level. Smaller values will make wheel-zooming
           // faster (and vice versa).
-          wheelPxPerZoomLevel: 60
+          wheelPxPerZoomLevel: 60,
         });
         var ScrollWheelZoom = Handler.extend({
-          addHooks: function() {
+          addHooks: function () {
             on(this._map._container, "wheel", this._onWheelScroll, this);
             this._delta = 0;
           },
-          removeHooks: function() {
+          removeHooks: function () {
             off(this._map._container, "wheel", this._onWheelScroll, this);
           },
-          _onWheelScroll: function(e) {
+          _onWheelScroll: function (e) {
             var delta = getWheelDelta(e);
             var debounce = this._map.options.wheelDebounceTime;
             this._delta += delta;
             this._lastMousePos = this._map.mouseEventToContainerPoint(e);
             if (!this._startTime) {
-              this._startTime = +/* @__PURE__ */ new Date();
+              this._startTime = +(/* @__PURE__ */ new Date());
             }
-            var left = Math.max(debounce - (+/* @__PURE__ */ new Date() - this._startTime), 0);
+            var left = Math.max(
+              debounce - (+(/* @__PURE__ */ new Date()) - this._startTime),
+              0,
+            );
             clearTimeout(this._timer);
             this._timer = setTimeout(bind(this._performZoom, this), left);
             stop(e);
           },
-          _performZoom: function() {
-            var map3 = this._map, zoom2 = map3.getZoom(), snap = this._map.options.zoomSnap || 0;
+          _performZoom: function () {
+            var map3 = this._map,
+              zoom2 = map3.getZoom(),
+              snap = this._map.options.zoomSnap || 0;
             map3._stop();
-            var d2 = this._delta / (this._map.options.wheelPxPerZoomLevel * 4), d3 = 4 * Math.log(2 / (1 + Math.exp(-Math.abs(d2)))) / Math.LN2, d4 = snap ? Math.ceil(d3 / snap) * snap : d3, delta = map3._limitZoom(zoom2 + (this._delta > 0 ? d4 : -d4)) - zoom2;
+            var d2 = this._delta / (this._map.options.wheelPxPerZoomLevel * 4),
+              d3 = (4 * Math.log(2 / (1 + Math.exp(-Math.abs(d2))))) / Math.LN2,
+              d4 = snap ? Math.ceil(d3 / snap) * snap : d3,
+              delta =
+                map3._limitZoom(zoom2 + (this._delta > 0 ? d4 : -d4)) - zoom2;
             this._delta = 0;
             this._startTime = null;
             if (!delta) {
@@ -9337,7 +11012,7 @@
             } else {
               map3.setZoomAround(this._lastMousePos, zoom2 + delta);
             }
-          }
+          },
         });
         Map.addInitHook("addHandler", "scrollWheelZoom", ScrollWheelZoom);
         var tapHoldDelay = 600;
@@ -9349,51 +11024,70 @@
           // @option tapTolerance: Number = 15
           // The max number of pixels a user can shift his finger during touch
           // for it to be considered a valid tap.
-          tapTolerance: 15
+          tapTolerance: 15,
         });
         var TapHold = Handler.extend({
-          addHooks: function() {
+          addHooks: function () {
             on(this._map._container, "touchstart", this._onDown, this);
           },
-          removeHooks: function() {
+          removeHooks: function () {
             off(this._map._container, "touchstart", this._onDown, this);
           },
-          _onDown: function(e) {
+          _onDown: function (e) {
             clearTimeout(this._holdTimeout);
             if (e.touches.length !== 1) {
               return;
             }
             var first = e.touches[0];
-            this._startPos = this._newPos = new Point(first.clientX, first.clientY);
-            this._holdTimeout = setTimeout(bind(function() {
-              this._cancel();
-              if (!this._isTapValid()) {
-                return;
-              }
-              on(document, "touchend", preventDefault);
-              on(document, "touchend touchcancel", this._cancelClickPrevent);
-              this._simulateEvent("contextmenu", first);
-            }, this), tapHoldDelay);
-            on(document, "touchend touchcancel contextmenu", this._cancel, this);
+            this._startPos = this._newPos = new Point(
+              first.clientX,
+              first.clientY,
+            );
+            this._holdTimeout = setTimeout(
+              bind(function () {
+                this._cancel();
+                if (!this._isTapValid()) {
+                  return;
+                }
+                on(document, "touchend", preventDefault);
+                on(document, "touchend touchcancel", this._cancelClickPrevent);
+                this._simulateEvent("contextmenu", first);
+              }, this),
+              tapHoldDelay,
+            );
+            on(
+              document,
+              "touchend touchcancel contextmenu",
+              this._cancel,
+              this,
+            );
             on(document, "touchmove", this._onMove, this);
           },
           _cancelClickPrevent: function cancelClickPrevent() {
             off(document, "touchend", preventDefault);
             off(document, "touchend touchcancel", cancelClickPrevent);
           },
-          _cancel: function() {
+          _cancel: function () {
             clearTimeout(this._holdTimeout);
-            off(document, "touchend touchcancel contextmenu", this._cancel, this);
+            off(
+              document,
+              "touchend touchcancel contextmenu",
+              this._cancel,
+              this,
+            );
             off(document, "touchmove", this._onMove, this);
           },
-          _onMove: function(e) {
+          _onMove: function (e) {
             var first = e.touches[0];
             this._newPos = new Point(first.clientX, first.clientY);
           },
-          _isTapValid: function() {
-            return this._newPos.distanceTo(this._startPos) <= this._map.options.tapTolerance;
+          _isTapValid: function () {
+            return (
+              this._newPos.distanceTo(this._startPos) <=
+              this._map.options.tapTolerance
+            );
           },
-          _simulateEvent: function(type, e) {
+          _simulateEvent: function (type, e) {
             var simulatedEvent = new MouseEvent(type, {
               bubbles: true,
               cancelable: true,
@@ -9402,13 +11096,13 @@
               screenX: e.screenX,
               screenY: e.screenY,
               clientX: e.clientX,
-              clientY: e.clientY
+              clientY: e.clientY,
               // button: 2,
               // buttons: 2
             });
             simulatedEvent._simulated = true;
             e.target.dispatchEvent(simulatedEvent);
-          }
+          },
         });
         Map.addInitHook("addHandler", "tapHold", TapHold);
         Map.mergeOptions({
@@ -9422,27 +11116,35 @@
           // @option bounceAtZoomLimits: Boolean = true
           // Set it to false if you don't want the map to zoom beyond min/max zoom
           // and then bounce back when pinch-zooming.
-          bounceAtZoomLimits: true
+          bounceAtZoomLimits: true,
         });
         var TouchZoom = Handler.extend({
-          addHooks: function() {
+          addHooks: function () {
             addClass(this._map._container, "leaflet-touch-zoom");
             on(this._map._container, "touchstart", this._onTouchStart, this);
           },
-          removeHooks: function() {
+          removeHooks: function () {
             removeClass(this._map._container, "leaflet-touch-zoom");
             off(this._map._container, "touchstart", this._onTouchStart, this);
           },
-          _onTouchStart: function(e) {
+          _onTouchStart: function (e) {
             var map3 = this._map;
-            if (!e.touches || e.touches.length !== 2 || map3._animatingZoom || this._zooming) {
+            if (
+              !e.touches ||
+              e.touches.length !== 2 ||
+              map3._animatingZoom ||
+              this._zooming
+            ) {
               return;
             }
-            var p1 = map3.mouseEventToContainerPoint(e.touches[0]), p2 = map3.mouseEventToContainerPoint(e.touches[1]);
+            var p1 = map3.mouseEventToContainerPoint(e.touches[0]),
+              p2 = map3.mouseEventToContainerPoint(e.touches[1]);
             this._centerPoint = map3.getSize()._divideBy(2);
             this._startLatLng = map3.containerPointToLatLng(this._centerPoint);
             if (map3.options.touchZoom !== "center") {
-              this._pinchStartLatLng = map3.containerPointToLatLng(p1.add(p2)._divideBy(2));
+              this._pinchStartLatLng = map3.containerPointToLatLng(
+                p1.add(p2)._divideBy(2),
+              );
             }
             this._startDist = p1.distanceTo(p2);
             this._startZoom = map3.getZoom();
@@ -9453,13 +11155,20 @@
             on(document, "touchend touchcancel", this._onTouchEnd, this);
             preventDefault(e);
           },
-          _onTouchMove: function(e) {
+          _onTouchMove: function (e) {
             if (!e.touches || e.touches.length !== 2 || !this._zooming) {
               return;
             }
-            var map3 = this._map, p1 = map3.mouseEventToContainerPoint(e.touches[0]), p2 = map3.mouseEventToContainerPoint(e.touches[1]), scale2 = p1.distanceTo(p2) / this._startDist;
+            var map3 = this._map,
+              p1 = map3.mouseEventToContainerPoint(e.touches[0]),
+              p2 = map3.mouseEventToContainerPoint(e.touches[1]),
+              scale2 = p1.distanceTo(p2) / this._startDist;
             this._zoom = map3.getScaleZoom(scale2, this._startZoom);
-            if (!map3.options.bounceAtZoomLimits && (this._zoom < map3.getMinZoom() && scale2 < 1 || this._zoom > map3.getMaxZoom() && scale2 > 1)) {
+            if (
+              !map3.options.bounceAtZoomLimits &&
+              ((this._zoom < map3.getMinZoom() && scale2 < 1) ||
+                (this._zoom > map3.getMaxZoom() && scale2 > 1))
+            ) {
               this._zoom = map3._limitZoom(this._zoom);
             }
             if (map3.options.touchZoom === "center") {
@@ -9472,18 +11181,30 @@
               if (scale2 === 1 && delta.x === 0 && delta.y === 0) {
                 return;
               }
-              this._center = map3.unproject(map3.project(this._pinchStartLatLng, this._zoom).subtract(delta), this._zoom);
+              this._center = map3.unproject(
+                map3
+                  .project(this._pinchStartLatLng, this._zoom)
+                  .subtract(delta),
+                this._zoom,
+              );
             }
             if (!this._moved) {
               map3._moveStart(true, false);
               this._moved = true;
             }
             cancelAnimFrame(this._animRequest);
-            var moveFn = bind(map3._move, map3, this._center, this._zoom, { pinch: true, round: false }, void 0);
+            var moveFn = bind(
+              map3._move,
+              map3,
+              this._center,
+              this._zoom,
+              { pinch: true, round: false },
+              void 0,
+            );
             this._animRequest = requestAnimFrame(moveFn, this, true);
             preventDefault(e);
           },
-          _onTouchEnd: function() {
+          _onTouchEnd: function () {
             if (!this._moved || !this._zooming) {
               this._zooming = false;
               return;
@@ -9493,11 +11214,19 @@
             off(document, "touchmove", this._onTouchMove, this);
             off(document, "touchend touchcancel", this._onTouchEnd, this);
             if (this._map.options.zoomAnimation) {
-              this._map._animateZoom(this._center, this._map._limitZoom(this._zoom), true, this._map.options.zoomSnap);
+              this._map._animateZoom(
+                this._center,
+                this._map._limitZoom(this._zoom),
+                true,
+                this._map.options.zoomSnap,
+              );
             } else {
-              this._map._resetView(this._center, this._map._limitZoom(this._zoom));
+              this._map._resetView(
+                this._center,
+                this._map._limitZoom(this._zoom),
+              );
             }
-          }
+          },
         });
         Map.addInitHook("addHandler", "touchZoom", TouchZoom);
         Map.BoxZoom = BoxZoom;
@@ -9586,13 +11315,13 @@
         exports2.version = version;
         exports2.videoOverlay = videoOverlay;
         var oldL = window.L;
-        exports2.noConflict = function() {
+        exports2.noConflict = function () {
           window.L = oldL;
           return this;
         };
         window.L = exports2;
       });
-    }
+    },
   });
 
   // src/ts/index.ts
@@ -9659,15 +11388,13 @@
       return __async(this, null, function* () {
         console.log("Il repassera par l\xE0");
         let nodeResa = document.getElementById("resa");
-        let date = new Date(
-          nodeResa.querySelector("#date-input").value
-        );
+        let date = new Date(nodeResa.querySelector("#date-input").value);
         let heure = nodeResa.querySelector("#hour-input").value;
         let nom = nodeResa.querySelector("#lastname-input").value;
         let prenom = nodeResa.querySelector("#name-input").value;
         let numT = nodeResa.querySelector("#numero-input").value;
         let nbPersonnes = Number.parseInt(
-          nodeResa.querySelector("#nombre-input").value
+          nodeResa.querySelector("#nombre-input").value,
         );
         let values = {
           date,
@@ -9676,13 +11403,13 @@
           prenom,
           numT,
           nbPersonnes,
-          idResto: resto.id
+          idResto: resto.id,
         };
         nodeResa.querySelector("#submitButton").classList.add("hidden");
         nodeResa.querySelector("#resa-spinner").classList.remove("hidden");
         let response = yield fetch(serverHost + "/reserver", {
           method: "POST",
-          body: JSON.stringify(values)
+          body: JSON.stringify(values),
         });
         nodeResa.querySelector("#submitButton").classList.remove("hidden");
         nodeResa.querySelector("#resa-spinner").classList.add("hidden");
@@ -9695,12 +11422,17 @@
   function showVelib() {
     return __async(this, null, function* () {
       for (const StationVlib of yield loader.getVelib()) {
-        let marker = import_leaflet.default.marker([StationVlib.lat, StationVlib.lon]).addTo(map);
+        let marker = import_leaflet.default
+          .marker([StationVlib.lat, StationVlib.lon])
+          .addTo(map);
         marker.setIcon(
-          import_leaflet.default.icon({ iconUrl: "data/icon/velo.png", iconSize: import_leaflet.default.point(30, 30) })
+          import_leaflet.default.icon({
+            iconUrl: "data/icon/velo.png",
+            iconSize: import_leaflet.default.point(30, 30),
+          }),
         );
         let popup = marker.bindPopup(
-          `${StationVlib.name.toLowerCase()} | Capacit\xE9: ${StationVlib.num_bikes_available} / ${StationVlib.capacity} | Docks : ${StationVlib.num_docks_available}`
+          `${StationVlib.name.toLowerCase()} | Capacit\xE9: ${StationVlib.num_bikes_available} / ${StationVlib.capacity} | Docks : ${StationVlib.num_docks_available}`,
         );
       }
     });
@@ -9709,15 +11441,17 @@
     return __async(this, null, function* () {
       for (const travail of yield loader.getTravaux()) {
         let coords = travail.location.polyline.split(" ");
-        let marker = import_leaflet.default.marker([
-          Number.parseFloat(coords[0]),
-          Number.parseFloat(coords[1])
-        ]).addTo(map);
+        let marker = import_leaflet.default
+          .marker([Number.parseFloat(coords[0]), Number.parseFloat(coords[1])])
+          .addTo(map);
         marker.setIcon(
-          import_leaflet.default.icon({ iconUrl: "data/icon/danger.png", iconSize: import_leaflet.default.point(30, 30) })
+          import_leaflet.default.icon({
+            iconUrl: "data/icon/danger.png",
+            iconSize: import_leaflet.default.point(30, 30),
+          }),
         );
         let popup = marker.bindPopup(
-          `/!\\  ${travail.type} | ${travail.short_description}`
+          `/!\\  ${travail.type} | ${travail.short_description}`,
         );
       }
     });
@@ -9725,7 +11459,9 @@
   function showRestos() {
     return __async(this, null, function* () {
       for (const resto of yield loader.getRestos()) {
-        let marker = import_leaflet.default.marker([resto.lat, resto.lon]).addTo(map);
+        let marker = import_leaflet.default
+          .marker([resto.lat, resto.lon])
+          .addTo(map);
         let popup = marker.bindPopup(resto.nom);
         popup.on("click", () => {
           showResa(resto);
@@ -9734,7 +11470,7 @@
       }
     });
   }
-  function showAll(show = { resto: true, velib: true, travaux: true }) {
+  function showMap(show = { resto: true, velib: true, travaux: true }) {
     if (show.resto) {
       showRestos();
     }
@@ -9754,11 +11490,13 @@
     var arr = [];
     var getProto = Object.getPrototypeOf;
     var slice = arr.slice;
-    var flat = arr.flat ? function(array) {
-      return arr.flat.call(array);
-    } : function(array) {
-      return arr.concat.apply([], array);
-    };
+    var flat = arr.flat
+      ? function (array) {
+          return arr.flat.call(array);
+        }
+      : function (array) {
+          return arr.concat.apply([], array);
+        };
     var push = arr.push;
     var indexOf = arr.indexOf;
     var class2type = {};
@@ -9771,28 +11509,36 @@
       if (obj == null) {
         return obj + "";
       }
-      return typeof obj === "object" ? class2type[toString.call(obj)] || "object" : typeof obj;
+      return typeof obj === "object"
+        ? class2type[toString.call(obj)] || "object"
+        : typeof obj;
     }
     function isWindow(obj) {
       return obj != null && obj === obj.window;
     }
     function isArrayLike(obj) {
-      var length = !!obj && obj.length, type = toType(obj);
+      var length = !!obj && obj.length,
+        type = toType(obj);
       if (typeof obj === "function" || isWindow(obj)) {
         return false;
       }
-      return type === "array" || length === 0 || typeof length === "number" && length > 0 && length - 1 in obj;
+      return (
+        type === "array" ||
+        length === 0 ||
+        (typeof length === "number" && length > 0 && length - 1 in obj)
+      );
     }
     var document$1 = window2.document;
     var preservedScriptAttributes = {
       type: true,
       src: true,
       nonce: true,
-      noModule: true
+      noModule: true,
     };
     function DOMEval(code, node, doc) {
       doc = doc || document$1;
-      var i2, script = doc.createElement("script");
+      var i2,
+        script = doc.createElement("script");
       script.text = code;
       for (i2 in preservedScriptAttributes) {
         if (node && node[i2]) {
@@ -9803,21 +11549,23 @@
         script.parentNode.removeChild(script);
       }
     }
-    var version = "4.0.0", rhtmlSuffix = /HTML$/i, jQuery2 = function(selector, context) {
-      return new jQuery2.fn.init(selector, context);
-    };
+    var version = "4.0.0",
+      rhtmlSuffix = /HTML$/i,
+      jQuery2 = function (selector, context) {
+        return new jQuery2.fn.init(selector, context);
+      };
     jQuery2.fn = jQuery2.prototype = {
       // The current version of jQuery being used
       jquery: version,
       constructor: jQuery2,
       // The default length of a jQuery object is 0
       length: 0,
-      toArray: function() {
+      toArray: function () {
         return slice.call(this);
       },
       // Get the Nth element in the matched element set OR
       // Get the whole matched element set as a clean array
-      get: function(num) {
+      get: function (num) {
         if (num == null) {
           return slice.call(this);
         }
@@ -9825,49 +11573,65 @@
       },
       // Take an array of elements and push it onto the stack
       // (returning the new matched element set)
-      pushStack: function(elems) {
+      pushStack: function (elems) {
         var ret = jQuery2.merge(this.constructor(), elems);
         ret.prevObject = this;
         return ret;
       },
       // Execute a callback for every element in the matched set.
-      each: function(callback) {
+      each: function (callback) {
         return jQuery2.each(this, callback);
       },
-      map: function(callback) {
-        return this.pushStack(jQuery2.map(this, function(elem, i2) {
-          return callback.call(elem, i2, elem);
-        }));
+      map: function (callback) {
+        return this.pushStack(
+          jQuery2.map(this, function (elem, i2) {
+            return callback.call(elem, i2, elem);
+          }),
+        );
       },
-      slice: function() {
+      slice: function () {
         return this.pushStack(slice.apply(this, arguments));
       },
-      first: function() {
+      first: function () {
         return this.eq(0);
       },
-      last: function() {
+      last: function () {
         return this.eq(-1);
       },
-      even: function() {
-        return this.pushStack(jQuery2.grep(this, function(_elem, i2) {
-          return (i2 + 1) % 2;
-        }));
+      even: function () {
+        return this.pushStack(
+          jQuery2.grep(this, function (_elem, i2) {
+            return (i2 + 1) % 2;
+          }),
+        );
       },
-      odd: function() {
-        return this.pushStack(jQuery2.grep(this, function(_elem, i2) {
-          return i2 % 2;
-        }));
+      odd: function () {
+        return this.pushStack(
+          jQuery2.grep(this, function (_elem, i2) {
+            return i2 % 2;
+          }),
+        );
       },
-      eq: function(i2) {
-        var len = this.length, j = +i2 + (i2 < 0 ? len : 0);
+      eq: function (i2) {
+        var len = this.length,
+          j = +i2 + (i2 < 0 ? len : 0);
         return this.pushStack(j >= 0 && j < len ? [this[j]] : []);
       },
-      end: function() {
+      end: function () {
         return this.prevObject || this.constructor();
-      }
+      },
     };
-    jQuery2.extend = jQuery2.fn.extend = function() {
-      var options, name, src, copy, copyIsArray, clone, target = arguments[0] || {}, i2 = 1, length = arguments.length, deep = false;
+    jQuery2.extend = jQuery2.fn.extend = function () {
+      var options,
+        name,
+        src,
+        copy,
+        copyIsArray,
+        clone,
+        target = arguments[0] || {},
+        i2 = 1,
+        length = arguments.length,
+        deep = false;
       if (typeof target === "boolean") {
         deep = target;
         target = arguments[i2] || {};
@@ -9887,7 +11651,12 @@
             if (name === "__proto__" || target === copy) {
               continue;
             }
-            if (deep && copy && (jQuery2.isPlainObject(copy) || (copyIsArray = Array.isArray(copy)))) {
+            if (
+              deep &&
+              copy &&
+              (jQuery2.isPlainObject(copy) ||
+                (copyIsArray = Array.isArray(copy)))
+            ) {
               src = target[name];
               if (copyIsArray && !Array.isArray(src)) {
                 clone = [];
@@ -9911,12 +11680,11 @@
       expando: "jQuery" + (version + Math.random()).replace(/\D/g, ""),
       // Assume jQuery is ready without the ready module
       isReady: true,
-      error: function(msg) {
+      error: function (msg) {
         throw new Error(msg);
       },
-      noop: function() {
-      },
-      isPlainObject: function(obj) {
+      noop: function () {},
+      isPlainObject: function (obj) {
         var proto, Ctor;
         if (!obj || toString.call(obj) !== "[object Object]") {
           return false;
@@ -9926,9 +11694,12 @@
           return true;
         }
         Ctor = hasOwn.call(proto, "constructor") && proto.constructor;
-        return typeof Ctor === "function" && fnToString.call(Ctor) === ObjectFunctionString;
+        return (
+          typeof Ctor === "function" &&
+          fnToString.call(Ctor) === ObjectFunctionString
+        );
       },
-      isEmptyObject: function(obj) {
+      isEmptyObject: function (obj) {
         var name;
         for (name in obj) {
           return false;
@@ -9937,11 +11708,12 @@
       },
       // Evaluates a script in a provided context; falls back to the global one
       // if not specified.
-      globalEval: function(code, options, doc) {
+      globalEval: function (code, options, doc) {
         DOMEval(code, { nonce: options && options.nonce }, doc);
       },
-      each: function(obj, callback) {
-        var length, i2 = 0;
+      each: function (obj, callback) {
+        var length,
+          i2 = 0;
         if (isArrayLike(obj)) {
           length = obj.length;
           for (; i2 < length; i2++) {
@@ -9959,10 +11731,13 @@
         return obj;
       },
       // Retrieve the text value of an array of DOM nodes
-      text: function(elem) {
-        var node, ret = "", i2 = 0, nodeType = elem.nodeType;
+      text: function (elem) {
+        var node,
+          ret = "",
+          i2 = 0,
+          nodeType = elem.nodeType;
         if (!nodeType) {
-          while (node = elem[i2++]) {
+          while ((node = elem[i2++])) {
             ret += jQuery2.text(node);
           }
         }
@@ -9978,44 +11753,59 @@
         return ret;
       },
       // results is for internal usage only
-      makeArray: function(arr2, results) {
+      makeArray: function (arr2, results) {
         var ret = results || [];
         if (arr2 != null) {
           if (isArrayLike(Object(arr2))) {
-            jQuery2.merge(
-              ret,
-              typeof arr2 === "string" ? [arr2] : arr2
-            );
+            jQuery2.merge(ret, typeof arr2 === "string" ? [arr2] : arr2);
           } else {
             push.call(ret, arr2);
           }
         }
         return ret;
       },
-      inArray: function(elem, arr2, i2) {
+      inArray: function (elem, arr2, i2) {
         return arr2 == null ? -1 : indexOf.call(arr2, elem, i2);
       },
-      isXMLDoc: function(elem) {
-        var namespace = elem && elem.namespaceURI, docElem = elem && (elem.ownerDocument || elem).documentElement;
-        return !rhtmlSuffix.test(namespace || docElem && docElem.nodeName || "HTML");
+      isXMLDoc: function (elem) {
+        var namespace = elem && elem.namespaceURI,
+          docElem = elem && (elem.ownerDocument || elem).documentElement;
+        return !rhtmlSuffix.test(
+          namespace || (docElem && docElem.nodeName) || "HTML",
+        );
       },
       // Note: an element does not contain itself
-      contains: function(a, b) {
+      contains: function (a, b) {
         var bup = b && b.parentNode;
-        return a === bup || !!(bup && bup.nodeType === 1 && // Support: IE 9 - 11+
-        // IE doesn't have `contains` on SVG.
-        (a.contains ? a.contains(bup) : a.compareDocumentPosition && a.compareDocumentPosition(bup) & 16));
+        return (
+          a === bup ||
+          !!(
+            bup &&
+            bup.nodeType === 1 && // Support: IE 9 - 11+
+            // IE doesn't have `contains` on SVG.
+            (a.contains
+              ? a.contains(bup)
+              : a.compareDocumentPosition &&
+                a.compareDocumentPosition(bup) & 16)
+          )
+        );
       },
-      merge: function(first, second) {
-        var len = +second.length, j = 0, i2 = first.length;
+      merge: function (first, second) {
+        var len = +second.length,
+          j = 0,
+          i2 = first.length;
         for (; j < len; j++) {
           first[i2++] = second[j];
         }
         first.length = i2;
         return first;
       },
-      grep: function(elems, callback, invert) {
-        var callbackInverse, matches2 = [], i2 = 0, length = elems.length, callbackExpect = !invert;
+      grep: function (elems, callback, invert) {
+        var callbackInverse,
+          matches2 = [],
+          i2 = 0,
+          length = elems.length,
+          callbackExpect = !invert;
         for (; i2 < length; i2++) {
           callbackInverse = !callback(elems[i2], i2);
           if (callbackInverse !== callbackExpect) {
@@ -10025,8 +11815,11 @@
         return matches2;
       },
       // arg is for internal usage only
-      map: function(elems, callback, arg) {
-        var length, value, i2 = 0, ret = [];
+      map: function (elems, callback, arg) {
+        var length,
+          value,
+          i2 = 0,
+          ret = [];
         if (isArrayLike(elems)) {
           length = elems.length;
           for (; i2 < length; i2++) {
@@ -10049,55 +11842,93 @@
       guid: 1,
       // jQuery.support is not used in Core but other projects attach their
       // properties to it so it needs to exist.
-      support
+      support,
     });
     if (typeof Symbol === "function") {
       jQuery2.fn[Symbol.iterator] = arr[Symbol.iterator];
     }
     jQuery2.each(
-      "Boolean Number String Function Array Date RegExp Object Error Symbol".split(" "),
-      function(_i, name) {
+      "Boolean Number String Function Array Date RegExp Object Error Symbol".split(
+        " ",
+      ),
+      function (_i, name) {
         class2type["[object " + name + "]"] = name.toLowerCase();
-      }
+      },
     );
     function nodeName(elem, name) {
-      return elem.nodeName && elem.nodeName.toLowerCase() === name.toLowerCase();
+      return (
+        elem.nodeName && elem.nodeName.toLowerCase() === name.toLowerCase()
+      );
     }
     var pop = arr.pop;
     var whitespace = "[\\x20\\t\\r\\n\\f]";
     var isIE = document$1.documentMode;
-    var rbuggyQSA = isIE && new RegExp(
-      // Support: IE 9 - 11+
-      // IE's :disabled selector does not pick up the children of disabled fieldsets
-      ":enabled|:disabled|\\[" + whitespace + "*name" + whitespace + "*=" + whitespace + `*(?:''|"")`
-    );
+    var rbuggyQSA =
+      isIE &&
+      new RegExp(
+        // Support: IE 9 - 11+
+        // IE's :disabled selector does not pick up the children of disabled fieldsets
+        ":enabled|:disabled|\\[" +
+          whitespace +
+          "*name" +
+          whitespace +
+          "*=" +
+          whitespace +
+          `*(?:''|"")`,
+      );
     var rtrimCSS = new RegExp(
       "^" + whitespace + "+|((?:^|[^\\\\])(?:\\\\.)*)" + whitespace + "+$",
-      "g"
+      "g",
     );
-    var identifier = "(?:\\\\[\\da-fA-F]{1,6}" + whitespace + "?|\\\\[^\\r\\n\\f]|[\\w-]|[^\0-\\x7f])+";
-    var rleadingCombinator = new RegExp("^" + whitespace + "*([>+~]|" + whitespace + ")" + whitespace + "*");
+    var identifier =
+      "(?:\\\\[\\da-fA-F]{1,6}" +
+      whitespace +
+      "?|\\\\[^\\r\\n\\f]|[\\w-]|[^\0-\\x7f])+";
+    var rleadingCombinator = new RegExp(
+      "^" + whitespace + "*([>+~]|" + whitespace + ")" + whitespace + "*",
+    );
     var rdescend = new RegExp(whitespace + "|>");
     var rsibling = /[+~]/;
     var documentElement$1 = document$1.documentElement;
-    var matches = documentElement$1.matches || documentElement$1.msMatchesSelector;
+    var matches =
+      documentElement$1.matches || documentElement$1.msMatchesSelector;
     function createCache() {
       var keys = [];
       function cache(key, value) {
         if (keys.push(key + " ") > jQuery2.expr.cacheLength) {
           delete cache[keys.shift()];
         }
-        return cache[key + " "] = value;
+        return (cache[key + " "] = value);
       }
       return cache;
     }
     function testContext(context) {
-      return context && typeof context.getElementsByTagName !== "undefined" && context;
+      return (
+        context &&
+        typeof context.getElementsByTagName !== "undefined" &&
+        context
+      );
     }
-    var attributes = "\\[" + whitespace + "*(" + identifier + ")(?:" + whitespace + // Operator (capture 2)
-    "*([*^$|!~]?=)" + whitespace + // "Attribute values must be CSS identifiers [capture 5] or strings [capture 3 or capture 4]"
-    `*(?:'((?:\\\\.|[^\\\\'])*)'|"((?:\\\\.|[^\\\\"])*)"|(` + identifier + "))|)" + whitespace + "*\\]";
-    var pseudos = ":(" + identifier + `)(?:\\((('((?:\\\\.|[^\\\\'])*)'|"((?:\\\\.|[^\\\\"])*)")|((?:\\\\.|[^\\\\()[\\]]|` + attributes + ")*)|.*)\\)|)";
+    var attributes =
+      "\\[" +
+      whitespace +
+      "*(" +
+      identifier +
+      ")(?:" +
+      whitespace + // Operator (capture 2)
+      "*([*^$|!~]?=)" +
+      whitespace + // "Attribute values must be CSS identifiers [capture 5] or strings [capture 3 or capture 4]"
+      `*(?:'((?:\\\\.|[^\\\\'])*)'|"((?:\\\\.|[^\\\\"])*)"|(` +
+      identifier +
+      "))|)" +
+      whitespace +
+      "*\\]";
+    var pseudos =
+      ":(" +
+      identifier +
+      `)(?:\\((('((?:\\\\.|[^\\\\'])*)'|"((?:\\\\.|[^\\\\"])*)")|((?:\\\\.|[^\\\\()[\\]]|` +
+      attributes +
+      ")*)|.*)\\)|)";
     var filterMatchExpr = {
       ID: new RegExp("^#(" + identifier + ")"),
       CLASS: new RegExp("^\\.(" + identifier + ")"),
@@ -10105,18 +11936,32 @@
       ATTR: new RegExp("^" + attributes),
       PSEUDO: new RegExp("^" + pseudos),
       CHILD: new RegExp(
-        "^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\(" + whitespace + "*(even|odd|(([+-]|)(\\d*)n|)" + whitespace + "*(?:([+-]|)" + whitespace + "*(\\d+)|))" + whitespace + "*\\)|)",
-        "i"
-      )
+        "^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\(" +
+          whitespace +
+          "*(even|odd|(([+-]|)(\\d*)n|)" +
+          whitespace +
+          "*(?:([+-]|)" +
+          whitespace +
+          "*(\\d+)|))" +
+          whitespace +
+          "*\\)|)",
+        "i",
+      ),
     };
     var rpseudo = new RegExp(pseudos);
-    var runescape = new RegExp("\\\\[\\da-fA-F]{1,6}" + whitespace + "?|\\\\([^\\r\\n\\f])", "g"), funescape = function(escape, nonHex) {
-      var high = "0x" + escape.slice(1) - 65536;
-      if (nonHex) {
-        return nonHex;
-      }
-      return high < 0 ? String.fromCharCode(high + 65536) : String.fromCharCode(high >> 10 | 55296, high & 1023 | 56320);
-    };
+    var runescape = new RegExp(
+        "\\\\[\\da-fA-F]{1,6}" + whitespace + "?|\\\\([^\\r\\n\\f])",
+        "g",
+      ),
+      funescape = function (escape, nonHex) {
+        var high = "0x" + escape.slice(1) - 65536;
+        if (nonHex) {
+          return nonHex;
+        }
+        return high < 0
+          ? String.fromCharCode(high + 65536)
+          : String.fromCharCode((high >> 10) | 55296, (high & 1023) | 56320);
+      };
     function unescapeSelector(sel) {
       return sel.replace(runescape, funescape);
     }
@@ -10126,7 +11971,14 @@
     var rcomma = new RegExp("^" + whitespace + "*," + whitespace + "*");
     var tokenCache = createCache();
     function tokenize(selector, parseOnly) {
-      var matched, match, tokens, type, soFar, groups, preFilters, cached = tokenCache[selector + " "];
+      var matched,
+        match,
+        tokens,
+        type,
+        soFar,
+        groups,
+        preFilters,
+        cached = tokenCache[selector + " "];
       if (cached) {
         return parseOnly ? 0 : cached.slice(0);
       }
@@ -10138,25 +11990,28 @@
           if (match) {
             soFar = soFar.slice(match[0].length) || soFar;
           }
-          groups.push(tokens = []);
+          groups.push((tokens = []));
         }
         matched = false;
-        if (match = rleadingCombinator.exec(soFar)) {
+        if ((match = rleadingCombinator.exec(soFar))) {
           matched = match.shift();
           tokens.push({
             value: matched,
             // Cast descendant combinators to space
-            type: match[0].replace(rtrimCSS, " ")
+            type: match[0].replace(rtrimCSS, " "),
           });
           soFar = soFar.slice(matched.length);
         }
         for (type in filterMatchExpr) {
-          if ((match = jQuery2.expr.match[type].exec(soFar)) && (!preFilters[type] || (match = preFilters[type](match)))) {
+          if (
+            (match = jQuery2.expr.match[type].exec(soFar)) &&
+            (!preFilters[type] || (match = preFilters[type](match)))
+          ) {
             matched = match.shift();
             tokens.push({
               value: matched,
               type,
-              matches: match
+              matches: match,
             });
             soFar = soFar.slice(matched.length);
           }
@@ -10168,13 +12023,13 @@
       if (parseOnly) {
         return soFar.length;
       }
-      return soFar ? selectorError(selector) : (
-        // Cache the tokens
-        tokenCache(selector, groups).slice(0)
-      );
+      return soFar
+        ? selectorError(selector)
+        : // Cache the tokens
+          tokenCache(selector, groups).slice(0);
     }
     var preFilter = {
-      ATTR: function(match) {
+      ATTR: function (match) {
         match[1] = unescapeSelector(match[1]);
         match[3] = unescapeSelector(match[3] || match[4] || match[5] || "");
         if (match[2] === "~=") {
@@ -10182,44 +12037,55 @@
         }
         return match.slice(0, 4);
       },
-      CHILD: function(match) {
+      CHILD: function (match) {
         match[1] = match[1].toLowerCase();
         if (match[1].slice(0, 3) === "nth") {
           if (!match[3]) {
             selectorError(match[0]);
           }
-          match[4] = +(match[4] ? match[5] + (match[6] || 1) : 2 * (match[3] === "even" || match[3] === "odd"));
+          match[4] = +(match[4]
+            ? match[5] + (match[6] || 1)
+            : 2 * (match[3] === "even" || match[3] === "odd"));
           match[5] = +(match[7] + match[8] || match[3] === "odd");
         } else if (match[3]) {
           selectorError(match[0]);
         }
         return match;
       },
-      PSEUDO: function(match) {
-        var excess, unquoted = !match[6] && match[2];
+      PSEUDO: function (match) {
+        var excess,
+          unquoted = !match[6] && match[2];
         if (filterMatchExpr.CHILD.test(match[0])) {
           return null;
         }
         if (match[3]) {
           match[2] = match[4] || match[5] || "";
-        } else if (unquoted && rpseudo.test(unquoted) && // Get excess from tokenize (recursively)
-        (excess = tokenize(unquoted, true)) && // advance to the next closing parenthesis
-        (excess = unquoted.indexOf(")", unquoted.length - excess) - unquoted.length)) {
+        } else if (
+          unquoted &&
+          rpseudo.test(unquoted) && // Get excess from tokenize (recursively)
+          (excess = tokenize(unquoted, true)) && // advance to the next closing parenthesis
+          (excess =
+            unquoted.indexOf(")", unquoted.length - excess) - unquoted.length)
+        ) {
           match[0] = match[0].slice(0, excess);
           match[2] = unquoted.slice(0, excess);
         }
         return match.slice(0, 3);
-      }
+      },
     };
     function toSelector(tokens) {
-      var i2 = 0, len = tokens.length, selector = "";
+      var i2 = 0,
+        len = tokens.length,
+        selector = "";
       for (; i2 < len; i2++) {
         selector += tokens[i2].value;
       }
       return selector;
     }
     function access(elems, fn, key, value, chainable, emptyGet, raw) {
-      var i2 = 0, len = elems.length, bulk = key == null;
+      var i2 = 0,
+        len = elems.length,
+        bulk = key == null;
       if (toType(key) === "object") {
         chainable = true;
         for (i2 in key) {
@@ -10236,7 +12102,7 @@
             fn = null;
           } else {
             bulk = fn;
-            fn = function(elem, _key, value2) {
+            fn = function (elem, _key, value2) {
               return bulk.call(jQuery2(elem), value2);
             };
           }
@@ -10246,7 +12112,7 @@
             fn(
               elems[i2],
               key,
-              raw ? value : value.call(elems[i2], i2, fn(elems[i2], key))
+              raw ? value : value.call(elems[i2], i2, fn(elems[i2], key)),
             );
           }
         }
@@ -10261,18 +12127,20 @@
     }
     var rnothtmlwhite = /[^\x20\t\r\n\f]+/g;
     jQuery2.fn.extend({
-      attr: function(name, value) {
+      attr: function (name, value) {
         return access(this, jQuery2.attr, name, value, arguments.length > 1);
       },
-      removeAttr: function(name) {
-        return this.each(function() {
+      removeAttr: function (name) {
+        return this.each(function () {
           jQuery2.removeAttr(this, name);
         });
-      }
+      },
     });
     jQuery2.extend({
-      attr: function(elem, name, value) {
-        var ret, hooks, nType = elem.nodeType;
+      attr: function (elem, name, value) {
+        var ret,
+          hooks,
+          nType = elem.nodeType;
         if (nType === 3 || nType === 8 || nType === 2) {
           return;
         }
@@ -10283,15 +12151,21 @@
           hooks = jQuery2.attrHooks[name.toLowerCase()];
         }
         if (value !== void 0) {
-          if (value === null || // For compat with previous handling of boolean attributes,
-          // remove when `false` passed. For ARIA attributes -
-          // many of which recognize a `"false"` value - continue to
-          // set the `"false"` value as jQuery <4 did.
-          value === false && name.toLowerCase().indexOf("aria-") !== 0) {
+          if (
+            value === null || // For compat with previous handling of boolean attributes,
+            // remove when `false` passed. For ARIA attributes -
+            // many of which recognize a `"false"` value - continue to
+            // set the `"false"` value as jQuery <4 did.
+            (value === false && name.toLowerCase().indexOf("aria-") !== 0)
+          ) {
             jQuery2.removeAttr(elem, name);
             return;
           }
-          if (hooks && "set" in hooks && (ret = hooks.set(elem, value, name)) !== void 0) {
+          if (
+            hooks &&
+            "set" in hooks &&
+            (ret = hooks.set(elem, value, name)) !== void 0
+          ) {
             return ret;
           }
           elem.setAttribute(name, value);
@@ -10304,18 +12178,20 @@
         return ret == null ? void 0 : ret;
       },
       attrHooks: {},
-      removeAttr: function(elem, value) {
-        var name, i2 = 0, attrNames = value && value.match(rnothtmlwhite);
+      removeAttr: function (elem, value) {
+        var name,
+          i2 = 0,
+          attrNames = value && value.match(rnothtmlwhite);
         if (attrNames && elem.nodeType === 1) {
-          while (name = attrNames[i2++]) {
+          while ((name = attrNames[i2++])) {
             elem.removeAttribute(name);
           }
         }
-      }
+      },
     });
     if (isIE) {
       jQuery2.attrHooks.type = {
-        set: function(elem, value) {
+        set: function (elem, value) {
           if (value === "radio" && nodeName(elem, "input")) {
             var val = elem.value;
             elem.setAttribute("type", value);
@@ -10324,7 +12200,7 @@
             }
             return value;
           }
-        }
+        },
       };
     }
     var rcssescape = /([\0-\x1f\x7f]|^-?\d)|^-$|[^\x80-\uFFFF\w-]/g;
@@ -10333,11 +12209,16 @@
         if (ch === "\0") {
           return "\uFFFD";
         }
-        return ch.slice(0, -1) + "\\" + ch.charCodeAt(ch.length - 1).toString(16) + " ";
+        return (
+          ch.slice(0, -1) +
+          "\\" +
+          ch.charCodeAt(ch.length - 1).toString(16) +
+          " "
+        );
       }
       return "\\" + ch;
     }
-    jQuery2.escapeSelector = function(sel) {
+    jQuery2.escapeSelector = function (sel) {
       return (sel + "").replace(rcssescape, fcssescape);
     };
     var sort = arr.sort;
@@ -10352,27 +12233,37 @@
       if (compare) {
         return compare;
       }
-      compare = (a.ownerDocument || a) == (b.ownerDocument || b) ? a.compareDocumentPosition(b) : (
-        // Otherwise we know they are disconnected
-        1
-      );
+      compare =
+        (a.ownerDocument || a) == (b.ownerDocument || b)
+          ? a.compareDocumentPosition(b)
+          : // Otherwise we know they are disconnected
+            1;
       if (compare & 1) {
-        if (a == document$1 || a.ownerDocument == document$1 && jQuery2.contains(document$1, a)) {
+        if (
+          a == document$1 ||
+          (a.ownerDocument == document$1 && jQuery2.contains(document$1, a))
+        ) {
           return -1;
         }
-        if (b == document$1 || b.ownerDocument == document$1 && jQuery2.contains(document$1, b)) {
+        if (
+          b == document$1 ||
+          (b.ownerDocument == document$1 && jQuery2.contains(document$1, b))
+        ) {
           return 1;
         }
         return 0;
       }
       return compare & 4 ? -1 : 1;
     }
-    jQuery2.uniqueSort = function(results) {
-      var elem, duplicates = [], j = 0, i2 = 0;
+    jQuery2.uniqueSort = function (results) {
+      var elem,
+        duplicates = [],
+        j = 0,
+        i2 = 0;
       hasDuplicate = false;
       sort.call(results, sortOrder);
       if (hasDuplicate) {
-        while (elem = results[i2++]) {
+        while ((elem = results[i2++])) {
           if (elem === results[i2]) {
             j = duplicates.push(i2);
           }
@@ -10383,25 +12274,66 @@
       }
       return results;
     };
-    jQuery2.fn.uniqueSort = function() {
+    jQuery2.fn.uniqueSort = function () {
       return this.pushStack(jQuery2.uniqueSort(slice.apply(this)));
     };
-    var i, outermostContext, document2, documentElement, documentIsHTML, dirruns = 0, done = 0, classCache = createCache(), compilerCache = createCache(), nonnativeSelectorCache = createCache(), rwhitespace = new RegExp(whitespace + "+", "g"), ridentifier = new RegExp("^" + identifier + "$"), matchExpr = jQuery2.extend({
-      // For use in libraries implementing .is()
-      // We use this for POS matching in `select`
-      needsContext: new RegExp("^" + whitespace + "*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\(" + whitespace + "*((?:-\\d)?\\d*)" + whitespace + "*\\)|)(?=[^-]|$)", "i")
-    }, filterMatchExpr), rinputs = /^(?:input|select|textarea|button)$/i, rheader = /^h\d$/i, rquickExpr$1 = /^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/, unloadHandler = function() {
-      setDocument();
-    }, inDisabledFieldset = addCombinator(
-      function(elem) {
-        return elem.disabled === true && nodeName(elem, "fieldset");
+    var i,
+      outermostContext,
+      document2,
+      documentElement,
+      documentIsHTML,
+      dirruns = 0,
+      done = 0,
+      classCache = createCache(),
+      compilerCache = createCache(),
+      nonnativeSelectorCache = createCache(),
+      rwhitespace = new RegExp(whitespace + "+", "g"),
+      ridentifier = new RegExp("^" + identifier + "$"),
+      matchExpr = jQuery2.extend(
+        {
+          // For use in libraries implementing .is()
+          // We use this for POS matching in `select`
+          needsContext: new RegExp(
+            "^" +
+              whitespace +
+              "*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\(" +
+              whitespace +
+              "*((?:-\\d)?\\d*)" +
+              whitespace +
+              "*\\)|)(?=[^-]|$)",
+            "i",
+          ),
+        },
+        filterMatchExpr,
+      ),
+      rinputs = /^(?:input|select|textarea|button)$/i,
+      rheader = /^h\d$/i,
+      rquickExpr$1 = /^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/,
+      unloadHandler = function () {
+        setDocument();
       },
-      { dir: "parentNode", next: "legend" }
-    );
+      inDisabledFieldset = addCombinator(
+        function (elem) {
+          return elem.disabled === true && nodeName(elem, "fieldset");
+        },
+        { dir: "parentNode", next: "legend" },
+      );
     function find(selector, context, results, seed) {
-      var m, i2, elem, nid, match, groups, newSelector, newContext = context && context.ownerDocument, nodeType = context ? context.nodeType : 9;
+      var m,
+        i2,
+        elem,
+        nid,
+        match,
+        groups,
+        newSelector,
+        newContext = context && context.ownerDocument,
+        nodeType = context ? context.nodeType : 9;
       results = results || [];
-      if (typeof selector !== "string" || !selector || nodeType !== 1 && nodeType !== 9 && nodeType !== 11) {
+      if (
+        typeof selector !== "string" ||
+        !selector ||
+        (nodeType !== 1 && nodeType !== 9 && nodeType !== 11)
+      ) {
         return results;
       }
       if (!seed) {
@@ -10409,14 +12341,18 @@
         context = context || document2;
         if (documentIsHTML) {
           if (nodeType !== 11 && (match = rquickExpr$1.exec(selector))) {
-            if (m = match[1]) {
+            if ((m = match[1])) {
               if (nodeType === 9) {
-                if (elem = context.getElementById(m)) {
+                if ((elem = context.getElementById(m))) {
                   push.call(results, elem);
                 }
                 return results;
               } else {
-                if (newContext && (elem = newContext.getElementById(m)) && jQuery2.contains(context, elem)) {
+                if (
+                  newContext &&
+                  (elem = newContext.getElementById(m)) &&
+                  jQuery2.contains(context, elem)
+                ) {
                   push.call(results, elem);
                   return results;
                 }
@@ -10429,30 +12365,36 @@
               return results;
             }
           }
-          if (!nonnativeSelectorCache[selector + " "] && (!rbuggyQSA || !rbuggyQSA.test(selector))) {
+          if (
+            !nonnativeSelectorCache[selector + " "] &&
+            (!rbuggyQSA || !rbuggyQSA.test(selector))
+          ) {
             newSelector = selector;
             newContext = context;
-            if (nodeType === 1 && (rdescend.test(selector) || rleadingCombinator.test(selector))) {
-              newContext = rsibling.test(selector) && testContext(context.parentNode) || context;
+            if (
+              nodeType === 1 &&
+              (rdescend.test(selector) || rleadingCombinator.test(selector))
+            ) {
+              newContext =
+                (rsibling.test(selector) && testContext(context.parentNode)) ||
+                context;
               if (newContext != context || isIE) {
-                if (nid = context.getAttribute("id")) {
+                if ((nid = context.getAttribute("id"))) {
                   nid = jQuery2.escapeSelector(nid);
                 } else {
-                  context.setAttribute("id", nid = jQuery2.expando);
+                  context.setAttribute("id", (nid = jQuery2.expando));
                 }
               }
               groups = tokenize(selector);
               i2 = groups.length;
               while (i2--) {
-                groups[i2] = (nid ? "#" + nid : ":scope") + " " + toSelector(groups[i2]);
+                groups[i2] =
+                  (nid ? "#" + nid : ":scope") + " " + toSelector(groups[i2]);
               }
               newSelector = groups.join(",");
             }
             try {
-              push.apply(
-                results,
-                newContext.querySelectorAll(newSelector)
-              );
+              push.apply(results, newContext.querySelectorAll(newSelector));
               return results;
             } catch (qsaError) {
               nonnativeSelectorCache(selector, true);
@@ -10471,17 +12413,20 @@
       return fn;
     }
     function createInputPseudo(type) {
-      return function(elem) {
+      return function (elem) {
         return nodeName(elem, "input") && elem.type === type;
       };
     }
     function createButtonPseudo(type) {
-      return function(elem) {
-        return (nodeName(elem, "input") || nodeName(elem, "button")) && elem.type === type;
+      return function (elem) {
+        return (
+          (nodeName(elem, "input") || nodeName(elem, "button")) &&
+          elem.type === type
+        );
       };
     }
     function createDisabledPseudo(disabled) {
-      return function(elem) {
+      return function (elem) {
         if ("form" in elem) {
           if (elem.parentNode && elem.disabled === false) {
             if ("label" in elem) {
@@ -10491,8 +12436,11 @@
                 return elem.disabled === disabled;
               }
             }
-            return elem.isDisabled === disabled || // Where there is no isDisabled, check manually
-            elem.isDisabled !== !disabled && inDisabledFieldset(elem) === disabled;
+            return (
+              elem.isDisabled === disabled || // Where there is no isDisabled, check manually
+              (elem.isDisabled !== !disabled &&
+                inDisabledFieldset(elem) === disabled)
+            );
           }
           return elem.disabled === disabled;
         } else if ("label" in elem) {
@@ -10502,12 +12450,14 @@
       };
     }
     function createPositionalPseudo(fn) {
-      return markFunction(function(argument) {
+      return markFunction(function (argument) {
         argument = +argument;
-        return markFunction(function(seed, matches2) {
-          var j, matchIndexes = fn([], seed.length, argument), i2 = matchIndexes.length;
+        return markFunction(function (seed, matches2) {
+          var j,
+            matchIndexes = fn([], seed.length, argument),
+            i2 = matchIndexes.length;
           while (i2--) {
-            if (seed[j = matchIndexes[i2]]) {
+            if (seed[(j = matchIndexes[i2])]) {
               seed[j] = !(matches2[j] = seed[j]);
             }
           }
@@ -10515,23 +12465,33 @@
       });
     }
     function setDocument(node) {
-      var subWindow, doc = node ? node.ownerDocument || node : document$1;
+      var subWindow,
+        doc = node ? node.ownerDocument || node : document$1;
       if (doc == document2 || doc.nodeType !== 9) {
         return;
       }
       document2 = doc;
       documentElement = document2.documentElement;
       documentIsHTML = !jQuery2.isXMLDoc(document2);
-      if (isIE && document$1 != document2 && (subWindow = document2.defaultView) && subWindow.top !== subWindow) {
+      if (
+        isIE &&
+        document$1 != document2 &&
+        (subWindow = document2.defaultView) &&
+        subWindow.top !== subWindow
+      ) {
         subWindow.addEventListener("unload", unloadHandler);
       }
     }
-    find.matches = function(expr, elements) {
+    find.matches = function (expr, elements) {
       return find(expr, null, null, elements);
     };
-    find.matchesSelector = function(elem, expr) {
+    find.matchesSelector = function (elem, expr) {
       setDocument(elem);
-      if (documentIsHTML && !nonnativeSelectorCache[expr + " "] && (!rbuggyQSA || !rbuggyQSA.test(expr))) {
+      if (
+        documentIsHTML &&
+        !nonnativeSelectorCache[expr + " "] &&
+        (!rbuggyQSA || !rbuggyQSA.test(expr))
+      ) {
         try {
           return matches.call(elem, expr);
         } catch (e) {
@@ -10546,57 +12506,72 @@
       createPseudo: markFunction,
       match: matchExpr,
       find: {
-        ID: function(id, context) {
+        ID: function (id, context) {
           if (typeof context.getElementById !== "undefined" && documentIsHTML) {
             var elem = context.getElementById(id);
             return elem ? [elem] : [];
           }
         },
-        TAG: function(tag, context) {
+        TAG: function (tag, context) {
           if (typeof context.getElementsByTagName !== "undefined") {
             return context.getElementsByTagName(tag);
           } else {
             return context.querySelectorAll(tag);
           }
         },
-        CLASS: function(className, context) {
-          if (typeof context.getElementsByClassName !== "undefined" && documentIsHTML) {
+        CLASS: function (className, context) {
+          if (
+            typeof context.getElementsByClassName !== "undefined" &&
+            documentIsHTML
+          ) {
             return context.getElementsByClassName(className);
           }
-        }
+        },
       },
       relative: {
         ">": { dir: "parentNode", first: true },
         " ": { dir: "parentNode" },
         "+": { dir: "previousSibling", first: true },
-        "~": { dir: "previousSibling" }
+        "~": { dir: "previousSibling" },
       },
       preFilter,
       filter: {
-        ID: function(id) {
+        ID: function (id) {
           var attrId = unescapeSelector(id);
-          return function(elem) {
+          return function (elem) {
             return elem.getAttribute("id") === attrId;
           };
         },
-        TAG: function(nodeNameSelector) {
-          var expectedNodeName = unescapeSelector(nodeNameSelector).toLowerCase();
-          return nodeNameSelector === "*" ? function() {
-            return true;
-          } : function(elem) {
-            return nodeName(elem, expectedNodeName);
-          };
+        TAG: function (nodeNameSelector) {
+          var expectedNodeName =
+            unescapeSelector(nodeNameSelector).toLowerCase();
+          return nodeNameSelector === "*"
+            ? function () {
+                return true;
+              }
+            : function (elem) {
+                return nodeName(elem, expectedNodeName);
+              };
         },
-        CLASS: function(className) {
+        CLASS: function (className) {
           var pattern = classCache[className + " "];
-          return pattern || (pattern = new RegExp("(^|" + whitespace + ")" + className + "(" + whitespace + "|$)")) && classCache(className, function(elem) {
-            return pattern.test(
-              typeof elem.className === "string" && elem.className || typeof elem.getAttribute !== "undefined" && elem.getAttribute("class") || ""
-            );
-          });
+          return (
+            pattern ||
+            ((pattern = new RegExp(
+              "(^|" + whitespace + ")" + className + "(" + whitespace + "|$)",
+            )) &&
+              classCache(className, function (elem) {
+                return pattern.test(
+                  (typeof elem.className === "string" && elem.className) ||
+                    (typeof elem.getAttribute !== "undefined" &&
+                      elem.getAttribute("class")) ||
+                    "",
+                );
+              }))
+          );
         },
-        ATTR: function(name, operator, check) {
-          return function(elem) {
+        ATTR: function (name, operator, check) {
+          return function (elem) {
             var result = jQuery2.attr(elem, name);
             if (result == null) {
               return operator === "!=";
@@ -10621,110 +12596,158 @@
               return check && result.slice(-check.length) === check;
             }
             if (operator === "~=") {
-              return (" " + result.replace(rwhitespace, " ") + " ").indexOf(check) > -1;
+              return (
+                (" " + result.replace(rwhitespace, " ") + " ").indexOf(check) >
+                -1
+              );
             }
             if (operator === "|=") {
-              return result === check || result.slice(0, check.length + 1) === check + "-";
+              return (
+                result === check ||
+                result.slice(0, check.length + 1) === check + "-"
+              );
             }
             return false;
           };
         },
-        CHILD: function(type, what, _argument, first, last) {
-          var simple = type.slice(0, 3) !== "nth", forward = type.slice(-4) !== "last", ofType = what === "of-type";
-          return first === 1 && last === 0 ? (
-            // Shortcut for :nth-*(n)
-            function(elem) {
-              return !!elem.parentNode;
-            }
-          ) : function(elem, _context, xml) {
-            var cache, outerCache, node, nodeIndex, start, dir2 = simple !== forward ? "nextSibling" : "previousSibling", parent = elem.parentNode, name = ofType && elem.nodeName.toLowerCase(), useCache = !xml && !ofType, diff = false;
-            if (parent) {
-              if (simple) {
-                while (dir2) {
-                  node = elem;
-                  while (node = node[dir2]) {
-                    if (ofType ? nodeName(node, name) : node.nodeType === 1) {
-                      return false;
-                    }
-                  }
-                  start = dir2 = type === "only" && !start && "nextSibling";
-                }
-                return true;
+        CHILD: function (type, what, _argument, first, last) {
+          var simple = type.slice(0, 3) !== "nth",
+            forward = type.slice(-4) !== "last",
+            ofType = what === "of-type";
+          return first === 1 && last === 0
+            ? // Shortcut for :nth-*(n)
+              function (elem) {
+                return !!elem.parentNode;
               }
-              start = [forward ? parent.firstChild : parent.lastChild];
-              if (forward && useCache) {
-                outerCache = parent[jQuery2.expando] || (parent[jQuery2.expando] = {});
-                cache = outerCache[type] || [];
-                nodeIndex = cache[0] === dirruns && cache[1];
-                diff = nodeIndex && cache[2];
-                node = nodeIndex && parent.childNodes[nodeIndex];
-                while (node = ++nodeIndex && node && node[dir2] || // Fallback to seeking `elem` from the start
-                (diff = nodeIndex = 0) || start.pop()) {
-                  if (node.nodeType === 1 && ++diff && node === elem) {
-                    outerCache[type] = [dirruns, nodeIndex, diff];
-                    break;
-                  }
-                }
-              } else {
-                if (useCache) {
-                  outerCache = elem[jQuery2.expando] || (elem[jQuery2.expando] = {});
-                  cache = outerCache[type] || [];
-                  nodeIndex = cache[0] === dirruns && cache[1];
-                  diff = nodeIndex;
-                }
-                if (diff === false) {
-                  while (node = ++nodeIndex && node && node[dir2] || (diff = nodeIndex = 0) || start.pop()) {
-                    if ((ofType ? nodeName(node, name) : node.nodeType === 1) && ++diff) {
-                      if (useCache) {
-                        outerCache = node[jQuery2.expando] || (node[jQuery2.expando] = {});
-                        outerCache[type] = [dirruns, diff];
+            : function (elem, _context, xml) {
+                var cache,
+                  outerCache,
+                  node,
+                  nodeIndex,
+                  start,
+                  dir2 = simple !== forward ? "nextSibling" : "previousSibling",
+                  parent = elem.parentNode,
+                  name = ofType && elem.nodeName.toLowerCase(),
+                  useCache = !xml && !ofType,
+                  diff = false;
+                if (parent) {
+                  if (simple) {
+                    while (dir2) {
+                      node = elem;
+                      while ((node = node[dir2])) {
+                        if (
+                          ofType ? nodeName(node, name) : node.nodeType === 1
+                        ) {
+                          return false;
+                        }
                       }
-                      if (node === elem) {
+                      start = dir2 = type === "only" && !start && "nextSibling";
+                    }
+                    return true;
+                  }
+                  start = [forward ? parent.firstChild : parent.lastChild];
+                  if (forward && useCache) {
+                    outerCache =
+                      parent[jQuery2.expando] || (parent[jQuery2.expando] = {});
+                    cache = outerCache[type] || [];
+                    nodeIndex = cache[0] === dirruns && cache[1];
+                    diff = nodeIndex && cache[2];
+                    node = nodeIndex && parent.childNodes[nodeIndex];
+                    while (
+                      (node =
+                        (++nodeIndex && node && node[dir2]) || // Fallback to seeking `elem` from the start
+                        (diff = nodeIndex = 0) ||
+                        start.pop())
+                    ) {
+                      if (node.nodeType === 1 && ++diff && node === elem) {
+                        outerCache[type] = [dirruns, nodeIndex, diff];
                         break;
                       }
                     }
+                  } else {
+                    if (useCache) {
+                      outerCache =
+                        elem[jQuery2.expando] || (elem[jQuery2.expando] = {});
+                      cache = outerCache[type] || [];
+                      nodeIndex = cache[0] === dirruns && cache[1];
+                      diff = nodeIndex;
+                    }
+                    if (diff === false) {
+                      while (
+                        (node =
+                          (++nodeIndex && node && node[dir2]) ||
+                          (diff = nodeIndex = 0) ||
+                          start.pop())
+                      ) {
+                        if (
+                          (ofType
+                            ? nodeName(node, name)
+                            : node.nodeType === 1) &&
+                          ++diff
+                        ) {
+                          if (useCache) {
+                            outerCache =
+                              node[jQuery2.expando] ||
+                              (node[jQuery2.expando] = {});
+                            outerCache[type] = [dirruns, diff];
+                          }
+                          if (node === elem) {
+                            break;
+                          }
+                        }
+                      }
+                    }
                   }
+                  diff -= last;
+                  return (
+                    diff === first || (diff % first === 0 && diff / first >= 0)
+                  );
                 }
-              }
-              diff -= last;
-              return diff === first || diff % first === 0 && diff / first >= 0;
-            }
-          };
+              };
         },
-        PSEUDO: function(pseudo, argument) {
-          var fn = jQuery2.expr.pseudos[pseudo] || jQuery2.expr.setFilters[pseudo.toLowerCase()] || selectorError("unsupported pseudo: " + pseudo);
+        PSEUDO: function (pseudo, argument) {
+          var fn =
+            jQuery2.expr.pseudos[pseudo] ||
+            jQuery2.expr.setFilters[pseudo.toLowerCase()] ||
+            selectorError("unsupported pseudo: " + pseudo);
           if (fn[jQuery2.expando]) {
             return fn(argument);
           }
           return fn;
-        }
+        },
       },
       pseudos: {
         // Potentially complex pseudos
-        not: markFunction(function(selector) {
-          var input = [], results = [], matcher = compile(selector.replace(rtrimCSS, "$1"));
-          return matcher[jQuery2.expando] ? markFunction(function(seed, matches2, _context, xml) {
-            var elem, unmatched = matcher(seed, null, xml, []), i2 = seed.length;
-            while (i2--) {
-              if (elem = unmatched[i2]) {
-                seed[i2] = !(matches2[i2] = elem);
-              }
-            }
-          }) : function(elem, _context, xml) {
-            input[0] = elem;
-            matcher(input, null, xml, results);
-            input[0] = null;
-            return !results.pop();
-          };
+        not: markFunction(function (selector) {
+          var input = [],
+            results = [],
+            matcher = compile(selector.replace(rtrimCSS, "$1"));
+          return matcher[jQuery2.expando]
+            ? markFunction(function (seed, matches2, _context, xml) {
+                var elem,
+                  unmatched = matcher(seed, null, xml, []),
+                  i2 = seed.length;
+                while (i2--) {
+                  if ((elem = unmatched[i2])) {
+                    seed[i2] = !(matches2[i2] = elem);
+                  }
+                }
+              })
+            : function (elem, _context, xml) {
+                input[0] = elem;
+                matcher(input, null, xml, results);
+                input[0] = null;
+                return !results.pop();
+              };
         }),
-        has: markFunction(function(selector) {
-          return function(elem) {
+        has: markFunction(function (selector) {
+          return function (elem) {
             return find(selector, elem).length > 0;
           };
         }),
-        contains: markFunction(function(text) {
+        contains: markFunction(function (text) {
           text = unescapeSelector(text);
-          return function(elem) {
+          return function (elem) {
             return (elem.textContent || jQuery2.text(elem)).indexOf(text) > -1;
           };
         }),
@@ -10735,15 +12758,19 @@
         // The matching of C against the element's language value is performed case-insensitively.
         // The identifier C does not have to be a valid language name."
         // https://www.w3.org/TR/selectors/#lang-pseudo
-        lang: markFunction(function(lang) {
+        lang: markFunction(function (lang) {
           if (!ridentifier.test(lang || "")) {
             selectorError("unsupported lang: " + lang);
           }
           lang = unescapeSelector(lang).toLowerCase();
-          return function(elem) {
+          return function (elem) {
             var elemLang;
             do {
-              if (elemLang = documentIsHTML ? elem.lang : elem.getAttribute("xml:lang") || elem.getAttribute("lang")) {
+              if (
+                (elemLang = documentIsHTML
+                  ? elem.lang
+                  : elem.getAttribute("xml:lang") || elem.getAttribute("lang"))
+              ) {
                 elemLang = elemLang.toLowerCase();
                 return elemLang === lang || elemLang.indexOf(lang + "-") === 0;
               }
@@ -10752,30 +12779,37 @@
           };
         }),
         // Miscellaneous
-        target: function(elem) {
+        target: function (elem) {
           var hash = window2.location && window2.location.hash;
           return hash && hash.slice(1) === elem.id;
         },
-        root: function(elem) {
+        root: function (elem) {
           return elem === documentElement;
         },
-        focus: function(elem) {
-          return elem === document2.activeElement && document2.hasFocus() && !!(elem.type || elem.href || ~elem.tabIndex);
+        focus: function (elem) {
+          return (
+            elem === document2.activeElement &&
+            document2.hasFocus() &&
+            !!(elem.type || elem.href || ~elem.tabIndex)
+          );
         },
         // Boolean properties
         enabled: createDisabledPseudo(false),
         disabled: createDisabledPseudo(true),
-        checked: function(elem) {
-          return nodeName(elem, "input") && !!elem.checked || nodeName(elem, "option") && !!elem.selected;
+        checked: function (elem) {
+          return (
+            (nodeName(elem, "input") && !!elem.checked) ||
+            (nodeName(elem, "option") && !!elem.selected)
+          );
         },
-        selected: function(elem) {
+        selected: function (elem) {
           if (isIE && elem.parentNode) {
             elem.parentNode.selectedIndex;
           }
           return elem.selected === true;
         },
         // Contents
-        empty: function(elem) {
+        empty: function (elem) {
           for (elem = elem.firstChild; elem; elem = elem.nextSibling) {
             if (elem.nodeType < 6) {
               return false;
@@ -10783,47 +12817,50 @@
           }
           return true;
         },
-        parent: function(elem) {
+        parent: function (elem) {
           return !jQuery2.expr.pseudos.empty(elem);
         },
         // Element/input types
-        header: function(elem) {
+        header: function (elem) {
           return rheader.test(elem.nodeName);
         },
-        input: function(elem) {
+        input: function (elem) {
           return rinputs.test(elem.nodeName);
         },
-        button: function(elem) {
-          return nodeName(elem, "input") && elem.type === "button" || nodeName(elem, "button");
+        button: function (elem) {
+          return (
+            (nodeName(elem, "input") && elem.type === "button") ||
+            nodeName(elem, "button")
+          );
         },
-        text: function(elem) {
+        text: function (elem) {
           return nodeName(elem, "input") && elem.type === "text";
         },
         // Position-in-collection
-        first: createPositionalPseudo(function() {
+        first: createPositionalPseudo(function () {
           return [0];
         }),
-        last: createPositionalPseudo(function(_matchIndexes, length) {
+        last: createPositionalPseudo(function (_matchIndexes, length) {
           return [length - 1];
         }),
-        eq: createPositionalPseudo(function(_matchIndexes, length, argument) {
+        eq: createPositionalPseudo(function (_matchIndexes, length, argument) {
           return [argument < 0 ? argument + length : argument];
         }),
-        even: createPositionalPseudo(function(matchIndexes, length) {
+        even: createPositionalPseudo(function (matchIndexes, length) {
           var i2 = 0;
           for (; i2 < length; i2 += 2) {
             matchIndexes.push(i2);
           }
           return matchIndexes;
         }),
-        odd: createPositionalPseudo(function(matchIndexes, length) {
+        odd: createPositionalPseudo(function (matchIndexes, length) {
           var i2 = 1;
           for (; i2 < length; i2 += 2) {
             matchIndexes.push(i2);
           }
           return matchIndexes;
         }),
-        lt: createPositionalPseudo(function(matchIndexes, length, argument) {
+        lt: createPositionalPseudo(function (matchIndexes, length, argument) {
           var i2;
           if (argument < 0) {
             i2 = argument + length;
@@ -10837,93 +12874,114 @@
           }
           return matchIndexes;
         }),
-        gt: createPositionalPseudo(function(matchIndexes, length, argument) {
+        gt: createPositionalPseudo(function (matchIndexes, length, argument) {
           var i2 = argument < 0 ? argument + length : argument;
           for (; ++i2 < length; ) {
             matchIndexes.push(i2);
           }
           return matchIndexes;
-        })
-      }
+        }),
+      },
     };
     jQuery2.expr.pseudos.nth = jQuery2.expr.pseudos.eq;
-    for (i in { radio: true, checkbox: true, file: true, password: true, image: true }) {
+    for (i in {
+      radio: true,
+      checkbox: true,
+      file: true,
+      password: true,
+      image: true,
+    }) {
       jQuery2.expr.pseudos[i] = createInputPseudo(i);
     }
     for (i in { submit: true, reset: true }) {
       jQuery2.expr.pseudos[i] = createButtonPseudo(i);
     }
-    function setFilters() {
-    }
+    function setFilters() {}
     setFilters.prototype = jQuery2.expr.pseudos;
     jQuery2.expr.setFilters = new setFilters();
     function addCombinator(matcher, combinator, base) {
-      var dir2 = combinator.dir, skip = combinator.next, key = skip || dir2, checkNonElements = base && key === "parentNode", doneName = done++;
-      return combinator.first ? (
-        // Check against closest ancestor/preceding element
-        function(elem, context, xml) {
-          while (elem = elem[dir2]) {
-            if (elem.nodeType === 1 || checkNonElements) {
-              return matcher(elem, context, xml);
-            }
-          }
-          return false;
-        }
-      ) : (
-        // Check against all ancestor/preceding elements
-        function(elem, context, xml) {
-          var oldCache, outerCache, newCache = [dirruns, doneName];
-          if (xml) {
-            while (elem = elem[dir2]) {
+      var dir2 = combinator.dir,
+        skip = combinator.next,
+        key = skip || dir2,
+        checkNonElements = base && key === "parentNode",
+        doneName = done++;
+      return combinator.first
+        ? // Check against closest ancestor/preceding element
+          function (elem, context, xml) {
+            while ((elem = elem[dir2])) {
               if (elem.nodeType === 1 || checkNonElements) {
-                if (matcher(elem, context, xml)) {
-                  return true;
-                }
+                return matcher(elem, context, xml);
               }
             }
-          } else {
-            while (elem = elem[dir2]) {
-              if (elem.nodeType === 1 || checkNonElements) {
-                outerCache = elem[jQuery2.expando] || (elem[jQuery2.expando] = {});
-                if (skip && nodeName(elem, skip)) {
-                  elem = elem[dir2] || elem;
-                } else if ((oldCache = outerCache[key]) && oldCache[0] === dirruns && oldCache[1] === doneName) {
-                  return newCache[2] = oldCache[2];
-                } else {
-                  outerCache[key] = newCache;
-                  if (newCache[2] = matcher(elem, context, xml)) {
+            return false;
+          }
+        : // Check against all ancestor/preceding elements
+          function (elem, context, xml) {
+            var oldCache,
+              outerCache,
+              newCache = [dirruns, doneName];
+            if (xml) {
+              while ((elem = elem[dir2])) {
+                if (elem.nodeType === 1 || checkNonElements) {
+                  if (matcher(elem, context, xml)) {
                     return true;
                   }
                 }
               }
+            } else {
+              while ((elem = elem[dir2])) {
+                if (elem.nodeType === 1 || checkNonElements) {
+                  outerCache =
+                    elem[jQuery2.expando] || (elem[jQuery2.expando] = {});
+                  if (skip && nodeName(elem, skip)) {
+                    elem = elem[dir2] || elem;
+                  } else if (
+                    (oldCache = outerCache[key]) &&
+                    oldCache[0] === dirruns &&
+                    oldCache[1] === doneName
+                  ) {
+                    return (newCache[2] = oldCache[2]);
+                  } else {
+                    outerCache[key] = newCache;
+                    if ((newCache[2] = matcher(elem, context, xml))) {
+                      return true;
+                    }
+                  }
+                }
+              }
             }
-          }
-          return false;
-        }
-      );
+            return false;
+          };
     }
     function elementMatcher(matchers) {
-      return matchers.length > 1 ? function(elem, context, xml) {
-        var i2 = matchers.length;
-        while (i2--) {
-          if (!matchers[i2](elem, context, xml)) {
-            return false;
+      return matchers.length > 1
+        ? function (elem, context, xml) {
+            var i2 = matchers.length;
+            while (i2--) {
+              if (!matchers[i2](elem, context, xml)) {
+                return false;
+              }
+            }
+            return true;
           }
-        }
-        return true;
-      } : matchers[0];
+        : matchers[0];
     }
     function multipleContexts(selector, contexts, results) {
-      var i2 = 0, len = contexts.length;
+      var i2 = 0,
+        len = contexts.length;
       for (; i2 < len; i2++) {
         find(selector, contexts[i2], results);
       }
       return results;
     }
     function condense(unmatched, map3, filter, context, xml) {
-      var elem, newUnmatched = [], i2 = 0, len = unmatched.length, mapped = map3 != null;
+      var elem,
+        newUnmatched = [],
+        i2 = 0,
+        len = unmatched.length,
+        mapped = map3 != null;
       for (; i2 < len; i2++) {
-        if (elem = unmatched[i2]) {
+        if ((elem = unmatched[i2])) {
           if (!filter || filter(elem, context, xml)) {
             newUnmatched.push(elem);
             if (mapped) {
@@ -10934,27 +12992,46 @@
       }
       return newUnmatched;
     }
-    function setMatcher(preFilter2, selector, matcher, postFilter, postFinder, postSelector) {
+    function setMatcher(
+      preFilter2,
+      selector,
+      matcher,
+      postFilter,
+      postFinder,
+      postSelector,
+    ) {
       if (postFilter && !postFilter[jQuery2.expando]) {
         postFilter = setMatcher(postFilter);
       }
       if (postFinder && !postFinder[jQuery2.expando]) {
         postFinder = setMatcher(postFinder, postSelector);
       }
-      return markFunction(function(seed, results, context, xml) {
-        var temp, i2, elem, matcherOut, preMap = [], postMap = [], preexisting = results.length, elems = seed || multipleContexts(
-          selector || "*",
-          context.nodeType ? [context] : context,
-          []
-        ), matcherIn = preFilter2 && (seed || !selector) ? condense(elems, preMap, preFilter2, context, xml) : elems;
+      return markFunction(function (seed, results, context, xml) {
+        var temp,
+          i2,
+          elem,
+          matcherOut,
+          preMap = [],
+          postMap = [],
+          preexisting = results.length,
+          elems =
+            seed ||
+            multipleContexts(
+              selector || "*",
+              context.nodeType ? [context] : context,
+              [],
+            ),
+          matcherIn =
+            preFilter2 && (seed || !selector)
+              ? condense(elems, preMap, preFilter2, context, xml)
+              : elems;
         if (matcher) {
-          matcherOut = postFinder || (seed ? preFilter2 : preexisting || postFilter) ? (
-            // ...intermediate processing is necessary
-            []
-          ) : (
-            // ...otherwise use results directly
-            results
-          );
+          matcherOut =
+            postFinder || (seed ? preFilter2 : preexisting || postFilter)
+              ? // ...intermediate processing is necessary
+                []
+              : // ...otherwise use results directly
+                results;
           matcher(matcherIn, matcherOut, context, xml);
         } else {
           matcherOut = matcherIn;
@@ -10964,7 +13041,7 @@
           postFilter(temp, [], context, xml);
           i2 = temp.length;
           while (i2--) {
-            if (elem = temp[i2]) {
+            if ((elem = temp[i2])) {
               matcherOut[postMap[i2]] = !(matcherIn[postMap[i2]] = elem);
             }
           }
@@ -10975,22 +13052,27 @@
               temp = [];
               i2 = matcherOut.length;
               while (i2--) {
-                if (elem = matcherOut[i2]) {
-                  temp.push(matcherIn[i2] = elem);
+                if ((elem = matcherOut[i2])) {
+                  temp.push((matcherIn[i2] = elem));
                 }
               }
-              postFinder(null, matcherOut = [], temp, xml);
+              postFinder(null, (matcherOut = []), temp, xml);
             }
             i2 = matcherOut.length;
             while (i2--) {
-              if ((elem = matcherOut[i2]) && (temp = postFinder ? indexOf.call(seed, elem) : preMap[i2]) > -1) {
+              if (
+                (elem = matcherOut[i2]) &&
+                (temp = postFinder ? indexOf.call(seed, elem) : preMap[i2]) > -1
+              ) {
                 seed[temp] = !(results[temp] = elem);
               }
             }
           }
         } else {
           matcherOut = condense(
-            matcherOut === results ? matcherOut.splice(preexisting, matcherOut.length) : matcherOut
+            matcherOut === results
+              ? matcherOut.splice(preexisting, matcherOut.length)
+              : matcherOut,
           );
           if (postFinder) {
             postFinder(null, results, matcherOut, xml);
@@ -11001,20 +13083,46 @@
       });
     }
     function matcherFromTokens(tokens) {
-      var checkContext, matcher, j, len = tokens.length, leadingRelative = jQuery2.expr.relative[tokens[0].type], implicitRelative = leadingRelative || jQuery2.expr.relative[" "], i2 = leadingRelative ? 1 : 0, matchContext = addCombinator(function(elem) {
-        return elem === checkContext;
-      }, implicitRelative, true), matchAnyContext = addCombinator(function(elem) {
-        return indexOf.call(checkContext, elem) > -1;
-      }, implicitRelative, true), matchers = [function(elem, context, xml) {
-        var ret = !leadingRelative && (xml || context != outermostContext) || ((checkContext = context).nodeType ? matchContext(elem, context, xml) : matchAnyContext(elem, context, xml));
-        checkContext = null;
-        return ret;
-      }];
+      var checkContext,
+        matcher,
+        j,
+        len = tokens.length,
+        leadingRelative = jQuery2.expr.relative[tokens[0].type],
+        implicitRelative = leadingRelative || jQuery2.expr.relative[" "],
+        i2 = leadingRelative ? 1 : 0,
+        matchContext = addCombinator(
+          function (elem) {
+            return elem === checkContext;
+          },
+          implicitRelative,
+          true,
+        ),
+        matchAnyContext = addCombinator(
+          function (elem) {
+            return indexOf.call(checkContext, elem) > -1;
+          },
+          implicitRelative,
+          true,
+        ),
+        matchers = [
+          function (elem, context, xml) {
+            var ret =
+              (!leadingRelative && (xml || context != outermostContext)) ||
+              ((checkContext = context).nodeType
+                ? matchContext(elem, context, xml)
+                : matchAnyContext(elem, context, xml));
+            checkContext = null;
+            return ret;
+          },
+        ];
       for (; i2 < len; i2++) {
-        if (matcher = jQuery2.expr.relative[tokens[i2].type]) {
+        if ((matcher = jQuery2.expr.relative[tokens[i2].type])) {
           matchers = [addCombinator(elementMatcher(matchers), matcher)];
         } else {
-          matcher = jQuery2.expr.filter[tokens[i2].type].apply(null, tokens[i2].matches);
+          matcher = jQuery2.expr.filter[tokens[i2].type].apply(
+            null,
+            tokens[i2].matches,
+          );
           if (matcher[jQuery2.expando]) {
             j = ++i2;
             for (; j < len; j++) {
@@ -11024,14 +13132,17 @@
             }
             return setMatcher(
               i2 > 1 && elementMatcher(matchers),
-              i2 > 1 && toSelector(
-                // If the preceding token was a descendant combinator, insert an implicit any-element `*`
-                tokens.slice(0, i2 - 1).concat({ value: tokens[i2 - 2].type === " " ? "*" : "" })
-              ).replace(rtrimCSS, "$1"),
+              i2 > 1 &&
+                toSelector(
+                  // If the preceding token was a descendant combinator, insert an implicit any-element `*`
+                  tokens
+                    .slice(0, i2 - 1)
+                    .concat({ value: tokens[i2 - 2].type === " " ? "*" : "" }),
+                ).replace(rtrimCSS, "$1"),
               matcher,
               i2 < j && matcherFromTokens(tokens.slice(i2, j)),
-              j < len && matcherFromTokens(tokens = tokens.slice(j)),
-              j < len && toSelector(tokens)
+              j < len && matcherFromTokens((tokens = tokens.slice(j))),
+              j < len && toSelector(tokens),
             );
           }
           matchers.push(matcher);
@@ -11040,68 +13151,89 @@
       return elementMatcher(matchers);
     }
     function matcherFromGroupMatchers(elementMatchers, setMatchers) {
-      var bySet = setMatchers.length > 0, byElement = elementMatchers.length > 0, superMatcher = function(seed, context, xml, results, outermost) {
-        var elem, j, matcher, matchedCount = 0, i2 = "0", unmatched = seed && [], setMatched = [], contextBackup = outermostContext, elems = seed || byElement && jQuery2.expr.find.TAG("*", outermost), dirrunsUnique = dirruns += contextBackup == null ? 1 : Math.random() || 0.1;
-        if (outermost) {
-          outermostContext = context == document2 || context || outermost;
-        }
-        for (; (elem = elems[i2]) != null; i2++) {
-          if (byElement && elem) {
-            j = 0;
-            if (!context && elem.ownerDocument != document2) {
-              setDocument(elem);
-              xml = !documentIsHTML;
-            }
-            while (matcher = elementMatchers[j++]) {
-              if (matcher(elem, context || document2, xml)) {
-                push.call(results, elem);
-                break;
+      var bySet = setMatchers.length > 0,
+        byElement = elementMatchers.length > 0,
+        superMatcher = function (seed, context, xml, results, outermost) {
+          var elem,
+            j,
+            matcher,
+            matchedCount = 0,
+            i2 = "0",
+            unmatched = seed && [],
+            setMatched = [],
+            contextBackup = outermostContext,
+            elems =
+              seed || (byElement && jQuery2.expr.find.TAG("*", outermost)),
+            dirrunsUnique = (dirruns +=
+              contextBackup == null ? 1 : Math.random() || 0.1);
+          if (outermost) {
+            outermostContext = context == document2 || context || outermost;
+          }
+          for (; (elem = elems[i2]) != null; i2++) {
+            if (byElement && elem) {
+              j = 0;
+              if (!context && elem.ownerDocument != document2) {
+                setDocument(elem);
+                xml = !documentIsHTML;
               }
-            }
-            if (outermost) {
-              dirruns = dirrunsUnique;
-            }
-          }
-          if (bySet) {
-            if (elem = !matcher && elem) {
-              matchedCount--;
-            }
-            if (seed) {
-              unmatched.push(elem);
-            }
-          }
-        }
-        matchedCount += i2;
-        if (bySet && i2 !== matchedCount) {
-          j = 0;
-          while (matcher = setMatchers[j++]) {
-            matcher(unmatched, setMatched, context, xml);
-          }
-          if (seed) {
-            if (matchedCount > 0) {
-              while (i2--) {
-                if (!(unmatched[i2] || setMatched[i2])) {
-                  setMatched[i2] = pop.call(results);
+              while ((matcher = elementMatchers[j++])) {
+                if (matcher(elem, context || document2, xml)) {
+                  push.call(results, elem);
+                  break;
                 }
               }
+              if (outermost) {
+                dirruns = dirrunsUnique;
+              }
             }
-            setMatched = condense(setMatched);
+            if (bySet) {
+              if ((elem = !matcher && elem)) {
+                matchedCount--;
+              }
+              if (seed) {
+                unmatched.push(elem);
+              }
+            }
           }
-          push.apply(results, setMatched);
-          if (outermost && !seed && setMatched.length > 0 && matchedCount + setMatchers.length > 1) {
-            jQuery2.uniqueSort(results);
+          matchedCount += i2;
+          if (bySet && i2 !== matchedCount) {
+            j = 0;
+            while ((matcher = setMatchers[j++])) {
+              matcher(unmatched, setMatched, context, xml);
+            }
+            if (seed) {
+              if (matchedCount > 0) {
+                while (i2--) {
+                  if (!(unmatched[i2] || setMatched[i2])) {
+                    setMatched[i2] = pop.call(results);
+                  }
+                }
+              }
+              setMatched = condense(setMatched);
+            }
+            push.apply(results, setMatched);
+            if (
+              outermost &&
+              !seed &&
+              setMatched.length > 0 &&
+              matchedCount + setMatchers.length > 1
+            ) {
+              jQuery2.uniqueSort(results);
+            }
           }
-        }
-        if (outermost) {
-          dirruns = dirrunsUnique;
-          outermostContext = contextBackup;
-        }
-        return unmatched;
-      };
+          if (outermost) {
+            dirruns = dirrunsUnique;
+            outermostContext = contextBackup;
+          }
+          return unmatched;
+        };
       return bySet ? markFunction(superMatcher) : superMatcher;
     }
     function compile(selector, match) {
-      var i2, setMatchers = [], elementMatchers = [], cached = compilerCache[selector + " "];
+      var i2,
+        setMatchers = [],
+        elementMatchers = [],
+        cached = compilerCache[selector + " "];
       if (!cached) {
         if (!match) {
           match = tokenize(selector);
@@ -11117,21 +13249,33 @@
         }
         cached = compilerCache(
           selector,
-          matcherFromGroupMatchers(elementMatchers, setMatchers)
+          matcherFromGroupMatchers(elementMatchers, setMatchers),
         );
         cached.selector = selector;
       }
       return cached;
     }
     function select(selector, context, results, seed) {
-      var i2, tokens, token, type, find2, compiled = typeof selector === "function" && selector, match = !seed && tokenize(selector = compiled.selector || selector);
+      var i2,
+        tokens,
+        token,
+        type,
+        find2,
+        compiled = typeof selector === "function" && selector,
+        match = !seed && tokenize((selector = compiled.selector || selector));
       results = results || [];
       if (match.length === 1) {
         tokens = match[0] = match[0].slice(0);
-        if (tokens.length > 2 && (token = tokens[0]).type === "ID" && context.nodeType === 9 && documentIsHTML && jQuery2.expr.relative[tokens[1].type]) {
+        if (
+          tokens.length > 2 &&
+          (token = tokens[0]).type === "ID" &&
+          context.nodeType === 9 &&
+          documentIsHTML &&
+          jQuery2.expr.relative[tokens[1].type]
+        ) {
           context = (jQuery2.expr.find.ID(
             unescapeSelector(token.matches[0]),
-            context
+            context,
           ) || [])[0];
           if (!context) {
             return results;
@@ -11143,14 +13287,18 @@
         i2 = matchExpr.needsContext.test(selector) ? 0 : tokens.length;
         while (i2--) {
           token = tokens[i2];
-          if (jQuery2.expr.relative[type = token.type]) {
+          if (jQuery2.expr.relative[(type = token.type)]) {
             break;
           }
-          if (find2 = jQuery2.expr.find[type]) {
-            if (seed = find2(
-              unescapeSelector(token.matches[0]),
-              rsibling.test(tokens[0].type) && testContext(context.parentNode) || context
-            )) {
+          if ((find2 = jQuery2.expr.find[type])) {
+            if (
+              (seed = find2(
+                unescapeSelector(token.matches[0]),
+                (rsibling.test(tokens[0].type) &&
+                  testContext(context.parentNode)) ||
+                  context,
+              ))
+            ) {
               tokens.splice(i2, 1);
               selector = seed.length && toSelector(tokens);
               if (!selector) {
@@ -11167,7 +13315,9 @@
         context,
         !documentIsHTML,
         results,
-        !context || rsibling.test(selector) && testContext(context.parentNode) || context
+        !context ||
+          (rsibling.test(selector) && testContext(context.parentNode)) ||
+          context,
       );
       return results;
     }
@@ -11178,7 +13328,8 @@
     find.setDocument = setDocument;
     find.tokenize = tokenize;
     function dir(elem, dir2, until) {
-      var matched = [], truncate = until !== void 0;
+      var matched = [],
+        truncate = until !== void 0;
       while ((elem = elem[dir2]) && elem.nodeType !== 9) {
         if (elem.nodeType === 1) {
           if (truncate && jQuery2(elem).is(until)) {
@@ -11199,29 +13350,32 @@
       return matched;
     }
     var rneedsContext = jQuery2.expr.match.needsContext;
-    var rsingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
+    var rsingleTag =
+      /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
     function isObviousHtml(input) {
-      return input[0] === "<" && input[input.length - 1] === ">" && input.length >= 3;
+      return (
+        input[0] === "<" && input[input.length - 1] === ">" && input.length >= 3
+      );
     }
     function winnow(elements, qualifier, not) {
       if (typeof qualifier === "function") {
-        return jQuery2.grep(elements, function(elem, i2) {
+        return jQuery2.grep(elements, function (elem, i2) {
           return !!qualifier.call(elem, i2, elem) !== not;
         });
       }
       if (qualifier.nodeType) {
-        return jQuery2.grep(elements, function(elem) {
-          return elem === qualifier !== not;
+        return jQuery2.grep(elements, function (elem) {
+          return (elem === qualifier) !== not;
         });
       }
       if (typeof qualifier !== "string") {
-        return jQuery2.grep(elements, function(elem) {
+        return jQuery2.grep(elements, function (elem) {
           return indexOf.call(qualifier, elem) > -1 !== not;
         });
       }
       return jQuery2.filter(qualifier, elements, not);
     }
-    jQuery2.filter = function(expr, elems, not) {
+    jQuery2.filter = function (expr, elems, not) {
       var elem = elems[0];
       if (not) {
         expr = ":not(" + expr + ")";
@@ -11229,21 +13383,29 @@
       if (elems.length === 1 && elem.nodeType === 1) {
         return jQuery2.find.matchesSelector(elem, expr) ? [elem] : [];
       }
-      return jQuery2.find.matches(expr, jQuery2.grep(elems, function(elem2) {
-        return elem2.nodeType === 1;
-      }));
+      return jQuery2.find.matches(
+        expr,
+        jQuery2.grep(elems, function (elem2) {
+          return elem2.nodeType === 1;
+        }),
+      );
     };
     jQuery2.fn.extend({
-      find: function(selector) {
-        var i2, ret, len = this.length, self2 = this;
+      find: function (selector) {
+        var i2,
+          ret,
+          len = this.length,
+          self2 = this;
         if (typeof selector !== "string") {
-          return this.pushStack(jQuery2(selector).filter(function() {
-            for (i2 = 0; i2 < len; i2++) {
-              if (jQuery2.contains(self2[i2], this)) {
-                return true;
+          return this.pushStack(
+            jQuery2(selector).filter(function () {
+              for (i2 = 0; i2 < len; i2++) {
+                if (jQuery2.contains(self2[i2], this)) {
+                  return true;
+                }
               }
-            }
-          }));
+            }),
+          );
         }
         ret = this.pushStack([]);
         for (i2 = 0; i2 < len; i2++) {
@@ -11251,90 +13413,101 @@
         }
         return len > 1 ? jQuery2.uniqueSort(ret) : ret;
       },
-      filter: function(selector) {
+      filter: function (selector) {
         return this.pushStack(winnow(this, selector || [], false));
       },
-      not: function(selector) {
+      not: function (selector) {
         return this.pushStack(winnow(this, selector || [], true));
       },
-      is: function(selector) {
+      is: function (selector) {
         return !!winnow(
           this,
           // If this is a positional/relative selector, check membership in the returned set
           // so $("p:first").is("p:last") won't return true for a doc with two "p".
-          typeof selector === "string" && rneedsContext.test(selector) ? jQuery2(selector) : selector || [],
-          false
+          typeof selector === "string" && rneedsContext.test(selector)
+            ? jQuery2(selector)
+            : selector || [],
+          false,
         ).length;
-      }
+      },
     });
-    var rootjQuery, rquickExpr = /^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]+))$/, init = jQuery2.fn.init = function(selector, context) {
-      var match, elem;
-      if (!selector) {
-        return this;
-      }
-      if (selector.nodeType) {
-        this[0] = selector;
-        this.length = 1;
-        return this;
-      } else if (typeof selector === "function") {
-        return rootjQuery.ready !== void 0 ? rootjQuery.ready(selector) : (
-          // Execute immediately if ready is not present
-          selector(jQuery2)
-        );
-      } else {
-        match = selector + "";
-        if (isObviousHtml(match)) {
-          match = [null, selector, null];
-        } else if (typeof selector === "string") {
-          match = rquickExpr.exec(selector);
-        } else {
-          return jQuery2.makeArray(selector, this);
+    var rootjQuery,
+      rquickExpr = /^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]+))$/,
+      init = (jQuery2.fn.init = function (selector, context) {
+        var match, elem;
+        if (!selector) {
+          return this;
         }
-        if (match && (match[1] || !context)) {
-          if (match[1]) {
-            context = context instanceof jQuery2 ? context[0] : context;
-            jQuery2.merge(this, jQuery2.parseHTML(
-              match[1],
-              context && context.nodeType ? context.ownerDocument || context : document$1,
-              true
-            ));
-            if (rsingleTag.test(match[1]) && jQuery2.isPlainObject(context)) {
-              for (match in context) {
-                if (typeof this[match] === "function") {
-                  this[match](context[match]);
-                } else {
-                  this.attr(match, context[match]);
+        if (selector.nodeType) {
+          this[0] = selector;
+          this.length = 1;
+          return this;
+        } else if (typeof selector === "function") {
+          return rootjQuery.ready !== void 0
+            ? rootjQuery.ready(selector)
+            : // Execute immediately if ready is not present
+              selector(jQuery2);
+        } else {
+          match = selector + "";
+          if (isObviousHtml(match)) {
+            match = [null, selector, null];
+          } else if (typeof selector === "string") {
+            match = rquickExpr.exec(selector);
+          } else {
+            return jQuery2.makeArray(selector, this);
+          }
+          if (match && (match[1] || !context)) {
+            if (match[1]) {
+              context = context instanceof jQuery2 ? context[0] : context;
+              jQuery2.merge(
+                this,
+                jQuery2.parseHTML(
+                  match[1],
+                  context && context.nodeType
+                    ? context.ownerDocument || context
+                    : document$1,
+                  true,
+                ),
+              );
+              if (rsingleTag.test(match[1]) && jQuery2.isPlainObject(context)) {
+                for (match in context) {
+                  if (typeof this[match] === "function") {
+                    this[match](context[match]);
+                  } else {
+                    this.attr(match, context[match]);
+                  }
                 }
               }
+              return this;
+            } else {
+              elem = document$1.getElementById(match[2]);
+              if (elem) {
+                this[0] = elem;
+                this.length = 1;
+              }
+              return this;
             }
-            return this;
+          } else if (!context || context.jquery) {
+            return (context || rootjQuery).find(selector);
           } else {
-            elem = document$1.getElementById(match[2]);
-            if (elem) {
-              this[0] = elem;
-              this.length = 1;
-            }
-            return this;
+            return this.constructor(context).find(selector);
           }
-        } else if (!context || context.jquery) {
-          return (context || rootjQuery).find(selector);
-        } else {
-          return this.constructor(context).find(selector);
         }
-      }
-    };
+      });
     init.prototype = jQuery2.fn;
     rootjQuery = jQuery2(document$1);
-    var rparentsprev = /^(?:parents|prev(?:Until|All))/, guaranteedUnique = {
-      children: true,
-      contents: true,
-      next: true,
-      prev: true
-    };
+    var rparentsprev = /^(?:parents|prev(?:Until|All))/,
+      guaranteedUnique = {
+        children: true,
+        contents: true,
+        next: true,
+        prev: true,
+      };
     jQuery2.fn.extend({
-      has: function(target) {
-        var targets = jQuery2(target, this), l = targets.length;
-        return this.filter(function() {
+      has: function (target) {
+        var targets = jQuery2(target, this),
+          l = targets.length;
+        return this.filter(function () {
           var i2 = 0;
           for (; i2 < l; i2++) {
             if (jQuery2.contains(this, targets[i2])) {
@@ -11343,27 +13516,39 @@
           }
         });
       },
-      closest: function(selectors, context) {
-        var cur, i2 = 0, l = this.length, matched = [], targets = typeof selectors !== "string" && jQuery2(selectors);
+      closest: function (selectors, context) {
+        var cur,
+          i2 = 0,
+          l = this.length,
+          matched = [],
+          targets = typeof selectors !== "string" && jQuery2(selectors);
         if (!rneedsContext.test(selectors)) {
           for (; i2 < l; i2++) {
             for (cur = this[i2]; cur && cur !== context; cur = cur.parentNode) {
-              if (cur.nodeType < 11 && (targets ? targets.index(cur) > -1 : (
-                // Don't pass non-elements to jQuery#find
-                cur.nodeType === 1 && jQuery2.find.matchesSelector(cur, selectors)
-              ))) {
+              if (
+                cur.nodeType < 11 &&
+                (targets
+                  ? targets.index(cur) > -1
+                  : // Don't pass non-elements to jQuery#find
+                    cur.nodeType === 1 &&
+                    jQuery2.find.matchesSelector(cur, selectors))
+              ) {
                 matched.push(cur);
                 break;
               }
             }
           }
         }
-        return this.pushStack(matched.length > 1 ? jQuery2.uniqueSort(matched) : matched);
+        return this.pushStack(
+          matched.length > 1 ? jQuery2.uniqueSort(matched) : matched,
+        );
       },
       // Determine the position of an element within the set
-      index: function(elem) {
+      index: function (elem) {
         if (!elem) {
-          return this[0] && this[0].parentNode ? this.first().prevAll().length : -1;
+          return this[0] && this[0].parentNode
+            ? this.first().prevAll().length
+            : -1;
         }
         if (typeof elem === "string") {
           return indexOf.call(jQuery2(elem), this[0]);
@@ -11371,222 +13556,240 @@
         return indexOf.call(
           this,
           // If it receives a jQuery object, the first element is used
-          elem.jquery ? elem[0] : elem
+          elem.jquery ? elem[0] : elem,
         );
       },
-      add: function(selector, context) {
+      add: function (selector, context) {
         return this.pushStack(
           jQuery2.uniqueSort(
-            jQuery2.merge(this.get(), jQuery2(selector, context))
-          )
+            jQuery2.merge(this.get(), jQuery2(selector, context)),
+          ),
         );
       },
-      addBack: function(selector) {
+      addBack: function (selector) {
         return this.add(
-          selector == null ? this.prevObject : this.prevObject.filter(selector)
+          selector == null ? this.prevObject : this.prevObject.filter(selector),
         );
-      }
+      },
     });
     function sibling(cur, dir2) {
-      while ((cur = cur[dir2]) && cur.nodeType !== 1) {
-      }
+      while ((cur = cur[dir2]) && cur.nodeType !== 1) {}
       return cur;
     }
-    jQuery2.each({
-      parent: function(elem) {
-        var parent = elem.parentNode;
-        return parent && parent.nodeType !== 11 ? parent : null;
-      },
-      parents: function(elem) {
-        return dir(elem, "parentNode");
-      },
-      parentsUntil: function(elem, _i, until) {
-        return dir(elem, "parentNode", until);
-      },
-      next: function(elem) {
-        return sibling(elem, "nextSibling");
-      },
-      prev: function(elem) {
-        return sibling(elem, "previousSibling");
-      },
-      nextAll: function(elem) {
-        return dir(elem, "nextSibling");
-      },
-      prevAll: function(elem) {
-        return dir(elem, "previousSibling");
-      },
-      nextUntil: function(elem, _i, until) {
-        return dir(elem, "nextSibling", until);
-      },
-      prevUntil: function(elem, _i, until) {
-        return dir(elem, "previousSibling", until);
-      },
-      siblings: function(elem) {
-        return siblings((elem.parentNode || {}).firstChild, elem);
-      },
-      children: function(elem) {
-        return siblings(elem.firstChild);
-      },
-      contents: function(elem) {
-        if (elem.contentDocument != null && // Support: IE 11+
-        // <object> elements with no `data` attribute has an object
-        // `contentDocument` with a `null` prototype.
-        getProto(elem.contentDocument)) {
-          return elem.contentDocument;
-        }
-        if (nodeName(elem, "template")) {
-          elem = elem.content || elem;
-        }
-        return jQuery2.merge([], elem.childNodes);
-      }
-    }, function(name, fn) {
-      jQuery2.fn[name] = function(until, selector) {
-        var matched = jQuery2.map(this, fn, until);
-        if (name.slice(-5) !== "Until") {
-          selector = until;
-        }
-        if (selector && typeof selector === "string") {
-          matched = jQuery2.filter(selector, matched);
-        }
-        if (this.length > 1) {
-          if (!guaranteedUnique[name]) {
-            jQuery2.uniqueSort(matched);
+    jQuery2.each(
+      {
+        parent: function (elem) {
+          var parent = elem.parentNode;
+          return parent && parent.nodeType !== 11 ? parent : null;
+        },
+        parents: function (elem) {
+          return dir(elem, "parentNode");
+        },
+        parentsUntil: function (elem, _i, until) {
+          return dir(elem, "parentNode", until);
+        },
+        next: function (elem) {
+          return sibling(elem, "nextSibling");
+        },
+        prev: function (elem) {
+          return sibling(elem, "previousSibling");
+        },
+        nextAll: function (elem) {
+          return dir(elem, "nextSibling");
+        },
+        prevAll: function (elem) {
+          return dir(elem, "previousSibling");
+        },
+        nextUntil: function (elem, _i, until) {
+          return dir(elem, "nextSibling", until);
+        },
+        prevUntil: function (elem, _i, until) {
+          return dir(elem, "previousSibling", until);
+        },
+        siblings: function (elem) {
+          return siblings((elem.parentNode || {}).firstChild, elem);
+        },
+        children: function (elem) {
+          return siblings(elem.firstChild);
+        },
+        contents: function (elem) {
+          if (
+            elem.contentDocument != null && // Support: IE 11+
+            // <object> elements with no `data` attribute has an object
+            // `contentDocument` with a `null` prototype.
+            getProto(elem.contentDocument)
+          ) {
+            return elem.contentDocument;
           }
-          if (rparentsprev.test(name)) {
-            matched.reverse();
+          if (nodeName(elem, "template")) {
+            elem = elem.content || elem;
           }
-        }
-        return this.pushStack(matched);
-      };
-    });
+          return jQuery2.merge([], elem.childNodes);
+        },
+      },
+      function (name, fn) {
+        jQuery2.fn[name] = function (until, selector) {
+          var matched = jQuery2.map(this, fn, until);
+          if (name.slice(-5) !== "Until") {
+            selector = until;
+          }
+          if (selector && typeof selector === "string") {
+            matched = jQuery2.filter(selector, matched);
+          }
+          if (this.length > 1) {
+            if (!guaranteedUnique[name]) {
+              jQuery2.uniqueSort(matched);
+            }
+            if (rparentsprev.test(name)) {
+              matched.reverse();
+            }
+          }
+          return this.pushStack(matched);
+        };
+      },
+    );
     function createOptions(options) {
       var object = {};
-      jQuery2.each(options.match(rnothtmlwhite) || [], function(_, flag) {
+      jQuery2.each(options.match(rnothtmlwhite) || [], function (_, flag) {
         object[flag] = true;
       });
       return object;
     }
-    jQuery2.Callbacks = function(options) {
-      options = typeof options === "string" ? createOptions(options) : jQuery2.extend({}, options);
-      var firing, memory, fired, locked, list = [], queue = [], firingIndex = -1, fire = function() {
-        locked = locked || options.once;
-        fired = firing = true;
-        for (; queue.length; firingIndex = -1) {
-          memory = queue.shift();
-          while (++firingIndex < list.length) {
-            if (list[firingIndex].apply(memory[0], memory[1]) === false && options.stopOnFalse) {
-              firingIndex = list.length;
-              memory = false;
-            }
-          }
-        }
-        if (!options.memory) {
-          memory = false;
-        }
-        firing = false;
-        if (locked) {
-          if (memory) {
-            list = [];
-          } else {
-            list = "";
-          }
-        }
-      }, self2 = {
-        // Add a callback or a collection of callbacks to the list
-        add: function() {
-          if (list) {
-            if (memory && !firing) {
-              firingIndex = list.length - 1;
-              queue.push(memory);
-            }
-            (function add(args) {
-              jQuery2.each(args, function(_, arg) {
-                if (typeof arg === "function") {
-                  if (!options.unique || !self2.has(arg)) {
-                    list.push(arg);
-                  }
-                } else if (arg && arg.length && toType(arg) !== "string") {
-                  add(arg);
-                }
-              });
-            })(arguments);
-            if (memory && !firing) {
-              fire();
-            }
-          }
-          return this;
-        },
-        // Remove a callback from the list
-        remove: function() {
-          jQuery2.each(arguments, function(_, arg) {
-            var index;
-            while ((index = jQuery2.inArray(arg, list, index)) > -1) {
-              list.splice(index, 1);
-              if (index <= firingIndex) {
-                firingIndex--;
+    jQuery2.Callbacks = function (options) {
+      options =
+        typeof options === "string"
+          ? createOptions(options)
+          : jQuery2.extend({}, options);
+      var firing,
+        memory,
+        fired,
+        locked,
+        list = [],
+        queue = [],
+        firingIndex = -1,
+        fire = function () {
+          locked = locked || options.once;
+          fired = firing = true;
+          for (; queue.length; firingIndex = -1) {
+            memory = queue.shift();
+            while (++firingIndex < list.length) {
+              if (
+                list[firingIndex].apply(memory[0], memory[1]) === false &&
+                options.stopOnFalse
+              ) {
+                firingIndex = list.length;
+                memory = false;
               }
             }
-          });
-          return this;
-        },
-        // Check if a given callback is in the list.
-        // If no argument is given, return whether or not list has callbacks attached.
-        has: function(fn) {
-          return fn ? jQuery2.inArray(fn, list) > -1 : list.length > 0;
-        },
-        // Remove all callbacks from the list
-        empty: function() {
-          if (list) {
-            list = [];
           }
-          return this;
-        },
-        // Disable .fire and .add
-        // Abort any current/pending executions
-        // Clear all callbacks and values
-        disable: function() {
-          locked = queue = [];
-          list = memory = "";
-          return this;
-        },
-        disabled: function() {
-          return !list;
-        },
-        // Disable .fire
-        // Also disable .add unless we have memory (since it would have no effect)
-        // Abort any pending executions
-        lock: function() {
-          locked = queue = [];
-          if (!memory && !firing) {
-            list = memory = "";
+          if (!options.memory) {
+            memory = false;
           }
-          return this;
-        },
-        locked: function() {
-          return !!locked;
-        },
-        // Call all callbacks with the given context and arguments
-        fireWith: function(context, args) {
-          if (!locked) {
-            args = args || [];
-            args = [context, args.slice ? args.slice() : args];
-            queue.push(args);
-            if (!firing) {
-              fire();
+          firing = false;
+          if (locked) {
+            if (memory) {
+              list = [];
+            } else {
+              list = "";
             }
           }
-          return this;
         },
-        // Call all the callbacks with the given arguments
-        fire: function() {
-          self2.fireWith(this, arguments);
-          return this;
-        },
-        // To know if the callbacks have already been called at least once
-        fired: function() {
-          return !!fired;
-        }
-      };
+        self2 = {
+          // Add a callback or a collection of callbacks to the list
+          add: function () {
+            if (list) {
+              if (memory && !firing) {
+                firingIndex = list.length - 1;
+                queue.push(memory);
+              }
+              (function add(args) {
+                jQuery2.each(args, function (_, arg) {
+                  if (typeof arg === "function") {
+                    if (!options.unique || !self2.has(arg)) {
+                      list.push(arg);
+                    }
+                  } else if (arg && arg.length && toType(arg) !== "string") {
+                    add(arg);
+                  }
+                });
+              })(arguments);
+              if (memory && !firing) {
+                fire();
+              }
+            }
+            return this;
+          },
+          // Remove a callback from the list
+          remove: function () {
+            jQuery2.each(arguments, function (_, arg) {
+              var index;
+              while ((index = jQuery2.inArray(arg, list, index)) > -1) {
+                list.splice(index, 1);
+                if (index <= firingIndex) {
+                  firingIndex--;
+                }
+              }
+            });
+            return this;
+          },
+          // Check if a given callback is in the list.
+          // If no argument is given, return whether or not list has callbacks attached.
+          has: function (fn) {
+            return fn ? jQuery2.inArray(fn, list) > -1 : list.length > 0;
+          },
+          // Remove all callbacks from the list
+          empty: function () {
+            if (list) {
+              list = [];
+            }
+            return this;
+          },
+          // Disable .fire and .add
+          // Abort any current/pending executions
+          // Clear all callbacks and values
+          disable: function () {
+            locked = queue = [];
+            list = memory = "";
+            return this;
+          },
+          disabled: function () {
+            return !list;
+          },
+          // Disable .fire
+          // Also disable .add unless we have memory (since it would have no effect)
+          // Abort any pending executions
+          lock: function () {
+            locked = queue = [];
+            if (!memory && !firing) {
+              list = memory = "";
+            }
+            return this;
+          },
+          locked: function () {
+            return !!locked;
+          },
+          // Call all callbacks with the given context and arguments
+          fireWith: function (context, args) {
+            if (!locked) {
+              args = args || [];
+              args = [context, args.slice ? args.slice() : args];
+              queue.push(args);
+              if (!firing) {
+                fire();
+              }
+            }
+            return this;
+          },
+          // Call all the callbacks with the given arguments
+          fire: function () {
+            self2.fireWith(this, arguments);
+            return this;
+          },
+          // To know if the callbacks have already been called at least once
+          fired: function () {
+            return !!fired;
+          },
+        };
       return self2;
     };
     function Identity(v) {
@@ -11610,176 +13813,196 @@
       }
     }
     jQuery2.extend({
-      Deferred: function(func) {
+      Deferred: function (func) {
         var tuples = [
-          // action, add listener, callbacks,
-          // ... .then handlers, argument index, [final state]
-          [
-            "notify",
-            "progress",
-            jQuery2.Callbacks("memory"),
-            jQuery2.Callbacks("memory"),
-            2
+            // action, add listener, callbacks,
+            // ... .then handlers, argument index, [final state]
+            [
+              "notify",
+              "progress",
+              jQuery2.Callbacks("memory"),
+              jQuery2.Callbacks("memory"),
+              2,
+            ],
+            [
+              "resolve",
+              "done",
+              jQuery2.Callbacks("once memory"),
+              jQuery2.Callbacks("once memory"),
+              0,
+              "resolved",
+            ],
+            [
+              "reject",
+              "fail",
+              jQuery2.Callbacks("once memory"),
+              jQuery2.Callbacks("once memory"),
+              1,
+              "rejected",
+            ],
           ],
-          [
-            "resolve",
-            "done",
-            jQuery2.Callbacks("once memory"),
-            jQuery2.Callbacks("once memory"),
-            0,
-            "resolved"
-          ],
-          [
-            "reject",
-            "fail",
-            jQuery2.Callbacks("once memory"),
-            jQuery2.Callbacks("once memory"),
-            1,
-            "rejected"
-          ]
-        ], state = "pending", promise = {
-          state: function() {
-            return state;
-          },
-          always: function() {
-            deferred.done(arguments).fail(arguments);
-            return this;
-          },
-          catch: function(fn) {
-            return promise.then(null, fn);
-          },
-          // Keep pipe for back-compat
-          pipe: function() {
-            var fns = arguments;
-            return jQuery2.Deferred(function(newDefer) {
-              jQuery2.each(tuples, function(_i, tuple) {
-                var fn = typeof fns[tuple[4]] === "function" && fns[tuple[4]];
-                deferred[tuple[1]](function() {
-                  var returned = fn && fn.apply(this, arguments);
-                  if (returned && typeof returned.promise === "function") {
-                    returned.promise().progress(newDefer.notify).done(newDefer.resolve).fail(newDefer.reject);
-                  } else {
-                    newDefer[tuple[0] + "With"](
-                      this,
-                      fn ? [returned] : arguments
-                    );
-                  }
-                });
-              });
-              fns = null;
-            }).promise();
-          },
-          then: function(onFulfilled, onRejected, onProgress) {
-            var maxDepth = 0;
-            function resolve(depth, deferred2, handler, special) {
-              return function() {
-                var that = this, args = arguments, mightThrow = function() {
-                  var returned, then;
-                  if (depth < maxDepth) {
-                    return;
-                  }
-                  returned = handler.apply(that, args);
-                  if (returned === deferred2.promise()) {
-                    throw new TypeError("Thenable self-resolution");
-                  }
-                  then = returned && // Support: Promises/A+ section 2.3.4
-                  // https://promisesaplus.com/#point-64
-                  // Only check objects and functions for thenability
-                  (typeof returned === "object" || typeof returned === "function") && returned.then;
-                  if (typeof then === "function") {
-                    if (special) {
-                      then.call(
-                        returned,
-                        resolve(maxDepth, deferred2, Identity, special),
-                        resolve(maxDepth, deferred2, Thrower, special)
-                      );
-                    } else {
-                      maxDepth++;
-                      then.call(
-                        returned,
-                        resolve(maxDepth, deferred2, Identity, special),
-                        resolve(maxDepth, deferred2, Thrower, special),
-                        resolve(
-                          maxDepth,
-                          deferred2,
-                          Identity,
-                          deferred2.notifyWith
-                        )
-                      );
-                    }
-                  } else {
-                    if (handler !== Identity) {
-                      that = void 0;
-                      args = [returned];
-                    }
-                    (special || deferred2.resolveWith)(that, args);
-                  }
-                }, process = special ? mightThrow : function() {
-                  try {
-                    mightThrow();
-                  } catch (e) {
-                    if (jQuery2.Deferred.exceptionHook) {
-                      jQuery2.Deferred.exceptionHook(
-                        e,
-                        process.error
-                      );
-                    }
-                    if (depth + 1 >= maxDepth) {
-                      if (handler !== Thrower) {
-                        that = void 0;
-                        args = [e];
+          state = "pending",
+          promise = {
+            state: function () {
+              return state;
+            },
+            always: function () {
+              deferred.done(arguments).fail(arguments);
+              return this;
+            },
+            catch: function (fn) {
+              return promise.then(null, fn);
+            },
+            // Keep pipe for back-compat
+            pipe: function () {
+              var fns = arguments;
+              return jQuery2
+                .Deferred(function (newDefer) {
+                  jQuery2.each(tuples, function (_i, tuple) {
+                    var fn =
+                      typeof fns[tuple[4]] === "function" && fns[tuple[4]];
+                    deferred[tuple[1]](function () {
+                      var returned = fn && fn.apply(this, arguments);
+                      if (returned && typeof returned.promise === "function") {
+                        returned
+                          .promise()
+                          .progress(newDefer.notify)
+                          .done(newDefer.resolve)
+                          .fail(newDefer.reject);
+                      } else {
+                        newDefer[tuple[0] + "With"](
+                          this,
+                          fn ? [returned] : arguments,
+                        );
                       }
-                      deferred2.rejectWith(that, args);
+                    });
+                  });
+                  fns = null;
+                })
+                .promise();
+            },
+            then: function (onFulfilled, onRejected, onProgress) {
+              var maxDepth = 0;
+              function resolve(depth, deferred2, handler, special) {
+                return function () {
+                  var that = this,
+                    args = arguments,
+                    mightThrow = function () {
+                      var returned, then;
+                      if (depth < maxDepth) {
+                        return;
+                      }
+                      returned = handler.apply(that, args);
+                      if (returned === deferred2.promise()) {
+                        throw new TypeError("Thenable self-resolution");
+                      }
+                      then =
+                        returned && // Support: Promises/A+ section 2.3.4
+                        // https://promisesaplus.com/#point-64
+                        // Only check objects and functions for thenability
+                        (typeof returned === "object" ||
+                          typeof returned === "function") &&
+                        returned.then;
+                      if (typeof then === "function") {
+                        if (special) {
+                          then.call(
+                            returned,
+                            resolve(maxDepth, deferred2, Identity, special),
+                            resolve(maxDepth, deferred2, Thrower, special),
+                          );
+                        } else {
+                          maxDepth++;
+                          then.call(
+                            returned,
+                            resolve(maxDepth, deferred2, Identity, special),
+                            resolve(maxDepth, deferred2, Thrower, special),
+                            resolve(
+                              maxDepth,
+                              deferred2,
+                              Identity,
+                              deferred2.notifyWith,
+                            ),
+                          );
+                        }
+                      } else {
+                        if (handler !== Identity) {
+                          that = void 0;
+                          args = [returned];
+                        }
+                        (special || deferred2.resolveWith)(that, args);
+                      }
+                    },
+                    process = special
+                      ? mightThrow
+                      : function () {
+                          try {
+                            mightThrow();
+                          } catch (e) {
+                            if (jQuery2.Deferred.exceptionHook) {
+                              jQuery2.Deferred.exceptionHook(e, process.error);
+                            }
+                            if (depth + 1 >= maxDepth) {
+                              if (handler !== Thrower) {
+                                that = void 0;
+                                args = [e];
+                              }
+                              deferred2.rejectWith(that, args);
+                            }
+                          }
+                        };
+                  if (depth) {
+                    process();
+                  } else {
+                    if (jQuery2.Deferred.getErrorHook) {
+                      process.error = jQuery2.Deferred.getErrorHook();
                     }
+                    window2.setTimeout(process);
                   }
                 };
-                if (depth) {
-                  process();
-                } else {
-                  if (jQuery2.Deferred.getErrorHook) {
-                    process.error = jQuery2.Deferred.getErrorHook();
-                  }
-                  window2.setTimeout(process);
-                }
-              };
-            }
-            return jQuery2.Deferred(function(newDefer) {
-              tuples[0][3].add(
-                resolve(
-                  0,
-                  newDefer,
-                  typeof onProgress === "function" ? onProgress : Identity,
-                  newDefer.notifyWith
-                )
-              );
-              tuples[1][3].add(
-                resolve(
-                  0,
-                  newDefer,
-                  typeof onFulfilled === "function" ? onFulfilled : Identity
-                )
-              );
-              tuples[2][3].add(
-                resolve(
-                  0,
-                  newDefer,
-                  typeof onRejected === "function" ? onRejected : Thrower
-                )
-              );
-            }).promise();
+              }
+              return jQuery2
+                .Deferred(function (newDefer) {
+                  tuples[0][3].add(
+                    resolve(
+                      0,
+                      newDefer,
+                      typeof onProgress === "function" ? onProgress : Identity,
+                      newDefer.notifyWith,
+                    ),
+                  );
+                  tuples[1][3].add(
+                    resolve(
+                      0,
+                      newDefer,
+                      typeof onFulfilled === "function"
+                        ? onFulfilled
+                        : Identity,
+                    ),
+                  );
+                  tuples[2][3].add(
+                    resolve(
+                      0,
+                      newDefer,
+                      typeof onRejected === "function" ? onRejected : Thrower,
+                    ),
+                  );
+                })
+                .promise();
+            },
+            // Get a promise for this deferred
+            // If obj is provided, the promise aspect is added to the object
+            promise: function (obj) {
+              return obj != null ? jQuery2.extend(obj, promise) : promise;
+            },
           },
-          // Get a promise for this deferred
-          // If obj is provided, the promise aspect is added to the object
-          promise: function(obj) {
-            return obj != null ? jQuery2.extend(obj, promise) : promise;
-          }
-        }, deferred = {};
-        jQuery2.each(tuples, function(i2, tuple) {
-          var list = tuple[2], stateString = tuple[5];
+          deferred = {};
+        jQuery2.each(tuples, function (i2, tuple) {
+          var list = tuple[2],
+            stateString = tuple[5];
           promise[tuple[1]] = list.add;
           if (stateString) {
             list.add(
-              function() {
+              function () {
                 state = stateString;
               },
               // rejected_callbacks.disable
@@ -11791,12 +14014,15 @@
               // progress_callbacks.lock
               tuples[0][2].lock,
               // progress_handlers.lock
-              tuples[0][3].lock
+              tuples[0][3].lock,
             );
           }
           list.add(tuple[3].fire);
-          deferred[tuple[0]] = function() {
-            deferred[tuple[0] + "With"](this === deferred ? void 0 : this, arguments);
+          deferred[tuple[0]] = function () {
+            deferred[tuple[0] + "With"](
+              this === deferred ? void 0 : this,
+              arguments,
+            );
             return this;
           };
           deferred[tuple[0] + "With"] = list.fireWith;
@@ -11808,24 +14034,33 @@
         return deferred;
       },
       // Deferred helper
-      when: function(singleValue) {
-        var remaining = arguments.length, i2 = remaining, resolveContexts = Array(i2), resolveValues = slice.call(arguments), primary = jQuery2.Deferred(), updateFunc = function(i3) {
-          return function(value) {
-            resolveContexts[i3] = this;
-            resolveValues[i3] = arguments.length > 1 ? slice.call(arguments) : value;
-            if (!--remaining) {
-              primary.resolveWith(resolveContexts, resolveValues);
-            }
+      when: function (singleValue) {
+        var remaining = arguments.length,
+          i2 = remaining,
+          resolveContexts = Array(i2),
+          resolveValues = slice.call(arguments),
+          primary = jQuery2.Deferred(),
+          updateFunc = function (i3) {
+            return function (value) {
+              resolveContexts[i3] = this;
+              resolveValues[i3] =
+                arguments.length > 1 ? slice.call(arguments) : value;
+              if (!--remaining) {
+                primary.resolveWith(resolveContexts, resolveValues);
+              }
+            };
           };
-        };
         if (remaining <= 1) {
           adoptValue(
             singleValue,
             primary.done(updateFunc(i2)).resolve,
             primary.reject,
-            !remaining
+            !remaining,
           );
-          if (primary.state() === "pending" || typeof (resolveValues[i2] && resolveValues[i2].then) === "function") {
+          if (
+            primary.state() === "pending" ||
+            typeof (resolveValues[i2] && resolveValues[i2].then) === "function"
+          ) {
             return primary.then();
           }
         }
@@ -11833,26 +14068,22 @@
           adoptValue(resolveValues[i2], updateFunc(i2), primary.reject);
         }
         return primary.promise();
-      }
+      },
     });
     var rerrorNames = /^(Eval|Internal|Range|Reference|Syntax|Type|URI)Error$/;
-    jQuery2.Deferred.exceptionHook = function(error, asyncError) {
+    jQuery2.Deferred.exceptionHook = function (error, asyncError) {
       if (error && rerrorNames.test(error.name)) {
-        window2.console.warn(
-          "jQuery.Deferred exception",
-          error,
-          asyncError
-        );
+        window2.console.warn("jQuery.Deferred exception", error, asyncError);
       }
     };
-    jQuery2.readyException = function(error) {
-      window2.setTimeout(function() {
+    jQuery2.readyException = function (error) {
+      window2.setTimeout(function () {
         throw error;
       });
     };
     var readyList = jQuery2.Deferred();
-    jQuery2.fn.ready = function(fn) {
-      readyList.then(fn).catch(function(error) {
+    jQuery2.fn.ready = function (fn) {
+      readyList.then(fn).catch(function (error) {
         jQuery2.readyException(error);
       });
       return this;
@@ -11864,7 +14095,7 @@
       // the ready event fires. See trac-6781
       readyWait: 1,
       // Handle when the DOM is ready
-      ready: function(wait) {
+      ready: function (wait) {
         if (wait === true ? --jQuery2.readyWait : jQuery2.isReady) {
           return;
         }
@@ -11873,7 +14104,7 @@
           return;
         }
         readyList.resolveWith(document$1, [jQuery2]);
-      }
+      },
     });
     jQuery2.ready.then = readyList.then;
     function completed() {
@@ -11902,7 +14133,7 @@
     }
     Data.uid = 1;
     Data.prototype = {
-      cache: function(owner) {
+      cache: function (owner) {
         var value = owner[this.expando];
         if (!value) {
           value = /* @__PURE__ */ Object.create(null);
@@ -11912,15 +14143,16 @@
             } else {
               Object.defineProperty(owner, this.expando, {
                 value,
-                configurable: true
+                configurable: true,
               });
             }
           }
         }
         return value;
       },
-      set: function(owner, data, value) {
-        var prop, cache = this.cache(owner);
+      set: function (owner, data, value) {
+        var prop,
+          cache = this.cache(owner);
         if (typeof data === "string") {
           cache[camelCase(data)] = value;
         } else {
@@ -11930,21 +14162,25 @@
         }
         return value;
       },
-      get: function(owner, key) {
-        return key === void 0 ? this.cache(owner) : (
-          // Always use camelCase key (gh-2257)
-          owner[this.expando] && owner[this.expando][camelCase(key)]
-        );
+      get: function (owner, key) {
+        return key === void 0
+          ? this.cache(owner)
+          : // Always use camelCase key (gh-2257)
+            owner[this.expando] && owner[this.expando][camelCase(key)];
       },
-      access: function(owner, key, value) {
-        if (key === void 0 || key && typeof key === "string" && value === void 0) {
+      access: function (owner, key, value) {
+        if (
+          key === void 0 ||
+          (key && typeof key === "string" && value === void 0)
+        ) {
           return this.get(owner, key);
         }
         this.set(owner, key, value);
         return value !== void 0 ? value : key;
       },
-      remove: function(owner, key) {
-        var i2, cache = owner[this.expando];
+      remove: function (owner, key) {
+        var i2,
+          cache = owner[this.expando];
         if (cache === void 0) {
           return;
         }
@@ -11968,14 +14204,15 @@
           }
         }
       },
-      hasData: function(owner) {
+      hasData: function (owner) {
         var cache = owner[this.expando];
         return cache !== void 0 && !jQuery2.isEmptyObject(cache);
-      }
+      },
     };
     var dataPriv = new Data();
     var dataUser = new Data();
-    var rbrace = /^(?:\{[\w\W]*\}|\[[\w\W]*\])$/, rmultiDash = /[A-Z]/g;
+    var rbrace = /^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,
+      rmultiDash = /[A-Z]/g;
     function getData(data) {
       if (data === "true") {
         return true;
@@ -12002,8 +14239,7 @@
         if (typeof data === "string") {
           try {
             data = getData(data);
-          } catch (e) {
-          }
+          } catch (e) {}
           dataUser.set(elem, key, data);
         } else {
           data = void 0;
@@ -12012,27 +14248,31 @@
       return data;
     }
     jQuery2.extend({
-      hasData: function(elem) {
+      hasData: function (elem) {
         return dataUser.hasData(elem) || dataPriv.hasData(elem);
       },
-      data: function(elem, name, data) {
+      data: function (elem, name, data) {
         return dataUser.access(elem, name, data);
       },
-      removeData: function(elem, name) {
+      removeData: function (elem, name) {
         dataUser.remove(elem, name);
       },
       // TODO: Now that all calls to _data and _removeData have been replaced
       // with direct calls to dataPriv methods, these can be deprecated.
-      _data: function(elem, name, data) {
+      _data: function (elem, name, data) {
         return dataPriv.access(elem, name, data);
       },
-      _removeData: function(elem, name) {
+      _removeData: function (elem, name) {
         dataPriv.remove(elem, name);
-      }
+      },
     });
     jQuery2.fn.extend({
-      data: function(key, value) {
-        var i2, name, data, elem = this[0], attrs = elem && elem.attributes;
+      data: function (key, value) {
+        var i2,
+          name,
+          data,
+          elem = this[0],
+          attrs = elem && elem.attributes;
         if (key === void 0) {
           if (this.length) {
             data = dataUser.get(elem);
@@ -12053,36 +14293,44 @@
           return data;
         }
         if (typeof key === "object") {
-          return this.each(function() {
+          return this.each(function () {
             dataUser.set(this, key);
           });
         }
-        return access(this, function(value2) {
-          var data2;
-          if (elem && value2 === void 0) {
-            data2 = dataUser.get(elem, key);
-            if (data2 !== void 0) {
-              return data2;
+        return access(
+          this,
+          function (value2) {
+            var data2;
+            if (elem && value2 === void 0) {
+              data2 = dataUser.get(elem, key);
+              if (data2 !== void 0) {
+                return data2;
+              }
+              data2 = dataAttr(elem, key);
+              if (data2 !== void 0) {
+                return data2;
+              }
+              return;
             }
-            data2 = dataAttr(elem, key);
-            if (data2 !== void 0) {
-              return data2;
-            }
-            return;
-          }
-          this.each(function() {
-            dataUser.set(this, key, value2);
-          });
-        }, null, value, arguments.length > 1, null, true);
+            this.each(function () {
+              dataUser.set(this, key, value2);
+            });
+          },
+          null,
+          value,
+          arguments.length > 1,
+          null,
+          true,
+        );
       },
-      removeData: function(key) {
-        return this.each(function() {
+      removeData: function (key) {
+        return this.each(function () {
           dataUser.remove(this, key);
         });
-      }
+      },
     });
     jQuery2.extend({
-      queue: function(elem, type, data) {
+      queue: function (elem, type, data) {
         var queue;
         if (elem) {
           type = (type || "fx") + "queue";
@@ -12097,11 +14345,15 @@
           return queue || [];
         }
       },
-      dequeue: function(elem, type) {
+      dequeue: function (elem, type) {
         type = type || "fx";
-        var queue = jQuery2.queue(elem, type), startLength = queue.length, fn = queue.shift(), hooks = jQuery2._queueHooks(elem, type), next = function() {
-          jQuery2.dequeue(elem, type);
-        };
+        var queue = jQuery2.queue(elem, type),
+          startLength = queue.length,
+          fn = queue.shift(),
+          hooks = jQuery2._queueHooks(elem, type),
+          next = function () {
+            jQuery2.dequeue(elem, type);
+          };
         if (fn === "inprogress") {
           fn = queue.shift();
           startLength--;
@@ -12118,17 +14370,20 @@
         }
       },
       // Not public - generate a queueHooks object, or return the current one
-      _queueHooks: function(elem, type) {
+      _queueHooks: function (elem, type) {
         var key = type + "queueHooks";
-        return dataPriv.get(elem, key) || dataPriv.set(elem, key, {
-          empty: jQuery2.Callbacks("once memory").add(function() {
-            dataPriv.remove(elem, [type + "queue", key]);
+        return (
+          dataPriv.get(elem, key) ||
+          dataPriv.set(elem, key, {
+            empty: jQuery2.Callbacks("once memory").add(function () {
+              dataPriv.remove(elem, [type + "queue", key]);
+            }),
           })
-        });
-      }
+        );
+      },
     });
     jQuery2.fn.extend({
-      queue: function(type, data) {
+      queue: function (type, data) {
         var setter = 2;
         if (typeof type !== "string") {
           data = type;
@@ -12138,30 +14393,37 @@
         if (arguments.length < setter) {
           return jQuery2.queue(this[0], type);
         }
-        return data === void 0 ? this : this.each(function() {
-          var queue = jQuery2.queue(this, type, data);
-          jQuery2._queueHooks(this, type);
-          if (type === "fx" && queue[0] !== "inprogress") {
-            jQuery2.dequeue(this, type);
-          }
-        });
+        return data === void 0
+          ? this
+          : this.each(function () {
+              var queue = jQuery2.queue(this, type, data);
+              jQuery2._queueHooks(this, type);
+              if (type === "fx" && queue[0] !== "inprogress") {
+                jQuery2.dequeue(this, type);
+              }
+            });
       },
-      dequeue: function(type) {
-        return this.each(function() {
+      dequeue: function (type) {
+        return this.each(function () {
           jQuery2.dequeue(this, type);
         });
       },
-      clearQueue: function(type) {
+      clearQueue: function (type) {
         return this.queue(type || "fx", []);
       },
       // Get a promise resolved when queues of a certain type
       // are emptied (fx is the type by default)
-      promise: function(type, obj) {
-        var tmp, count = 1, defer = jQuery2.Deferred(), elements = this, i2 = this.length, resolve = function() {
-          if (!--count) {
-            defer.resolveWith(elements, [elements]);
-          }
-        };
+      promise: function (type, obj) {
+        var tmp,
+          count = 1,
+          defer = jQuery2.Deferred(),
+          elements = this,
+          i2 = this.length,
+          resolve = function () {
+            if (!--count) {
+              defer.resolveWith(elements, [elements]);
+            }
+          };
         if (typeof type !== "string") {
           obj = type;
           type = void 0;
@@ -12176,32 +14438,54 @@
         }
         resolve();
         return defer.promise(obj);
-      }
+      },
     });
     var pnum = /[+-]?(?:\d*\.|)\d+(?:[eE][+-]?\d+|)/.source;
     var rcssNum = new RegExp("^(?:([+-])=|)(" + pnum + ")([a-z%]*)$", "i");
     var cssExpand = ["Top", "Right", "Bottom", "Left"];
     function isHiddenWithinTree(elem, el) {
       elem = el || elem;
-      return elem.style.display === "none" || elem.style.display === "" && jQuery2.css(elem, "display") === "none";
+      return (
+        elem.style.display === "none" ||
+        (elem.style.display === "" && jQuery2.css(elem, "display") === "none")
+      );
     }
-    var ralphaStart = /^[a-z]/, rautoPx = /^(?:Border(?:Top|Right|Bottom|Left)?(?:Width|)|(?:Margin|Padding)?(?:Top|Right|Bottom|Left)?|(?:Min|Max)?(?:Width|Height))$/;
+    var ralphaStart = /^[a-z]/,
+      rautoPx =
+        /^(?:Border(?:Top|Right|Bottom|Left)?(?:Width|)|(?:Margin|Padding)?(?:Top|Right|Bottom|Left)?|(?:Min|Max)?(?:Width|Height))$/;
     function isAutoPx(prop) {
-      return ralphaStart.test(prop) && rautoPx.test(prop[0].toUpperCase() + prop.slice(1));
+      return (
+        ralphaStart.test(prop) &&
+        rautoPx.test(prop[0].toUpperCase() + prop.slice(1))
+      );
     }
     function adjustCSS(elem, prop, valueParts, tween) {
-      var adjusted, scale, maxIterations = 20, currentValue = tween ? function() {
-        return tween.cur();
-      } : function() {
-        return jQuery2.css(elem, prop, "");
-      }, initial = currentValue(), unit = valueParts && valueParts[3] || (isAutoPx(prop) ? "px" : ""), initialInUnit = elem.nodeType && (!isAutoPx(prop) || unit !== "px" && +initial) && rcssNum.exec(jQuery2.css(elem, prop));
+      var adjusted,
+        scale,
+        maxIterations = 20,
+        currentValue = tween
+          ? function () {
+              return tween.cur();
+            }
+          : function () {
+              return jQuery2.css(elem, prop, "");
+            },
+        initial = currentValue(),
+        unit = (valueParts && valueParts[3]) || (isAutoPx(prop) ? "px" : ""),
+        initialInUnit =
+          elem.nodeType &&
+          (!isAutoPx(prop) || (unit !== "px" && +initial)) &&
+          rcssNum.exec(jQuery2.css(elem, prop));
       if (initialInUnit && initialInUnit[3] !== unit) {
         initial = initial / 2;
         unit = unit || initialInUnit[3];
         initialInUnit = +initial || 1;
         while (maxIterations--) {
           jQuery2.style(elem, prop, initialInUnit + unit);
-          if ((1 - scale) * (1 - (scale = currentValue() / initial || 0.5)) <= 0) {
+          if (
+            (1 - scale) * (1 - (scale = currentValue() / initial || 0.5)) <=
+            0
+          ) {
             maxIterations = 0;
           }
           initialInUnit = initialInUnit / scale;
@@ -12212,7 +14496,9 @@
       }
       if (valueParts) {
         initialInUnit = +initialInUnit || +initial || 0;
-        adjusted = valueParts[1] ? initialInUnit + (valueParts[1] + 1) * valueParts[2] : +valueParts[2];
+        adjusted = valueParts[1]
+          ? initialInUnit + (valueParts[1] + 1) * valueParts[2]
+          : +valueParts[2];
         if (tween) {
           tween.unit = unit;
           tween.start = initialInUnit;
@@ -12227,7 +14513,10 @@
     }
     var defaultDisplayMap = {};
     function getDefaultDisplay(elem) {
-      var temp, doc = elem.ownerDocument, nodeName2 = elem.nodeName, display = defaultDisplayMap[nodeName2];
+      var temp,
+        doc = elem.ownerDocument,
+        nodeName2 = elem.nodeName,
+        display = defaultDisplayMap[nodeName2];
       if (display) {
         return display;
       }
@@ -12241,7 +14530,11 @@
       return display;
     }
     function showHide(elements, show) {
-      var display, elem, values = [], index = 0, length = elements.length;
+      var display,
+        elem,
+        values = [],
+        index = 0,
+        length = elements.length;
       for (; index < length; index++) {
         elem = elements[index];
         if (!elem.style) {
@@ -12273,30 +14566,34 @@
       return elements;
     }
     jQuery2.fn.extend({
-      show: function() {
+      show: function () {
         return showHide(this, true);
       },
-      hide: function() {
+      hide: function () {
         return showHide(this);
       },
-      toggle: function(state) {
+      toggle: function (state) {
         if (typeof state === "boolean") {
           return state ? this.show() : this.hide();
         }
-        return this.each(function() {
+        return this.each(function () {
           if (isHiddenWithinTree(this)) {
             jQuery2(this).show();
           } else {
             jQuery2(this).hide();
           }
         });
-      }
+      },
     });
-    var isAttached = function(elem) {
-      return jQuery2.contains(elem.ownerDocument, elem) || elem.getRootNode(composed) === elem.ownerDocument;
-    }, composed = { composed: true };
+    var isAttached = function (elem) {
+        return (
+          jQuery2.contains(elem.ownerDocument, elem) ||
+          elem.getRootNode(composed) === elem.ownerDocument
+        );
+      },
+      composed = { composed: true };
     if (!documentElement$1.getRootNode) {
-      isAttached = function(elem) {
+      isAttached = function (elem) {
         return jQuery2.contains(elem.ownerDocument, elem);
       };
     }
@@ -12310,9 +14607,13 @@
       thead: ["table"],
       col: ["colgroup", "table"],
       tr: ["tbody", "table"],
-      td: ["tr", "tbody", "table"]
+      td: ["tr", "tbody", "table"],
     };
-    wrapMap.tbody = wrapMap.tfoot = wrapMap.colgroup = wrapMap.caption = wrapMap.thead;
+    wrapMap.tbody =
+      wrapMap.tfoot =
+      wrapMap.colgroup =
+      wrapMap.caption =
+        wrapMap.thead;
     wrapMap.th = wrapMap.td;
     function getAll(context, tag) {
       var ret;
@@ -12323,29 +14624,42 @@
       } else {
         ret = [];
       }
-      if (tag === void 0 || tag && nodeName(context, tag)) {
+      if (tag === void 0 || (tag && nodeName(context, tag))) {
         return jQuery2.merge([context], ret);
       }
       return ret;
     }
     var rscriptType = /^$|^module$|\/(?:java|ecma)script/i;
     function setGlobalEval(elems, refElements) {
-      var i2 = 0, l = elems.length;
+      var i2 = 0,
+        l = elems.length;
       for (; i2 < l; i2++) {
         dataPriv.set(
           elems[i2],
           "globalEval",
-          !refElements || dataPriv.get(refElements[i2], "globalEval")
+          !refElements || dataPriv.get(refElements[i2], "globalEval"),
         );
       }
     }
     var rhtml = /<|&#?\w+;/;
     function buildFragment(elems, context, scripts, selection, ignored) {
-      var elem, tmp, tag, wrap, attached, j, fragment = context.createDocumentFragment(), nodes = [], i2 = 0, l = elems.length;
+      var elem,
+        tmp,
+        tag,
+        wrap,
+        attached,
+        j,
+        fragment = context.createDocumentFragment(),
+        nodes = [],
+        i2 = 0,
+        l = elems.length;
       for (; i2 < l; i2++) {
         elem = elems[i2];
         if (elem || elem === 0) {
-          if (toType(elem) === "object" && (elem.nodeType || isArrayLike(elem))) {
+          if (
+            toType(elem) === "object" &&
+            (elem.nodeType || isArrayLike(elem))
+          ) {
             jQuery2.merge(nodes, elem.nodeType ? [elem] : elem);
           } else if (!rhtml.test(elem)) {
             nodes.push(context.createTextNode(elem));
@@ -12366,7 +14680,7 @@
       }
       fragment.textContent = "";
       i2 = 0;
-      while (elem = nodes[i2++]) {
+      while ((elem = nodes[i2++])) {
         if (selection && jQuery2.inArray(elem, selection) > -1) {
           if (ignored) {
             ignored.push(elem);
@@ -12380,7 +14694,7 @@
         }
         if (scripts) {
           j = 0;
-          while (elem = tmp[j++]) {
+          while ((elem = tmp[j++])) {
             if (rscriptType.test(elem.type || "")) {
               scripts.push(elem);
             }
@@ -12403,16 +14717,32 @@
     }
     function domManip(collection, args, callback, ignored) {
       args = flat(args);
-      var fragment, first, scripts, hasScripts, node, doc, i2 = 0, l = collection.length, iNoClone = l - 1, value = args[0], valueIsFunction = typeof value === "function";
+      var fragment,
+        first,
+        scripts,
+        hasScripts,
+        node,
+        doc,
+        i2 = 0,
+        l = collection.length,
+        iNoClone = l - 1,
+        value = args[0],
+        valueIsFunction = typeof value === "function";
       if (valueIsFunction) {
-        return collection.each(function(index) {
+        return collection.each(function (index) {
           var self2 = collection.eq(index);
           args[0] = value.call(this, index, self2.html());
           domManip(self2, args, callback, ignored);
         });
       }
       if (l) {
-        fragment = buildFragment(args, collection[0].ownerDocument, false, collection, ignored);
+        fragment = buildFragment(
+          args,
+          collection[0].ownerDocument,
+          false,
+          collection,
+          ignored,
+        );
         first = fragment.firstChild;
         if (fragment.childNodes.length === 1) {
           fragment = first;
@@ -12435,13 +14765,21 @@
             jQuery2.map(scripts, restoreScript);
             for (i2 = 0; i2 < hasScripts; i2++) {
               node = scripts[i2];
-              if (rscriptType.test(node.type || "") && !dataPriv.get(node, "globalEval") && jQuery2.contains(doc, node)) {
+              if (
+                rscriptType.test(node.type || "") &&
+                !dataPriv.get(node, "globalEval") &&
+                jQuery2.contains(doc, node)
+              ) {
                 if (node.src && (node.type || "").toLowerCase() !== "module") {
                   if (jQuery2._evalUrl && !node.noModule) {
-                    jQuery2._evalUrl(node.src, {
-                      nonce: node.nonce,
-                      crossOrigin: node.crossOrigin
-                    }, doc);
+                    jQuery2._evalUrl(
+                      node.src,
+                      {
+                        nonce: node.nonce,
+                        crossOrigin: node.crossOrigin,
+                      },
+                      doc,
+                    );
                   }
                 } else {
                   DOMEval(node.textContent, node, doc);
@@ -12493,19 +14831,30 @@
       }
       if (one === 1) {
         origFn = fn;
-        fn = function(event) {
+        fn = function (event) {
           jQuery2().off(event);
           return origFn.apply(this, arguments);
         };
         fn.guid = origFn.guid || (origFn.guid = jQuery2.guid++);
       }
-      return elem.each(function() {
+      return elem.each(function () {
         jQuery2.event.add(this, types, fn, data, selector);
       });
     }
     jQuery2.event = {
-      add: function(elem, types, handler, data, selector) {
-        var handleObjIn, eventHandle, tmp, events, t, handleObj, special, handlers, type, namespaces, origType, elemData = dataPriv.get(elem);
+      add: function (elem, types, handler, data, selector) {
+        var handleObjIn,
+          eventHandle,
+          tmp,
+          events,
+          t,
+          handleObj,
+          special,
+          handlers,
+          type,
+          namespaces,
+          origType,
+          elemData = dataPriv.get(elem);
         if (!acceptData(elem)) {
           return;
         }
@@ -12524,8 +14873,11 @@
           events = elemData.events = /* @__PURE__ */ Object.create(null);
         }
         if (!(eventHandle = elemData.handle)) {
-          eventHandle = elemData.handle = function(e) {
-            return typeof jQuery2 !== "undefined" && jQuery2.event.triggered !== e.type ? jQuery2.event.dispatch.apply(elem, arguments) : void 0;
+          eventHandle = elemData.handle = function (e) {
+            return typeof jQuery2 !== "undefined" &&
+              jQuery2.event.triggered !== e.type
+              ? jQuery2.event.dispatch.apply(elem, arguments)
+              : void 0;
           };
         }
         types = (types || "").match(rnothtmlwhite) || [""];
@@ -12540,20 +14892,27 @@
           special = jQuery2.event.special[type] || {};
           type = (selector ? special.delegateType : special.bindType) || type;
           special = jQuery2.event.special[type] || {};
-          handleObj = jQuery2.extend({
-            type,
-            origType,
-            data,
-            handler,
-            guid: handler.guid,
-            selector,
-            needsContext: selector && jQuery2.expr.match.needsContext.test(selector),
-            namespace: namespaces.join(".")
-          }, handleObjIn);
+          handleObj = jQuery2.extend(
+            {
+              type,
+              origType,
+              data,
+              handler,
+              guid: handler.guid,
+              selector,
+              needsContext:
+                selector && jQuery2.expr.match.needsContext.test(selector),
+              namespace: namespaces.join("."),
+            },
+            handleObjIn,
+          );
           if (!(handlers = events[type])) {
             handlers = events[type] = [];
             handlers.delegateCount = 0;
-            if (!special.setup || special.setup.call(elem, data, namespaces, eventHandle) === false) {
+            if (
+              !special.setup ||
+              special.setup.call(elem, data, namespaces, eventHandle) === false
+            ) {
               if (elem.addEventListener) {
                 elem.addEventListener(type, eventHandle);
               }
@@ -12573,8 +14932,19 @@
         }
       },
       // Detach an event or set of events from an element
-      remove: function(elem, types, handler, selector, mappedTypes) {
-        var j, origCount, tmp, events, t, handleObj, special, handlers, type, namespaces, origType, elemData = dataPriv.hasData(elem) && dataPriv.get(elem);
+      remove: function (elem, types, handler, selector, mappedTypes) {
+        var j,
+          origCount,
+          tmp,
+          events,
+          t,
+          handleObj,
+          special,
+          handlers,
+          type,
+          namespaces,
+          origType,
+          elemData = dataPriv.hasData(elem) && dataPriv.get(elem);
         if (!elemData || !(events = elemData.events)) {
           return;
         }
@@ -12586,18 +14956,35 @@
           namespaces = (tmp[2] || "").split(".").sort();
           if (!type) {
             for (type in events) {
-              jQuery2.event.remove(elem, type + types[t], handler, selector, true);
+              jQuery2.event.remove(
+                elem,
+                type + types[t],
+                handler,
+                selector,
+                true,
+              );
             }
             continue;
           }
           special = jQuery2.event.special[type] || {};
           type = (selector ? special.delegateType : special.bindType) || type;
           handlers = events[type] || [];
-          tmp = tmp[2] && new RegExp("(^|\\.)" + namespaces.join("\\.(?:.*\\.|)") + "(\\.|$)");
+          tmp =
+            tmp[2] &&
+            new RegExp(
+              "(^|\\.)" + namespaces.join("\\.(?:.*\\.|)") + "(\\.|$)",
+            );
           origCount = j = handlers.length;
           while (j--) {
             handleObj = handlers[j];
-            if ((mappedTypes || origType === handleObj.origType) && (!handler || handler.guid === handleObj.guid) && (!tmp || tmp.test(handleObj.namespace)) && (!selector || selector === handleObj.selector || selector === "**" && handleObj.selector)) {
+            if (
+              (mappedTypes || origType === handleObj.origType) &&
+              (!handler || handler.guid === handleObj.guid) &&
+              (!tmp || tmp.test(handleObj.namespace)) &&
+              (!selector ||
+                selector === handleObj.selector ||
+                (selector === "**" && handleObj.selector))
+            ) {
               handlers.splice(j, 1);
               if (handleObj.selector) {
                 handlers.delegateCount--;
@@ -12608,7 +14995,10 @@
             }
           }
           if (origCount && !handlers.length) {
-            if (!special.teardown || special.teardown.call(elem, namespaces, elemData.handle) === false) {
+            if (
+              !special.teardown ||
+              special.teardown.call(elem, namespaces, elemData.handle) === false
+            ) {
               jQuery2.removeEvent(elem, type, elemData.handle);
             }
             delete events[type];
@@ -12618,26 +15008,53 @@
           dataPriv.remove(elem, "handle events");
         }
       },
-      dispatch: function(nativeEvent) {
-        var i2, j, ret, matched, handleObj, handlerQueue, args = new Array(arguments.length), event = jQuery2.event.fix(nativeEvent), handlers = (dataPriv.get(this, "events") || /* @__PURE__ */ Object.create(null))[event.type] || [], special = jQuery2.event.special[event.type] || {};
+      dispatch: function (nativeEvent) {
+        var i2,
+          j,
+          ret,
+          matched,
+          handleObj,
+          handlerQueue,
+          args = new Array(arguments.length),
+          event = jQuery2.event.fix(nativeEvent),
+          handlers =
+            (dataPriv.get(this, "events") ||
+              /* @__PURE__ */ Object.create(null))[event.type] || [],
+          special = jQuery2.event.special[event.type] || {};
         args[0] = event;
         for (i2 = 1; i2 < arguments.length; i2++) {
           args[i2] = arguments[i2];
         }
         event.delegateTarget = this;
-        if (special.preDispatch && special.preDispatch.call(this, event) === false) {
+        if (
+          special.preDispatch &&
+          special.preDispatch.call(this, event) === false
+        ) {
           return;
         }
         handlerQueue = jQuery2.event.handlers.call(this, event, handlers);
         i2 = 0;
-        while ((matched = handlerQueue[i2++]) && !event.isPropagationStopped()) {
+        while (
+          (matched = handlerQueue[i2++]) &&
+          !event.isPropagationStopped()
+        ) {
           event.currentTarget = matched.elem;
           j = 0;
-          while ((handleObj = matched.handlers[j++]) && !event.isImmediatePropagationStopped()) {
-            if (!event.rnamespace || handleObj.namespace === false || event.rnamespace.test(handleObj.namespace)) {
+          while (
+            (handleObj = matched.handlers[j++]) &&
+            !event.isImmediatePropagationStopped()
+          ) {
+            if (
+              !event.rnamespace ||
+              handleObj.namespace === false ||
+              event.rnamespace.test(handleObj.namespace)
+            ) {
               event.handleObj = handleObj;
               event.data = handleObj.data;
-              ret = ((jQuery2.event.special[handleObj.origType] || {}).handle || handleObj.handler).apply(matched.elem, args);
+              ret = (
+                (jQuery2.event.special[handleObj.origType] || {}).handle ||
+                handleObj.handler
+              ).apply(matched.elem, args);
               if (ret !== void 0) {
                 if ((event.result = ret) === false) {
                   event.preventDefault();
@@ -12652,23 +15069,37 @@
         }
         return event.result;
       },
-      handlers: function(event, handlers) {
-        var i2, handleObj, sel, matchedHandlers, matchedSelectors, handlerQueue = [], delegateCount = handlers.delegateCount, cur = event.target;
-        if (delegateCount && // Support: Firefox <=42 - 66+
-        // Suppress spec-violating clicks indicating a non-primary pointer button (trac-3861)
-        // https://www.w3.org/TR/DOM-Level-3-Events/#event-type-click
-        // Support: IE 11+
-        // ...but not arrow key "clicks" of radio inputs, which can have `button` -1 (gh-2343)
-        !(event.type === "click" && event.button >= 1)) {
+      handlers: function (event, handlers) {
+        var i2,
+          handleObj,
+          sel,
+          matchedHandlers,
+          matchedSelectors,
+          handlerQueue = [],
+          delegateCount = handlers.delegateCount,
+          cur = event.target;
+        if (
+          delegateCount && // Support: Firefox <=42 - 66+
+          // Suppress spec-violating clicks indicating a non-primary pointer button (trac-3861)
+          // https://www.w3.org/TR/DOM-Level-3-Events/#event-type-click
+          // Support: IE 11+
+          // ...but not arrow key "clicks" of radio inputs, which can have `button` -1 (gh-2343)
+          !(event.type === "click" && event.button >= 1)
+        ) {
           for (; cur !== this; cur = cur.parentNode || this) {
-            if (cur.nodeType === 1 && !(event.type === "click" && cur.disabled === true)) {
+            if (
+              cur.nodeType === 1 &&
+              !(event.type === "click" && cur.disabled === true)
+            ) {
               matchedHandlers = [];
               matchedSelectors = {};
               for (i2 = 0; i2 < delegateCount; i2++) {
                 handleObj = handlers[i2];
                 sel = handleObj.selector + " ";
                 if (matchedSelectors[sel] === void 0) {
-                  matchedSelectors[sel] = handleObj.needsContext ? jQuery2(sel, this).index(cur) > -1 : jQuery2.find(sel, this, null, [cur]).length;
+                  matchedSelectors[sel] = handleObj.needsContext
+                    ? jQuery2(sel, this).index(cur) > -1
+                    : jQuery2.find(sel, this, null, [cur]).length;
                 }
                 if (matchedSelectors[sel]) {
                   matchedHandlers.push(handleObj);
@@ -12682,72 +15113,94 @@
         }
         cur = this;
         if (delegateCount < handlers.length) {
-          handlerQueue.push({ elem: cur, handlers: handlers.slice(delegateCount) });
+          handlerQueue.push({
+            elem: cur,
+            handlers: handlers.slice(delegateCount),
+          });
         }
         return handlerQueue;
       },
-      addProp: function(name, hook) {
+      addProp: function (name, hook) {
         Object.defineProperty(jQuery2.Event.prototype, name, {
           enumerable: true,
           configurable: true,
-          get: typeof hook === "function" ? function() {
-            if (this.originalEvent) {
-              return hook(this.originalEvent);
-            }
-          } : function() {
-            if (this.originalEvent) {
-              return this.originalEvent[name];
-            }
-          },
-          set: function(value) {
+          get:
+            typeof hook === "function"
+              ? function () {
+                  if (this.originalEvent) {
+                    return hook(this.originalEvent);
+                  }
+                }
+              : function () {
+                  if (this.originalEvent) {
+                    return this.originalEvent[name];
+                  }
+                },
+          set: function (value) {
             Object.defineProperty(this, name, {
               enumerable: true,
               configurable: true,
               writable: true,
-              value
+              value,
             });
-          }
+          },
         });
       },
-      fix: function(originalEvent) {
-        return originalEvent[jQuery2.expando] ? originalEvent : new jQuery2.Event(originalEvent);
+      fix: function (originalEvent) {
+        return originalEvent[jQuery2.expando]
+          ? originalEvent
+          : new jQuery2.Event(originalEvent);
       },
       special: jQuery2.extend(/* @__PURE__ */ Object.create(null), {
         load: {
           // Prevent triggered image.load events from bubbling to window.load
-          noBubble: true
+          noBubble: true,
         },
         click: {
           // Utilize native event to ensure correct state for checkable inputs
-          setup: function(data) {
+          setup: function (data) {
             var el = this || data;
-            if (rcheckableType.test(el.type) && el.click && nodeName(el, "input")) {
+            if (
+              rcheckableType.test(el.type) &&
+              el.click &&
+              nodeName(el, "input")
+            ) {
               leverageNative(el, "click", true);
             }
             return false;
           },
-          trigger: function(data) {
+          trigger: function (data) {
             var el = this || data;
-            if (rcheckableType.test(el.type) && el.click && nodeName(el, "input")) {
+            if (
+              rcheckableType.test(el.type) &&
+              el.click &&
+              nodeName(el, "input")
+            ) {
               leverageNative(el, "click");
             }
             return true;
           },
           // For cross-browser consistency, suppress native .click() on links
           // Also prevent it if we're currently inside a leveraged native-event stack
-          _default: function(event) {
+          _default: function (event) {
             var target = event.target;
-            return rcheckableType.test(target.type) && target.click && nodeName(target, "input") && dataPriv.get(target, "click") || nodeName(target, "a");
-          }
+            return (
+              (rcheckableType.test(target.type) &&
+                target.click &&
+                nodeName(target, "input") &&
+                dataPriv.get(target, "click")) ||
+              nodeName(target, "a")
+            );
+          },
         },
         beforeunload: {
-          postDispatch: function(event) {
+          postDispatch: function (event) {
             if (event.result !== void 0) {
               event.preventDefault();
             }
-          }
-        }
-      })
+          },
+        },
+      }),
     };
     function leverageNative(el, type, isSetup) {
       if (!isSetup) {
@@ -12759,8 +15212,9 @@
       dataPriv.set(el, type, false);
       jQuery2.event.add(el, type, {
         namespace: false,
-        handler: function(event) {
-          var result, saved = dataPriv.get(this, type);
+        handler: function (event) {
+          var result,
+            saved = dataPriv.get(this, type);
           if (event.isTrigger & 1 && this[type]) {
             if (!saved.length) {
               saved = slice.call(arguments);
@@ -12778,31 +15232,29 @@
             }
           } else if (saved.length) {
             dataPriv.set(this, type, {
-              value: jQuery2.event.trigger(
-                saved[0],
-                saved.slice(1),
-                this
-              )
+              value: jQuery2.event.trigger(saved[0], saved.slice(1), this),
             });
             event.stopPropagation();
             event.isImmediatePropagationStopped = returnTrue;
           }
-        }
+        },
       });
     }
-    jQuery2.removeEvent = function(elem, type, handle) {
+    jQuery2.removeEvent = function (elem, type, handle) {
       if (elem.removeEventListener) {
         elem.removeEventListener(type, handle);
       }
     };
-    jQuery2.Event = function(src, props) {
+    jQuery2.Event = function (src, props) {
       if (!(this instanceof jQuery2.Event)) {
         return new jQuery2.Event(src, props);
       }
       if (src && src.type) {
         this.originalEvent = src;
         this.type = src.type;
-        this.isDefaultPrevented = src.defaultPrevented ? returnTrue : returnFalse;
+        this.isDefaultPrevented = src.defaultPrevented
+          ? returnTrue
+          : returnFalse;
         this.target = src.target;
         this.currentTarget = src.currentTarget;
         this.relatedTarget = src.relatedTarget;
@@ -12812,7 +15264,7 @@
       if (props) {
         jQuery2.extend(this, props);
       }
-      this.timeStamp = src && src.timeStamp || Date.now();
+      this.timeStamp = (src && src.timeStamp) || Date.now();
       this[jQuery2.expando] = true;
     };
     jQuery2.Event.prototype = {
@@ -12821,135 +15273,152 @@
       isPropagationStopped: returnFalse,
       isImmediatePropagationStopped: returnFalse,
       isSimulated: false,
-      preventDefault: function() {
+      preventDefault: function () {
         var e = this.originalEvent;
         this.isDefaultPrevented = returnTrue;
         if (e && !this.isSimulated) {
           e.preventDefault();
         }
       },
-      stopPropagation: function() {
+      stopPropagation: function () {
         var e = this.originalEvent;
         this.isPropagationStopped = returnTrue;
         if (e && !this.isSimulated) {
           e.stopPropagation();
         }
       },
-      stopImmediatePropagation: function() {
+      stopImmediatePropagation: function () {
         var e = this.originalEvent;
         this.isImmediatePropagationStopped = returnTrue;
         if (e && !this.isSimulated) {
           e.stopImmediatePropagation();
         }
         this.stopPropagation();
-      }
+      },
     };
-    jQuery2.each({
-      altKey: true,
-      bubbles: true,
-      cancelable: true,
-      changedTouches: true,
-      ctrlKey: true,
-      detail: true,
-      eventPhase: true,
-      metaKey: true,
-      pageX: true,
-      pageY: true,
-      shiftKey: true,
-      view: true,
-      "char": true,
-      code: true,
-      charCode: true,
-      key: true,
-      keyCode: true,
-      button: true,
-      buttons: true,
-      clientX: true,
-      clientY: true,
-      offsetX: true,
-      offsetY: true,
-      pointerId: true,
-      pointerType: true,
-      screenX: true,
-      screenY: true,
-      targetTouches: true,
-      toElement: true,
-      touches: true,
-      which: true
-    }, jQuery2.event.addProp);
-    jQuery2.each({ focus: "focusin", blur: "focusout" }, function(type, delegateType) {
-      function focusMappedHandler(nativeEvent) {
-        var event = jQuery2.event.fix(nativeEvent);
-        event.type = nativeEvent.type === "focusin" ? "focus" : "blur";
-        event.isSimulated = true;
-        if (event.target === event.currentTarget) {
-          dataPriv.get(this, "handle")(event);
+    jQuery2.each(
+      {
+        altKey: true,
+        bubbles: true,
+        cancelable: true,
+        changedTouches: true,
+        ctrlKey: true,
+        detail: true,
+        eventPhase: true,
+        metaKey: true,
+        pageX: true,
+        pageY: true,
+        shiftKey: true,
+        view: true,
+        char: true,
+        code: true,
+        charCode: true,
+        key: true,
+        keyCode: true,
+        button: true,
+        buttons: true,
+        clientX: true,
+        clientY: true,
+        offsetX: true,
+        offsetY: true,
+        pointerId: true,
+        pointerType: true,
+        screenX: true,
+        screenY: true,
+        targetTouches: true,
+        toElement: true,
+        touches: true,
+        which: true,
+      },
+      jQuery2.event.addProp,
+    );
+    jQuery2.each(
+      { focus: "focusin", blur: "focusout" },
+      function (type, delegateType) {
+        function focusMappedHandler(nativeEvent) {
+          var event = jQuery2.event.fix(nativeEvent);
+          event.type = nativeEvent.type === "focusin" ? "focus" : "blur";
+          event.isSimulated = true;
+          if (event.target === event.currentTarget) {
+            dataPriv.get(this, "handle")(event);
+          }
         }
-      }
-      jQuery2.event.special[type] = {
-        // Utilize native event if possible so blur/focus sequence is correct
-        setup: function() {
-          leverageNative(this, type, true);
-          if (isIE) {
-            this.addEventListener(delegateType, focusMappedHandler);
-          } else {
-            return false;
-          }
-        },
-        trigger: function() {
-          leverageNative(this, type);
-          return true;
-        },
-        teardown: function() {
-          if (isIE) {
-            this.removeEventListener(delegateType, focusMappedHandler);
-          } else {
-            return false;
-          }
-        },
-        // Suppress native focus or blur if we're currently inside
-        // a leveraged native-event stack
-        _default: function(event) {
-          return dataPriv.get(event.target, type);
-        },
-        delegateType
-      };
-    });
-    jQuery2.each({
-      mouseenter: "mouseover",
-      mouseleave: "mouseout",
-      pointerenter: "pointerover",
-      pointerleave: "pointerout"
-    }, function(orig, fix) {
-      jQuery2.event.special[orig] = {
-        delegateType: fix,
-        bindType: fix,
-        handle: function(event) {
-          var ret, target = this, related = event.relatedTarget, handleObj = event.handleObj;
-          if (!related || related !== target && !jQuery2.contains(target, related)) {
-            event.type = handleObj.origType;
-            ret = handleObj.handler.apply(this, arguments);
-            event.type = fix;
-          }
-          return ret;
-        }
-      };
-    });
+        jQuery2.event.special[type] = {
+          // Utilize native event if possible so blur/focus sequence is correct
+          setup: function () {
+            leverageNative(this, type, true);
+            if (isIE) {
+              this.addEventListener(delegateType, focusMappedHandler);
+            } else {
+              return false;
+            }
+          },
+          trigger: function () {
+            leverageNative(this, type);
+            return true;
+          },
+          teardown: function () {
+            if (isIE) {
+              this.removeEventListener(delegateType, focusMappedHandler);
+            } else {
+              return false;
+            }
+          },
+          // Suppress native focus or blur if we're currently inside
+          // a leveraged native-event stack
+          _default: function (event) {
+            return dataPriv.get(event.target, type);
+          },
+          delegateType,
+        };
+      },
+    );
+    jQuery2.each(
+      {
+        mouseenter: "mouseover",
+        mouseleave: "mouseout",
+        pointerenter: "pointerover",
+        pointerleave: "pointerout",
+      },
+      function (orig, fix) {
+        jQuery2.event.special[orig] = {
+          delegateType: fix,
+          bindType: fix,
+          handle: function (event) {
+            var ret,
+              target = this,
+              related = event.relatedTarget,
+              handleObj = event.handleObj;
+            if (
+              !related ||
+              (related !== target && !jQuery2.contains(target, related))
+            ) {
+              event.type = handleObj.origType;
+              ret = handleObj.handler.apply(this, arguments);
+              event.type = fix;
+            }
+            return ret;
+          },
+        };
+      },
+    );
     jQuery2.fn.extend({
-      on: function(types, selector, data, fn) {
+      on: function (types, selector, data, fn) {
         return on(this, types, selector, data, fn);
       },
-      one: function(types, selector, data, fn) {
+      one: function (types, selector, data, fn) {
         return on(this, types, selector, data, fn, 1);
       },
-      off: function(types, selector, fn) {
+      off: function (types, selector, fn) {
         var handleObj, type;
         if (types && types.preventDefault && types.handleObj) {
           handleObj = types.handleObj;
           jQuery2(types.delegateTarget).off(
-            handleObj.namespace ? handleObj.origType + "." + handleObj.namespace : handleObj.origType,
+            handleObj.namespace
+              ? handleObj.origType + "." + handleObj.namespace
+              : handleObj.origType,
             handleObj.selector,
-            handleObj.handler
+            handleObj.handler,
           );
           return this;
         }
@@ -12966,20 +15435,26 @@
         if (fn === false) {
           fn = returnFalse;
         }
-        return this.each(function() {
+        return this.each(function () {
           jQuery2.event.remove(this, types, fn, selector);
         });
-      }
+      },
     });
     var rnoInnerhtml = /<script|<style|<link/i;
     function manipulationTarget(elem, content) {
-      if (nodeName(elem, "table") && nodeName(content.nodeType !== 11 ? content : content.firstChild, "tr")) {
+      if (
+        nodeName(elem, "table") &&
+        nodeName(content.nodeType !== 11 ? content : content.firstChild, "tr")
+      ) {
         return jQuery2(elem).children("tbody")[0] || elem;
       }
       return elem;
     }
     function cloneCopyEvent(src, dest) {
-      var type, i2, l, events = dataPriv.get(src, "events");
+      var type,
+        i2,
+        l,
+        events = dataPriv.get(src, "events");
       if (dest.nodeType !== 1) {
         return;
       }
@@ -12996,7 +15471,9 @@
       }
     }
     function remove(elem, selector, keepData) {
-      var node, nodes = selector ? jQuery2.filter(selector, elem) : elem, i2 = 0;
+      var node,
+        nodes = selector ? jQuery2.filter(selector, elem) : elem,
+        i2 = 0;
       for (; (node = nodes[i2]) != null; i2++) {
         if (!keepData && node.nodeType === 1) {
           jQuery2.cleanData(getAll(node));
@@ -13011,12 +15488,21 @@
       return elem;
     }
     jQuery2.extend({
-      htmlPrefilter: function(html) {
+      htmlPrefilter: function (html) {
         return html;
       },
-      clone: function(elem, dataAndEvents, deepDataAndEvents) {
-        var i2, l, srcElements, destElements, clone = elem.cloneNode(true), inPage = isAttached(elem);
-        if (isIE && (elem.nodeType === 1 || elem.nodeType === 11) && !jQuery2.isXMLDoc(elem)) {
+      clone: function (elem, dataAndEvents, deepDataAndEvents) {
+        var i2,
+          l,
+          srcElements,
+          destElements,
+          clone = elem.cloneNode(true),
+          inPage = isAttached(elem);
+        if (
+          isIE &&
+          (elem.nodeType === 1 || elem.nodeType === 11) &&
+          !jQuery2.isXMLDoc(elem)
+        ) {
           destElements = getAll(clone);
           srcElements = getAll(elem);
           for (i2 = 0, l = srcElements.length; i2 < l; i2++) {
@@ -13042,11 +15528,15 @@
         }
         return clone;
       },
-      cleanData: function(elems) {
-        var data, elem, type, special = jQuery2.event.special, i2 = 0;
+      cleanData: function (elems) {
+        var data,
+          elem,
+          type,
+          special = jQuery2.event.special,
+          i2 = 0;
         for (; (elem = elems[i2]) !== void 0; i2++) {
           if (acceptData(elem)) {
-            if (data = elem[dataPriv.expando]) {
+            if ((data = elem[dataPriv.expando])) {
               if (data.events) {
                 for (type in data.events) {
                   if (special[type]) {
@@ -13063,56 +15553,77 @@
             }
           }
         }
-      }
+      },
     });
     jQuery2.fn.extend({
-      detach: function(selector) {
+      detach: function (selector) {
         return remove(this, selector, true);
       },
-      remove: function(selector) {
+      remove: function (selector) {
         return remove(this, selector);
       },
-      text: function(value) {
-        return access(this, function(value2) {
-          return value2 === void 0 ? jQuery2.text(this) : this.empty().each(function() {
-            if (this.nodeType === 1 || this.nodeType === 11 || this.nodeType === 9) {
-              this.textContent = value2;
-            }
-          });
-        }, null, value, arguments.length);
+      text: function (value) {
+        return access(
+          this,
+          function (value2) {
+            return value2 === void 0
+              ? jQuery2.text(this)
+              : this.empty().each(function () {
+                  if (
+                    this.nodeType === 1 ||
+                    this.nodeType === 11 ||
+                    this.nodeType === 9
+                  ) {
+                    this.textContent = value2;
+                  }
+                });
+          },
+          null,
+          value,
+          arguments.length,
+        );
       },
-      append: function() {
-        return domManip(this, arguments, function(elem) {
-          if (this.nodeType === 1 || this.nodeType === 11 || this.nodeType === 9) {
+      append: function () {
+        return domManip(this, arguments, function (elem) {
+          if (
+            this.nodeType === 1 ||
+            this.nodeType === 11 ||
+            this.nodeType === 9
+          ) {
             var target = manipulationTarget(this, elem);
             target.appendChild(elem);
           }
         });
       },
-      prepend: function() {
-        return domManip(this, arguments, function(elem) {
-          if (this.nodeType === 1 || this.nodeType === 11 || this.nodeType === 9) {
+      prepend: function () {
+        return domManip(this, arguments, function (elem) {
+          if (
+            this.nodeType === 1 ||
+            this.nodeType === 11 ||
+            this.nodeType === 9
+          ) {
             var target = manipulationTarget(this, elem);
             target.insertBefore(elem, target.firstChild);
           }
         });
       },
-      before: function() {
-        return domManip(this, arguments, function(elem) {
+      before: function () {
+        return domManip(this, arguments, function (elem) {
           if (this.parentNode) {
             this.parentNode.insertBefore(elem, this);
           }
         });
       },
-      after: function() {
-        return domManip(this, arguments, function(elem) {
+      after: function () {
+        return domManip(this, arguments, function (elem) {
           if (this.parentNode) {
             this.parentNode.insertBefore(elem, this.nextSibling);
           }
         });
       },
-      empty: function() {
-        var elem, i2 = 0;
+      empty: function () {
+        var elem,
+          i2 = 0;
         for (; (elem = this[i2]) != null; i2++) {
           if (elem.nodeType === 1) {
             jQuery2.cleanData(getAll(elem, false));
@@ -13121,68 +15632,92 @@
         }
         return this;
       },
-      clone: function(dataAndEvents, deepDataAndEvents) {
+      clone: function (dataAndEvents, deepDataAndEvents) {
         dataAndEvents = dataAndEvents == null ? false : dataAndEvents;
-        deepDataAndEvents = deepDataAndEvents == null ? dataAndEvents : deepDataAndEvents;
-        return this.map(function() {
+        deepDataAndEvents =
+          deepDataAndEvents == null ? dataAndEvents : deepDataAndEvents;
+        return this.map(function () {
           return jQuery2.clone(this, dataAndEvents, deepDataAndEvents);
         });
       },
-      html: function(value) {
-        return access(this, function(value2) {
-          var elem = this[0] || {}, i2 = 0, l = this.length;
-          if (value2 === void 0 && elem.nodeType === 1) {
-            return elem.innerHTML;
-          }
-          if (typeof value2 === "string" && !rnoInnerhtml.test(value2) && !wrapMap[(rtagName.exec(value2) || ["", ""])[1].toLowerCase()]) {
-            value2 = jQuery2.htmlPrefilter(value2);
-            try {
-              for (; i2 < l; i2++) {
-                elem = this[i2] || {};
-                if (elem.nodeType === 1) {
-                  jQuery2.cleanData(getAll(elem, false));
-                  elem.innerHTML = value2;
+      html: function (value) {
+        return access(
+          this,
+          function (value2) {
+            var elem = this[0] || {},
+              i2 = 0,
+              l = this.length;
+            if (value2 === void 0 && elem.nodeType === 1) {
+              return elem.innerHTML;
+            }
+            if (
+              typeof value2 === "string" &&
+              !rnoInnerhtml.test(value2) &&
+              !wrapMap[(rtagName.exec(value2) || ["", ""])[1].toLowerCase()]
+            ) {
+              value2 = jQuery2.htmlPrefilter(value2);
+              try {
+                for (; i2 < l; i2++) {
+                  elem = this[i2] || {};
+                  if (elem.nodeType === 1) {
+                    jQuery2.cleanData(getAll(elem, false));
+                    elem.innerHTML = value2;
+                  }
                 }
-              }
-              elem = 0;
-            } catch (e) {
+                elem = 0;
+              } catch (e) {}
             }
-          }
-          if (elem) {
-            this.empty().append(value2);
-          }
-        }, null, value, arguments.length);
+            if (elem) {
+              this.empty().append(value2);
+            }
+          },
+          null,
+          value,
+          arguments.length,
+        );
       },
-      replaceWith: function() {
+      replaceWith: function () {
         var ignored = [];
-        return domManip(this, arguments, function(elem) {
-          var parent = this.parentNode;
-          if (jQuery2.inArray(this, ignored) < 0) {
-            jQuery2.cleanData(getAll(this));
-            if (parent) {
-              parent.replaceChild(elem, this);
+        return domManip(
+          this,
+          arguments,
+          function (elem) {
+            var parent = this.parentNode;
+            if (jQuery2.inArray(this, ignored) < 0) {
+              jQuery2.cleanData(getAll(this));
+              if (parent) {
+                parent.replaceChild(elem, this);
+              }
             }
+          },
+          ignored,
+        );
+      },
+    });
+    jQuery2.each(
+      {
+        appendTo: "append",
+        prependTo: "prepend",
+        insertBefore: "before",
+        insertAfter: "after",
+        replaceAll: "replaceWith",
+      },
+      function (name, original) {
+        jQuery2.fn[name] = function (selector) {
+          var elems,
+            ret = [],
+            insert = jQuery2(selector),
+            last = insert.length - 1,
+            i2 = 0;
+          for (; i2 <= last; i2++) {
+            elems = i2 === last ? this : this.clone(true);
+            jQuery2(insert[i2])[original](elems);
+            push.apply(ret, elems);
           }
-        }, ignored);
-      }
-    });
-    jQuery2.each({
-      appendTo: "append",
-      prependTo: "prepend",
-      insertBefore: "before",
-      insertAfter: "after",
-      replaceAll: "replaceWith"
-    }, function(name, original) {
-      jQuery2.fn[name] = function(selector) {
-        var elems, ret = [], insert = jQuery2(selector), last = insert.length - 1, i2 = 0;
-        for (; i2 <= last; i2++) {
-          elems = i2 === last ? this : this.clone(true);
-          jQuery2(insert[i2])[original](elems);
-          push.apply(ret, elems);
-        }
-        return this.pushStack(ret);
-      };
-    });
+          return this.pushStack(ret);
+        };
+      },
+    );
     var rnumnonpx = new RegExp("^(" + pnum + ")(?!px)[a-z%]+$", "i");
     var rcustomProp = /^--/;
     function getStyles(elem) {
@@ -13193,7 +15728,9 @@
       return view.getComputedStyle(elem);
     }
     function swap(elem, options, callback) {
-      var ret, name, old = {};
+      var ret,
+        name,
+        old = {};
       for (name in options) {
         old[name] = elem.style[name];
         elem.style[name] = options[name];
@@ -13205,7 +15742,8 @@
       return ret;
     }
     function curCSS(elem, name, computed) {
-      var ret, isCustomProp = rcustomProp.test(name);
+      var ret,
+        isCustomProp = rcustomProp.test(name);
       computed = computed || getStyles(elem);
       if (computed) {
         ret = computed.getPropertyValue(name) || computed[name];
@@ -13216,15 +15754,17 @@
           ret = jQuery2.style(elem, name);
         }
       }
-      return ret !== void 0 ? (
-        // Support: IE <=9 - 11+
-        // IE returns zIndex value as an integer.
-        ret + ""
-      ) : ret;
+      return ret !== void 0
+        ? // Support: IE <=9 - 11+
+          // IE returns zIndex value as an integer.
+          ret + ""
+        : ret;
     }
-    var cssPrefixes = ["Webkit", "Moz", "ms"], emptyStyle = document$1.createElement("div").style;
+    var cssPrefixes = ["Webkit", "Moz", "ms"],
+      emptyStyle = document$1.createElement("div").style;
     function vendorPropName(name) {
-      var capName = name[0].toUpperCase() + name.slice(1), i2 = cssPrefixes.length;
+      var capName = name[0].toUpperCase() + name.slice(1),
+        i2 = cssPrefixes.length;
       while (i2--) {
         name = cssPrefixes[i2] + capName;
         if (name in emptyStyle) {
@@ -13238,7 +15778,9 @@
       }
       return vendorPropName(name) || name;
     }
-    var reliableTrDimensionsVal, reliableColDimensionsVal, table = document$1.createElement("table");
+    var reliableTrDimensionsVal,
+      reliableColDimensionsVal,
+      table = document$1.createElement("table");
     function computeTableStyleTests() {
       if (
         // This is a singleton, we need to execute it only once
@@ -13247,49 +15789,76 @@
       ) {
         return;
       }
-      var trStyle, col = document$1.createElement("col"), tr = document$1.createElement("tr"), td = document$1.createElement("td");
-      table.style.cssText = "position:absolute;left:-11111px;border-collapse:separate;border-spacing:0";
+      var trStyle,
+        col = document$1.createElement("col"),
+        tr = document$1.createElement("tr"),
+        td = document$1.createElement("td");
+      table.style.cssText =
+        "position:absolute;left:-11111px;border-collapse:separate;border-spacing:0";
       tr.style.cssText = "box-sizing:content-box;border:1px solid;height:1px";
       td.style.cssText = "height:9px;width:9px;padding:0";
       col.span = 2;
-      documentElement$1.appendChild(table).appendChild(col).parentNode.appendChild(tr).appendChild(td).parentNode.appendChild(td.cloneNode(true));
+      documentElement$1
+        .appendChild(table)
+        .appendChild(col)
+        .parentNode.appendChild(tr)
+        .appendChild(td)
+        .parentNode.appendChild(td.cloneNode(true));
       if (table.offsetWidth === 0) {
         documentElement$1.removeChild(table);
         return;
       }
       trStyle = window2.getComputedStyle(tr);
-      reliableColDimensionsVal = isIE || Math.round(
-        parseFloat(
-          window2.getComputedStyle(col).width
-        )
-      ) === 18;
-      reliableTrDimensionsVal = Math.round(parseFloat(trStyle.height) + parseFloat(trStyle.borderTopWidth) + parseFloat(trStyle.borderBottomWidth)) === tr.offsetHeight;
+      reliableColDimensionsVal =
+        isIE ||
+        Math.round(parseFloat(window2.getComputedStyle(col).width)) === 18;
+      reliableTrDimensionsVal =
+        Math.round(
+          parseFloat(trStyle.height) +
+            parseFloat(trStyle.borderTopWidth) +
+            parseFloat(trStyle.borderBottomWidth),
+        ) === tr.offsetHeight;
       documentElement$1.removeChild(table);
       table = null;
     }
     jQuery2.extend(support, {
-      reliableTrDimensions: function() {
+      reliableTrDimensions: function () {
         computeTableStyleTests();
         return reliableTrDimensionsVal;
       },
-      reliableColDimensions: function() {
+      reliableColDimensions: function () {
         computeTableStyleTests();
         return reliableColDimensionsVal;
-      }
+      },
     });
-    var cssShow = { position: "absolute", visibility: "hidden", display: "block" }, cssNormalTransform = {
-      letterSpacing: "0",
-      fontWeight: "400"
-    };
+    var cssShow = {
+        position: "absolute",
+        visibility: "hidden",
+        display: "block",
+      },
+      cssNormalTransform = {
+        letterSpacing: "0",
+        fontWeight: "400",
+      };
     function setPositiveNumber(_elem, value, subtract) {
       var matches2 = rcssNum.exec(value);
-      return matches2 ? (
-        // Guard against undefined "subtract", e.g., when used as in cssHooks
-        Math.max(0, matches2[2] - (subtract || 0)) + (matches2[3] || "px")
-      ) : value;
+      return matches2
+        ? // Guard against undefined "subtract", e.g., when used as in cssHooks
+          Math.max(0, matches2[2] - (subtract || 0)) + (matches2[3] || "px")
+        : value;
     }
-    function boxModelAdjustment(elem, dimension, box, isBorderBox, styles, computedVal) {
-      var i2 = dimension === "width" ? 1 : 0, extra = 0, delta = 0, marginDelta = 0;
+    function boxModelAdjustment(
+      elem,
+      dimension,
+      box,
+      isBorderBox,
+      styles,
+      computedVal,
+    ) {
+      var i2 = dimension === "width" ? 1 : 0,
+        extra = 0,
+        delta = 0,
+        marginDelta = 0;
       if (box === (isBorderBox ? "border" : "content")) {
         return 0;
       }
@@ -13300,30 +15869,60 @@
         if (!isBorderBox) {
           delta += jQuery2.css(elem, "padding" + cssExpand[i2], true, styles);
           if (box !== "padding") {
-            delta += jQuery2.css(elem, "border" + cssExpand[i2] + "Width", true, styles);
+            delta += jQuery2.css(
+              elem,
+              "border" + cssExpand[i2] + "Width",
+              true,
+              styles,
+            );
           } else {
-            extra += jQuery2.css(elem, "border" + cssExpand[i2] + "Width", true, styles);
+            extra += jQuery2.css(
+              elem,
+              "border" + cssExpand[i2] + "Width",
+              true,
+              styles,
+            );
           }
         } else {
           if (box === "content") {
             delta -= jQuery2.css(elem, "padding" + cssExpand[i2], true, styles);
           }
           if (box !== "margin") {
-            delta -= jQuery2.css(elem, "border" + cssExpand[i2] + "Width", true, styles);
+            delta -= jQuery2.css(
+              elem,
+              "border" + cssExpand[i2] + "Width",
+              true,
+              styles,
+            );
           }
         }
       }
       if (!isBorderBox && computedVal >= 0) {
-        delta += Math.max(0, Math.ceil(
-          elem["offset" + dimension[0].toUpperCase() + dimension.slice(1)] - computedVal - delta - extra - 0.5
-          // If offsetWidth/offsetHeight is unknown, then we can't determine content-box scroll gutter
-          // Use an explicit zero to avoid NaN (gh-3964)
-        )) || 0;
+        delta +=
+          Math.max(
+            0,
+            Math.ceil(
+              elem["offset" + dimension[0].toUpperCase() + dimension.slice(1)] -
+                computedVal -
+                delta -
+                extra -
+                0.5,
+              // If offsetWidth/offsetHeight is unknown, then we can't determine content-box scroll gutter
+              // Use an explicit zero to avoid NaN (gh-3964)
+            ),
+          ) || 0;
       }
       return delta + marginDelta;
     }
     function getWidthOrHeight(elem, dimension, extra) {
-      var styles = getStyles(elem), boxSizingNeeded = isIE || extra, isBorderBox = boxSizingNeeded && jQuery2.css(elem, "boxSizing", false, styles) === "border-box", valueIsBorderBox = isBorderBox, val = curCSS(elem, dimension, styles), offsetProp = "offset" + dimension[0].toUpperCase() + dimension.slice(1);
+      var styles = getStyles(elem),
+        boxSizingNeeded = isIE || extra,
+        isBorderBox =
+          boxSizingNeeded &&
+          jQuery2.css(elem, "boxSizing", false, styles) === "border-box",
+        valueIsBorderBox = isBorderBox,
+        val = curCSS(elem, dimension, styles),
+        offsetProp = "offset" + dimension[0].toUpperCase() + dimension.slice(1);
       if (rnumnonpx.test(val)) {
         if (!extra) {
           return val;
@@ -13334,38 +15933,55 @@
         // Fall back to offsetWidth/offsetHeight when value is "auto"
         // This happens for inline elements with no explicit setting (gh-3571)
         (val === "auto" || // Support: IE 9 - 11+
-        // Use offsetWidth/offsetHeight for when box sizing is unreliable.
-        // In those cases, the computed value can be trusted to be border-box.
-        isIE && isBorderBox || !support.reliableColDimensions() && nodeName(elem, "col") || !support.reliableTrDimensions() && nodeName(elem, "tr")) && // Make sure the element is visible & connected
+          // Use offsetWidth/offsetHeight for when box sizing is unreliable.
+          // In those cases, the computed value can be trusted to be border-box.
+          (isIE && isBorderBox) ||
+          (!support.reliableColDimensions() && nodeName(elem, "col")) ||
+          (!support.reliableTrDimensions() && nodeName(elem, "tr"))) && // Make sure the element is visible & connected
         elem.getClientRects().length
       ) {
-        isBorderBox = jQuery2.css(elem, "boxSizing", false, styles) === "border-box";
+        isBorderBox =
+          jQuery2.css(elem, "boxSizing", false, styles) === "border-box";
         valueIsBorderBox = offsetProp in elem;
         if (valueIsBorderBox) {
           val = elem[offsetProp];
         }
       }
       val = parseFloat(val) || 0;
-      return val + boxModelAdjustment(
-        elem,
-        dimension,
-        extra || (isBorderBox ? "border" : "content"),
-        valueIsBorderBox,
-        styles,
-        // Provide the current computed size to request scroll gutter calculation (gh-3589)
-        val
-      ) + "px";
+      return (
+        val +
+        boxModelAdjustment(
+          elem,
+          dimension,
+          extra || (isBorderBox ? "border" : "content"),
+          valueIsBorderBox,
+          styles,
+          // Provide the current computed size to request scroll gutter calculation (gh-3589)
+          val,
+        ) +
+        "px"
+      );
     }
     jQuery2.extend({
       // Add in style property hooks for overriding the default
       // behavior of getting and setting a style property
       cssHooks: {},
       // Get and set the style property on a DOM Node
-      style: function(elem, name, value, extra) {
-        if (!elem || elem.nodeType === 3 || elem.nodeType === 8 || !elem.style) {
+      style: function (elem, name, value, extra) {
+        if (
+          !elem ||
+          elem.nodeType === 3 ||
+          elem.nodeType === 8 ||
+          !elem.style
+        ) {
           return;
         }
-        var ret, type, hooks, origName = cssCamelCase(name), isCustomProp = rcustomProp.test(name), style = elem.style;
+        var ret,
+          type,
+          hooks,
+          origName = cssCamelCase(name),
+          isCustomProp = rcustomProp.test(name),
+          style = elem.style;
         if (!isCustomProp) {
           name = finalPropName(origName);
         }
@@ -13380,12 +15996,16 @@
             return;
           }
           if (type === "number") {
-            value += ret && ret[3] || (isAutoPx(origName) ? "px" : "");
+            value += (ret && ret[3]) || (isAutoPx(origName) ? "px" : "");
           }
           if (isIE && value === "" && name.indexOf("background") === 0) {
             style[name] = "inherit";
           }
-          if (!hooks || !("set" in hooks) || (value = hooks.set(elem, value, extra)) !== void 0) {
+          if (
+            !hooks ||
+            !("set" in hooks) ||
+            (value = hooks.set(elem, value, extra)) !== void 0
+          ) {
             if (isCustomProp) {
               style.setProperty(name, value);
             } else {
@@ -13393,14 +16013,22 @@
             }
           }
         } else {
-          if (hooks && "get" in hooks && (ret = hooks.get(elem, false, extra)) !== void 0) {
+          if (
+            hooks &&
+            "get" in hooks &&
+            (ret = hooks.get(elem, false, extra)) !== void 0
+          ) {
             return ret;
           }
           return style[name];
         }
       },
-      css: function(elem, name, extra, styles) {
-        var val, num, hooks, origName = cssCamelCase(name), isCustomProp = rcustomProp.test(name);
+      css: function (elem, name, extra, styles) {
+        var val,
+          num,
+          hooks,
+          origName = cssCamelCase(name),
+          isCustomProp = rcustomProp.test(name);
         if (!isCustomProp) {
           name = finalPropName(origName);
         }
@@ -13419,66 +16047,90 @@
           return extra === true || isFinite(num) ? num || 0 : val;
         }
         return val;
-      }
+      },
     });
-    jQuery2.each(["height", "width"], function(_i, dimension) {
+    jQuery2.each(["height", "width"], function (_i, dimension) {
       jQuery2.cssHooks[dimension] = {
-        get: function(elem, computed, extra) {
+        get: function (elem, computed, extra) {
           if (computed) {
-            return jQuery2.css(elem, "display") === "none" ? swap(elem, cssShow, function() {
-              return getWidthOrHeight(elem, dimension, extra);
-            }) : getWidthOrHeight(elem, dimension, extra);
+            return jQuery2.css(elem, "display") === "none"
+              ? swap(elem, cssShow, function () {
+                  return getWidthOrHeight(elem, dimension, extra);
+                })
+              : getWidthOrHeight(elem, dimension, extra);
           }
         },
-        set: function(elem, value, extra) {
-          var matches2, styles = getStyles(elem), isBorderBox = extra && jQuery2.css(elem, "boxSizing", false, styles) === "border-box", subtract = extra ? boxModelAdjustment(
-            elem,
-            dimension,
-            extra,
-            isBorderBox,
-            styles
-          ) : 0;
-          if (subtract && (matches2 = rcssNum.exec(value)) && (matches2[3] || "px") !== "px") {
+        set: function (elem, value, extra) {
+          var matches2,
+            styles = getStyles(elem),
+            isBorderBox =
+              extra &&
+              jQuery2.css(elem, "boxSizing", false, styles) === "border-box",
+            subtract = extra
+              ? boxModelAdjustment(elem, dimension, extra, isBorderBox, styles)
+              : 0;
+          if (
+            subtract &&
+            (matches2 = rcssNum.exec(value)) &&
+            (matches2[3] || "px") !== "px"
+          ) {
             elem.style[dimension] = value;
             value = jQuery2.css(elem, dimension);
           }
           return setPositiveNumber(elem, value, subtract);
-        }
+        },
       };
     });
-    jQuery2.each({
-      margin: "",
-      padding: "",
-      border: "Width"
-    }, function(prefix, suffix) {
-      jQuery2.cssHooks[prefix + suffix] = {
-        expand: function(value) {
-          var i2 = 0, expanded = {}, parts = typeof value === "string" ? value.split(" ") : [value];
-          for (; i2 < 4; i2++) {
-            expanded[prefix + cssExpand[i2] + suffix] = parts[i2] || parts[i2 - 2] || parts[0];
-          }
-          return expanded;
-        }
-      };
-      if (prefix !== "margin") {
-        jQuery2.cssHooks[prefix + suffix].set = setPositiveNumber;
-      }
-    });
-    jQuery2.fn.extend({
-      css: function(name, value) {
-        return access(this, function(elem, name2, value2) {
-          var styles, len, map3 = {}, i2 = 0;
-          if (Array.isArray(name2)) {
-            styles = getStyles(elem);
-            len = name2.length;
-            for (; i2 < len; i2++) {
-              map3[name2[i2]] = jQuery2.css(elem, name2[i2], false, styles);
+    jQuery2.each(
+      {
+        margin: "",
+        padding: "",
+        border: "Width",
+      },
+      function (prefix, suffix) {
+        jQuery2.cssHooks[prefix + suffix] = {
+          expand: function (value) {
+            var i2 = 0,
+              expanded = {},
+              parts = typeof value === "string" ? value.split(" ") : [value];
+            for (; i2 < 4; i2++) {
+              expanded[prefix + cssExpand[i2] + suffix] =
+                parts[i2] || parts[i2 - 2] || parts[0];
             }
-            return map3;
-          }
-          return value2 !== void 0 ? jQuery2.style(elem, name2, value2) : jQuery2.css(elem, name2);
-        }, name, value, arguments.length > 1);
-      }
+            return expanded;
+          },
+        };
+        if (prefix !== "margin") {
+          jQuery2.cssHooks[prefix + suffix].set = setPositiveNumber;
+        }
+      },
+    );
+    jQuery2.fn.extend({
+      css: function (name, value) {
+        return access(
+          this,
+          function (elem, name2, value2) {
+            var styles,
+              len,
+              map3 = {},
+              i2 = 0;
+            if (Array.isArray(name2)) {
+              styles = getStyles(elem);
+              len = name2.length;
+              for (; i2 < len; i2++) {
+                map3[name2[i2]] = jQuery2.css(elem, name2[i2], false, styles);
+              }
+              return map3;
+            }
+            return value2 !== void 0
+              ? jQuery2.style(elem, name2, value2)
+              : jQuery2.css(elem, name2);
+          },
+          name,
+          value,
+          arguments.length > 1,
+        );
+      },
     });
     function Tween(elem, options, prop, end, easing) {
       return new Tween.prototype.init(elem, options, prop, end, easing);
@@ -13486,7 +16138,7 @@
     jQuery2.Tween = Tween;
     Tween.prototype = {
       constructor: Tween,
-      init: function(elem, options, prop, end, easing, unit) {
+      init: function (elem, options, prop, end, easing, unit) {
         this.elem = elem;
         this.prop = prop;
         this.easing = easing || jQuery2.easing._default;
@@ -13495,19 +16147,22 @@
         this.end = end;
         this.unit = unit || (isAutoPx(prop) ? "px" : "");
       },
-      cur: function() {
+      cur: function () {
         var hooks = Tween.propHooks[this.prop];
-        return hooks && hooks.get ? hooks.get(this) : Tween.propHooks._default.get(this);
+        return hooks && hooks.get
+          ? hooks.get(this)
+          : Tween.propHooks._default.get(this);
       },
-      run: function(percent) {
-        var eased, hooks = Tween.propHooks[this.prop];
+      run: function (percent) {
+        var eased,
+          hooks = Tween.propHooks[this.prop];
         if (this.options.duration) {
           this.pos = eased = jQuery2.easing[this.easing](
             percent,
             this.options.duration * percent,
             0,
             1,
-            this.options.duration
+            this.options.duration,
           );
         } else {
           this.pos = eased = percent;
@@ -13522,42 +16177,53 @@
           Tween.propHooks._default.set(this);
         }
         return this;
-      }
+      },
     };
     Tween.prototype.init.prototype = Tween.prototype;
     Tween.propHooks = {
       _default: {
-        get: function(tween) {
+        get: function (tween) {
           var result;
-          if (tween.elem.nodeType !== 1 || tween.elem[tween.prop] != null && tween.elem.style[tween.prop] == null) {
+          if (
+            tween.elem.nodeType !== 1 ||
+            (tween.elem[tween.prop] != null &&
+              tween.elem.style[tween.prop] == null)
+          ) {
             return tween.elem[tween.prop];
           }
           result = jQuery2.css(tween.elem, tween.prop, "");
           return !result || result === "auto" ? 0 : result;
         },
-        set: function(tween) {
+        set: function (tween) {
           if (jQuery2.fx.step[tween.prop]) {
             jQuery2.fx.step[tween.prop](tween);
-          } else if (tween.elem.nodeType === 1 && (jQuery2.cssHooks[tween.prop] || tween.elem.style[finalPropName(tween.prop)] != null)) {
+          } else if (
+            tween.elem.nodeType === 1 &&
+            (jQuery2.cssHooks[tween.prop] ||
+              tween.elem.style[finalPropName(tween.prop)] != null)
+          ) {
             jQuery2.style(tween.elem, tween.prop, tween.now + tween.unit);
           } else {
             tween.elem[tween.prop] = tween.now;
           }
-        }
-      }
+        },
+      },
     };
     jQuery2.easing = {
-      linear: function(p) {
+      linear: function (p) {
         return p;
       },
-      swing: function(p) {
+      swing: function (p) {
         return 0.5 - Math.cos(p * Math.PI) / 2;
       },
-      _default: "swing"
+      _default: "swing",
     };
     jQuery2.fx = Tween.prototype.init;
     jQuery2.fx.step = {};
-    var fxNow, inProgress, rfxtypes = /^(?:toggle|show|hide)$/, rrun = /queueHooks$/;
+    var fxNow,
+      inProgress,
+      rfxtypes = /^(?:toggle|show|hide)$/,
+      rrun = /queueHooks$/;
     function schedule() {
       if (inProgress) {
         if (document$1.hidden === false && window2.requestAnimationFrame) {
@@ -13569,13 +16235,15 @@
       }
     }
     function createFxNow() {
-      window2.setTimeout(function() {
+      window2.setTimeout(function () {
         fxNow = void 0;
       });
-      return fxNow = Date.now();
+      return (fxNow = Date.now());
     }
     function genFx(type, includeWidth) {
-      var which, i2 = 0, attrs = { height: type };
+      var which,
+        i2 = 0,
+        attrs = { height: type };
       includeWidth = includeWidth ? 1 : 0;
       for (; i2 < 4; i2 += 2 - includeWidth) {
         which = cssExpand[i2];
@@ -13587,29 +16255,47 @@
       return attrs;
     }
     function createTween(value, prop, animation) {
-      var tween, collection = (Animation.tweeners[prop] || []).concat(Animation.tweeners["*"]), index = 0, length = collection.length;
+      var tween,
+        collection = (Animation.tweeners[prop] || []).concat(
+          Animation.tweeners["*"],
+        ),
+        index = 0,
+        length = collection.length;
       for (; index < length; index++) {
-        if (tween = collection[index].call(animation, prop, value)) {
+        if ((tween = collection[index].call(animation, prop, value))) {
           return tween;
         }
       }
     }
     function defaultPrefilter(elem, props, opts) {
-      var prop, value, toggle, hooks, oldfire, propTween, restoreDisplay, display, isBox = "width" in props || "height" in props, anim = this, orig = {}, style = elem.style, hidden = elem.nodeType && isHiddenWithinTree(elem), dataShow = dataPriv.get(elem, "fxshow");
+      var prop,
+        value,
+        toggle,
+        hooks,
+        oldfire,
+        propTween,
+        restoreDisplay,
+        display,
+        isBox = "width" in props || "height" in props,
+        anim = this,
+        orig = {},
+        style = elem.style,
+        hidden = elem.nodeType && isHiddenWithinTree(elem),
+        dataShow = dataPriv.get(elem, "fxshow");
       if (!opts.queue) {
         hooks = jQuery2._queueHooks(elem, "fx");
         if (hooks.unqueued == null) {
           hooks.unqueued = 0;
           oldfire = hooks.empty.fire;
-          hooks.empty.fire = function() {
+          hooks.empty.fire = function () {
             if (!hooks.unqueued) {
               oldfire();
             }
           };
         }
         hooks.unqueued++;
-        anim.always(function() {
-          anim.always(function() {
+        anim.always(function () {
+          anim.always(function () {
             hooks.unqueued--;
             if (!jQuery2.queue(elem, "fx").length) {
               hooks.empty.fire();
@@ -13629,7 +16315,8 @@
               continue;
             }
           }
-          orig[prop] = dataShow && dataShow[prop] || jQuery2.style(elem, prop);
+          orig[prop] =
+            (dataShow && dataShow[prop]) || jQuery2.style(elem, prop);
         }
       }
       propTween = !jQuery2.isEmptyObject(props);
@@ -13653,10 +16340,13 @@
             showHide([elem]);
           }
         }
-        if (display === "inline" || display === "inline-block" && restoreDisplay != null) {
+        if (
+          display === "inline" ||
+          (display === "inline-block" && restoreDisplay != null)
+        ) {
           if (jQuery2.css(elem, "float") === "none") {
             if (!propTween) {
-              anim.done(function() {
+              anim.done(function () {
                 style.display = restoreDisplay;
               });
               if (restoreDisplay == null) {
@@ -13670,7 +16360,7 @@
       }
       if (opts.overflow) {
         style.overflow = "hidden";
-        anim.always(function() {
+        anim.always(function () {
           style.overflow = opts.overflow[0];
           style.overflowX = opts.overflow[1];
           style.overflowY = opts.overflow[2];
@@ -13684,7 +16374,9 @@
               hidden = dataShow.hidden;
             }
           } else {
-            dataShow = dataPriv.set(elem, "fxshow", { display: restoreDisplay });
+            dataShow = dataPriv.set(elem, "fxshow", {
+              display: restoreDisplay,
+            });
           }
           if (toggle) {
             dataShow.hidden = !hidden;
@@ -13692,7 +16384,7 @@
           if (hidden) {
             showHide([elem], true);
           }
-          anim.done(function() {
+          anim.done(function () {
             if (!hidden) {
               showHide([elem]);
             }
@@ -13742,72 +16434,97 @@
       }
     }
     function Animation(elem, properties, options) {
-      var result, stopped, index = 0, length = Animation.prefilters.length, deferred = jQuery2.Deferred().always(function() {
-        delete tick.elem;
-      }), tick = function() {
-        if (stopped) {
-          return false;
-        }
-        var currentTime = fxNow || createFxNow(), remaining = Math.max(0, animation.startTime + animation.duration - currentTime), percent = 1 - (remaining / animation.duration || 0), index2 = 0, length2 = animation.tweens.length;
-        for (; index2 < length2; index2++) {
-          animation.tweens[index2].run(percent);
-        }
-        deferred.notifyWith(elem, [animation, percent, remaining]);
-        if (percent < 1 && length2) {
-          return remaining;
-        }
-        if (!length2) {
-          deferred.notifyWith(elem, [animation, 1, 0]);
-        }
-        deferred.resolveWith(elem, [animation]);
-        return false;
-      }, animation = deferred.promise({
-        elem,
-        props: jQuery2.extend({}, properties),
-        opts: jQuery2.extend(true, {
-          specialEasing: {},
-          easing: jQuery2.easing._default
-        }, options),
-        originalProperties: properties,
-        originalOptions: options,
-        startTime: fxNow || createFxNow(),
-        duration: options.duration,
-        tweens: [],
-        createTween: function(prop, end) {
-          var tween = jQuery2.Tween(
-            elem,
-            animation.opts,
-            prop,
-            end,
-            animation.opts.specialEasing[prop] || animation.opts.easing
-          );
-          animation.tweens.push(tween);
-          return tween;
-        },
-        stop: function(gotoEnd) {
-          var index2 = 0, length2 = gotoEnd ? animation.tweens.length : 0;
+      var result,
+        stopped,
+        index = 0,
+        length = Animation.prefilters.length,
+        deferred = jQuery2.Deferred().always(function () {
+          delete tick.elem;
+        }),
+        tick = function () {
           if (stopped) {
-            return this;
+            return false;
           }
-          stopped = true;
+          var currentTime = fxNow || createFxNow(),
+            remaining = Math.max(
+              0,
+              animation.startTime + animation.duration - currentTime,
+            ),
+            percent = 1 - (remaining / animation.duration || 0),
+            index2 = 0,
+            length2 = animation.tweens.length;
           for (; index2 < length2; index2++) {
-            animation.tweens[index2].run(1);
+            animation.tweens[index2].run(percent);
           }
-          if (gotoEnd) {
+          deferred.notifyWith(elem, [animation, percent, remaining]);
+          if (percent < 1 && length2) {
+            return remaining;
+          }
+          if (!length2) {
             deferred.notifyWith(elem, [animation, 1, 0]);
-            deferred.resolveWith(elem, [animation, gotoEnd]);
-          } else {
-            deferred.rejectWith(elem, [animation, gotoEnd]);
           }
-          return this;
-        }
-      }), props = animation.props;
+          deferred.resolveWith(elem, [animation]);
+          return false;
+        },
+        animation = deferred.promise({
+          elem,
+          props: jQuery2.extend({}, properties),
+          opts: jQuery2.extend(
+            true,
+            {
+              specialEasing: {},
+              easing: jQuery2.easing._default,
+            },
+            options,
+          ),
+          originalProperties: properties,
+          originalOptions: options,
+          startTime: fxNow || createFxNow(),
+          duration: options.duration,
+          tweens: [],
+          createTween: function (prop, end) {
+            var tween = jQuery2.Tween(
+              elem,
+              animation.opts,
+              prop,
+              end,
+              animation.opts.specialEasing[prop] || animation.opts.easing,
+            );
+            animation.tweens.push(tween);
+            return tween;
+          },
+          stop: function (gotoEnd) {
+            var index2 = 0,
+              length2 = gotoEnd ? animation.tweens.length : 0;
+            if (stopped) {
+              return this;
+            }
+            stopped = true;
+            for (; index2 < length2; index2++) {
+              animation.tweens[index2].run(1);
+            }
+            if (gotoEnd) {
+              deferred.notifyWith(elem, [animation, 1, 0]);
+              deferred.resolveWith(elem, [animation, gotoEnd]);
+            } else {
+              deferred.rejectWith(elem, [animation, gotoEnd]);
+            }
+            return this;
+          },
+        }),
+        props = animation.props;
       propFilter(props, animation.opts.specialEasing);
       for (; index < length; index++) {
-        result = Animation.prefilters[index].call(animation, elem, props, animation.opts);
+        result = Animation.prefilters[index].call(
+          animation,
+          elem,
+          props,
+          animation.opts,
+        );
         if (result) {
           if (typeof result.stop === "function") {
-            jQuery2._queueHooks(animation.elem, animation.opts.queue).stop = result.stop.bind(result);
+            jQuery2._queueHooks(animation.elem, animation.opts.queue).stop =
+              result.stop.bind(result);
           }
           return result;
         }
@@ -13816,32 +16533,40 @@
       if (typeof animation.opts.start === "function") {
         animation.opts.start.call(elem, animation);
       }
-      animation.progress(animation.opts.progress).done(animation.opts.done, animation.opts.complete).fail(animation.opts.fail).always(animation.opts.always);
+      animation
+        .progress(animation.opts.progress)
+        .done(animation.opts.done, animation.opts.complete)
+        .fail(animation.opts.fail)
+        .always(animation.opts.always);
       jQuery2.fx.timer(
         jQuery2.extend(tick, {
           elem,
           anim: animation,
-          queue: animation.opts.queue
-        })
+          queue: animation.opts.queue,
+        }),
       );
       return animation;
     }
     jQuery2.Animation = jQuery2.extend(Animation, {
       tweeners: {
-        "*": [function(prop, value) {
-          var tween = this.createTween(prop, value);
-          adjustCSS(tween.elem, prop, rcssNum.exec(value), tween);
-          return tween;
-        }]
+        "*": [
+          function (prop, value) {
+            var tween = this.createTween(prop, value);
+            adjustCSS(tween.elem, prop, rcssNum.exec(value), tween);
+            return tween;
+          },
+        ],
       },
-      tweener: function(props, callback) {
+      tweener: function (props, callback) {
         if (typeof props === "function") {
           callback = props;
           props = ["*"];
         } else {
           props = props.match(rnothtmlwhite);
         }
-        var prop, index = 0, length = props.length;
+        var prop,
+          index = 0,
+          length = props.length;
         for (; index < length; index++) {
           prop = props[index];
           Animation.tweeners[prop] = Animation.tweeners[prop] || [];
@@ -13849,20 +16574,25 @@
         }
       },
       prefilters: [defaultPrefilter],
-      prefilter: function(callback, prepend) {
+      prefilter: function (callback, prepend) {
         if (prepend) {
           Animation.prefilters.unshift(callback);
         } else {
           Animation.prefilters.push(callback);
         }
-      }
+      },
     });
-    jQuery2.speed = function(speed, easing, fn) {
-      var opt = speed && typeof speed === "object" ? jQuery2.extend({}, speed) : {
-        complete: fn || easing || typeof speed === "function" && speed,
-        duration: speed,
-        easing: fn && easing || easing && typeof easing !== "function" && easing
-      };
+    jQuery2.speed = function (speed, easing, fn) {
+      var opt =
+        speed && typeof speed === "object"
+          ? jQuery2.extend({}, speed)
+          : {
+              complete: fn || easing || (typeof speed === "function" && speed),
+              duration: speed,
+              easing:
+                (fn && easing) ||
+                (easing && typeof easing !== "function" && easing),
+            };
       if (jQuery2.fx.off) {
         opt.duration = 0;
       } else {
@@ -13878,7 +16608,7 @@
         opt.queue = "fx";
       }
       opt.old = opt.complete;
-      opt.complete = function() {
+      opt.complete = function () {
         if (typeof opt.old === "function") {
           opt.old.call(this);
         }
@@ -13889,21 +16619,29 @@
       return opt;
     };
     jQuery2.fn.extend({
-      fadeTo: function(speed, to, easing, callback) {
-        return this.filter(isHiddenWithinTree).css("opacity", 0).show().end().animate({ opacity: to }, speed, easing, callback);
+      fadeTo: function (speed, to, easing, callback) {
+        return this.filter(isHiddenWithinTree)
+          .css("opacity", 0)
+          .show()
+          .end()
+          .animate({ opacity: to }, speed, easing, callback);
       },
-      animate: function(prop, speed, easing, callback) {
-        var empty = jQuery2.isEmptyObject(prop), optall = jQuery2.speed(speed, easing, callback), doAnimation = function() {
-          var anim = Animation(this, jQuery2.extend({}, prop), optall);
-          if (empty || dataPriv.get(this, "finish")) {
-            anim.stop(true);
-          }
-        };
+      animate: function (prop, speed, easing, callback) {
+        var empty = jQuery2.isEmptyObject(prop),
+          optall = jQuery2.speed(speed, easing, callback),
+          doAnimation = function () {
+            var anim = Animation(this, jQuery2.extend({}, prop), optall);
+            if (empty || dataPriv.get(this, "finish")) {
+              anim.stop(true);
+            }
+          };
         doAnimation.finish = doAnimation;
-        return empty || optall.queue === false ? this.each(doAnimation) : this.queue(optall.queue, doAnimation);
+        return empty || optall.queue === false
+          ? this.each(doAnimation)
+          : this.queue(optall.queue, doAnimation);
       },
-      stop: function(type, clearQueue, gotoEnd) {
-        var stopQueue = function(hooks) {
+      stop: function (type, clearQueue, gotoEnd) {
+        var stopQueue = function (hooks) {
           var stop = hooks.stop;
           delete hooks.stop;
           stop(gotoEnd);
@@ -13916,8 +16654,11 @@
         if (clearQueue) {
           this.queue(type || "fx", []);
         }
-        return this.each(function() {
-          var dequeue = true, index = type != null && type + "queueHooks", timers = jQuery2.timers, data = dataPriv.get(this);
+        return this.each(function () {
+          var dequeue = true,
+            index = type != null && type + "queueHooks",
+            timers = jQuery2.timers,
+            data = dataPriv.get(this);
           if (index) {
             if (data[index] && data[index].stop) {
               stopQueue(data[index]);
@@ -13930,7 +16671,10 @@
             }
           }
           for (index = timers.length; index--; ) {
-            if (timers[index].elem === this && (type == null || timers[index].queue === type)) {
+            if (
+              timers[index].elem === this &&
+              (type == null || timers[index].queue === type)
+            ) {
               timers[index].anim.stop(gotoEnd);
               dequeue = false;
               timers.splice(index, 1);
@@ -13941,12 +16685,17 @@
           }
         });
       },
-      finish: function(type) {
+      finish: function (type) {
         if (type !== false) {
           type = type || "fx";
         }
-        return this.each(function() {
-          var index, data = dataPriv.get(this), queue = data[type + "queue"], hooks = data[type + "queueHooks"], timers = jQuery2.timers, length = queue ? queue.length : 0;
+        return this.each(function () {
+          var index,
+            data = dataPriv.get(this),
+            queue = data[type + "queue"],
+            hooks = data[type + "queueHooks"],
+            timers = jQuery2.timers,
+            length = queue ? queue.length : 0;
           data.finish = true;
           jQuery2.queue(this, type, []);
           if (hooks && hooks.stop) {
@@ -13965,29 +16714,36 @@
           }
           delete data.finish;
         });
-      }
+      },
     });
-    jQuery2.each(["toggle", "show", "hide"], function(_i, name) {
+    jQuery2.each(["toggle", "show", "hide"], function (_i, name) {
       var cssFn = jQuery2.fn[name];
-      jQuery2.fn[name] = function(speed, easing, callback) {
-        return speed == null || typeof speed === "boolean" ? cssFn.apply(this, arguments) : this.animate(genFx(name, true), speed, easing, callback);
+      jQuery2.fn[name] = function (speed, easing, callback) {
+        return speed == null || typeof speed === "boolean"
+          ? cssFn.apply(this, arguments)
+          : this.animate(genFx(name, true), speed, easing, callback);
       };
     });
-    jQuery2.each({
-      slideDown: genFx("show"),
-      slideUp: genFx("hide"),
-      slideToggle: genFx("toggle"),
-      fadeIn: { opacity: "show" },
-      fadeOut: { opacity: "hide" },
-      fadeToggle: { opacity: "toggle" }
-    }, function(name, props) {
-      jQuery2.fn[name] = function(speed, easing, callback) {
-        return this.animate(props, speed, easing, callback);
-      };
-    });
+    jQuery2.each(
+      {
+        slideDown: genFx("show"),
+        slideUp: genFx("hide"),
+        slideToggle: genFx("toggle"),
+        fadeIn: { opacity: "show" },
+        fadeOut: { opacity: "hide" },
+        fadeToggle: { opacity: "toggle" },
+      },
+      function (name, props) {
+        jQuery2.fn[name] = function (speed, easing, callback) {
+          return this.animate(props, speed, easing, callback);
+        };
+      },
+    );
     jQuery2.timers = [];
-    jQuery2.fx.tick = function() {
-      var timer, i2 = 0, timers = jQuery2.timers;
+    jQuery2.fx.tick = function () {
+      var timer,
+        i2 = 0,
+        timers = jQuery2.timers;
       fxNow = Date.now();
       for (; i2 < timers.length; i2++) {
         timer = timers[i2];
@@ -14000,50 +16756,53 @@
       }
       fxNow = void 0;
     };
-    jQuery2.fx.timer = function(timer) {
+    jQuery2.fx.timer = function (timer) {
       jQuery2.timers.push(timer);
       jQuery2.fx.start();
     };
-    jQuery2.fx.start = function() {
+    jQuery2.fx.start = function () {
       if (inProgress) {
         return;
       }
       inProgress = true;
       schedule();
     };
-    jQuery2.fx.stop = function() {
+    jQuery2.fx.stop = function () {
       inProgress = null;
     };
     jQuery2.fx.speeds = {
       slow: 600,
       fast: 200,
       // Default speed
-      _default: 400
+      _default: 400,
     };
-    jQuery2.fn.delay = function(time, type) {
+    jQuery2.fn.delay = function (time, type) {
       time = jQuery2.fx ? jQuery2.fx.speeds[time] || time : time;
       type = type || "fx";
-      return this.queue(type, function(next, hooks) {
+      return this.queue(type, function (next, hooks) {
         var timeout = window2.setTimeout(next, time);
-        hooks.stop = function() {
+        hooks.stop = function () {
           window2.clearTimeout(timeout);
         };
       });
     };
-    var rfocusable = /^(?:input|select|textarea|button)$/i, rclickable = /^(?:a|area)$/i;
+    var rfocusable = /^(?:input|select|textarea|button)$/i,
+      rclickable = /^(?:a|area)$/i;
     jQuery2.fn.extend({
-      prop: function(name, value) {
+      prop: function (name, value) {
         return access(this, jQuery2.prop, name, value, arguments.length > 1);
       },
-      removeProp: function(name) {
-        return this.each(function() {
+      removeProp: function (name) {
+        return this.each(function () {
           delete this[jQuery2.propFix[name] || name];
         });
-      }
+      },
     });
     jQuery2.extend({
-      prop: function(elem, name, value) {
-        var ret, hooks, nType = elem.nodeType;
+      prop: function (elem, name, value) {
+        var ret,
+          hooks,
+          nType = elem.nodeType;
         if (nType === 3 || nType === 8 || nType === 2) {
           return;
         }
@@ -14052,10 +16811,14 @@
           hooks = jQuery2.propHooks[name];
         }
         if (value !== void 0) {
-          if (hooks && "set" in hooks && (ret = hooks.set(elem, value, name)) !== void 0) {
+          if (
+            hooks &&
+            "set" in hooks &&
+            (ret = hooks.set(elem, value, name)) !== void 0
+          ) {
             return ret;
           }
-          return elem[name] = value;
+          return (elem[name] = value);
         }
         if (hooks && "get" in hooks && (ret = hooks.get(elem, name)) !== null) {
           return ret;
@@ -14064,35 +16827,37 @@
       },
       propHooks: {
         tabIndex: {
-          get: function(elem) {
+          get: function (elem) {
             var tabindex = elem.getAttribute("tabindex");
             if (tabindex) {
               return parseInt(tabindex, 10);
             }
-            if (rfocusable.test(elem.nodeName) || // href-less anchor's `tabIndex` property value is `0` and
-            // the `tabindex` attribute value: `null`. We want `-1`.
-            rclickable.test(elem.nodeName) && elem.href) {
+            if (
+              rfocusable.test(elem.nodeName) || // href-less anchor's `tabIndex` property value is `0` and
+              // the `tabindex` attribute value: `null`. We want `-1`.
+              (rclickable.test(elem.nodeName) && elem.href)
+            ) {
               return 0;
             }
             return -1;
-          }
-        }
+          },
+        },
       },
       propFix: {
-        "for": "htmlFor",
-        "class": "className"
-      }
+        for: "htmlFor",
+        class: "className",
+      },
     });
     if (isIE) {
       jQuery2.propHooks.selected = {
-        get: function(elem) {
+        get: function (elem) {
           var parent = elem.parentNode;
           if (parent && parent.parentNode) {
             parent.parentNode.selectedIndex;
           }
           return null;
         },
-        set: function(elem) {
+        set: function (elem) {
           var parent = elem.parentNode;
           if (parent) {
             parent.selectedIndex;
@@ -14100,29 +16865,32 @@
               parent.parentNode.selectedIndex;
             }
           }
-        }
+        },
       };
     }
-    jQuery2.each([
-      "tabIndex",
-      "readOnly",
-      "maxLength",
-      "cellSpacing",
-      "cellPadding",
-      "rowSpan",
-      "colSpan",
-      "useMap",
-      "frameBorder",
-      "contentEditable"
-    ], function() {
-      jQuery2.propFix[this.toLowerCase()] = this;
-    });
+    jQuery2.each(
+      [
+        "tabIndex",
+        "readOnly",
+        "maxLength",
+        "cellSpacing",
+        "cellPadding",
+        "rowSpan",
+        "colSpan",
+        "useMap",
+        "frameBorder",
+        "contentEditable",
+      ],
+      function () {
+        jQuery2.propFix[this.toLowerCase()] = this;
+      },
+    );
     function stripAndCollapse(value) {
       var tokens = value.match(rnothtmlwhite) || [];
       return tokens.join(" ");
     }
     function getClass(elem) {
-      return elem.getAttribute && elem.getAttribute("class") || "";
+      return (elem.getAttribute && elem.getAttribute("class")) || "";
     }
     function classesToArray(value) {
       if (Array.isArray(value)) {
@@ -14134,16 +16902,16 @@
       return [];
     }
     jQuery2.fn.extend({
-      addClass: function(value) {
+      addClass: function (value) {
         var classNames, cur, curValue, className, i2, finalValue;
         if (typeof value === "function") {
-          return this.each(function(j) {
+          return this.each(function (j) {
             jQuery2(this).addClass(value.call(this, j, getClass(this)));
           });
         }
         classNames = classesToArray(value);
         if (classNames.length) {
-          return this.each(function() {
+          return this.each(function () {
             curValue = getClass(this);
             cur = this.nodeType === 1 && " " + stripAndCollapse(curValue) + " ";
             if (cur) {
@@ -14162,10 +16930,10 @@
         }
         return this;
       },
-      removeClass: function(value) {
+      removeClass: function (value) {
         var classNames, cur, curValue, className, i2, finalValue;
         if (typeof value === "function") {
-          return this.each(function(j) {
+          return this.each(function (j) {
             jQuery2(this).removeClass(value.call(this, j, getClass(this)));
           });
         }
@@ -14174,7 +16942,7 @@
         }
         classNames = classesToArray(value);
         if (classNames.length) {
-          return this.each(function() {
+          return this.each(function () {
             curValue = getClass(this);
             cur = this.nodeType === 1 && " " + stripAndCollapse(curValue) + " ";
             if (cur) {
@@ -14193,13 +16961,13 @@
         }
         return this;
       },
-      toggleClass: function(value, stateVal) {
+      toggleClass: function (value, stateVal) {
         var classNames, className, i2, self2;
         if (typeof value === "function") {
-          return this.each(function(i3) {
+          return this.each(function (i3) {
             jQuery2(this).toggleClass(
               value.call(this, i3, getClass(this), stateVal),
-              stateVal
+              stateVal,
             );
           });
         }
@@ -14208,7 +16976,7 @@
         }
         classNames = classesToArray(value);
         if (classNames.length) {
-          return this.each(function() {
+          return this.each(function () {
             self2 = jQuery2(this);
             for (i2 = 0; i2 < classNames.length; i2++) {
               className = classNames[i2];
@@ -14222,24 +16990,39 @@
         }
         return this;
       },
-      hasClass: function(selector) {
-        var className, elem, i2 = 0;
+      hasClass: function (selector) {
+        var className,
+          elem,
+          i2 = 0;
         className = " " + selector + " ";
-        while (elem = this[i2++]) {
-          if (elem.nodeType === 1 && (" " + stripAndCollapse(getClass(elem)) + " ").indexOf(className) > -1) {
+        while ((elem = this[i2++])) {
+          if (
+            elem.nodeType === 1 &&
+            (" " + stripAndCollapse(getClass(elem)) + " ").indexOf(className) >
+              -1
+          ) {
             return true;
           }
         }
         return false;
-      }
+      },
     });
     jQuery2.fn.extend({
-      val: function(value) {
-        var hooks, ret, valueIsFunction, elem = this[0];
+      val: function (value) {
+        var hooks,
+          ret,
+          valueIsFunction,
+          elem = this[0];
         if (!arguments.length) {
           if (elem) {
-            hooks = jQuery2.valHooks[elem.type] || jQuery2.valHooks[elem.nodeName.toLowerCase()];
-            if (hooks && "get" in hooks && (ret = hooks.get(elem, "value")) !== void 0) {
+            hooks =
+              jQuery2.valHooks[elem.type] ||
+              jQuery2.valHooks[elem.nodeName.toLowerCase()];
+            if (
+              hooks &&
+              "get" in hooks &&
+              (ret = hooks.get(elem, "value")) !== void 0
+            ) {
               return ret;
             }
             ret = elem.value;
@@ -14248,7 +17031,7 @@
           return;
         }
         valueIsFunction = typeof value === "function";
-        return this.each(function(i2) {
+        return this.each(function (i2) {
           var val;
           if (this.nodeType !== 1) {
             return;
@@ -14263,22 +17046,35 @@
           } else if (typeof val === "number") {
             val += "";
           } else if (Array.isArray(val)) {
-            val = jQuery2.map(val, function(value2) {
+            val = jQuery2.map(val, function (value2) {
               return value2 == null ? "" : value2 + "";
             });
           }
-          hooks = jQuery2.valHooks[this.type] || jQuery2.valHooks[this.nodeName.toLowerCase()];
-          if (!hooks || !("set" in hooks) || hooks.set(this, val, "value") === void 0) {
+          hooks =
+            jQuery2.valHooks[this.type] ||
+            jQuery2.valHooks[this.nodeName.toLowerCase()];
+          if (
+            !hooks ||
+            !("set" in hooks) ||
+            hooks.set(this, val, "value") === void 0
+          ) {
             this.value = val;
           }
         });
-      }
+      },
     });
     jQuery2.extend({
       valHooks: {
         select: {
-          get: function(elem) {
-            var value, option, i2, options = elem.options, index = elem.selectedIndex, one = elem.type === "select-one", values = one ? null : [], max = one ? index + 1 : options.length;
+          get: function (elem) {
+            var value,
+              option,
+              i2,
+              options = elem.options,
+              index = elem.selectedIndex,
+              one = elem.type === "select-one",
+              values = one ? null : [],
+              max = one ? index + 1 : options.length;
             if (index < 0) {
               i2 = max;
             } else {
@@ -14286,8 +17082,12 @@
             }
             for (; i2 < max; i2++) {
               option = options[i2];
-              if (option.selected && // Don't return options that are disabled or in a disabled optgroup
-              !option.disabled && (!option.parentNode.disabled || !nodeName(option.parentNode, "optgroup"))) {
+              if (
+                option.selected && // Don't return options that are disabled or in a disabled optgroup
+                !option.disabled &&
+                (!option.parentNode.disabled ||
+                  !nodeName(option.parentNode, "optgroup"))
+              ) {
                 value = jQuery2(option).val();
                 if (one) {
                   return value;
@@ -14297,11 +17097,18 @@
             }
             return values;
           },
-          set: function(elem, value) {
-            var optionSet, option, options = elem.options, values = jQuery2.makeArray(value), i2 = options.length;
+          set: function (elem, value) {
+            var optionSet,
+              option,
+              options = elem.options,
+              values = jQuery2.makeArray(value),
+              i2 = options.length;
             while (i2--) {
               option = options[i2];
-              if (option.selected = jQuery2.inArray(jQuery2(option).val(), values) > -1) {
+              if (
+                (option.selected =
+                  jQuery2.inArray(jQuery2(option).val(), values) > -1)
+              ) {
                 optionSet = true;
               }
             }
@@ -14309,39 +17116,53 @@
               elem.selectedIndex = -1;
             }
             return values;
-          }
-        }
-      }
+          },
+        },
+      },
     });
     if (isIE) {
       jQuery2.valHooks.option = {
-        get: function(elem) {
+        get: function (elem) {
           var val = elem.getAttribute("value");
-          return val != null ? val : (
-            // Support: IE <=10 - 11+
-            // option.text throws exceptions (trac-14686, trac-14858)
-            // Strip and collapse whitespace
-            // https://html.spec.whatwg.org/#strip-and-collapse-whitespace
-            stripAndCollapse(jQuery2.text(elem))
-          );
-        }
+          return val != null
+            ? val
+            : // Support: IE <=10 - 11+
+              // option.text throws exceptions (trac-14686, trac-14858)
+              // Strip and collapse whitespace
+              // https://html.spec.whatwg.org/#strip-and-collapse-whitespace
+              stripAndCollapse(jQuery2.text(elem));
+        },
       };
     }
-    jQuery2.each(["radio", "checkbox"], function() {
+    jQuery2.each(["radio", "checkbox"], function () {
       jQuery2.valHooks[this] = {
-        set: function(elem, value) {
+        set: function (elem, value) {
           if (Array.isArray(value)) {
-            return elem.checked = jQuery2.inArray(jQuery2(elem).val(), value) > -1;
+            return (elem.checked =
+              jQuery2.inArray(jQuery2(elem).val(), value) > -1);
           }
-        }
+        },
       };
     });
-    var rfocusMorph = /^(?:focusinfocus|focusoutblur)$/, stopPropagationCallback = function(e) {
-      e.stopPropagation();
-    };
+    var rfocusMorph = /^(?:focusinfocus|focusoutblur)$/,
+      stopPropagationCallback = function (e) {
+        e.stopPropagation();
+      };
     jQuery2.extend(jQuery2.event, {
-      trigger: function(event, data, elem, onlyHandlers) {
-        var i2, cur, tmp, bubbleType, ontype, handle, special, lastElement, eventPath = [elem || document$1], type = hasOwn.call(event, "type") ? event.type : event, namespaces = hasOwn.call(event, "namespace") ? event.namespace.split(".") : [];
+      trigger: function (event, data, elem, onlyHandlers) {
+        var i2,
+          cur,
+          tmp,
+          bubbleType,
+          ontype,
+          handle,
+          special,
+          lastElement,
+          eventPath = [elem || document$1],
+          type = hasOwn.call(event, "type") ? event.type : event,
+          namespaces = hasOwn.call(event, "namespace")
+            ? event.namespace.split(".")
+            : [];
         cur = lastElement = tmp = elem = elem || document$1;
         if (elem.nodeType === 3 || elem.nodeType === 8) {
           return;
@@ -14355,17 +17176,25 @@
           namespaces.sort();
         }
         ontype = type.indexOf(":") < 0 && "on" + type;
-        event = event[jQuery2.expando] ? event : new jQuery2.Event(type, typeof event === "object" && event);
+        event = event[jQuery2.expando]
+          ? event
+          : new jQuery2.Event(type, typeof event === "object" && event);
         event.isTrigger = onlyHandlers ? 2 : 3;
         event.namespace = namespaces.join(".");
-        event.rnamespace = event.namespace ? new RegExp("(^|\\.)" + namespaces.join("\\.(?:.*\\.|)") + "(\\.|$)") : null;
+        event.rnamespace = event.namespace
+          ? new RegExp("(^|\\.)" + namespaces.join("\\.(?:.*\\.|)") + "(\\.|$)")
+          : null;
         event.result = void 0;
         if (!event.target) {
           event.target = elem;
         }
         data = data == null ? [event] : jQuery2.makeArray(data, [event]);
         special = jQuery2.event.special[type] || {};
-        if (!onlyHandlers && special.trigger && special.trigger.apply(elem, data) === false) {
+        if (
+          !onlyHandlers &&
+          special.trigger &&
+          special.trigger.apply(elem, data) === false
+        ) {
           return;
         }
         if (!onlyHandlers && !special.noBubble && !isWindow(elem)) {
@@ -14385,7 +17214,10 @@
         while ((cur = eventPath[i2++]) && !event.isPropagationStopped()) {
           lastElement = cur;
           event.type = i2 > 1 ? bubbleType : special.bindType || type;
-          handle = (dataPriv.get(cur, "events") || /* @__PURE__ */ Object.create(null))[event.type] && dataPriv.get(cur, "handle");
+          handle =
+            (dataPriv.get(cur, "events") ||
+              /* @__PURE__ */ Object.create(null))[event.type] &&
+            dataPriv.get(cur, "handle");
           if (handle) {
             handle.apply(cur, data);
           }
@@ -14399,7 +17231,11 @@
         }
         event.type = type;
         if (!onlyHandlers && !event.isDefaultPrevented()) {
-          if ((!special._default || special._default.apply(eventPath.pop(), data) === false) && acceptData(elem)) {
+          if (
+            (!special._default ||
+              special._default.apply(eventPath.pop(), data) === false) &&
+            acceptData(elem)
+          ) {
             if (ontype && typeof elem[type] === "function" && !isWindow(elem)) {
               tmp = elem[ontype];
               if (tmp) {
@@ -14424,64 +17260,72 @@
       },
       // Piggyback on a donor event to simulate a different one
       // Used only for `focus(in | out)` events
-      simulate: function(type, elem, event) {
-        var e = jQuery2.extend(
-          new jQuery2.Event(),
-          event,
-          {
-            type,
-            isSimulated: true
-          }
-        );
+      simulate: function (type, elem, event) {
+        var e = jQuery2.extend(new jQuery2.Event(), event, {
+          type,
+          isSimulated: true,
+        });
         jQuery2.event.trigger(e, null, elem);
-      }
+      },
     });
     jQuery2.fn.extend({
-      trigger: function(type, data) {
-        return this.each(function() {
+      trigger: function (type, data) {
+        return this.each(function () {
           jQuery2.event.trigger(type, data, this);
         });
       },
-      triggerHandler: function(type, data) {
+      triggerHandler: function (type, data) {
         var elem = this[0];
         if (elem) {
           return jQuery2.event.trigger(type, data, elem, true);
         }
-      }
+      },
     });
     var location = window2.location;
     var nonce = { guid: Date.now() };
     var rquery = /\?/;
-    jQuery2.parseXML = function(data) {
+    jQuery2.parseXML = function (data) {
       var xml, parserErrorElem;
       if (!data || typeof data !== "string") {
         return null;
       }
       try {
         xml = new window2.DOMParser().parseFromString(data, "text/xml");
-      } catch (e) {
-      }
+      } catch (e) {}
       parserErrorElem = xml && xml.getElementsByTagName("parsererror")[0];
       if (!xml || parserErrorElem) {
-        jQuery2.error("Invalid XML: " + (parserErrorElem ? jQuery2.map(parserErrorElem.childNodes, function(el) {
-          return el.textContent;
-        }).join("\n") : data));
+        jQuery2.error(
+          "Invalid XML: " +
+            (parserErrorElem
+              ? jQuery2
+                  .map(parserErrorElem.childNodes, function (el) {
+                    return el.textContent;
+                  })
+                  .join("\n")
+              : data),
+        );
       }
       return xml;
     };
-    var rbracket = /\[\]$/, rCRLF = /\r?\n/g, rsubmitterTypes = /^(?:submit|button|image|reset|file)$/i, rsubmittable = /^(?:input|select|textarea|keygen)/i;
+    var rbracket = /\[\]$/,
+      rCRLF = /\r?\n/g,
+      rsubmitterTypes = /^(?:submit|button|image|reset|file)$/i,
+      rsubmittable = /^(?:input|select|textarea|keygen)/i;
     function buildParams(prefix, obj, traditional, add) {
       var name;
       if (Array.isArray(obj)) {
-        jQuery2.each(obj, function(i2, v) {
+        jQuery2.each(obj, function (i2, v) {
           if (traditional || rbracket.test(prefix)) {
             add(prefix, v);
           } else {
             buildParams(
-              prefix + "[" + (typeof v === "object" && v != null ? i2 : "") + "]",
+              prefix +
+                "[" +
+                (typeof v === "object" && v != null ? i2 : "") +
+                "]",
               v,
               traditional,
-              add
+              add,
             );
           }
         });
@@ -14493,16 +17337,24 @@
         add(prefix, obj);
       }
     }
-    jQuery2.param = function(a, traditional) {
-      var prefix, s = [], add = function(key, valueOrFunction) {
-        var value = typeof valueOrFunction === "function" ? valueOrFunction() : valueOrFunction;
-        s[s.length] = encodeURIComponent(key) + "=" + encodeURIComponent(value == null ? "" : value);
-      };
+    jQuery2.param = function (a, traditional) {
+      var prefix,
+        s = [],
+        add = function (key, valueOrFunction) {
+          var value =
+            typeof valueOrFunction === "function"
+              ? valueOrFunction()
+              : valueOrFunction;
+          s[s.length] =
+            encodeURIComponent(key) +
+            "=" +
+            encodeURIComponent(value == null ? "" : value);
+        };
       if (a == null) {
         return "";
       }
-      if (Array.isArray(a) || a.jquery && !jQuery2.isPlainObject(a)) {
-        jQuery2.each(a, function() {
+      if (Array.isArray(a) || (a.jquery && !jQuery2.isPlainObject(a))) {
+        jQuery2.each(a, function () {
           add(this.name, this.value);
         });
       } else {
@@ -14513,41 +17365,64 @@
       return s.join("&");
     };
     jQuery2.fn.extend({
-      serialize: function() {
+      serialize: function () {
         return jQuery2.param(this.serializeArray());
       },
-      serializeArray: function() {
-        return this.map(function() {
+      serializeArray: function () {
+        return this.map(function () {
           var elements = jQuery2.prop(this, "elements");
           return elements ? jQuery2.makeArray(elements) : this;
-        }).filter(function() {
-          var type = this.type;
-          return this.name && !jQuery2(this).is(":disabled") && rsubmittable.test(this.nodeName) && !rsubmitterTypes.test(type) && (this.checked || !rcheckableType.test(type));
-        }).map(function(_i, elem) {
-          var val = jQuery2(this).val();
-          if (val == null) {
-            return null;
-          }
-          if (Array.isArray(val)) {
-            return jQuery2.map(val, function(val2) {
-              return { name: elem.name, value: val2.replace(rCRLF, "\r\n") };
-            });
-          }
-          return { name: elem.name, value: val.replace(rCRLF, "\r\n") };
-        }).get();
-      }
+        })
+          .filter(function () {
+            var type = this.type;
+            return (
+              this.name &&
+              !jQuery2(this).is(":disabled") &&
+              rsubmittable.test(this.nodeName) &&
+              !rsubmitterTypes.test(type) &&
+              (this.checked || !rcheckableType.test(type))
+            );
+          })
+          .map(function (_i, elem) {
+            var val = jQuery2(this).val();
+            if (val == null) {
+              return null;
+            }
+            if (Array.isArray(val)) {
+              return jQuery2.map(val, function (val2) {
+                return { name: elem.name, value: val2.replace(rCRLF, "\r\n") };
+              });
+            }
+            return { name: elem.name, value: val.replace(rCRLF, "\r\n") };
+          })
+          .get();
+      },
     });
-    var r20 = /%20/g, rhash = /#.*$/, rantiCache = /([?&])_=[^&]*/, rheaders = /^(.*?):[ \t]*([^\r\n]*)$/mg, rlocalProtocol = /^(?:about|app|app-storage|.+-extension|file|res|widget):$/, rnoContent = /^(?:GET|HEAD)$/, rprotocol = /^\/\//, prefilters = {}, transports = {}, allTypes = "*/".concat("*"), originAnchor = document$1.createElement("a");
+    var r20 = /%20/g,
+      rhash = /#.*$/,
+      rantiCache = /([?&])_=[^&]*/,
+      rheaders = /^(.*?):[ \t]*([^\r\n]*)$/gm,
+      rlocalProtocol =
+        /^(?:about|app|app-storage|.+-extension|file|res|widget):$/,
+      rnoContent = /^(?:GET|HEAD)$/,
+      rprotocol = /^\/\//,
+      prefilters = {},
+      transports = {},
+      allTypes = "*/".concat("*"),
+      originAnchor = document$1.createElement("a");
     originAnchor.href = location.href;
     function addToPrefiltersOrTransports(structure) {
-      return function(dataTypeExpression, func) {
+      return function (dataTypeExpression, func) {
         if (typeof dataTypeExpression !== "string") {
           func = dataTypeExpression;
           dataTypeExpression = "*";
         }
-        var dataType, i2 = 0, dataTypes = dataTypeExpression.toLowerCase().match(rnothtmlwhite) || [];
+        var dataType,
+          i2 = 0,
+          dataTypes =
+            dataTypeExpression.toLowerCase().match(rnothtmlwhite) || [];
         if (typeof func === "function") {
-          while (dataType = dataTypes[i2++]) {
+          while ((dataType = dataTypes[i2++])) {
             if (dataType[0] === "+") {
               dataType = dataType.slice(1) || "*";
               (structure[dataType] = structure[dataType] || []).unshift(func);
@@ -14558,27 +17433,46 @@
         }
       };
     }
-    function inspectPrefiltersOrTransports(structure, options, originalOptions, jqXHR) {
-      var inspected = {}, seekingTransport = structure === transports;
+    function inspectPrefiltersOrTransports(
+      structure,
+      options,
+      originalOptions,
+      jqXHR,
+    ) {
+      var inspected = {},
+        seekingTransport = structure === transports;
       function inspect(dataType) {
         var selected;
         inspected[dataType] = true;
-        jQuery2.each(structure[dataType] || [], function(_, prefilterOrFactory) {
-          var dataTypeOrTransport = prefilterOrFactory(options, originalOptions, jqXHR);
-          if (typeof dataTypeOrTransport === "string" && !seekingTransport && !inspected[dataTypeOrTransport]) {
-            options.dataTypes.unshift(dataTypeOrTransport);
-            inspect(dataTypeOrTransport);
-            return false;
-          } else if (seekingTransport) {
-            return !(selected = dataTypeOrTransport);
-          }
-        });
+        jQuery2.each(
+          structure[dataType] || [],
+          function (_, prefilterOrFactory) {
+            var dataTypeOrTransport = prefilterOrFactory(
+              options,
+              originalOptions,
+              jqXHR,
+            );
+            if (
+              typeof dataTypeOrTransport === "string" &&
+              !seekingTransport &&
+              !inspected[dataTypeOrTransport]
+            ) {
+              options.dataTypes.unshift(dataTypeOrTransport);
+              inspect(dataTypeOrTransport);
+              return false;
+            } else if (seekingTransport) {
+              return !(selected = dataTypeOrTransport);
+            }
+          },
+        );
         return selected;
       }
-      return inspect(options.dataTypes[0]) || !inspected["*"] && inspect("*");
+      return inspect(options.dataTypes[0]) || (!inspected["*"] && inspect("*"));
     }
     function ajaxExtend(target, src) {
-      var key, deep, flatOptions = jQuery2.ajaxSettings.flatOptions || {};
+      var key,
+        deep,
+        flatOptions = jQuery2.ajaxSettings.flatOptions || {};
       for (key in src) {
         if (src[key] !== void 0) {
           (flatOptions[key] ? target : deep || (deep = {}))[key] = src[key];
@@ -14590,7 +17484,12 @@
       return target;
     }
     function ajaxHandleResponses(s, jqXHR, responses) {
-      var ct, type, finalDataType, firstDataType, contents = s.contents, dataTypes = s.dataTypes;
+      var ct,
+        type,
+        finalDataType,
+        firstDataType,
+        contents = s.contents,
+        dataTypes = s.dataTypes;
       while (dataTypes[0] === "*") {
         dataTypes.shift();
         if (ct === void 0) {
@@ -14627,7 +17526,13 @@
       }
     }
     function ajaxConvert(s, response, jqXHR, isSuccess) {
-      var conv2, current, conv, tmp, prev, converters = {}, dataTypes = s.dataTypes.slice();
+      var conv2,
+        current,
+        conv,
+        tmp,
+        prev,
+        converters = {},
+        dataTypes = s.dataTypes.slice();
       if (dataTypes[1]) {
         for (conv in s.converters) {
           converters[conv.toLowerCase()] = s.converters[conv];
@@ -14647,12 +17552,15 @@
           if (current === "*") {
             current = prev;
           } else if (prev !== "*" && prev !== current) {
-            conv = converters[prev + " " + current] || converters["* " + current];
+            conv =
+              converters[prev + " " + current] || converters["* " + current];
             if (!conv) {
               for (conv2 in converters) {
                 tmp = conv2.split(" ");
                 if (tmp[1] === current) {
-                  conv = converters[prev + " " + tmp[0]] || converters["* " + tmp[0]];
+                  conv =
+                    converters[prev + " " + tmp[0]] ||
+                    converters["* " + tmp[0]];
                   if (conv) {
                     if (conv === true) {
                       conv = converters[conv2];
@@ -14674,7 +17582,9 @@
                 } catch (e) {
                   return {
                     state: "parsererror",
-                    error: conv ? e : "No conversion from " + prev + " to " + current
+                    error: conv
+                      ? e
+                      : "No conversion from " + prev + " to " + current,
                   };
                 }
               }
@@ -14714,17 +17624,17 @@
           text: "text/plain",
           html: "text/html",
           xml: "application/xml, text/xml",
-          json: "application/json, text/javascript"
+          json: "application/json, text/javascript",
         },
         contents: {
           xml: /\bxml\b/,
           html: /\bhtml/,
-          json: /\bjson\b/
+          json: /\bjson\b/,
         },
         responseFields: {
           xml: "responseXML",
           text: "responseText",
-          json: "responseJSON"
+          json: "responseJSON",
         },
         // Data converters
         // Keys separate source (or catchall "*") and destination types with a single space
@@ -14736,7 +17646,7 @@
           // Evaluate text as a json expression
           "text json": JSON.parse,
           // Parse text as xml
-          "text xml": jQuery2.parseXML
+          "text xml": jQuery2.parseXML,
         },
         // For options that shouldn't be deep extended:
         // you can add your own custom options here if
@@ -14744,99 +17654,129 @@
         // deep extended (see ajaxExtend)
         flatOptions: {
           url: true,
-          context: true
-        }
+          context: true,
+        },
       },
       // Creates a full fledged settings object into target
       // with both ajaxSettings and settings fields.
       // If target is omitted, writes into ajaxSettings.
-      ajaxSetup: function(target, settings) {
-        return settings ? (
-          // Building a settings object
-          ajaxExtend(ajaxExtend(target, jQuery2.ajaxSettings), settings)
-        ) : (
-          // Extending ajaxSettings
-          ajaxExtend(jQuery2.ajaxSettings, target)
-        );
+      ajaxSetup: function (target, settings) {
+        return settings
+          ? // Building a settings object
+            ajaxExtend(ajaxExtend(target, jQuery2.ajaxSettings), settings)
+          : // Extending ajaxSettings
+            ajaxExtend(jQuery2.ajaxSettings, target);
       },
       ajaxPrefilter: addToPrefiltersOrTransports(prefilters),
       ajaxTransport: addToPrefiltersOrTransports(transports),
       // Main method
-      ajax: function(url, options) {
+      ajax: function (url, options) {
         if (typeof url === "object") {
           options = url;
           url = void 0;
         }
         options = options || {};
-        var transport, cacheURL, responseHeadersString, responseHeaders, timeoutTimer, urlAnchor, completed2, fireGlobals, i2, uncached, s = jQuery2.ajaxSetup({}, options), callbackContext = s.context || s, globalEventContext = s.context && (callbackContext.nodeType || callbackContext.jquery) ? jQuery2(callbackContext) : jQuery2.event, deferred = jQuery2.Deferred(), completeDeferred = jQuery2.Callbacks("once memory"), statusCode = s.statusCode || {}, requestHeaders = {}, requestHeadersNames = {}, strAbort = "canceled", jqXHR = {
-          readyState: 0,
-          // Builds headers hashtable if needed
-          getResponseHeader: function(key) {
-            var match;
-            if (completed2) {
-              if (!responseHeaders) {
-                responseHeaders = {};
-                while (match = rheaders.exec(responseHeadersString)) {
-                  responseHeaders[match[1].toLowerCase() + " "] = (responseHeaders[match[1].toLowerCase() + " "] || []).concat(match[2]);
-                }
-              }
-              match = responseHeaders[key.toLowerCase() + " "];
-            }
-            return match == null ? null : match.join(", ");
-          },
-          // Raw string
-          getAllResponseHeaders: function() {
-            return completed2 ? responseHeadersString : null;
-          },
-          // Caches the header
-          setRequestHeader: function(name, value) {
-            if (completed2 == null) {
-              name = requestHeadersNames[name.toLowerCase()] = requestHeadersNames[name.toLowerCase()] || name;
-              requestHeaders[name] = value;
-            }
-            return this;
-          },
-          // Overrides response content-type header
-          overrideMimeType: function(type) {
-            if (completed2 == null) {
-              s.mimeType = type;
-            }
-            return this;
-          },
-          // Status-dependent callbacks
-          statusCode: function(map3) {
-            var code;
-            if (map3) {
+        var transport,
+          cacheURL,
+          responseHeadersString,
+          responseHeaders,
+          timeoutTimer,
+          urlAnchor,
+          completed2,
+          fireGlobals,
+          i2,
+          uncached,
+          s = jQuery2.ajaxSetup({}, options),
+          callbackContext = s.context || s,
+          globalEventContext =
+            s.context && (callbackContext.nodeType || callbackContext.jquery)
+              ? jQuery2(callbackContext)
+              : jQuery2.event,
+          deferred = jQuery2.Deferred(),
+          completeDeferred = jQuery2.Callbacks("once memory"),
+          statusCode = s.statusCode || {},
+          requestHeaders = {},
+          requestHeadersNames = {},
+          strAbort = "canceled",
+          jqXHR = {
+            readyState: 0,
+            // Builds headers hashtable if needed
+            getResponseHeader: function (key) {
+              var match;
               if (completed2) {
-                jqXHR.always(map3[jqXHR.status]);
-              } else {
-                for (code in map3) {
-                  statusCode[code] = [statusCode[code], map3[code]];
+                if (!responseHeaders) {
+                  responseHeaders = {};
+                  while ((match = rheaders.exec(responseHeadersString))) {
+                    responseHeaders[match[1].toLowerCase() + " "] = (
+                      responseHeaders[match[1].toLowerCase() + " "] || []
+                    ).concat(match[2]);
+                  }
+                }
+                match = responseHeaders[key.toLowerCase() + " "];
+              }
+              return match == null ? null : match.join(", ");
+            },
+            // Raw string
+            getAllResponseHeaders: function () {
+              return completed2 ? responseHeadersString : null;
+            },
+            // Caches the header
+            setRequestHeader: function (name, value) {
+              if (completed2 == null) {
+                name = requestHeadersNames[name.toLowerCase()] =
+                  requestHeadersNames[name.toLowerCase()] || name;
+                requestHeaders[name] = value;
+              }
+              return this;
+            },
+            // Overrides response content-type header
+            overrideMimeType: function (type) {
+              if (completed2 == null) {
+                s.mimeType = type;
+              }
+              return this;
+            },
+            // Status-dependent callbacks
+            statusCode: function (map3) {
+              var code;
+              if (map3) {
+                if (completed2) {
+                  jqXHR.always(map3[jqXHR.status]);
+                } else {
+                  for (code in map3) {
+                    statusCode[code] = [statusCode[code], map3[code]];
+                  }
                 }
               }
-            }
-            return this;
-          },
-          // Cancel the request
-          abort: function(statusText) {
-            var finalText = statusText || strAbort;
-            if (transport) {
-              transport.abort(finalText);
-            }
-            done2(0, finalText);
-            return this;
-          }
-        };
+              return this;
+            },
+            // Cancel the request
+            abort: function (statusText) {
+              var finalText = statusText || strAbort;
+              if (transport) {
+                transport.abort(finalText);
+              }
+              done2(0, finalText);
+              return this;
+            },
+          };
         deferred.promise(jqXHR);
-        s.url = ((url || s.url || location.href) + "").replace(rprotocol, location.protocol + "//");
+        s.url = ((url || s.url || location.href) + "").replace(
+          rprotocol,
+          location.protocol + "//",
+        );
         s.type = options.method || options.type || s.method || s.type;
-        s.dataTypes = (s.dataType || "*").toLowerCase().match(rnothtmlwhite) || [""];
+        s.dataTypes = (s.dataType || "*")
+          .toLowerCase()
+          .match(rnothtmlwhite) || [""];
         if (s.crossDomain == null) {
           urlAnchor = document$1.createElement("a");
           try {
             urlAnchor.href = s.url;
             urlAnchor.href = urlAnchor.href;
-            s.crossDomain = originAnchor.protocol + "//" + originAnchor.host !== urlAnchor.protocol + "//" + urlAnchor.host;
+            s.crossDomain =
+              originAnchor.protocol + "//" + originAnchor.host !==
+              urlAnchor.protocol + "//" + urlAnchor.host;
           } catch (e) {
             s.crossDomain = true;
           }
@@ -14863,38 +17803,64 @@
           }
           if (s.cache === false) {
             cacheURL = cacheURL.replace(rantiCache, "$1");
-            uncached = (rquery.test(cacheURL) ? "&" : "?") + "_=" + nonce.guid++ + uncached;
+            uncached =
+              (rquery.test(cacheURL) ? "&" : "?") +
+              "_=" +
+              nonce.guid++ +
+              uncached;
           }
           s.url = cacheURL + uncached;
-        } else if (s.data && s.processData && (s.contentType || "").indexOf("application/x-www-form-urlencoded") === 0) {
+        } else if (
+          s.data &&
+          s.processData &&
+          (s.contentType || "").indexOf("application/x-www-form-urlencoded") ===
+            0
+        ) {
           s.data = s.data.replace(r20, "+");
         }
         if (s.ifModified) {
           if (jQuery2.lastModified[cacheURL]) {
-            jqXHR.setRequestHeader("If-Modified-Since", jQuery2.lastModified[cacheURL]);
+            jqXHR.setRequestHeader(
+              "If-Modified-Since",
+              jQuery2.lastModified[cacheURL],
+            );
           }
           if (jQuery2.etag[cacheURL]) {
             jqXHR.setRequestHeader("If-None-Match", jQuery2.etag[cacheURL]);
           }
         }
-        if (s.data && s.hasContent && s.contentType !== false || options.contentType) {
+        if (
+          (s.data && s.hasContent && s.contentType !== false) ||
+          options.contentType
+        ) {
           jqXHR.setRequestHeader("Content-Type", s.contentType);
         }
         jqXHR.setRequestHeader(
           "Accept",
-          s.dataTypes[0] && s.accepts[s.dataTypes[0]] ? s.accepts[s.dataTypes[0]] + (s.dataTypes[0] !== "*" ? ", " + allTypes + "; q=0.01" : "") : s.accepts["*"]
+          s.dataTypes[0] && s.accepts[s.dataTypes[0]]
+            ? s.accepts[s.dataTypes[0]] +
+                (s.dataTypes[0] !== "*" ? ", " + allTypes + "; q=0.01" : "")
+            : s.accepts["*"],
         );
         for (i2 in s.headers) {
           jqXHR.setRequestHeader(i2, s.headers[i2]);
         }
-        if (s.beforeSend && (s.beforeSend.call(callbackContext, jqXHR, s) === false || completed2)) {
+        if (
+          s.beforeSend &&
+          (s.beforeSend.call(callbackContext, jqXHR, s) === false || completed2)
+        ) {
           return jqXHR.abort();
         }
         strAbort = "abort";
         completeDeferred.add(s.complete);
         jqXHR.done(s.success);
         jqXHR.fail(s.error);
-        transport = inspectPrefiltersOrTransports(transports, s, options, jqXHR);
+        transport = inspectPrefiltersOrTransports(
+          transports,
+          s,
+          options,
+          jqXHR,
+        );
         if (!transport) {
           done2(-1, "No Transport");
         } else {
@@ -14906,7 +17872,7 @@
             return jqXHR;
           }
           if (s.async && s.timeout > 0) {
-            timeoutTimer = window2.setTimeout(function() {
+            timeoutTimer = window2.setTimeout(function () {
               jqXHR.abort("timeout");
             }, s.timeout);
           }
@@ -14921,7 +17887,12 @@
           }
         }
         function done2(status, nativeStatusText, responses, headers) {
-          var isSuccess, success, error, response, modified, statusText = nativeStatusText;
+          var isSuccess,
+            success,
+            error,
+            response,
+            modified,
+            statusText = nativeStatusText;
           if (completed2) {
             return;
           }
@@ -14932,13 +17903,16 @@
           transport = void 0;
           responseHeadersString = headers || "";
           jqXHR.readyState = status > 0 ? 4 : 0;
-          isSuccess = status >= 200 && status < 300 || status === 304;
+          isSuccess = (status >= 200 && status < 300) || status === 304;
           if (responses) {
             response = ajaxHandleResponses(s, jqXHR, responses);
           }
-          if (!isSuccess && jQuery2.inArray("script", s.dataTypes) > -1 && jQuery2.inArray("json", s.dataTypes) < 0) {
-            s.converters["text script"] = function() {
-            };
+          if (
+            !isSuccess &&
+            jQuery2.inArray("script", s.dataTypes) > -1 &&
+            jQuery2.inArray("json", s.dataTypes) < 0
+          ) {
+            s.converters["text script"] = function () {};
           }
           response = ajaxConvert(s, response, jqXHR, isSuccess);
           if (isSuccess) {
@@ -14983,7 +17957,7 @@
           if (fireGlobals) {
             globalEventContext.trigger(
               isSuccess ? "ajaxSuccess" : "ajaxError",
-              [jqXHR, s, isSuccess ? success : error]
+              [jqXHR, s, isSuccess ? success : error],
             );
           }
           completeDeferred.fireWith(callbackContext, [jqXHR, statusText]);
@@ -14996,30 +17970,35 @@
         }
         return jqXHR;
       },
-      getJSON: function(url, data, callback) {
+      getJSON: function (url, data, callback) {
         return jQuery2.get(url, data, callback, "json");
       },
-      getScript: function(url, callback) {
+      getScript: function (url, callback) {
         return jQuery2.get(url, void 0, callback, "script");
-      }
+      },
     });
-    jQuery2.each(["get", "post"], function(_i, method) {
-      jQuery2[method] = function(url, data, callback, type) {
+    jQuery2.each(["get", "post"], function (_i, method) {
+      jQuery2[method] = function (url, data, callback, type) {
         if (typeof data === "function" || data === null) {
           type = type || callback;
           callback = data;
           data = void 0;
         }
-        return jQuery2.ajax(jQuery2.extend({
-          url,
-          type: method,
-          dataType: type,
-          data,
-          success: callback
-        }, jQuery2.isPlainObject(url) && url));
+        return jQuery2.ajax(
+          jQuery2.extend(
+            {
+              url,
+              type: method,
+              dataType: type,
+              data,
+              success: callback,
+            },
+            jQuery2.isPlainObject(url) && url,
+          ),
+        );
       };
     });
-    jQuery2.ajaxPrefilter(function(s) {
+    jQuery2.ajaxPrefilter(function (s) {
       var i2;
       for (i2 in s.headers) {
         if (i2.toLowerCase() === "content-type") {
@@ -15027,7 +18006,7 @@
         }
       }
     });
-    jQuery2._evalUrl = function(url, options, doc) {
+    jQuery2._evalUrl = function (url, options, doc) {
       return jQuery2.ajax({
         url,
         // Make this explicit, since user can override this through ajaxSetup (trac-11264)
@@ -15036,21 +18015,22 @@
         cache: true,
         async: false,
         global: false,
-        scriptAttrs: options.crossOrigin ? { "crossOrigin": options.crossOrigin } : void 0,
+        scriptAttrs: options.crossOrigin
+          ? { crossOrigin: options.crossOrigin }
+          : void 0,
         // Only evaluate the response if it is successful (gh-4126)
         // dataFilter is not invoked for failure responses, so using it instead
         // of the default converter is kludgy but it works.
         converters: {
-          "text script": function() {
-          }
+          "text script": function () {},
         },
-        dataFilter: function(response) {
+        dataFilter: function (response) {
           jQuery2.globalEval(response, options, doc);
-        }
+        },
       });
     };
     jQuery2.fn.extend({
-      wrapAll: function(html) {
+      wrapAll: function (html) {
         var wrap;
         if (this[0]) {
           if (typeof html === "function") {
@@ -15060,24 +18040,27 @@
           if (this[0].parentNode) {
             wrap.insertBefore(this[0]);
           }
-          wrap.map(function() {
-            var elem = this;
-            while (elem.firstElementChild) {
-              elem = elem.firstElementChild;
-            }
-            return elem;
-          }).append(this);
+          wrap
+            .map(function () {
+              var elem = this;
+              while (elem.firstElementChild) {
+                elem = elem.firstElementChild;
+              }
+              return elem;
+            })
+            .append(this);
         }
         return this;
       },
-      wrapInner: function(html) {
+      wrapInner: function (html) {
         if (typeof html === "function") {
-          return this.each(function(i2) {
+          return this.each(function (i2) {
             jQuery2(this).wrapInner(html.call(this, i2));
           });
         }
-        return this.each(function() {
-          var self2 = jQuery2(this), contents = self2.contents();
+        return this.each(function () {
+          var self2 = jQuery2(this),
+            contents = self2.contents();
           if (contents.length) {
             contents.wrapAll(html);
           } else {
@@ -15085,43 +18068,50 @@
           }
         });
       },
-      wrap: function(html) {
+      wrap: function (html) {
         var htmlIsFunction = typeof html === "function";
-        return this.each(function(i2) {
+        return this.each(function (i2) {
           jQuery2(this).wrapAll(htmlIsFunction ? html.call(this, i2) : html);
         });
       },
-      unwrap: function(selector) {
-        this.parent(selector).not("body").each(function() {
-          jQuery2(this).replaceWith(this.childNodes);
-        });
+      unwrap: function (selector) {
+        this.parent(selector)
+          .not("body")
+          .each(function () {
+            jQuery2(this).replaceWith(this.childNodes);
+          });
         return this;
-      }
+      },
     });
-    jQuery2.expr.pseudos.hidden = function(elem) {
+    jQuery2.expr.pseudos.hidden = function (elem) {
       return !jQuery2.expr.pseudos.visible(elem);
     };
-    jQuery2.expr.pseudos.visible = function(elem) {
-      return !!(elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length);
+    jQuery2.expr.pseudos.visible = function (elem) {
+      return !!(
+        elem.offsetWidth ||
+        elem.offsetHeight ||
+        elem.getClientRects().length
+      );
     };
-    jQuery2.ajaxSettings.xhr = function() {
+    jQuery2.ajaxSettings.xhr = function () {
       return new window2.XMLHttpRequest();
     };
     var xhrSuccessStatus = {
       // File protocol always yields status code 0, assume 200
-      0: 200
+      0: 200,
     };
-    jQuery2.ajaxTransport(function(options) {
+    jQuery2.ajaxTransport(function (options) {
       var callback;
       return {
-        send: function(headers, complete) {
-          var i2, xhr = options.xhr();
+        send: function (headers, complete) {
+          var i2,
+            xhr = options.xhr();
           xhr.open(
             options.type,
             options.url,
             options.async,
             options.username,
-            options.password
+            options.password,
           );
           if (options.xhrFields) {
             for (i2 in options.xhrFields) {
@@ -15137,25 +18127,32 @@
           for (i2 in headers) {
             xhr.setRequestHeader(i2, headers[i2]);
           }
-          callback = function(type) {
-            return function() {
+          callback = function (type) {
+            return function () {
               if (callback) {
-                callback = xhr.onload = xhr.onerror = xhr.onabort = xhr.ontimeout = null;
+                callback =
+                  xhr.onload =
+                  xhr.onerror =
+                  xhr.onabort =
+                  xhr.ontimeout =
+                    null;
                 if (type === "abort") {
                   xhr.abort();
                 } else if (type === "error") {
                   complete(
                     // File: protocol always yields status 0; see trac-8605, trac-14207
                     xhr.status,
-                    xhr.statusText
+                    xhr.statusText,
                   );
                 } else {
                   complete(
                     xhrSuccessStatus[xhr.status] || xhr.status,
                     xhr.statusText,
                     // For XHR2 non-text, let the caller handle it (gh-2498)
-                    (xhr.responseType || "text") === "text" ? { text: xhr.responseText } : { binary: xhr.response },
-                    xhr.getAllResponseHeaders()
+                    (xhr.responseType || "text") === "text"
+                      ? { text: xhr.responseText }
+                      : { binary: xhr.response },
+                    xhr.getAllResponseHeaders(),
                   );
                 }
               }
@@ -15165,42 +18162,47 @@
           xhr.onabort = xhr.onerror = xhr.ontimeout = callback("error");
           callback = callback("abort");
           try {
-            xhr.send(options.hasContent && options.data || null);
+            xhr.send((options.hasContent && options.data) || null);
           } catch (e) {
             if (callback) {
               throw e;
             }
           }
         },
-        abort: function() {
+        abort: function () {
           if (callback) {
             callback();
           }
-        }
+        },
       };
     });
     function canUseScriptTag(s) {
-      return s.scriptAttrs || !s.headers && (s.crossDomain || // When dealing with JSONP (`s.dataTypes` include "json" then)
-      // don't use a script tag so that error responses still may have
-      // `responseJSON` set. Continue using a script tag for JSONP requests that:
-      //   * are cross-domain as AJAX requests won't work without a CORS setup
-      //   * have `scriptAttrs` set as that's a script-only functionality
-      // Note that this means JSONP requests violate strict CSP script-src settings.
-      // A proper solution is to migrate from using JSONP to a CORS setup.
-      s.async && jQuery2.inArray("json", s.dataTypes) < 0);
+      return (
+        s.scriptAttrs ||
+        (!s.headers &&
+          (s.crossDomain || // When dealing with JSONP (`s.dataTypes` include "json" then)
+            // don't use a script tag so that error responses still may have
+            // `responseJSON` set. Continue using a script tag for JSONP requests that:
+            //   * are cross-domain as AJAX requests won't work without a CORS setup
+            //   * have `scriptAttrs` set as that's a script-only functionality
+            // Note that this means JSONP requests violate strict CSP script-src settings.
+            // A proper solution is to migrate from using JSONP to a CORS setup.
+            (s.async && jQuery2.inArray("json", s.dataTypes) < 0)))
+      );
     }
     jQuery2.ajaxSetup({
       accepts: {
-        script: "text/javascript, application/javascript, application/ecmascript, application/x-ecmascript"
+        script:
+          "text/javascript, application/javascript, application/ecmascript, application/x-ecmascript",
       },
       converters: {
-        "text script": function(text) {
+        "text script": function (text) {
           jQuery2.globalEval(text);
           return text;
-        }
-      }
+        },
+      },
     });
-    jQuery2.ajaxPrefilter("script", function(s) {
+    jQuery2.ajaxPrefilter("script", function (s) {
       if (s.cache === void 0) {
         s.cache = false;
       }
@@ -15208,46 +18210,70 @@
         s.type = "GET";
       }
     });
-    jQuery2.ajaxTransport("script", function(s) {
+    jQuery2.ajaxTransport("script", function (s) {
       if (canUseScriptTag(s)) {
         var script, callback;
         return {
-          send: function(_, complete) {
-            script = jQuery2("<script>").attr(s.scriptAttrs || {}).prop({ charset: s.scriptCharset, src: s.url }).on("load error", callback = function(evt) {
-              script.remove();
-              callback = null;
-              if (evt) {
-                complete(evt.type === "error" ? 404 : 200, evt.type);
-              }
-            });
+          send: function (_, complete) {
+            script = jQuery2("<script>")
+              .attr(s.scriptAttrs || {})
+              .prop({ charset: s.scriptCharset, src: s.url })
+              .on(
+                "load error",
+                (callback = function (evt) {
+                  script.remove();
+                  callback = null;
+                  if (evt) {
+                    complete(evt.type === "error" ? 404 : 200, evt.type);
+                  }
+                }),
+              );
             document$1.head.appendChild(script[0]);
           },
-          abort: function() {
+          abort: function () {
             if (callback) {
               callback();
             }
-          }
+          },
         };
       }
     });
-    var oldCallbacks = [], rjsonp = /(=)\?(?=&|$)|\?\?/;
+    var oldCallbacks = [],
+      rjsonp = /(=)\?(?=&|$)|\?\?/;
     jQuery2.ajaxSetup({
       jsonp: "callback",
-      jsonpCallback: function() {
-        var callback = oldCallbacks.pop() || jQuery2.expando + "_" + nonce.guid++;
+      jsonpCallback: function () {
+        var callback =
+          oldCallbacks.pop() || jQuery2.expando + "_" + nonce.guid++;
         this[callback] = true;
         return callback;
-      }
+      },
     });
-    jQuery2.ajaxPrefilter("jsonp", function(s, originalSettings, jqXHR) {
-      var callbackName, overwritten, responseContainer, jsonProp = s.jsonp !== false && (rjsonp.test(s.url) ? "url" : typeof s.data === "string" && (s.contentType || "").indexOf("application/x-www-form-urlencoded") === 0 && rjsonp.test(s.data) && "data");
-      callbackName = s.jsonpCallback = typeof s.jsonpCallback === "function" ? s.jsonpCallback() : s.jsonpCallback;
+    jQuery2.ajaxPrefilter("jsonp", function (s, originalSettings, jqXHR) {
+      var callbackName,
+        overwritten,
+        responseContainer,
+        jsonProp =
+          s.jsonp !== false &&
+          (rjsonp.test(s.url)
+            ? "url"
+            : typeof s.data === "string" &&
+              (s.contentType || "").indexOf(
+                "application/x-www-form-urlencoded",
+              ) === 0 &&
+              rjsonp.test(s.data) &&
+              "data");
+      callbackName = s.jsonpCallback =
+        typeof s.jsonpCallback === "function"
+          ? s.jsonpCallback()
+          : s.jsonpCallback;
       if (jsonProp) {
         s[jsonProp] = s[jsonProp].replace(rjsonp, "$1" + callbackName);
       } else if (s.jsonp !== false) {
-        s.url += (rquery.test(s.url) ? "&" : "?") + s.jsonp + "=" + callbackName;
+        s.url +=
+          (rquery.test(s.url) ? "&" : "?") + s.jsonp + "=" + callbackName;
       }
-      s.converters["script json"] = function() {
+      s.converters["script json"] = function () {
         if (!responseContainer) {
           jQuery2.error(callbackName + " was not called");
         }
@@ -15255,10 +18281,10 @@
       };
       s.dataTypes[0] = "json";
       overwritten = window2[callbackName];
-      window2[callbackName] = function() {
+      window2[callbackName] = function () {
         responseContainer = arguments;
       };
-      jqXHR.always(function() {
+      jqXHR.always(function () {
         if (overwritten === void 0) {
           jQuery2(window2).removeProp(callbackName);
         } else {
@@ -15275,16 +18301,20 @@
       });
       return "script";
     });
-    jQuery2.ajaxPrefilter(function(s, origOptions) {
-      if (typeof s.data !== "string" && !jQuery2.isPlainObject(s.data) && !Array.isArray(s.data) && // Don't disable data processing if explicitly set by the user.
-      !("processData" in origOptions)) {
+    jQuery2.ajaxPrefilter(function (s, origOptions) {
+      if (
+        typeof s.data !== "string" &&
+        !jQuery2.isPlainObject(s.data) &&
+        !Array.isArray(s.data) && // Don't disable data processing if explicitly set by the user.
+        !("processData" in origOptions)
+      ) {
         s.processData = false;
       }
       if (s.data instanceof window2.FormData) {
         s.contentType = false;
       }
     });
-    jQuery2.parseHTML = function(data, context, keepScripts) {
+    jQuery2.parseHTML = function (data, context, keepScripts) {
       if (typeof data !== "string" && !isObviousHtml(data + "")) {
         return [];
       }
@@ -15307,8 +18337,12 @@
       }
       return jQuery2.merge([], parsed.childNodes);
     };
-    jQuery2.fn.load = function(url, params, callback) {
-      var selector, type, response, self2 = this, off = url.indexOf(" ");
+    jQuery2.fn.load = function (url, params, callback) {
+      var selector,
+        type,
+        response,
+        self2 = this,
+        off = url.indexOf(" ");
       if (off > -1) {
         selector = stripAndCollapse(url.slice(off));
         url = url.slice(0, off);
@@ -15320,47 +18354,69 @@
         type = "POST";
       }
       if (self2.length > 0) {
-        jQuery2.ajax({
-          url,
-          // If "type" variable is undefined, then "GET" method will be used.
-          // Make value of this field explicit since
-          // user can override it through ajaxSetup method
-          type: type || "GET",
-          dataType: "html",
-          data: params
-        }).done(function(responseText) {
-          response = arguments;
-          self2.html(selector ? (
-            // If a selector was specified, locate the right elements in a dummy div
-            // Exclude scripts to avoid IE 'Permission Denied' errors
-            jQuery2("<div>").append(jQuery2.parseHTML(responseText)).find(selector)
-          ) : (
-            // Otherwise use the full result
-            responseText
-          ));
-        }).always(callback && function(jqXHR, status) {
-          self2.each(function() {
-            callback.apply(this, response || [jqXHR.responseText, status, jqXHR]);
-          });
-        });
+        jQuery2
+          .ajax({
+            url,
+            // If "type" variable is undefined, then "GET" method will be used.
+            // Make value of this field explicit since
+            // user can override it through ajaxSetup method
+            type: type || "GET",
+            dataType: "html",
+            data: params,
+          })
+          .done(function (responseText) {
+            response = arguments;
+            self2.html(
+              selector
+                ? // If a selector was specified, locate the right elements in a dummy div
+                  // Exclude scripts to avoid IE 'Permission Denied' errors
+                  jQuery2("<div>")
+                    .append(jQuery2.parseHTML(responseText))
+                    .find(selector)
+                : // Otherwise use the full result
+                  responseText,
+            );
+          })
+          .always(
+            callback &&
+              function (jqXHR, status) {
+                self2.each(function () {
+                  callback.apply(
+                    this,
+                    response || [jqXHR.responseText, status, jqXHR],
+                  );
+                });
+              },
+          );
       }
       return this;
     };
-    jQuery2.expr.pseudos.animated = function(elem) {
-      return jQuery2.grep(jQuery2.timers, function(fn) {
+    jQuery2.expr.pseudos.animated = function (elem) {
+      return jQuery2.grep(jQuery2.timers, function (fn) {
         return elem === fn.elem;
       }).length;
     };
     jQuery2.offset = {
-      setOffset: function(elem, options, i2) {
-        var curPosition, curLeft, curCSSTop, curTop, curOffset, curCSSLeft, calculatePosition, position = jQuery2.css(elem, "position"), curElem = jQuery2(elem), props = {};
+      setOffset: function (elem, options, i2) {
+        var curPosition,
+          curLeft,
+          curCSSTop,
+          curTop,
+          curOffset,
+          curCSSLeft,
+          calculatePosition,
+          position = jQuery2.css(elem, "position"),
+          curElem = jQuery2(elem),
+          props = {};
         if (position === "static") {
           elem.style.position = "relative";
         }
         curOffset = curElem.offset();
         curCSSTop = jQuery2.css(elem, "top");
         curCSSLeft = jQuery2.css(elem, "left");
-        calculatePosition = (position === "absolute" || position === "fixed") && (curCSSTop + curCSSLeft).indexOf("auto") > -1;
+        calculatePosition =
+          (position === "absolute" || position === "fixed") &&
+          (curCSSTop + curCSSLeft).indexOf("auto") > -1;
         if (calculatePosition) {
           curPosition = curElem.position();
           curTop = curPosition.top;
@@ -15383,17 +18439,21 @@
         } else {
           curElem.css(props);
         }
-      }
+      },
     };
     jQuery2.fn.extend({
       // offset() relates an element's border box to the document origin
-      offset: function(options) {
+      offset: function (options) {
         if (arguments.length) {
-          return options === void 0 ? this : this.each(function(i2) {
-            jQuery2.offset.setOffset(this, options, i2);
-          });
+          return options === void 0
+            ? this
+            : this.each(function (i2) {
+                jQuery2.offset.setOffset(this, options, i2);
+              });
         }
-        var rect, win, elem = this[0];
+        var rect,
+          win,
+          elem = this[0];
         if (!elem) {
           return;
         }
@@ -15404,34 +18464,61 @@
         win = elem.ownerDocument.defaultView;
         return {
           top: rect.top + win.pageYOffset,
-          left: rect.left + win.pageXOffset
+          left: rect.left + win.pageXOffset,
         };
       },
       // position() relates an element's margin box to its offset parent's padding box
       // This corresponds to the behavior of CSS absolute positioning
-      position: function() {
+      position: function () {
         if (!this[0]) {
           return;
         }
-        var offsetParent, offset, doc, elem = this[0], parentOffset = { top: 0, left: 0 };
+        var offsetParent,
+          offset,
+          doc,
+          elem = this[0],
+          parentOffset = { top: 0, left: 0 };
         if (jQuery2.css(elem, "position") === "fixed") {
           offset = elem.getBoundingClientRect();
         } else {
           offset = this.offset();
           doc = elem.ownerDocument;
           offsetParent = elem.offsetParent || doc.documentElement;
-          while (offsetParent && offsetParent !== doc.documentElement && jQuery2.css(offsetParent, "position") === "static") {
+          while (
+            offsetParent &&
+            offsetParent !== doc.documentElement &&
+            jQuery2.css(offsetParent, "position") === "static"
+          ) {
             offsetParent = offsetParent.offsetParent || doc.documentElement;
           }
-          if (offsetParent && offsetParent !== elem && offsetParent.nodeType === 1 && jQuery2.css(offsetParent, "position") !== "static") {
+          if (
+            offsetParent &&
+            offsetParent !== elem &&
+            offsetParent.nodeType === 1 &&
+            jQuery2.css(offsetParent, "position") !== "static"
+          ) {
             parentOffset = jQuery2(offsetParent).offset();
-            parentOffset.top += jQuery2.css(offsetParent, "borderTopWidth", true);
-            parentOffset.left += jQuery2.css(offsetParent, "borderLeftWidth", true);
+            parentOffset.top += jQuery2.css(
+              offsetParent,
+              "borderTopWidth",
+              true,
+            );
+            parentOffset.left += jQuery2.css(
+              offsetParent,
+              "borderLeftWidth",
+              true,
+            );
           }
         }
         return {
-          top: offset.top - parentOffset.top - jQuery2.css(elem, "marginTop", true),
-          left: offset.left - parentOffset.left - jQuery2.css(elem, "marginLeft", true)
+          top:
+            offset.top -
+            parentOffset.top -
+            jQuery2.css(elem, "marginTop", true),
+          left:
+            offset.left -
+            parentOffset.left -
+            jQuery2.css(elem, "marginLeft", true),
         };
       },
       // This method will return documentElement in the following cases:
@@ -15444,112 +18531,147 @@
       // and might be considered as more preferable results.
       //
       // This logic, however, is not guaranteed and can change at any point in the future
-      offsetParent: function() {
-        return this.map(function() {
+      offsetParent: function () {
+        return this.map(function () {
           var offsetParent = this.offsetParent;
-          while (offsetParent && jQuery2.css(offsetParent, "position") === "static") {
+          while (
+            offsetParent &&
+            jQuery2.css(offsetParent, "position") === "static"
+          ) {
             offsetParent = offsetParent.offsetParent;
           }
           return offsetParent || documentElement$1;
         });
-      }
-    });
-    jQuery2.each({ scrollLeft: "pageXOffset", scrollTop: "pageYOffset" }, function(method, prop) {
-      var top = "pageYOffset" === prop;
-      jQuery2.fn[method] = function(val) {
-        return access(this, function(elem, method2, val2) {
-          var win;
-          if (isWindow(elem)) {
-            win = elem;
-          } else if (elem.nodeType === 9) {
-            win = elem.defaultView;
-          }
-          if (val2 === void 0) {
-            return win ? win[prop] : elem[method2];
-          }
-          if (win) {
-            win.scrollTo(
-              !top ? val2 : win.pageXOffset,
-              top ? val2 : win.pageYOffset
-            );
-          } else {
-            elem[method2] = val2;
-          }
-        }, method, val, arguments.length);
-      };
-    });
-    jQuery2.each({ Height: "height", Width: "width" }, function(name, type) {
-      jQuery2.each({
-        padding: "inner" + name,
-        content: type,
-        "": "outer" + name
-      }, function(defaultExtra, funcName) {
-        jQuery2.fn[funcName] = function(margin, value) {
-          var chainable = arguments.length && (defaultExtra || typeof margin !== "boolean"), extra = defaultExtra || (margin === true || value === true ? "margin" : "border");
-          return access(this, function(elem, type2, value2) {
-            var doc;
-            if (isWindow(elem)) {
-              return funcName.indexOf("outer") === 0 ? elem["inner" + name] : elem.document.documentElement["client" + name];
-            }
-            if (elem.nodeType === 9) {
-              doc = elem.documentElement;
-              return Math.max(
-                elem.body["scroll" + name],
-                doc["scroll" + name],
-                elem.body["offset" + name],
-                doc["offset" + name],
-                doc["client" + name]
-              );
-            }
-            return value2 === void 0 ? (
-              // Get width or height on the element, requesting but not forcing parseFloat
-              jQuery2.css(elem, type2, extra)
-            ) : (
-              // Set width or height on the element
-              jQuery2.style(elem, type2, value2, extra)
-            );
-          }, type, chainable ? margin : void 0, chainable);
-        };
-      });
-    });
-    jQuery2.each([
-      "ajaxStart",
-      "ajaxStop",
-      "ajaxComplete",
-      "ajaxError",
-      "ajaxSuccess",
-      "ajaxSend"
-    ], function(_i, type) {
-      jQuery2.fn[type] = function(fn) {
-        return this.on(type, fn);
-      };
-    });
-    jQuery2.fn.extend({
-      bind: function(types, data, fn) {
-        return this.on(types, null, data, fn);
       },
-      unbind: function(types, fn) {
-        return this.off(types, null, fn);
-      },
-      delegate: function(selector, types, data, fn) {
-        return this.on(types, selector, data, fn);
-      },
-      undelegate: function(selector, types, fn) {
-        return arguments.length === 1 ? this.off(selector, "**") : this.off(types, selector || "**", fn);
-      },
-      hover: function(fnOver, fnOut) {
-        return this.on("mouseenter", fnOver).on("mouseleave", fnOut || fnOver);
-      }
     });
     jQuery2.each(
-      "blur focus focusin focusout resize scroll click dblclick mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave change select submit keydown keypress keyup contextmenu".split(" "),
-      function(_i, name) {
-        jQuery2.fn[name] = function(data, fn) {
-          return arguments.length > 0 ? this.on(name, null, data, fn) : this.trigger(name);
+      { scrollLeft: "pageXOffset", scrollTop: "pageYOffset" },
+      function (method, prop) {
+        var top = "pageYOffset" === prop;
+        jQuery2.fn[method] = function (val) {
+          return access(
+            this,
+            function (elem, method2, val2) {
+              var win;
+              if (isWindow(elem)) {
+                win = elem;
+              } else if (elem.nodeType === 9) {
+                win = elem.defaultView;
+              }
+              if (val2 === void 0) {
+                return win ? win[prop] : elem[method2];
+              }
+              if (win) {
+                win.scrollTo(
+                  !top ? val2 : win.pageXOffset,
+                  top ? val2 : win.pageYOffset,
+                );
+              } else {
+                elem[method2] = val2;
+              }
+            },
+            method,
+            val,
+            arguments.length,
+          );
         };
-      }
+      },
     );
-    jQuery2.proxy = function(fn, context) {
+    jQuery2.each({ Height: "height", Width: "width" }, function (name, type) {
+      jQuery2.each(
+        {
+          padding: "inner" + name,
+          content: type,
+          "": "outer" + name,
+        },
+        function (defaultExtra, funcName) {
+          jQuery2.fn[funcName] = function (margin, value) {
+            var chainable =
+                arguments.length &&
+                (defaultExtra || typeof margin !== "boolean"),
+              extra =
+                defaultExtra ||
+                (margin === true || value === true ? "margin" : "border");
+            return access(
+              this,
+              function (elem, type2, value2) {
+                var doc;
+                if (isWindow(elem)) {
+                  return funcName.indexOf("outer") === 0
+                    ? elem["inner" + name]
+                    : elem.document.documentElement["client" + name];
+                }
+                if (elem.nodeType === 9) {
+                  doc = elem.documentElement;
+                  return Math.max(
+                    elem.body["scroll" + name],
+                    doc["scroll" + name],
+                    elem.body["offset" + name],
+                    doc["offset" + name],
+                    doc["client" + name],
+                  );
+                }
+                return value2 === void 0
+                  ? // Get width or height on the element, requesting but not forcing parseFloat
+                    jQuery2.css(elem, type2, extra)
+                  : // Set width or height on the element
+                    jQuery2.style(elem, type2, value2, extra);
+              },
+              type,
+              chainable ? margin : void 0,
+              chainable,
+            );
+          };
+        },
+      );
+    });
+    jQuery2.each(
+      [
+        "ajaxStart",
+        "ajaxStop",
+        "ajaxComplete",
+        "ajaxError",
+        "ajaxSuccess",
+        "ajaxSend",
+      ],
+      function (_i, type) {
+        jQuery2.fn[type] = function (fn) {
+          return this.on(type, fn);
+        };
+      },
+    );
+    jQuery2.fn.extend({
+      bind: function (types, data, fn) {
+        return this.on(types, null, data, fn);
+      },
+      unbind: function (types, fn) {
+        return this.off(types, null, fn);
+      },
+      delegate: function (selector, types, data, fn) {
+        return this.on(types, selector, data, fn);
+      },
+      undelegate: function (selector, types, fn) {
+        return arguments.length === 1
+          ? this.off(selector, "**")
+          : this.off(types, selector || "**", fn);
+      },
+      hover: function (fnOver, fnOut) {
+        return this.on("mouseenter", fnOver).on("mouseleave", fnOut || fnOver);
+      },
+    });
+    jQuery2.each(
+      "blur focus focusin focusout resize scroll click dblclick mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave change select submit keydown keypress keyup contextmenu".split(
+        " ",
+      ),
+      function (_i, name) {
+        jQuery2.fn[name] = function (data, fn) {
+          return arguments.length > 0
+            ? this.on(name, null, data, fn)
+            : this.trigger(name);
+        };
+      },
+    );
+    jQuery2.proxy = function (fn, context) {
       var tmp, args, proxy;
       if (typeof context === "string") {
         tmp = fn[context];
@@ -15560,13 +18682,13 @@
         return void 0;
       }
       args = slice.call(arguments, 2);
-      proxy = function() {
+      proxy = function () {
         return fn.apply(context || this, args.concat(slice.call(arguments)));
       };
       proxy.guid = fn.guid = fn.guid || jQuery2.guid++;
       return proxy;
     };
-    jQuery2.holdReady = function(hold) {
+    jQuery2.holdReady = function (hold) {
       if (hold) {
         jQuery2.readyWait++;
       } else {
@@ -15575,12 +18697,13 @@
     };
     jQuery2.expr[":"] = jQuery2.expr.filters = jQuery2.expr.pseudos;
     if (typeof define === "function" && define.amd) {
-      define("jquery", [], function() {
+      define("jquery", [], function () {
         return jQuery2;
       });
     }
-    var _jQuery = window2.jQuery, _$ = window2.$;
-    jQuery2.noConflict = function(deep) {
+    var _jQuery = window2.jQuery,
+      _$ = window2.$;
+    jQuery2.noConflict = function (deep) {
       if (window2.$ === jQuery2) {
         window2.$ = _$;
       }
@@ -15600,21 +18723,21 @@
   var map = L3.map("map").setView([48.6936, 6.1846], 13);
   L3.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 19,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    referrerPolicy: "origin"
+    attribution:
+      '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    referrerPolicy: "origin",
   }).addTo(map);
   document.querySelector("#reload-map-button").onclick = () => {
     let travaux = document.querySelector("#travaux-check").checked;
     let velib = document.querySelector("#velib-check").checked;
     let resto = document.querySelector("#resto-check").checked;
     map.eachLayer((layer) => {
-      if (layer["_latlng"] != void 0)
-        layer.remove();
+      if (layer["_latlng"] != void 0) layer.remove();
     });
-    showAll({
+    showMap({
       resto,
       velib,
-      travaux
+      travaux,
     });
   };
   function toggleHidden(id) {
@@ -15643,7 +18766,7 @@
       toggleHidden(id);
     };
   });
-  showAll();
+  showMap();
   toggleHidden("mappage");
 })();
 /*! Bundled license information:
