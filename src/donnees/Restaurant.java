@@ -8,12 +8,14 @@ public class Restaurant implements Serializable {
     private String adresse;
     private Double lat;
     private Double lon;
+    private int nbPlaces;
 
-    public Restaurant(String nom, String adresse, Double lat, Double lon) {
+    public Restaurant(String nom, String adresse, Double lat, Double lon,  int nbPlaces) {
         this.nom = nom;
         this.adresse = adresse;
         this.lat = lat;
         this.lon = lon;
+        this.nbPlaces =  nbPlaces;
     }
 
     public String getNom() {
@@ -38,5 +40,9 @@ public class Restaurant implements Serializable {
 
     public int getId() {
         return id;
+    }
+
+    public int getNbPlaces() {
+        return nbPlaces;
     }
 }
