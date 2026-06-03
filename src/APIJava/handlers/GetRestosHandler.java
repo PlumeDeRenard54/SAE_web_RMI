@@ -13,7 +13,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.List;
 
-import static main.Main.sendOptionResponse;
+import static APIJava.main.Main.sendOptionResponse;
 
 public class GetRestosHandler implements HttpHandler {
 

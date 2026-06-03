@@ -8,7 +8,7 @@ import com.sun.net.httpserver.HttpHandler;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import static main.Main.getInfosAPI;
+import static APIJava.main.Main.getInfosAPI;
 
 public class GetAccidentsHandler implements HttpHandler {
 
