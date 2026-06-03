@@ -6,6 +6,8 @@ import { ListeRestos } from "./Interfaces/ListeRestos";
 import { serverHost } from "./env";
 import { Loaders } from "./lib/Loaders";
 import { showAll } from "./lib/MapHandler";
+import { $ } from "jquery";
+import showdown from 'showdown';
 
 export var map = L.map("map").setView([48.6936, 6.1846], 13);
 
@@ -26,7 +28,7 @@ L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
       .checked;
 
     map.eachLayer((layer) => {
-      if ((layer as any)["_latlng"]  != undefined) layer.remove();
+      if ((layer as any)["_latlng"] != undefined) layer.remove();
     });
 
     showAll({
@@ -51,6 +53,17 @@ export function toggleHidden(id: string) {
     }
   }
 }
+
+
+fetch("data/Compte-Rendu.md").then(async data =>{
+
+  var converter = new showdown.Converter(),
+    text      = await data.text(),
+    html      = converter.makeHtml(text);
+
+    document.querySelector("#cr")!.innerHTML = html
+
+})
 
 // Initialisation boutons header
 let header = document.querySelector("header")!;

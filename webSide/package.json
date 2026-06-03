@@ -15,14 +15,20 @@
   "main": "src/ts/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "esbuild src/ts/index.ts --bundle  --sourcemap --target=es2015 --outfile=src/js/index.js",
-    "buildServer": "esbuild src/ts/index.ts --bundle --sourcemap --target=es2015 --outfile=/opt/lampp/htdocs/www/photoBox/js/index.js ; cp ./index.html /opt/lampp/htdocs/www/photoBox; cp css /opt/lampp/htdocs/www/photoBox -r "
+    "build": "esbuild src/ts/index.ts  --bundle  --sourcemap --target=es2015 --outfile=src/js/index.js",
+    "buildServer": "esbuild src/ts/index.ts --bundle --sourcemap --target=es2015 --outfile=/opt/lampp/htdocs/www/progRep/js/index.js ; cp src/*.html /opt/lampp/htdocs/www/progRep; cp src/css /opt/lampp/htdocs/www/progRep -r ; cp src/data /opt/lampp/htdocs/www/progRep -r"
   },
   "dependencies": {
     "@types/geojson": "^7946.0.16",
     "@types/leaflet": "^1.9.21",
     "bootstrap": "^5.3.8",
     "esbuild": "^0.17.19",
-    "leaflet": "^1.9.4"
+    "jquery": "^4.0.0",
+    "leaflet": "^1.9.4",
+    "showdown": "^2.1.0"
+  },
+  "devDependencies": {
+    "@types/jquery": "^4.0.0",
+    "esbuild-raw-loader": "^0.3.1"
   }
 }
