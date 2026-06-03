@@ -1,7 +1,13 @@
 import * as L from "leaflet";
-import { RestoInterface } from "./Interfaces/RestoInterface";
+import { ListeVlib } from "./Interfaces/ListeVlib";
+import { showResa } from "./lib/ReservationUi";
+import { ListeTravaux } from "./Interfaces/ListeTravaux";
+import { ListeRestos } from "./Interfaces/ListeRestos";
+import { serverHost } from "./env";
+import { Loaders } from "./lib/Loaders";
+import { showAll } from "./lib/MapHandler";
 
-var map = L.map("map").setView([48.6936, 6.1846], 13);
+export var map = L.map("map").setView([48.6936, 6.1846], 13);
 
 L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
   maxZoom: 19,
@@ -10,33 +16,27 @@ L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
   referrerPolicy: "origin",
 }).addTo(map);
 
-fetch("apiURL")
-  .then(async (data: Response) => {
-    let json: RestoInterface = await data.json();
-    for (const resto of json.restos) {
-      // let marker = L.marker([51.5, -0.09]).addTo(map);
-      // marker.bindPopup("<NomDuResto>")
-      // marker.on('click', onMapClick);
-    }
-  })
-  .catch(() => console.log("API Not Found"));
+(document.querySelector("#reload-map-button")! as HTMLButtonElement).onclick =
+  () => {
+    let travaux = (document.querySelector("#travaux-check") as HTMLInputElement)
+      .checked;
+    let velib = (document.querySelector("#velib-check") as HTMLInputElement)
+      .checked;
+    let resto = (document.querySelector("#resto-check") as HTMLInputElement)
+      .checked;
 
-// Initialisation boutons header
-let header = document.querySelector("header")!;
-console.log(header.childNodes);
-header.childNodes.forEach((node) => {
-  if (!("id" in node)) {
-    return;
-  }
+    map.eachLayer((layer) => {
+      if ((layer as any)["_latlng"]  != undefined) layer.remove();
+    });
 
-  let nodeCast = node as HTMLSpanElement;
-  let id = nodeCast.id.split("-")[0];
-  nodeCast.onclick = () => {
-    toggleHidden(id)
+    showAll({
+      resto,
+      velib,
+      travaux,
+    });
   };
-});
 
-function toggleHidden(id: string) {
+export function toggleHidden(id: string) {
   let mainDiv = document.querySelector("main")!;
   for (let mainPart of mainDiv.childNodes) {
     if (!("id" in mainPart)) {
@@ -52,4 +52,19 @@ function toggleHidden(id: string) {
   }
 }
 
-toggleHidden("map")
+// Initialisation boutons header
+let header = document.querySelector("header")!;
+header.childNodes.forEach((node) => {
+  if (!("id" in node)) {
+    return;
+  }
+
+  let nodeCast = node as HTMLSpanElement;
+  let id = nodeCast.id.split("-")[0];
+  nodeCast.onclick = () => {
+    toggleHidden(id);
+  };
+});
+
+showAll();
+toggleHidden("mappage");
