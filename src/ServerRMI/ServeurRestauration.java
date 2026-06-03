@@ -1,5 +1,7 @@
 package ServerRMI;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import donnees.Reservation;
 import donnees.Restaurant;
 
@@ -35,12 +37,12 @@ public class ServeurRestauration implements ServiceRestauration {
     }
 
     @Override
-    public List<Restaurant> getRestaurants() throws RemoteException{
+    public String getRestaurants() throws RemoteException{
         Repository r = Repository.getInstance();
         try{
             System.out.println("Recupération des restaurants");
-            return r.getRestaurants();
-        }catch(SQLException e){
+            return (new ObjectMapper()).writeValueAsString(r.getRestaurants());
+        }catch(SQLException | JsonProcessingException e){
             e.printStackTrace();
         }
         return null;

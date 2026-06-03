@@ -42,12 +42,11 @@ public class GetRestosHandler implements HttpHandler {
                 System.out.println(e.getMessage());
                 throw new RuntimeException(e);
             }
-            List<Restaurant> listeRestos = resto.getRestaurants();
+            String json = resto.getRestaurants();
 //                    System.out.println(listeRestos.toString());
-            String json = (new ObjectMapper()).writeValueAsString(listeRestos);
-            System.out.println("Affichage JSON");
-            System.out.println(json);
-            System.out.println("FIn affichage JSON");
+//            System.out.println("Affichage JSON");
+//            System.out.println(json);
+//            System.out.println("FIn affichage JSON");
             exchange.sendResponseHeaders(200, json.getBytes().length);
             OutputStream os = exchange.getResponseBody();
             os.write(json.getBytes());
