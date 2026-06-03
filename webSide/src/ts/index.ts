@@ -5,9 +5,10 @@ import { ListeTravaux } from "./Interfaces/ListeTravaux";
 import { ListeRestos } from "./Interfaces/ListeRestos";
 import { serverHost } from "./env";
 import { Loaders } from "./lib/Loaders";
-import { showAll } from "./lib/MapHandler";
+import { showMap } from "./lib/MapHandler";
 import { $ } from "jquery";
-import showdown from 'showdown';
+import showdown from "showdown";
+import { showList } from "./lib/ListHandler";
 
 export var map = L.map("map").setView([48.6936, 6.1846], 13);
 
@@ -31,13 +32,24 @@ L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
       if ((layer as any)["_latlng"] != undefined) layer.remove();
     });
 
-    showAll({
+    showMap({
+      resto,
+      velib,
+      travaux,
+    });
+
+    showList({
       resto,
       velib,
       travaux,
     });
   };
 
+/**
+ * Choix de la page affichée
+ *
+ * Page reliée au bouton grâce au nommage : xxx-button -> xxx
+ */
 export function toggleHidden(id: string) {
   let mainDiv = document.querySelector("main")!;
   for (let mainPart of mainDiv.childNodes) {
@@ -54,21 +66,19 @@ export function toggleHidden(id: string) {
   }
 }
 
-
-fetch("data/Compte-Rendu.md").then(async data =>{
-
+//Init du CR
+fetch("data/Compte-Rendu.md").then(async (data) => {
   var converter = new showdown.Converter(),
-    text      = await data.text(),
-    html      = converter.makeHtml(text);
+    text = await data.text(),
+    html = converter.makeHtml(text);
 
-    document.querySelector("#cr")!.innerHTML = html
-
-})
+  document.querySelector("#cr")!.innerHTML = html;
+});
 
 // Initialisation boutons header
-let header = document.querySelector("header")!;
+let header = document.querySelector("header ul")!;
 header.childNodes.forEach((node) => {
-  if (!("id" in node)) {
+  if (!("id" in node) || node.id == "drd") {
     return;
   }
 
@@ -79,5 +89,6 @@ header.childNodes.forEach((node) => {
   };
 });
 
-showAll();
+(async ()=> showMap())();
+(async () => showList())();
 toggleHidden("mappage");

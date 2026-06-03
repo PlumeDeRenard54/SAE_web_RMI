@@ -41,6 +41,9 @@ export async function showRestos() {
 
   for (const resto of await loader.getRestos()) {
     let marker = L.marker([resto.lat, resto.lon]).addTo(map);
+    marker.setIcon(
+      L.icon({ iconUrl: "data/icon/resto.png", iconSize: L.point(30, 30) }),
+    );
     let popup = marker.bindPopup(resto.nom);
     popup.on("click", () => {
       showResa(resto);
@@ -49,7 +52,7 @@ export async function showRestos() {
   }
 }
 
-export function showAll(
+export function showMap(
   show: what2show = { resto: true, velib: true, travaux: true },
 ) {
   if (show.resto) {
