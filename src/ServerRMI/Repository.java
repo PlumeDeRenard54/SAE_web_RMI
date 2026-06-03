@@ -3,6 +3,7 @@ package ServerRMI;
 import donnees.Reservation;
 import donnees.Restaurant;
 
+
 import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,7 +20,7 @@ public final class Repository {
         /*
         Test save resto
          */
-        repo.saveRestaurant(new Restaurant("RestoTresBo", "skibidi", 12113.,12131.));
+        //repo.saveRestaurant(new Restaurant("RestoTresBo", "skibidi", 12113.,12131.));
 
 
 
@@ -29,7 +30,7 @@ public final class Repository {
 
         List<Restaurant> restaurants = repo.getRestaurants();
         ServeurRestauration serveurRestauration = new ServeurRestauration();
-        Reservation reservation = new Reservation("Carnet", "Alexander", "0708965634", (restaurants.get(0)).getId(), "10-10-2010", 2);
+        Reservation reservation = new Reservation("Carnet", "Alexander", "0708965634", (restaurants.get(0)).getId(), "10-10-2010 10:05:00", 2);
         serveurRestauration.reserverRestaurant(reservation);
 
         System.out.println(repo.getRestaurants());
@@ -79,7 +80,7 @@ public final class Repository {
 
         Connection connect = DatabaseConnection.getConnection();
 
-        String SQLPrep = "INSERT INTO e85555u.restaurant (id, nom, adresse, lat, lon) values (?,?,?,?,?)";
+        String SQLPrep = "INSERT INTO e85555u.restaurant (id, nom, adresse, lat, lon, nbplaces) values (?,?,?,?,?,?)";
 
         PreparedStatement prep = connect.prepareStatement(SQLPrep);
         prep.setInt(1, restaurant.getId());
@@ -87,6 +88,7 @@ public final class Repository {
         prep.setString(3,restaurant.getAdresse());
         prep.setDouble(4,restaurant.getLat());
         prep.setDouble(5,restaurant.getLon());
+        prep.setInt(6,restaurant.getNbPlaces());
 
         prep.executeUpdate();
     }
@@ -97,7 +99,7 @@ public final class Repository {
 
         Connection connect = DatabaseConnection.getConnection();
 
-        String SQLPrep = "INSERT INTO e85555u.reservation (idres, nomcli, prenomcli, numtel, idrestaurant, dateres, nbconvives) values (?,?,?,?,?, TO_DATE(?, 'DD-MM-YYYY'),?)";
+        String SQLPrep = "INSERT INTO e85555u.reservation (idres, nomcli, prenomcli, numtel, idrestaurant, dateres, nbconvives) values (?,?,?,?,?, TO_DATE(?, 'DD-MM-YYYY HH24:MI:SS'),?)";
 
         PreparedStatement prep = connect.prepareStatement(SQLPrep);
         prep.setInt(1, reservation.getId());
@@ -120,7 +122,7 @@ public final class Repository {
         List<Restaurant> restaurants = new ArrayList<Restaurant>();
 
         while (rs.next()) {
-            Restaurant nouvRestaurant = new Restaurant(rs.getString("nom"), rs.getString("adresse"), rs.getDouble("lat"), rs.getDouble("lon"));
+            Restaurant nouvRestaurant = new Restaurant(rs.getString("nom"), rs.getString("adresse"), rs.getDouble("lat"), rs.getDouble("lon"), rs.getInt("nbtables"));
             nouvRestaurant.setId(rs.getInt("id"));
             restaurants.add(nouvRestaurant);
         }
