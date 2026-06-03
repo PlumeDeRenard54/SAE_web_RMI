@@ -15,8 +15,15 @@ public class ServeurRestauration implements ServiceRestauration {
     }
 
     @Override
-    public boolean reserverRestaurant(Reservation reservation) throws RemoteException{
+    public synchronized boolean reserverRestaurant(Reservation reservation) throws RemoteException{
         try {
+            //verifier si assez de place disponible
+            boolean reservationOK =  Repository.getInstance().getReservationPossible(reservation);
+            System.out.println("Reservation possible : " + reservationOK);
+            if(!reservationOK){
+                return false;
+            }
+            //reservation
             Repository.getInstance().saveReservation(reservation);
             System.out.println("Reservation !");
         }
@@ -38,6 +45,7 @@ public class ServeurRestauration implements ServiceRestauration {
         }
         return null;
     }
+
 
 
 }
