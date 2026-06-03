@@ -8,13 +8,13 @@ export function showResa(resto: Resto) {
 
   nodeResa.querySelector("#nom-resto")!.innerHTML = resto.nom;
 
-  (nodeResa.querySelector("#submitButton")! as HTMLButtonElement).onclick = prepareResa(resto)
-  console.log(nodeResa.querySelector("#submitButton")! as HTMLButtonElement)
+  (nodeResa.querySelector("#submitButton")! as HTMLButtonElement).onclick =
+    prepareResa(resto);
+  console.log(nodeResa.querySelector("#submitButton")! as HTMLButtonElement);
 }
 
 export function prepareResa(resto: Resto) {
   return async function postResa() {
-    console.log("Il repassera par là")
     let nodeResa = document.getElementById("resa")!;
 
     let date = new Date(
@@ -47,14 +47,16 @@ export function prepareResa(resto: Resto) {
       idResto: resto.id,
     };
 
-    nodeResa.querySelector("#submitButton")!.classList.add("hidden")
-    nodeResa.querySelector("#resa-spinner")!.classList.remove("hidden")
-    let response = await fetch(serverHost+"/reserver", {
+    nodeResa.querySelector("#submitButton")!.classList.add("hidden");
+    nodeResa.querySelector("#resa-spinner")!.classList.remove("hidden");
+    let response = await fetch(serverHost + "/reserver", {
       method: "POST",
       body: JSON.stringify(values),
     });
-
-    nodeResa.querySelector("#submitButton")!.classList.remove("hidden")
-    nodeResa.querySelector("#resa-spinner")!.classList.add("hidden")
+    if (!response.ok) {
+      alert("Réservation Impossible");
+    }
+    nodeResa.querySelector("#submitButton")!.classList.remove("hidden");
+    nodeResa.querySelector("#resa-spinner")!.classList.add("hidden");
   };
 }
