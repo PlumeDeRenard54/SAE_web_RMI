@@ -46,6 +46,42 @@ Ce projet utilise une architecture Java RMI pour exposer les services de gestion
  >
  > db.url=jdbc:oracle:thin:@charlemagne.iutnc.univ-lorraine.fr:1521:infodb
 
+# Partie web:
+
+## Affichage
+
+> Un menu déroulant donne accès à plusieurs checkboxes permettant de filtrer les données par type d'élément recherché.
+
+### Carte
+
+>A l'aide de la librairie leaflet nous anvons implémenté une carte intéractive basée sur les cartes OpenStreetMap disponibles librement. Celle ci est centrée sur Nancy et affiche des icones signifiant les emplacements de stations de vélo de ville, de travaux/ emplacements d'accidents ainsi que de restaurants.
+
+>lors de l'appui sur un des marqueurs, soit une popup résumant les données importantes sur l'emplacement s'ouvre soit, lors de l'appui sur un restaurant, une redirection vers une  autre page est faite.
+
+### Liste de vignettes
+
+> Dans un autre onglet, nous avons implémenté une liste. Celle ci affiche chaque lieu avec leur type et une description plus complète, dans chacune des vignettes il y a un bouton redirigeant vers la carte centrée sur l'emplacement lié à celle ci. Les réstaurants eux bénéficient d'un lien vers les réservations.
+
+
+## Réservations
+
+> Après avoir été redirigé depuis un restaurant, vous pouvez réserver une ou plusieurs tables. Pour cela vous vous trouvez face à un formulaire très complexe avec plusieurs champs
+
+| data | type |
+| ----------- | ----------- |
+| Date de réservation | Date |
+| Heure de réservation | Heure |
+| Nom | String |
+| Prénom | String |
+| Numero de téléphone | String |
+| Nombre de places demandées | number |
+
+> Suite au remplissage et à la validation des données, elles sont envoyées au serveur via une requete en POST à l'API pour être verifiées et validées. Dans le cas ou elles ne sont pas approuvées, une alerte est lancée à l'utilisateur.
+
+## Compte Rendu
+
+> Un dernier onglet contient une retranscription du fichier markdown faite par la librairie ShowDown.
+
 
 # Features
 
