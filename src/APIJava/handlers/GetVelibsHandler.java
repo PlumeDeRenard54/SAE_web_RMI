@@ -16,8 +16,17 @@ import java.util.Map;
 
 import static APIJava.main.Main.sendOptionResponse;
 
+/**
+ * Handler permettant de gérer l'accès à la route /velib de l'API
+ */
 public class GetVelibsHandler implements HttpHandler {
 
+    /**
+     * Méthode permettant de renvoyer au client la liste des velibs de nancy
+     * @param exchange the exchange containing the request from the
+     *                 client and used to send the response
+     * @throws IOException
+     */
     @Override
     public void handle(HttpExchange exchange) throws IOException {
 

@@ -19,8 +19,17 @@ import java.util.stream.Collectors;
 
 import static APIJava.main.Main.sendOptionResponse;
 
+/**
+ * Handler permettant de gérer l'accès à la route /reserver de l'API
+ */
 public class ReservationHandler implements HttpHandler {
 
+    /**
+     * Méthode permettant de réserver une table dans un restaurant
+     * @param exchange the exchange containing the request from the
+     *                 client and used to send the response
+     * @throws IOException
+     */
     @Override
     public void handle(HttpExchange exchange) throws IOException {
         if ("OPTIONS".equalsIgnoreCase(exchange.getRequestMethod())) {
@@ -73,16 +82,27 @@ public class ReservationHandler implements HttpHandler {
                     throw new RuntimeException(e);
                 }
 
-                boolean resOk = resto.reserverRestaurant(res);
-                System.out.println("Reservation faite : " + resOk);
 //                System.out.println(resto.getRestaurants());
                 exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
                 exchange.getResponseHeaders().add("Content-Type", "application/json");
 
-                String reponse = "{\"status\": \"données envoyées\"}";
-                byte[] responseBytes = reponse.getBytes(StandardCharsets.UTF_8);
+                boolean resOk = resto.reserverRestaurant(res);
+                System.out.println("Reservation faite : " + resOk);
 
-                exchange.sendResponseHeaders(201, responseBytes.length);
+                String response;
+                int codeStatus;
+
+                if (resOk) {
+                    codeStatus = 201;
+                    response = "{\"status\": \"success\", \"message\": \"Réservation validée \"}";
+                } else {
+                    codeStatus = 400;
+                    response = "{\"status\": \"error\", \"message\": \"Plus de places disponibles ou erreur serveur\"}";
+                }
+
+                byte[] responseBytes = response.getBytes(StandardCharsets.UTF_8);
+
+                exchange.sendResponseHeaders(codeStatus, responseBytes.length);
                 try (OutputStream os = exchange.getResponseBody()) {
                     os.write(responseBytes);
                 }
