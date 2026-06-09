@@ -40,7 +40,7 @@ public final class Repository {
 //        }
         List<Restaurant> restaurants = repo.getRestaurants();
         ServeurRestauration serveurRestauration = new ServeurRestauration();
-        Reservation reservation = new Reservation("Carnet", "Alexander", "0708965634", (restaurants.get(0)).getId(), "10-10-2010 10:05:00", 2);
+        Reservation reservation = new Reservation("Carnet", "Alexander", "0708965634", (restaurants.get(0)).getId(), "10-10-2011 10:05:00", 3);
         serveurRestauration.reserverRestaurant(reservation);
 
         System.out.println(repo.getRestaurants());
@@ -156,21 +156,27 @@ public final class Repository {
 
     public boolean getReservationPossible(Reservation reservation) throws SQLException {
         Connection connect = DatabaseConnection.getConnection();
-        String sql =  "Select count(*) as nbReservations, nbTables, NbConvives from e85555u.reservation inner join e85555u.restaurant on e85555u.restaurant.id = e85555u.reservation.IdRestaurant where IdRestaurant = ? and DateRes BETWEEN TO_DATE(?, 'DD-MM-YYYY HH24:MI:SS') - INTERVAL '2' HOUR AND TO_DATE(?, 'DD-MM-YYYY HH24:MI:SS') + INTERVAL '2' HOUR group by nbTables,NbConvives";
+        String sql =  "Select count(*) as nbReservations, nbTables, NbConvives " +
+                "from e85555u.reservation inner join e85555u.restaurant on e85555u.restaurant.id = e85555u.reservation.IdRestaurant " +
+                "where IdRestaurant = ? and DateRes BETWEEN TO_DATE(?, 'DD-MM-YYYY HH24:MI:SS') - INTERVAL '2' HOUR " +
+                "AND TO_DATE(?, 'DD-MM-YYYY HH24:MI:SS') + INTERVAL '2' HOUR group by nbTables,NbConvives";
         PreparedStatement prep = connect.prepareStatement(sql);
         prep.setInt(1, reservation.getIdRestaurant());
         prep.setString(2, reservation.getDateReservation());
         prep.setString(3, reservation.getDateReservation());
         ResultSet rs = prep.executeQuery();
-        if(rs.next()) {
+
+        int nbTablesOccupees = 0;
+        int nbTablesTotal = 0;
+        while(rs.next()) {
             int nbConvives = rs.getInt("NbConvives");
             int nbReservations = rs.getInt("nbReservations");
-            int nbTablesOccupees = (int) (nbReservations * Math.ceil(nbConvives/2.));
-            int nbTablesTotal = rs.getInt("nbTables");
-            System.out.println("nbTablesOccupees : " + nbTablesOccupees);
-            System.out.println("nbTablesTotal : " + nbTablesTotal);
-            return (nbTablesTotal - nbTablesOccupees) * 2 > reservation.getNbConvives();
+            nbTablesOccupees += (int) (Math.ceil(nbConvives/2.)*nbReservations);
+            nbTablesTotal = rs.getInt("nbTables");
         }
-        return true;
+        System.out.println("nbTablesOccupees : " + nbTablesOccupees);
+        System.out.println("nbTablesMax du resto : " +  nbTablesTotal);
+        System.out.println("nbTablesVouluesParReservation : " + Math.ceil(reservation.getNbConvives()/2.));
+        return (nbTablesTotal - nbTablesOccupees) * 2 > reservation.getNbConvives();
     }
 }
