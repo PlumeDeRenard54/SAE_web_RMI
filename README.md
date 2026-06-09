@@ -1,33 +1,55 @@
 # Fonctionnement de la connexion à la Base de données (RMI)
 
-Ce projet utilise une architecture Java RMI pour exposer les services de gestion des restaurants et des réservations à des clients distants.
+Cette partie du projet utilise une architecture Java RMI pour exposer les services de gestion des restaurants et des réservations au serveur Http.
 
 ## Architecture de la base de données
 
-- La base de données Oracle contient les tables principales liées aux restaurants et aux réservations.
+- La base de données Oracle contient les tables RESTAURANT et RESERVATION.
 - Le fichier `data/db_properties/db.properties` stocke les paramètres de connexion : `db.user`, `db.password` et `db.url`.
 - La connexion JDBC est gérée par `src/ServerRMI/DatabaseConnection.java`.
 
+#### TABLE RESTAURANT
+
+| column    | type               |
+|-----------|--------------------|
+| ID        | 	NUMBER(38,0)      |
+| NOM       | 	VARCHAR2(30 BYTE) |
+| ADRESSE	  | VARCHAR2(100 BYTE) |
+| LAT	      | NUMBER(12,8)       |
+| LON	      | NUMBER(12,8)       |
+| NBTABLES	 | NUMBER(38,0)       |
+
+#### TABLE RESERVATION
+
+| column       | type               |
+|--------------|--------------------|
+| IDRES        | 	NUMBER(38,0)      |
+| NOMCLI       | 	VARCHAR2(30 BYTE) |
+| PRENOMCLI    | 	VARCHAR2(30 BYTE) |
+| NUMTEL       | 	VARCHAR2(30 BYTE) |
+| IDRESTAURANT | 	NUMBER(38,0)      |
+| DATERES      | 	DATE              |
+| NBCONVIVES   | 	NUMBER(38,0)      |
+
 ## Composants RMI
 
-- `ServeurRestauration.java` : point d’entrée du serveur RMI.
-- `ServiceRestauration.java` : implémentation du service exposé aux clients.
-- `Repository.java` : couche d’accès aux données utilisée par le service.
+- `ServeurRestauration.java` : objet distant qu'on exporte sur le port 1099.
+- `ServiceRestauration.java` : interface du service exposé aux clients.
+- `Repository.java` : patron de conception Repository pour l'accès à la base de données Oracle par ServeurRestauration. C'est un Singleton.
 
 ## Principales méthodes et fonctionnalités
 
 - `DatabaseConnection.getConnection()` : établit la connexion JDBC à Oracle en lisant `db.properties`.
-- `Repository.getRestaurants()` : récupère la liste des restaurants disponibles.
-- `Repository.getReservations()` : récupère les réservations existantes depuis la base de données.
-- `ReservationHandler` / `GetRestosHandler` / `GetVelibsHandler` : handlers API qui utilisent les services Java pour répondre aux requêtes HTTP.
+- `Repository.getRestaurants()` : retourne la liste des restaurants.
+- `Repository.getReservationPossoble()` : retourne vrai si une réservation est possible sur un créneau souhaité (à deux heures près), faux sinon.
 - `Reservation.java` et `Restaurant.java` : modèles de données représentant les entités de la base.
 
 ## Flux général
 
 1. Le serveur RMI démarre via `MainServeurRestauration.java`.
-2. `ServiceRestauration` utilise `Repository` pour exécuter les opérations SQL.
+2. `ServeurRestauration` utilise `Repository` pour exécuter les opérations SQL.
 3. `DatabaseConnection` ouvre et gère la connexion Oracle.
-4. Les clients distants appellent les méthodes RMI pour lire ou écrire des données.
+4. Le serveur Http appelle les méthodes RMI pour lire ou écrire des données.
 
 # Configuration de la connexion à la Base de données
 
