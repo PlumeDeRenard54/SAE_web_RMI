@@ -19,10 +19,19 @@ import java.util.stream.Collectors;
 
 import static APIJava.main.Main.sendOptionResponse;
 
+
 /**
  * Handler permettant de gérer l'accès à la route /reserver de l'API
  */
 public class ReservationHandler implements HttpHandler {
+
+    private final String rmiHost;
+    private final String rmiPort;
+
+    public ReservationHandler(String host, String port) {
+        this.rmiHost = host;
+        this.rmiPort = port;
+    }
 
     /**
      * Méthode permettant de réserver une table dans un restaurant

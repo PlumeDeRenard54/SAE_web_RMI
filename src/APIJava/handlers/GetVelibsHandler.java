@@ -1,5 +1,6 @@
 package APIJava.handlers;
 
+import APIJava.ApiConfig;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -43,8 +44,8 @@ public class GetVelibsHandler implements HttpHandler {
             String jsonAdresse = null;
             String jsonCapa = null;
             try {
-                jsonAdresse = Main.getInfosAPI("https://api.cyclocity.fr/contracts/nancy/gbfs/v2/station_information.json");
-                jsonCapa = Main.getInfosAPI("https://api.cyclocity.fr/contracts/nancy/gbfs/v2/station_status.json");
+                jsonAdresse = Main.getInfosAPI(ApiConfig.VELIB_ADRESSES_URL);
+                jsonCapa = Main.getInfosAPI(ApiConfig.VELIB_CAPA_URL);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

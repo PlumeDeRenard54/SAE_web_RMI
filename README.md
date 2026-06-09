@@ -56,3 +56,11 @@ Ce projet utilise une architecture Java RMI pour exposer les services de gestion
     - Server RMI pour gestion de données
 
 
+# Utilisation de l'API Java
+
+## Grace à l'API Java, on peut accéder à plusieurs routes : 
+
+- route /velib (GET): permet de récupérer la liste des vélibs de nancy, la réponse est un json comprennant un tableau de stations avec les diverses informations
+- route /travaux (GET): permet d'avoir la liste des travaux des restos de nancy, la réponse est un json comprennant un tableau de travaux 
+- route /getResots (GET): permet de récupérer la liste des réstaurants de notre BD
+- route /reserver (POST): permet de réserver une table dans un restaurant 

@@ -1,5 +1,6 @@
 package APIJava.handlers;
 
+import APIJava.ApiConfig;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.net.httpserver.HttpExchange;
@@ -39,7 +40,7 @@ public class GetAccidentsHandler implements HttpHandler {
 
             String json = null;
             try {
-                json = getInfosAPI("https://carto.g-ny.eu/data/cifs/cifs_waze_v2.json");
+                json = getInfosAPI(ApiConfig.ACCIDENTS_URL);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

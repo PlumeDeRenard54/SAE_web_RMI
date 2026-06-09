@@ -17,6 +17,13 @@ import static APIJava.main.Main.sendOptionResponse;
  */
 public class GetRestosHandler implements HttpHandler {
 
+    private final String rmiHost;
+    private final String rmiPort;
+
+    public GetRestosHandler(String host, String port) {
+        this.rmiHost = host;
+        this.rmiPort = port;
+    }
 
     /**
      * Méthode permettant de renvoyer au client la liste des restaurant présents dans la bd

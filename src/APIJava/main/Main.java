@@ -8,12 +8,14 @@ import APIJava.handlers.GetRestosHandler;
 import APIJava.handlers.GetVelibsHandler;
 import APIJava.handlers.ReservationHandler;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Properties;
 
 /**
  * Classe Main permettant de lancer l'API Java
@@ -21,16 +23,20 @@ import java.net.http.HttpResponse;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
+
+        Properties config = new Properties();
+        config.load(new FileInputStream("data/api_properties/config.properties"));
+
+        HttpServer server = HttpServer.create(new InetSocketAddress(Integer.parseInt(config.getProperty("api.port"))), 0);
 
         //gestion de l'adresse http://localhost:8080/showVelib
         server.createContext("/velib", new GetVelibsHandler());
 
         //reservation d'une table au resto
-        server.createContext("/reserver", new ReservationHandler());
+        server.createContext("/reserver", new ReservationHandler(config.getProperty("rmi.host"), config.getProperty("rmi.port")));
 
         //récupération des restos
-        server.createContext("/getRestos", new GetRestosHandler());
+        server.createContext("/getRestos", new GetRestosHandler(config.getProperty("rmi.host"), config.getProperty("rmi.port")));
 
         //récupérer les travaux
         server.createContext("/travaux", new GetAccidentsHandler());
