@@ -40,7 +40,7 @@ public final class Repository {
 //        }
         List<Restaurant> restaurants = repo.getRestaurants();
         ServeurRestauration serveurRestauration = new ServeurRestauration();
-        Reservation reservation = new Reservation("Carnet", "Alexander", "0708965634", (restaurants.get(0)).getId(), "10-10-2011 10:05:00", 3);
+        Reservation reservation = new Reservation("Carnet", "Alexander", "0708965634", 9, "22-03-0022 22:22:00", 3);
         serveurRestauration.reserverRestaurant(reservation);
 
         System.out.println(repo.getRestaurants());
@@ -156,10 +156,27 @@ public final class Repository {
 
     public boolean getReservationPossible(Reservation reservation) throws SQLException {
         Connection connect = DatabaseConnection.getConnection();
-        String sql =  "Select count(*) as nbReservations, nbTables, NbConvives " +
-                "from e85555u.reservation inner join e85555u.restaurant on e85555u.restaurant.id = e85555u.reservation.IdRestaurant " +
-                "where IdRestaurant = ? and DateRes BETWEEN TO_DATE(?, 'DD-MM-YYYY HH24:MI:SS') - INTERVAL '2' HOUR " +
-                "AND TO_DATE(?, 'DD-MM-YYYY HH24:MI:SS') + INTERVAL '2' HOUR group by nbTables,NbConvives";
+
+        // Récupérer nbTables
+
+        String sqlTables = "SELECT nbTables FROM e85555u.restaurant WHERE id = ?";
+
+        PreparedStatement prepTables = connect.prepareStatement(sqlTables);
+
+        prepTables.setInt(1, reservation.getIdRestaurant());
+        ResultSet rsTables = prepTables.executeQuery();
+        int nbTablesTotal = 0;
+        if(rsTables.next()) {
+            nbTablesTotal = rsTables.getInt("nbTables");
+        }
+
+        System.out.println("nbTablesTotal: " + nbTablesTotal);
+
+        // Récupérer disponibilités
+
+        String sql =  "Select count(*) as nbReservations, NbConvives " +
+                "from e85555u.reservation where IdRestaurant = ? AND DateRes BETWEEN TO_DATE(?, 'DD-MM-YYYY HH24:MI:SS') - INTERVAL '2' HOUR " +
+                "AND TO_DATE(?, 'DD-MM-YYYY HH24:MI:SS') + INTERVAL '2' HOUR group by NbConvives";
         PreparedStatement prep = connect.prepareStatement(sql);
         prep.setInt(1, reservation.getIdRestaurant());
         prep.setString(2, reservation.getDateReservation());
@@ -167,12 +184,11 @@ public final class Repository {
         ResultSet rs = prep.executeQuery();
 
         int nbTablesOccupees = 0;
-        int nbTablesTotal = 0;
+
         while(rs.next()) {
             int nbConvives = rs.getInt("NbConvives");
             int nbReservations = rs.getInt("nbReservations");
             nbTablesOccupees += (int) (Math.ceil(nbConvives/2.)*nbReservations);
-            nbTablesTotal = rs.getInt("nbTables");
         }
         System.out.println("nbTablesOccupees : " + nbTablesOccupees);
         System.out.println("nbTablesMax du resto : " +  nbTablesTotal);
