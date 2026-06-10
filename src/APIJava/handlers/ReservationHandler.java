@@ -82,7 +82,7 @@ public class ReservationHandler implements HttpHandler {
 
                 Reservation res = new Reservation(nom, prenom, numT, numResto, datePourSQL, nbPersonnes);
 
-                Registry reg = LocateRegistry.getRegistry("10.82.149.19", 1099);
+                Registry reg = LocateRegistry.getRegistry(rmiHost, Integer.parseInt(rmiPort));
 //                        System.out.println(reg);
                 ServiceDistant resto = null;
                 try {
