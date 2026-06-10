@@ -10,7 +10,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public final class Repository {
@@ -28,20 +27,20 @@ public final class Repository {
         // repo.saveRestaurant(new Restaurant(nomResto, adresse, latitude, longitude));
 
 //        List<Restaurant> restaurants = repo.getRestaurants();
-//        ServeurRestauration serveurRestauration = new ServeurRestauration();
+//        ServeurDistant serveurDistant = new ServeurDistant();
 //        Reservation reservation = new Reservation("Carnet", "Alexander", "0708965634", (restaurants.get(0)).getId(), "10-10-2010", 2);
-//        serveurRestauration.reserverRestaurant(reservation);
+//        serveurDistant.reserverRestaurant(reservation);
 
 //        for (int i=0; i<19;i++){
 //            List<Restaurant> restaurants = repo.getRestaurants();
-//            ServeurRestauration serveurRestauration = new ServeurRestauration();
+//            ServeurDistant serveurDistant = new ServeurDistant();
 //            Reservation reservation = new Reservation("Carnet", "Alexander", "0708965634", (restaurants.get(0)).getId(), "10-10-2010 10:05:00", 2);
-//            serveurRestauration.reserverRestaurant(reservation);
+//            serveurDistant.reserverRestaurant(reservation);
 //        }
         List<Restaurant> restaurants = repo.getRestaurants();
-        ServeurRestauration serveurRestauration = new ServeurRestauration();
+        ServeurDistant serveurDistant = new ServeurDistant();
         Reservation reservation = new Reservation("Carnet", "Alexander", "0708965634", 9, "22-03-0022 22:22:00", 3);
-        serveurRestauration.reserverRestaurant(reservation);
+        serveurDistant.reserverRestaurant(reservation);
 
         System.out.println(repo.getRestaurants());
     }

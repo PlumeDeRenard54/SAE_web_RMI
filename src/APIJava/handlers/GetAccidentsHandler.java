@@ -1,6 +1,7 @@
 package APIJava.handlers;
 
 import APIJava.ApiConfig;
+import ServerRMI.ServiceDistant;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.net.httpserver.HttpExchange;
@@ -9,7 +10,6 @@ import com.sun.net.httpserver.HttpHandler;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import static APIJava.main.Main.getInfosAPI;
 import static APIJava.main.Main.sendOptionResponse;
 
 
@@ -17,6 +17,12 @@ import static APIJava.main.Main.sendOptionResponse;
  * Handler permettant de gérer l'accès à la route /travaux de l'API
  */
 public class GetAccidentsHandler implements HttpHandler {
+
+    private ServiceDistant serv;
+
+    public GetAccidentsHandler(ServiceDistant serv) {
+        this.serv = serv;
+    }
 
     /**
      * Méthode permettant d'envoyer au client la liste des travaux de nancy
@@ -26,6 +32,8 @@ public class GetAccidentsHandler implements HttpHandler {
      */
     @Override
     public void handle(HttpExchange exchange) throws IOException {
+
+        System.out.println("requete reçue");
 
         if ("OPTIONS".equalsIgnoreCase(exchange.getRequestMethod())) {
             sendOptionResponse(exchange);
@@ -39,11 +47,9 @@ public class GetAccidentsHandler implements HttpHandler {
             exchange.getResponseHeaders().add("Content-Type", "application/json");
 
             String json = null;
-            try {
-                json = getInfosAPI(ApiConfig.ACCIDENTS_URL);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+            System.out.println("Avant");
+            json = serv.getReponseAPI(ApiConfig.ACCIDENTS_URL);
+            //                System.out.println("résultat"+json);
 
             ObjectMapper mapper = new ObjectMapper();
             JsonNode root = mapper.readTree(json);

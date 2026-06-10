@@ -13,9 +13,9 @@ public class MainServeurRestauration {
         Registry registry = LocateRegistry.createRegistry(1099);
         System.out.println("Local registry créée");
 
-        ServeurRestauration serveur = new ServeurRestauration();
+        ServeurDistant serveur = new ServeurDistant();
 
-        ServiceRestauration objetExport= (ServiceRestauration) UnicastRemoteObject.exportObject(serveur,0);
+        ServiceDistant objetExport= (ServiceDistant) UnicastRemoteObject.exportObject(serveur,0);
 
         registry.bind("serviceBD",objetExport);
         System.out.println("Service Disponible !");
