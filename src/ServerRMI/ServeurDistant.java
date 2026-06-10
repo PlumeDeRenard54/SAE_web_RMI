@@ -59,19 +59,18 @@ public class ServeurDistant implements ServiceDistant {
     }
 
     @Override
-    public String getReponseAPI(String url) throws IOException, InterruptedException {
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(url))
-                .GET()
-                .build();
-        System.out.println("cree");
-
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        int statusCode = response.statusCode();
-        System.out.println("code" + statusCode);
-        String body = response.body();
-//        System.out.println(body);
-        return body;
+    public String getReponseAPI(String url) throws RemoteException {
+        try {
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(url))
+                    .GET()
+                    .build();
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            System.out.println("code " + response.statusCode());
+            return response.body();
+        } catch (IOException | InterruptedException e) {
+            throw new RemoteException("Erreur appel API", e);
+        }
     }
 
 }
