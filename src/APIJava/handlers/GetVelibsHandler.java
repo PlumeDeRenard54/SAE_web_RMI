@@ -51,12 +51,8 @@ public class GetVelibsHandler implements HttpHandler {
 
             String jsonAdresse = null;
             String jsonCapa = null;
-            try {
-                jsonAdresse = serv.getReponseAPI(ApiConfig.VELIB_ADRESSES_URL);
-                jsonCapa = serv.getReponseAPI(ApiConfig.VELIB_CAPA_URL);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+            jsonAdresse = serv.getReponseAPI(ApiConfig.VELIB_ADRESSES_URL);
+            jsonCapa = serv.getReponseAPI(ApiConfig.VELIB_CAPA_URL);
 
             String res = getJsonVelib(jsonAdresse, jsonCapa);
 //                System.out.println(res);

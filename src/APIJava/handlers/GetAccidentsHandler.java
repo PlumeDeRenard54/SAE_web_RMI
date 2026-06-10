@@ -48,12 +48,8 @@ public class GetAccidentsHandler implements HttpHandler {
 
             String json = null;
             System.out.println("Avant");
-            try {
-                json = serv.getReponseAPI(ApiConfig.ACCIDENTS_URL);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-//                System.out.println("résultat"+json);
+            json = serv.getReponseAPI(ApiConfig.ACCIDENTS_URL);
+            //                System.out.println("résultat"+json);
 
             ObjectMapper mapper = new ObjectMapper();
             JsonNode root = mapper.readTree(json);
