@@ -21,7 +21,7 @@ Ce projet utilise une architecture Java RMI pour exposer les services de gestion
 - `Repository.getReservations()` : récupère les réservations existantes depuis la base de données.
 - `ReservationHandler` / `GetRestosHandler` / `GetVelibsHandler` : handlers API qui utilisent les services Java pour répondre aux requêtes HTTP.
 - `Reservation.java` et `Restaurant.java` : modèles de données représentant les entités de la base.
-
+- `reserverRestaurant.java` : réserve un restaurant s'il y a de la place disponible. La méthode est synchronized, cela garantit que deux réservations se feront toujours l'une après l'autre. Ainsi, aucune réservation ne se glissera entre le moment de la vérification de la disponibilité du crénaux et la réservation.
 ## Flux général
 
 1. Le serveur RMI démarre via `MainServeurRestauration.java`.
