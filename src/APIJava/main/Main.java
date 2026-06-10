@@ -11,23 +11,30 @@ import APIJava.handlers.ReservationHandler;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.net.ProxySelector;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Properties;
+import java.util.concurrent.Executors;
 
 /**
  * Classe Main permettant de lancer l'API Java
  */
 public class Main {
 
+    private static final HttpClient client = HttpClient.newBuilder()
+            .proxy(ProxySelector.of(new InetSocketAddress("www-cache", 3128)))
+            .build();
+
     public static void main(String[] args) throws IOException {
 
         Properties config = new Properties();
         config.load(new FileInputStream("data/api_properties/config.properties"));
 
-        HttpServer server = HttpServer.create(new InetSocketAddress(Integer.parseInt(config.getProperty("api.port"))), 0);
+        System.out.println(config.getProperty("api.port"));
+        HttpServer server = HttpServer.create(new InetSocketAddress("0.0.0.0",Integer.parseInt(config.getProperty("api.port"))), 0);
 
         //gestion de l'adresse http://localhost:8080/showVelib
         server.createContext("/velib", new GetVelibsHandler());
@@ -53,8 +60,10 @@ public class Main {
             }
         });
 
+        server.setExecutor(Executors.newFixedThreadPool(100));
+
         server.start();
-        System.out.println("Serveur lancé sur 8080");
+        System.out.println("Serveur lancé sur 8888");
 
     }
 
@@ -66,17 +75,20 @@ public class Main {
      * @throws InterruptedException
      */
     public static String getInfosAPI(String uri) throws IOException, InterruptedException {
-        HttpClient client = HttpClient.newHttpClient();
+        System.out.println("début creation reponse");
+        System.out.println(uri);
+
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(uri))
                 .GET()
                 .build();
+        System.out.println("cree");
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         int statusCode = response.statusCode();
+        System.out.println("code" + statusCode);
         String body = response.body();
 //        System.out.println(body);
-        System.out.println("Status de la réponse : " + statusCode);
         return body;
     }
 
