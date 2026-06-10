@@ -1,6 +1,7 @@
 package APIJava.handlers;
 
 import APIJava.ApiConfig;
+import ServerRMI.ServiceDistant;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,10 +18,17 @@ import java.util.Map;
 
 import static APIJava.main.Main.sendOptionResponse;
 
+
 /**
  * Handler permettant de gérer l'accès à la route /velib de l'API
  */
 public class GetVelibsHandler implements HttpHandler {
+
+    private ServiceDistant serv;
+
+    public GetVelibsHandler(ServiceDistant serv) {
+        this.serv = serv;
+    }
 
     /**
      * Méthode permettant de renvoyer au client la liste des velibs de nancy
@@ -44,12 +52,11 @@ public class GetVelibsHandler implements HttpHandler {
             String jsonAdresse = null;
             String jsonCapa = null;
             try {
-                jsonAdresse = Main.getInfosAPI(ApiConfig.VELIB_ADRESSES_URL);
-                jsonCapa = Main.getInfosAPI(ApiConfig.VELIB_CAPA_URL);
+                jsonAdresse = serv.getReponseAPI(ApiConfig.VELIB_ADRESSES_URL);
+                jsonCapa = serv.getReponseAPI(ApiConfig.VELIB_CAPA_URL);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-
 
             String res = getJsonVelib(jsonAdresse, jsonCapa);
 //                System.out.println(res);

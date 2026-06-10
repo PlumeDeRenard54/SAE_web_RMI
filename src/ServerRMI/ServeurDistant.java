@@ -3,18 +3,25 @@ package ServerRMI;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import donnees.Reservation;
-import donnees.Restaurant;
-import oracle.jdbc.internal.XSCacheOutput;
 
-import java.io.Serializable;
-import java.rmi.Remote;
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.ProxySelector;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
-import java.util.List;
 
-public class ServeurRestauration implements ServiceRestauration {
-    protected ServeurRestauration() throws RemoteException {
+public class ServeurDistant implements ServiceDistant {
+
+    private static final HttpClient client = HttpClient.newBuilder()
+            .proxy(ProxySelector.of(new InetSocketAddress("www-cache", 3128)))
+            .build();
+
+
+    protected ServeurDistant() throws RemoteException {
     }
 
     @Override
@@ -51,6 +58,20 @@ public class ServeurRestauration implements ServiceRestauration {
         return null;
     }
 
+    @Override
+    public String getReponseAPI(String url) throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .GET()
+                .build();
+        System.out.println("cree");
 
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        int statusCode = response.statusCode();
+        System.out.println("code" + statusCode);
+        String body = response.body();
+//        System.out.println(body);
+        return body;
+    }
 
 }

@@ -1,5 +1,6 @@
 package APIJava.main;
 
+import ServerRMI.ServiceDistant;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
@@ -16,6 +17,9 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.rmi.NotBoundException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.util.Properties;
 import java.util.concurrent.Executors;
 
@@ -24,29 +28,37 @@ import java.util.concurrent.Executors;
  */
 public class Main {
 
-    private static final HttpClient client = HttpClient.newBuilder()
-            .proxy(ProxySelector.of(new InetSocketAddress("www-cache", 3128)))
-            .build();
 
     public static void main(String[] args) throws IOException {
 
         Properties config = new Properties();
         config.load(new FileInputStream("data/api_properties/config.properties"));
 
+        Registry reg = LocateRegistry.getRegistry(config.getProperty("rmi.host"), 1099);
+//                System.out.println(reg);
+        ServiceDistant resto = null;
+        try {
+            resto = (ServiceDistant) reg.lookup("serviceBD");
+            System.out.println("ref distante récupérée");
+        } catch (NotBoundException e) {
+            System.out.println(e.getMessage());
+            throw new RuntimeException(e);
+        }
+
         System.out.println(config.getProperty("api.port"));
         HttpServer server = HttpServer.create(new InetSocketAddress("0.0.0.0",Integer.parseInt(config.getProperty("api.port"))), 0);
 
         //gestion de l'adresse http://localhost:8080/showVelib
-        server.createContext("/velib", new GetVelibsHandler());
+        server.createContext("/velib", new GetVelibsHandler(resto));
 
         //reservation d'une table au resto
-        server.createContext("/reserver", new ReservationHandler(config.getProperty("rmi.host"), config.getProperty("rmi.port")));
+        server.createContext("/reserver", new ReservationHandler(resto, config.getProperty("rmi.host"), config.getProperty("rmi.port")));
 
         //récupération des restos
-        server.createContext("/getRestos", new GetRestosHandler(config.getProperty("rmi.host"), config.getProperty("rmi.port")));
+        server.createContext("/getRestos", new GetRestosHandler(resto, config.getProperty("rmi.host"), config.getProperty("rmi.port")));
 
         //récupérer les travaux
-        server.createContext("/travaux", new GetAccidentsHandler());
+        server.createContext("/travaux", new GetAccidentsHandler(resto));
 
         //gestion d'un simple sout sur un clic, sera remplacé par le rmi j'imagine
         server.createContext("/soutMessage", new HttpHandler() {
@@ -67,30 +79,6 @@ public class Main {
 
     }
 
-    /**
-     * Méthode permettant de récupérer un json correspondant à un appel d'API
-     * @param uri adresse où se trouvent les données
-     * @return le json de réponse
-     * @throws IOException
-     * @throws InterruptedException
-     */
-    public static String getInfosAPI(String uri) throws IOException, InterruptedException {
-        System.out.println("début creation reponse");
-        System.out.println(uri);
-
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(uri))
-                .GET()
-                .build();
-        System.out.println("cree");
-
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        int statusCode = response.statusCode();
-        System.out.println("code" + statusCode);
-        String body = response.body();
-//        System.out.println(body);
-        return body;
-    }
 
     /**
      * Méthode permettant de passer outre les problème de CORS, notamment pour la requête de pre vérification des navigateurs

@@ -122,3 +122,9 @@ Cette partie du projet utilise une architecture Java RMI pour exposer les servic
 - route /travaux (GET): permet d'avoir la liste des travaux des restos de nancy, la réponse est un json comprennant un tableau de travaux 
 - route /getResots (GET): permet de récupérer la liste des réstaurants de notre BD
 - route /reserver (POST): permet de réserver une table dans un restaurant 
+
+## Comment fonctionne l'API ? 
+
+L'API java repose sur un main qui créé un objet HttpServer. 
+On associe à ce server plusieurs routes qui permettront d'obtenir les diverses informations voulues (accidents, vélib, restaurants, ...). 
+Si on veut ajouter une nouvelle route, il suffit simplement d'ajouter 

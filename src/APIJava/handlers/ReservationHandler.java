@@ -1,6 +1,6 @@
 package APIJava.handlers;
 
-import ServerRMI.ServiceRestauration;
+import ServerRMI.ServiceDistant;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.net.httpserver.HttpExchange;
@@ -25,10 +25,12 @@ import static APIJava.main.Main.sendOptionResponse;
  */
 public class ReservationHandler implements HttpHandler {
 
+    private ServiceDistant serv;
     private final String rmiHost;
     private final String rmiPort;
 
-    public ReservationHandler(String host, String port) {
+    public ReservationHandler(ServiceDistant serv, String host, String port) {
+        this.serv = serv;
         this.rmiHost = host;
         this.rmiPort = port;
     }
@@ -82,9 +84,9 @@ public class ReservationHandler implements HttpHandler {
 
                 Registry reg = LocateRegistry.getRegistry("10.82.149.19", 1099);
 //                        System.out.println(reg);
-                ServiceRestauration resto = null;
+                ServiceDistant resto = null;
                 try {
-                    resto = (ServiceRestauration) reg.lookup("serviceBD");
+                    resto = (ServiceDistant) reg.lookup("serviceBD");
                     System.out.println("ref distante récupérée");
                 } catch (NotBoundException e) {
                     System.out.println(e.getMessage());

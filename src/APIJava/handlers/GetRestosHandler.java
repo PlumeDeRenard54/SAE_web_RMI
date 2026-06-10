@@ -1,6 +1,6 @@
 package APIJava.handlers;
 
-import ServerRMI.ServiceRestauration;
+import ServerRMI.ServiceDistant;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
@@ -19,8 +19,10 @@ public class GetRestosHandler implements HttpHandler {
 
     private final String rmiHost;
     private final String rmiPort;
+    private ServiceDistant serv;
 
-    public GetRestosHandler(String host, String port) {
+    public GetRestosHandler(ServiceDistant serv, String host, String port) {
+        this.serv = serv;
         this.rmiHost = host;
         this.rmiPort = port;
     }
@@ -47,9 +49,9 @@ public class GetRestosHandler implements HttpHandler {
             System.out.println("Appel de getRestos");
             Registry reg = LocateRegistry.getRegistry("10.82.149.19", 1099);
 //                System.out.println(reg);
-            ServiceRestauration resto = null;
+            ServiceDistant resto = null;
             try {
-                resto = (ServiceRestauration) reg.lookup("serviceBD");
+                resto = (ServiceDistant) reg.lookup("serviceBD");
                 System.out.println("ref distante récupérée");
             } catch (NotBoundException e) {
                 System.out.println(e.getMessage());
