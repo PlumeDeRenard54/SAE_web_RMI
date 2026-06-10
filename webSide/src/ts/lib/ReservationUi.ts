@@ -1,3 +1,4 @@
+import { toggleHidden } from "..";
 import { serverHost } from "../env";
 import { Resto } from "../Interfaces/ListeRestos";
 import { StationVlib, ListeVlib } from "../Interfaces/ListeVlib";
@@ -55,8 +56,11 @@ export function prepareResa(resto: Resto) {
     });
     if (!response.ok) {
       alert("Réservation Impossible");
+    }else{
+      toggleHidden("mappage")
     }
     nodeResa.querySelector("#submitButton")!.classList.remove("hidden");
     nodeResa.querySelector("#resa-spinner")!.classList.add("hidden");
+
   };
 }

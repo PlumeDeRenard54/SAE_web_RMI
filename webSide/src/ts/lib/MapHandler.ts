@@ -53,7 +53,7 @@ export async function showRestos() {
 }
 
 export function showMap(
-  show: what2show = { resto: true, velib: true, travaux: true },
+  show: what2show = { resto: true, velib: false, travaux: false },
 ) {
   if (show.resto) {
     showRestos();

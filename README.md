@@ -66,16 +66,15 @@ Ce projet utilise une architecture Java RMI pour exposer les services de gestion
 ## Réservations
 
 > Après avoir été redirigé depuis un restaurant, vous pouvez réserver une ou plusieurs tables. Pour cela vous vous trouvez face à un formulaire très complexe avec plusieurs champs
-
-| data | type |
-| ----------- | ----------- |
-| Date de réservation | Date |
-| Heure de réservation | Heure |
-| Nom | String |
-| Prénom | String |
-| Numero de téléphone | String |
-| Nombre de places demandées | number |
-
+>| data | type |
+>| ----------- | ----------- |
+>| Date de réservation | Date |
+>| Heure de réservation | Heure |
+>| Nom | String |
+>| Prénom | String |
+>| Numero de téléphone | String |
+>| Nombre de places demandées | number |
+>
 > Suite au remplissage et à la validation des données, elles sont envoyées au serveur via une requete en POST à l'API pour être verifiées et validées. Dans le cas ou elles ne sont pas approuvées, une alerte est lancée à l'utilisateur.
 
 ## Compte Rendu
