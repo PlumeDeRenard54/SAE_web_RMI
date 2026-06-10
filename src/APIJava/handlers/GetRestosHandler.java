@@ -47,9 +47,9 @@ public class GetRestosHandler implements HttpHandler {
             exchange.getResponseHeaders().add("Content-Type", "application/json");
 //                System.out.println(json);
             System.out.println("Appel de getRestos");
-            Registry reg = LocateRegistry.getRegistry("10.82.149.19", 1099);
+            Registry reg = LocateRegistry.getRegistry(rmiHost, Integer.parseInt(rmiPort));
 //                System.out.println(reg);
-            ServiceDistant resto = null;
+            ServiceDistant resto;
             try {
                 resto = (ServiceDistant) reg.lookup("serviceBD");
                 System.out.println("ref distante récupérée");
