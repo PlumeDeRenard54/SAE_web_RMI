@@ -43,7 +43,7 @@ Cette partie du projet utilise une architecture Java RMI pour exposer les servic
 - `Repository.getRestaurants()` : retourne la liste des restaurants.
 - `Repository.getReservationPossoble()` : retourne vrai si une réservation est possible sur un créneau souhaité (à deux heures près), faux sinon.
 - `Reservation.java` et `Restaurant.java` : modèles de données représentant les entités de la base.
-
+- `reserverRestaurant.java` : réserve un restaurant s'il y a de la place disponible. La méthode est synchronized, cela garantit que deux réservations se feront toujours l'une après l'autre. Ainsi, aucune réservation ne se glissera entre le moment de la vérification de la disponibilité du crénaux et la réservation.
 ## Flux général
 
 1. Le serveur RMI démarre via `MainServeurRestauration.java`.
