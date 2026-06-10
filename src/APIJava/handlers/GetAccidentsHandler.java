@@ -27,6 +27,8 @@ public class GetAccidentsHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange exchange) throws IOException {
 
+        System.out.println("requete reçue");
+
         if ("OPTIONS".equalsIgnoreCase(exchange.getRequestMethod())) {
             sendOptionResponse(exchange);
             return;
@@ -40,7 +42,9 @@ public class GetAccidentsHandler implements HttpHandler {
 
             String json = null;
             try {
+                System.out.println("Avant");
                 json = getInfosAPI(ApiConfig.ACCIDENTS_URL);
+//                System.out.println("résultat"+json);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
