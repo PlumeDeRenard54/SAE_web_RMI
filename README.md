@@ -1,6 +1,6 @@
-# Fonctionnement de la connexion à la Base de données (RMI)
+# Partie ClientHTTP - connexion à la Base de données (RMI)
 
-Cette partie du projet utilise une architecture Java RMI pour exposer les services de gestion des restaurants et des réservations au serveur Http.
+Cette partie du projet utilise une architecture Java RMI pour exposer les services de gestion des restaurants et des réservations au serveur. De plus, elle permettra de faire des appels à des api externes. 
 
 ## Architecture de la base de données
 
@@ -122,6 +122,10 @@ Cette partie du projet utilise une architecture Java RMI pour exposer les servic
 - route /travaux (GET): permet d'avoir la liste des travaux des restos de nancy, la réponse est un json comprennant un tableau de travaux 
 - route /getResots (GET): permet de récupérer la liste des réstaurants de notre BD
 - route /reserver (POST): permet de réserver une table dans un restaurant 
+
+## Fonctionnement du serveur Http
+
+Le main du serveur Http possède un client Http en attribut. La méthode getInfosAPI prend une uri en paramètre et retourne la réponse du serveur (vélib, travaux ou restos).
 
 ## Comment fonctionne l'API ? 
 
