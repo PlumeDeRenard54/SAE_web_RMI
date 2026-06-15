@@ -1,12 +1,5 @@
 import * as L from "leaflet";
-import { ListeVlib } from "./Interfaces/ListeVlib";
-import { showResa } from "./lib/ReservationUi";
-import { ListeTravaux } from "./Interfaces/ListeTravaux";
-import { ListeRestos } from "./Interfaces/ListeRestos";
-import { serverHost } from "./env";
-import { Loaders } from "./lib/Loaders";
 import { showMap } from "./lib/MapHandler";
-import { $ } from "jquery";
 import showdown from "showdown";
 import { showList } from "./lib/ListHandler";
 
@@ -19,31 +12,33 @@ L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
   referrerPolicy: "origin",
 }).addTo(map);
 
-(document.querySelector("#reload-map-button")! as HTMLButtonElement).onclick =
+let travaux = (document.querySelector("#travaux-check") as HTMLInputElement);
+let velib = (document.querySelector("#velib-check") as HTMLInputElement)
+let resto = (document.querySelector("#resto-check") as HTMLInputElement);
+
+let mapReload =
   () => {
-    let travaux = (document.querySelector("#travaux-check") as HTMLInputElement)
-      .checked;
-    let velib = (document.querySelector("#velib-check") as HTMLInputElement)
-      .checked;
-    let resto = (document.querySelector("#resto-check") as HTMLInputElement)
-      .checked;
 
     map.eachLayer((layer) => {
       if ((layer as any)["_latlng"] != undefined) layer.remove();
     });
 
     showMap({
-      resto,
-      velib,
-      travaux,
+      resto : resto.checked,
+      velib : velib.checked ,
+      travaux : travaux.checked,
     });
 
     showList({
-      resto,
-      velib,
-      travaux,
+      resto : resto.checked,
+      velib : velib.checked,
+      travaux : travaux.checked,
     });
   };
+
+travaux.onclick = mapReload
+velib.onclick = mapReload
+resto.onclick = mapReload
 
 /**
  * Choix de la page affichée
@@ -60,8 +55,22 @@ export function toggleHidden(id: string) {
     let mainPartCast = mainPart as HTMLDivElement;
     if (id == mainPartCast.id) {
       mainPartCast.classList.remove("hidden");
+      document
+        .querySelector("#" + id + "-button")
+        ?.childNodes.forEach((node) => {
+          if ("id" in node) {
+            (node as HTMLSpanElement).classList.add("active");
+          }
+        });
     } else {
       mainPartCast.classList.add("hidden");
+      document
+        .querySelector("#" + mainPartCast.id + "-button")
+        ?.childNodes.forEach((node) => {
+          if ("id" in node) {
+            (node as HTMLSpanElement).classList.remove("active");
+          }
+        });
     }
   }
 }
@@ -89,6 +98,6 @@ header.childNodes.forEach((node) => {
   };
 });
 
-(async ()=> showMap())();
-(async () => showList())();
+(async () => showMap())().then(() => showList());
+
 toggleHidden("mappage");

@@ -44,6 +44,8 @@ Cette partie du projet utilise une architecture Java RMI pour exposer les servic
 - `Repository.getReservationPossoble()` : retourne vrai si une réservation est possible sur un créneau souhaité (à deux heures près), faux sinon.
 - `Reservation.java` et `Restaurant.java` : modèles de données représentant les entités de la base.
 - `reserverRestaurant.java` : réserve un restaurant s'il y a de la place disponible. La méthode est synchronized, cela garantit que deux réservations se feront toujours l'une après l'autre. Ainsi, aucune réservation ne se glissera entre le moment de la vérification de la disponibilité du crénaux et la réservation.
+- `getReponseAPI` : contacte les API externes (vélibs et accidents) qui retournent leurs données en json avec un HttpClient.
+
 ## Flux général
 
 1. Le serveur RMI démarre via `MainServeurRestauration.java`.
@@ -88,16 +90,15 @@ Cette partie du projet utilise une architecture Java RMI pour exposer les servic
 ## Réservations
 
 > Après avoir été redirigé depuis un restaurant, vous pouvez réserver une ou plusieurs tables. Pour cela vous vous trouvez face à un formulaire très complexe avec plusieurs champs
-
-| data | type |
-| ----------- | ----------- |
-| Date de réservation | Date |
-| Heure de réservation | Heure |
-| Nom | String |
-| Prénom | String |
-| Numero de téléphone | String |
-| Nombre de places demandées | number |
-
+>| data | type |
+>| ----------- | ----------- |
+>| Date de réservation | Date |
+>| Heure de réservation | Heure |
+>| Nom | String |
+>| Prénom | String |
+>| Numero de téléphone | String |
+>| Nombre de places demandées | number |
+>
 > Suite au remplissage et à la validation des données, elles sont envoyées au serveur via une requete en POST à l'API pour être verifiées et validées. Dans le cas ou elles ne sont pas approuvées, une alerte est lancée à l'utilisateur.
 
 ## Compte Rendu

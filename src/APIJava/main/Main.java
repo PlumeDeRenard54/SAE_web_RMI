@@ -72,7 +72,7 @@ public class Main {
             }
         });
 
-//        server.setExecutor(Executors.newFixedThreadPool(100));
+        server.setExecutor(Executors.newVirtualThreadPerTaskExecutor());
 
         server.start();
         System.out.println("Serveur lancé sur 8888");

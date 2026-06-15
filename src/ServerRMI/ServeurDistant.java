@@ -13,11 +13,14 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
 
 public class ServeurDistant implements ServiceDistant {
 
     private static final HttpClient client = HttpClient.newBuilder()
             .proxy(ProxySelector.of(new InetSocketAddress("www-cache", 3128)))
+            .executor(Executors.newFixedThreadPool(10))
             .build();
 
 
@@ -65,11 +68,13 @@ public class ServeurDistant implements ServiceDistant {
                     .uri(URI.create(url))
                     .GET()
                     .build();
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            HttpResponse<String> response = client.sendAsync(request, HttpResponse.BodyHandlers.ofString()).get();
             System.out.println("code " + response.statusCode());
             return response.body();
-        } catch (IOException | InterruptedException e) {
+        } catch (InterruptedException e) {
             throw new RemoteException("Erreur appel API", e);
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
         }
     }
 
