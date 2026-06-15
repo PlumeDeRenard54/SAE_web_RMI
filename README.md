@@ -123,12 +123,13 @@ Cette partie du projet utilise une architecture Java RMI pour exposer les servic
 - route /getResots (GET): permet de récupérer la liste des réstaurants de notre BD
 - route /reserver (POST): permet de réserver une table dans un restaurant 
 
-## Fonctionnement du serveur Http
-
-Le main du serveur Http possède un client Http en attribut. La méthode getInfosAPI prend une uri en paramètre et retourne la réponse du serveur (vélib, travaux ou restos).
-
 ## Comment fonctionne l'API ? 
 
 L'API java repose sur un main qui créé un objet HttpServer. 
 On associe à ce server plusieurs routes qui permettront d'obtenir les diverses informations voulues (accidents, vélib, restaurants, ...). 
-Si on veut ajouter une nouvelle route, il suffit simplement d'ajouter 
+Si on veut ajouter une nouvelle route, il suffit simplement d'ajouter un nouveau contexte et de lui donner un nom de route ainsi qu'un handler qui traitera la requête.
+
+Le server http va ensuite rechercher le service distant et appeler la méthode adaptée à la requête. 
+Le service retourne une chaîne correspondant à la reponse du client http créé côté service. 
+
+> ![alt text](img/schemaGlobal.png)
